@@ -6,10 +6,10 @@ This semester project (2. semester "Zentrum für berufliche Weiterbildung") incl
 
 This project includes code contributions from the following authors:
 
-- [Maximilian](https://github.com/Hamstergruesch)
-- [Elias](https://github.com/Eliasgoette)
-- [Khabat](https://github.com/Niceplayer13)
-- [Steven](https://github.com/es-qu)
+- [Maximilian Degen](https://github.com/Hamstergruesch)
+- [Elias Götte](https://github.com/Eliasgoette)
+- [Khabat Rammo](https://github.com/Niceplayer13)
+- [Steven Näf](https://github.com/es-qu)
 
 Special thanks to the contributors for their valuable input and effort in making this project possible.
 
