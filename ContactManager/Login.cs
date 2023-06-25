@@ -30,8 +30,8 @@ namespace ContactManager
                 if(TxtUsername.Text == "root" && TxtPassword.Text == "Password123")
                 {
                     // Open menu
-
-                    this.Hide();
+                    Program.Auth = true;
+                    this.Close();
                 } else
                 {
                     MessageBoxIcon icon = MessageBoxIcon.Error;

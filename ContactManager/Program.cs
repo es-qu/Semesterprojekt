@@ -8,6 +8,9 @@ namespace ContactManager
 {
     internal static class Program
     {
+        private static bool auth = false;
+        public static bool Auth { get { return auth; } set { auth = value; } }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,9 +19,12 @@ namespace ContactManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-            //Application.Run(new Login());
-            Application.Run(new Main());
+            Application.Run(new Login());
+
+            if (auth)
+            {
+                Application.Run(new Main());
+            }
         }
     }
 }
