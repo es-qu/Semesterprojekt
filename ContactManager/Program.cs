@@ -23,7 +23,7 @@ namespace ContactManager
 
             if (auth)
             {
-                Application.Run(new Main());
+                Application.Run(new Menu());
             }
         }
     }

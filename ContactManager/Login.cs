@@ -46,5 +46,13 @@ namespace ContactManager
                 MessageBox.Show("Please type in username and password", "Error", buttons, icon);
             }
         }
+
+        private void KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                CmdLogin_Click(sender, e);
+            }
+        }
     }
 }
