@@ -47,7 +47,7 @@ namespace ContactManager
             }
         }
 
-        private void KeyDown(object sender, KeyEventArgs e)
+        private void Any_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {

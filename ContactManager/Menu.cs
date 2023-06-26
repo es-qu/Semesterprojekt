@@ -43,5 +43,31 @@ namespace ContactManager
             Form main = new Main(tab);
             main.ShowDialog();
         }
+
+        private void Any_KeyDown(object sender, KeyEventArgs e)
+        {
+            Console.WriteLine(e.KeyValue);
+            switch (e.KeyCode)
+            {
+                case Keys.C:
+                    OpenMainForm(0);
+                    break;
+
+                case Keys.S:
+                    OpenMainForm(1);
+                    break;
+
+                case Keys.E:
+                    OpenMainForm(2);
+                    break;
+
+                case Keys.D:
+                    OpenMainForm(3);
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }

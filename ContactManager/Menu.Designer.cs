@@ -54,6 +54,7 @@
             this.CmdCreate.Text = "Create";
             this.CmdCreate.UseVisualStyleBackColor = true;
             this.CmdCreate.Click += new System.EventHandler(this.CmdCreate_Click);
+            this.CmdCreate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
             // 
             // CmdSearch
             // 
@@ -64,6 +65,7 @@
             this.CmdSearch.Text = "Search";
             this.CmdSearch.UseVisualStyleBackColor = true;
             this.CmdSearch.Click += new System.EventHandler(this.CmdSearch_Click);
+            this.CmdSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
             // 
             // CmdEdit
             // 
@@ -74,6 +76,7 @@
             this.CmdEdit.Text = "Edit";
             this.CmdEdit.UseVisualStyleBackColor = true;
             this.CmdEdit.Click += new System.EventHandler(this.CmdEdit_Click);
+            this.CmdEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
             // 
             // CmdDelete
             // 
@@ -84,6 +87,7 @@
             this.CmdDelete.Text = "Delete";
             this.CmdDelete.UseVisualStyleBackColor = true;
             this.CmdDelete.Click += new System.EventHandler(this.CmdDelete_Click);
+            this.CmdDelete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
             // 
             // Menu
             // 
@@ -99,6 +103,7 @@
             this.MaximizeBox = false;
             this.Name = "Menu";
             this.Text = "Contact Manager Menu";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
