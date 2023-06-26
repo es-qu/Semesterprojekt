@@ -103,6 +103,7 @@
             this.Controls.Add(this.TxtPassword);
             this.Controls.Add(this.TxtUsername);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Login";
             this.Text = "Contact Manager Login";
             this.Load += new System.EventHandler(this.Login_Load);

@@ -16,5 +16,32 @@ namespace ContactManager
         {
             InitializeComponent();
         }
+
+        private void CmdCreate_Click(object sender, EventArgs e)
+        {
+            OpenMainForm(0);
+        }
+
+        private void CmdSearch_Click(object sender, EventArgs e)
+        {
+            OpenMainForm(1);
+        }
+
+        private void CmdEdit_Click(object sender, EventArgs e)
+        {
+            OpenMainForm(2);
+        }
+
+        private void CmdDelete_Click(object sender, EventArgs e)
+        {
+            OpenMainForm(3);
+        }
+
+
+        private void OpenMainForm(int tab = 1)
+        {
+            Form main = new Main(tab);
+            main.ShowDialog();
+        }
     }
 }
