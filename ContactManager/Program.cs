@@ -19,11 +19,11 @@ namespace ContactManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new FormLogin());
 
             if (auth)
             {
-                Application.Run(new Menu());
+                Application.Run(new FormMenu());
             }
         }
     }

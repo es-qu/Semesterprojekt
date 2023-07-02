@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ContactManager
 {
-    public partial class Main : Form
+    public partial class FormMain : Form
     {
         public enum Tab
         {
@@ -20,12 +20,12 @@ namespace ContactManager
             Delete
         }
 
-        public Main()
+        public FormMain()
         {
             InitializeComponent();
         }
 
-        public Main(int selectedTab) : this()
+        public FormMain(int selectedTab) : this()
         {
             Tab tab = (Tab)selectedTab;
 

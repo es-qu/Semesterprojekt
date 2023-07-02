@@ -1,6 +1,6 @@
 ﻿namespace ContactManager
 {
-    partial class Login
+    partial class FormLogin
     {
         /// <summary>
         /// Required designer variable.

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ContactManager
 {
-    public partial class Menu : Form
+    public partial class FormMenu : Form
     {
-        public Menu()
+        public FormMenu()
         {
             InitializeComponent();
         }
@@ -40,7 +40,7 @@ namespace ContactManager
 
         private void OpenMainForm(int tab = 1)
         {
-            Form main = new Main(tab);
+            Form main = new FormMain(tab);
             main.ShowDialog();
         }
 
