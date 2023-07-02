@@ -46,7 +46,6 @@ namespace ContactManager
 
         private void Any_KeyDown(object sender, KeyEventArgs e)
         {
-            Console.WriteLine(e.KeyValue);
             switch (e.KeyCode)
             {
                 case Keys.C:

@@ -32,16 +32,16 @@ namespace ContactManager
             switch (tab)
             {
                 case Tab.Create:
-                    tabControl1.SelectedTab = tabPage2;
+                    TCtrlMain.SelectedTab = TabCreateEdit;
                     break;
                 case Tab.Search:
-                    tabControl1.SelectedTab = tabPage1;
+                    TCtrlMain.SelectedTab = TabSearch;
                     break;
                 case Tab.Edit:
-                    tabControl1.SelectedTab = tabPage1;
+                    TCtrlMain.SelectedTab = TabSearch;
                     break;
                 case Tab.Delete:
-                    tabControl1.SelectedTab = tabPage1;
+                    TCtrlMain.SelectedTab = TabSearch;
                     break;
                 default:
                     break;
