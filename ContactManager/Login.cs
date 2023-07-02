@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ContactManager
@@ -18,21 +10,17 @@ namespace ContactManager
             InitializeComponent();
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void CmdLogin_Click(object sender, EventArgs e)
         {
-            if(TxtUsername.Text != String.Empty && TxtPassword.Text != String.Empty)
+            if (TxtUsername.Text != String.Empty && TxtPassword.Text != String.Empty)
             {
-                if(TxtUsername.Text == "root" && TxtPassword.Text == "Password123")
+                if (TxtUsername.Text == "root" && TxtPassword.Text == "Password123")
                 {
                     // Open menu
                     Program.Auth = true;
                     this.Close();
-                } else
+                }
+                else
                 {
                     MessageBoxIcon icon = MessageBoxIcon.Error;
                     MessageBoxButtons buttons = MessageBoxButtons.OK;
@@ -49,9 +37,23 @@ namespace ContactManager
 
         private void Any_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
-                CmdLogin_Click(sender, e);
+                if (TxtUsername.Text != string.Empty || TxtUsername.Focused)
+                {
+                    if (TxtPassword.Text != string.Empty || TxtPassword.Focused)
+                    {
+                        CmdLogin_Click(sender, e);
+                    }
+                    else
+                    {
+                        TxtPassword.Focus();
+                    }
+                }
+                else
+                {
+                    TxtUsername.Focus();
+                }
             }
         }
     }

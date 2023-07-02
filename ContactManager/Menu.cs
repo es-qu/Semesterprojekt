@@ -64,6 +64,10 @@ namespace ContactManager
                     OpenMainForm(3);
                     break;
 
+                case Keys.Q:
+                    Close();
+                    break;
+
                 default:
                     break;
             }

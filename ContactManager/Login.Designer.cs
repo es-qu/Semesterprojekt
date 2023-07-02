@@ -38,17 +38,19 @@
             // 
             // TxtUsername
             // 
-            this.TxtUsername.Location = new System.Drawing.Point(170, 209);
+            this.TxtUsername.Location = new System.Drawing.Point(113, 136);
+            this.TxtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TxtUsername.Name = "TxtUsername";
-            this.TxtUsername.Size = new System.Drawing.Size(366, 26);
+            this.TxtUsername.Size = new System.Drawing.Size(245, 20);
             this.TxtUsername.TabIndex = 0;
             this.TxtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
             // 
             // TxtPassword
             // 
-            this.TxtPassword.Location = new System.Drawing.Point(170, 294);
+            this.TxtPassword.Location = new System.Drawing.Point(113, 191);
+            this.TxtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.Size = new System.Drawing.Size(366, 26);
+            this.TxtPassword.Size = new System.Drawing.Size(245, 20);
             this.TxtPassword.TabIndex = 1;
             this.TxtPassword.UseSystemPasswordChar = true;
             this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
@@ -56,18 +58,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(170, 183);
+            this.label1.Location = new System.Drawing.Point(113, 119);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 20);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Username";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(166, 271);
+            this.label2.Location = new System.Drawing.Point(111, 176);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 20);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Password";
             // 
@@ -75,17 +79,19 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label3.Location = new System.Drawing.Point(310, 72);
+            this.label3.Location = new System.Drawing.Point(207, 47);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 32);
+            this.label3.Size = new System.Drawing.Size(57, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "Login";
             // 
             // CmdLogin
             // 
-            this.CmdLogin.Location = new System.Drawing.Point(170, 365);
+            this.CmdLogin.Location = new System.Drawing.Point(113, 237);
+            this.CmdLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.CmdLogin.Name = "CmdLogin";
-            this.CmdLogin.Size = new System.Drawing.Size(366, 38);
+            this.CmdLogin.Size = new System.Drawing.Size(244, 25);
             this.CmdLogin.TabIndex = 5;
             this.CmdLogin.Text = "Log in";
             this.CmdLogin.UseVisualStyleBackColor = true;
@@ -93,9 +99,9 @@
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(703, 450);
+            this.ClientSize = new System.Drawing.Size(469, 292);
             this.Controls.Add(this.CmdLogin);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -103,10 +109,10 @@
             this.Controls.Add(this.TxtPassword);
             this.Controls.Add(this.TxtUsername);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "Login";
             this.Text = "Contact Manager Login";
-            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
