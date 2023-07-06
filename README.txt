@@ -16,3 +16,6 @@ Special thanks to the contributors for their valuable input and effort in making
 ## License
 no License
 
+
+## Design
+The modern design of the Application will be achieved using the H.MaterialSkin NuGet package.
