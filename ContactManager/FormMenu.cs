@@ -7,14 +7,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace ContactManager
 {
-    public partial class FormMenu : Form
+    public partial class FormMenu : MaterialForm
     {
+        MaterialSkinManager manager = Program.GetStandardManager();
+
         public FormMenu()
         {
-            InitializeComponent();
+            if (Program.Auth)
+            {
+                InitializeComponent();
+
+                manager.AddFormToManage(this);
+            }
+            else
+            {
+                MessageBox.Show(this, "Error: authentication required");
+                Application.Exit();
+            }
         }
 
         private void CmdCreate_Click(object sender, EventArgs e)
@@ -65,12 +79,17 @@ namespace ContactManager
                     break;
 
                 case Keys.Q:
-                    Close();
+                    this.Close();
                     break;
 
                 default:
                     break;
             }
+        }
+
+        private void FormMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

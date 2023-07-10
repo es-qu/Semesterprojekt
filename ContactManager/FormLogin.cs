@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Windows.Forms;
+using MaterialSkin;
+using MaterialSkin.Controls;
 
 namespace ContactManager
 {
-    public partial class FormLogin : Form
+    public partial class FormLogin : MaterialForm
     {
+        MaterialSkinManager manager = Program.GetStandardManager();
+
         public FormLogin()
         {
             InitializeComponent();
+
+            // Set up MaterialSkin
+            manager.AddFormToManage(this);
         }
 
         private void CmdLogin_Click(object sender, EventArgs e)
@@ -18,7 +25,9 @@ namespace ContactManager
                 {
                     // Open menu
                     Program.Auth = true;
-                    this.Close();
+                    FormMenu menu = new FormMenu();
+                    menu.Show(this);
+                    this.Hide();
                 }
                 else
                 {

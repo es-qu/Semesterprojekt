@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaterialSkin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,11 +21,15 @@ namespace ContactManager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormLogin());
+        }
 
-            if (auth)
-            {
-                Application.Run(new FormMenu());
-            }
+        public static MaterialSkinManager GetStandardManager()
+        {
+            MaterialSkinManager manager = MaterialSkinManager.Instance;
+            manager.Theme = MaterialSkinManager.Themes.DARK;
+            manager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo700, Primary.Indigo300, Accent.Indigo200, TextShade.WHITE);
+
+            return manager;
         }
     }
 }
