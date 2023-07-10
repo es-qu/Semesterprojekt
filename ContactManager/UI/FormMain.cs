@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -46,6 +47,28 @@ namespace ContactManager
                 default:
                     break;
             }
+        }
+
+        private void CmdCreatePerson_Click(object sender, EventArgs e)
+        {
+
+            //if (/*Radiobutton Customer checked */)
+            //{
+            //    CreateCustomer();
+            //}
+            //else if (/*Radiobutton Employee checked */)
+            //{
+            //    if (/*Checkbox Trainee checked */)
+            //    {
+            //        CreateTrainee();
+            //    }
+            //    else
+            //    {
+            //        CreateEmployee();
+            //    }
+            //}
+
+            
         }
     }
 }
