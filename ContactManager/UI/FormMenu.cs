@@ -58,7 +58,7 @@ namespace ContactManager
             main.ShowDialog();
         }
 
-        private void Any_KeyDown(object sender, KeyEventArgs e)
+        private void Controls_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -85,11 +85,6 @@ namespace ContactManager
                 default:
                     break;
             }
-        }
-
-        private void FormMenu_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
         }
     }
 }

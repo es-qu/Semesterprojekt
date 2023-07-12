@@ -44,8 +44,8 @@
             this.CmdCreate.DrawShadows = true;
             this.CmdCreate.HighEmphasis = true;
             this.CmdCreate.Icon = null;
-            this.CmdCreate.Location = new System.Drawing.Point(27, 29);
-            this.CmdCreate.Margin = new System.Windows.Forms.Padding(13, 15, 13, 15);
+            this.CmdCreate.Location = new System.Drawing.Point(27, 100);
+            this.CmdCreate.Margin = new System.Windows.Forms.Padding(13, 15, 13, 85);
             this.CmdCreate.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreate.Name = "CmdCreate";
             this.CmdCreate.Size = new System.Drawing.Size(76, 36);
@@ -55,7 +55,7 @@
             this.CmdCreate.UseAccentColor = false;
             this.CmdCreate.UseVisualStyleBackColor = true;
             this.CmdCreate.Click += new System.EventHandler(this.CmdCreate_Click);
-            this.CmdCreate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
+            this.CmdCreate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
             // 
             // CmdSearch
             // 
@@ -64,8 +64,8 @@
             this.CmdSearch.DrawShadows = true;
             this.CmdSearch.HighEmphasis = true;
             this.CmdSearch.Icon = null;
-            this.CmdSearch.Location = new System.Drawing.Point(27, 95);
-            this.CmdSearch.Margin = new System.Windows.Forms.Padding(13, 15, 13, 15);
+            this.CmdSearch.Location = new System.Drawing.Point(27, 220);
+            this.CmdSearch.Margin = new System.Windows.Forms.Padding(13, 15, 13, 85);
             this.CmdSearch.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearch.Name = "CmdSearch";
             this.CmdSearch.Size = new System.Drawing.Size(78, 36);
@@ -75,7 +75,7 @@
             this.CmdSearch.UseAccentColor = false;
             this.CmdSearch.UseVisualStyleBackColor = true;
             this.CmdSearch.Click += new System.EventHandler(this.CmdSearch_Click);
-            this.CmdSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
+            this.CmdSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
             // 
             // CmdEdit
             // 
@@ -84,8 +84,8 @@
             this.CmdEdit.DrawShadows = true;
             this.CmdEdit.HighEmphasis = true;
             this.CmdEdit.Icon = null;
-            this.CmdEdit.Location = new System.Drawing.Point(27, 161);
-            this.CmdEdit.Margin = new System.Windows.Forms.Padding(13, 15, 13, 15);
+            this.CmdEdit.Location = new System.Drawing.Point(27, 340);
+            this.CmdEdit.Margin = new System.Windows.Forms.Padding(13, 15, 13, 85);
             this.CmdEdit.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdEdit.Name = "CmdEdit";
             this.CmdEdit.Size = new System.Drawing.Size(53, 36);
@@ -95,7 +95,7 @@
             this.CmdEdit.UseAccentColor = false;
             this.CmdEdit.UseVisualStyleBackColor = true;
             this.CmdEdit.Click += new System.EventHandler(this.CmdEdit_Click);
-            this.CmdEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
+            this.CmdEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
             // 
             // CmdDelete
             // 
@@ -104,8 +104,8 @@
             this.CmdDelete.DrawShadows = true;
             this.CmdDelete.HighEmphasis = true;
             this.CmdDelete.Icon = null;
-            this.CmdDelete.Location = new System.Drawing.Point(27, 227);
-            this.CmdDelete.Margin = new System.Windows.Forms.Padding(13, 15, 13, 15);
+            this.CmdDelete.Location = new System.Drawing.Point(27, 460);
+            this.CmdDelete.Margin = new System.Windows.Forms.Padding(13, 15, 13, 85);
             this.CmdDelete.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdDelete.Name = "CmdDelete";
             this.CmdDelete.Size = new System.Drawing.Size(73, 36);
@@ -115,7 +115,7 @@
             this.CmdDelete.UseAccentColor = false;
             this.CmdDelete.UseVisualStyleBackColor = true;
             this.CmdDelete.Click += new System.EventHandler(this.CmdDelete_Click);
-            this.CmdDelete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
+            this.CmdDelete.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
             // 
             // label2
             // 
@@ -123,7 +123,7 @@
             this.label2.Depth = 0;
             this.label2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(16, 438);
+            this.label2.Location = new System.Drawing.Point(280, 471);
             this.label2.Margin = new System.Windows.Forms.Padding(13, 10, 13, 10);
             this.label2.MouseState = MaterialSkin.MouseState.HOVER;
             this.label2.Name = "label2";
@@ -135,35 +135,34 @@
             // 
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.materialCard1.Controls.Add(this.CmdCreate);
+            this.materialCard1.Controls.Add(this.label2);
             this.materialCard1.Controls.Add(this.CmdSearch);
-            this.materialCard1.Controls.Add(this.CmdDelete);
             this.materialCard1.Controls.Add(this.CmdEdit);
+            this.materialCard1.Controls.Add(this.CmdDelete);
             this.materialCard1.Depth = 0;
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard1.Location = new System.Drawing.Point(17, 124);
+            this.materialCard1.Location = new System.Drawing.Point(19, 120);
             this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard1.Name = "materialCard1";
             this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(670, 290);
+            this.materialCard1.Size = new System.Drawing.Size(664, 580);
             this.materialCard1.TabIndex = 6;
             // 
             // FormMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(704, 470);
+            this.ClientSize = new System.Drawing.Size(700, 730);
             this.Controls.Add(this.materialCard1);
-            this.Controls.Add(this.label2);
             this.MaximizeBox = false;
             this.Name = "FormMenu";
+            this.Sizable = false;
             this.Text = "Contact Manager Menu";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMenu_FormClosing);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
             this.materialCard1.ResumeLayout(false);
             this.materialCard1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

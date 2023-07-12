@@ -19,11 +19,7 @@ namespace ContactManager
 
         private void CmdLogin_Click(object sender, EventArgs e)
         {
-            Program.Auth = true;
-            this.Close();
-
-
-            /*if (TxtUsername.Text != String.Empty && TxtPassword.Text != String.Empty)
+            if (TxtUsername.Text != String.Empty && TxtPassword.Text != String.Empty)
             {
                 if (TxtUsername.Text == "root" && TxtPassword.Text == "Password123")
                 {
@@ -45,10 +41,10 @@ namespace ContactManager
                 MessageBoxIcon icon = MessageBoxIcon.Error;
                 MessageBoxButtons buttons = MessageBoxButtons.OK;
                 MessageBox.Show("Please type in username and password", "Error", buttons, icon);
-            }*/
+            }
         }
 
-        private void Any_KeyDown(object sender, KeyEventArgs e)
+        private void Controls_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {

@@ -28,69 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TxtUsername = new MaterialSkin.Controls.MaterialTextBox();
-            this.TxtPassword = new MaterialSkin.Controls.MaterialTextBox();
-            this.label1 = new MaterialSkin.Controls.MaterialLabel();
-            this.label2 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
             this.CmdLogin = new MaterialSkin.Controls.MaterialButton();
+            this.label2 = new MaterialSkin.Controls.MaterialLabel();
+            this.label1 = new MaterialSkin.Controls.MaterialLabel();
+            this.TxtPassword = new MaterialSkin.Controls.MaterialTextBox();
+            this.TxtUsername = new MaterialSkin.Controls.MaterialTextBox();
+            this.materialCard1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // TxtUsername
+            // materialCard1
             // 
-            this.TxtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtUsername.Depth = 0;
-            this.TxtUsername.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtUsername.Location = new System.Drawing.Point(182, 170);
-            this.TxtUsername.MaxLength = 50;
-            this.TxtUsername.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtUsername.Multiline = false;
-            this.TxtUsername.Name = "TxtUsername";
-            this.TxtUsername.Size = new System.Drawing.Size(366, 50);
-            this.TxtUsername.TabIndex = 0;
-            this.TxtUsername.Text = "";
-            this.TxtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
-            // 
-            // TxtPassword
-            // 
-            this.TxtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtPassword.Depth = 0;
-            this.TxtPassword.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtPassword.Location = new System.Drawing.Point(182, 295);
-            this.TxtPassword.MaxLength = 50;
-            this.TxtPassword.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtPassword.Multiline = false;
-            this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.Password = true;
-            this.TxtPassword.Size = new System.Drawing.Size(366, 50);
-            this.TxtPassword.TabIndex = 1;
-            this.TxtPassword.Text = "";
-            this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Any_KeyDown);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Depth = 0;
-            this.label1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label1.Location = new System.Drawing.Point(179, 138);
-            this.label1.Margin = new System.Windows.Forms.Padding(13, 10, 13, 10);
-            this.label1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(72, 19);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Username";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Depth = 0;
-            this.label2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.label2.Location = new System.Drawing.Point(179, 263);
-            this.label2.Margin = new System.Windows.Forms.Padding(13, 10, 13, 10);
-            this.label2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 19);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Password";
+            this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard1.Controls.Add(this.CmdLogin);
+            this.materialCard1.Controls.Add(this.label2);
+            this.materialCard1.Controls.Add(this.label1);
+            this.materialCard1.Controls.Add(this.TxtPassword);
+            this.materialCard1.Controls.Add(this.TxtUsername);
+            this.materialCard1.Depth = 0;
+            this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialCard1.Location = new System.Drawing.Point(18, 120);
+            this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
+            this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCard1.Name = "materialCard1";
+            this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
+            this.materialCard1.Size = new System.Drawing.Size(662, 600);
+            this.materialCard1.TabIndex = 6;
             // 
             // CmdLogin
             // 
@@ -99,44 +62,99 @@
             this.CmdLogin.DrawShadows = true;
             this.CmdLogin.HighEmphasis = true;
             this.CmdLogin.Icon = null;
-            this.CmdLogin.Location = new System.Drawing.Point(182, 400);
+            this.CmdLogin.Location = new System.Drawing.Point(150, 480);
             this.CmdLogin.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdLogin.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdLogin.Name = "CmdLogin";
             this.CmdLogin.Size = new System.Drawing.Size(68, 36);
-            this.CmdLogin.TabIndex = 5;
+            this.CmdLogin.TabIndex = 10;
             this.CmdLogin.Text = "Log in";
             this.CmdLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdLogin.UseAccentColor = false;
             this.CmdLogin.UseVisualStyleBackColor = true;
             this.CmdLogin.Click += new System.EventHandler(this.CmdLogin_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Depth = 0;
+            this.label2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.label2.Location = new System.Drawing.Point(148, 290);
+            this.label2.Margin = new System.Windows.Forms.Padding(13, 10, 13, 10);
+            this.label2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 19);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Password";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Depth = 0;
+            this.label1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.label1.Location = new System.Drawing.Point(148, 100);
+            this.label1.Margin = new System.Windows.Forms.Padding(13, 10, 13, 10);
+            this.label1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 19);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Username";
+            // 
+            // TxtPassword
+            // 
+            this.TxtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtPassword.Depth = 0;
+            this.TxtPassword.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtPassword.Location = new System.Drawing.Point(151, 330);
+            this.TxtPassword.MaxLength = 50;
+            this.TxtPassword.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtPassword.Multiline = false;
+            this.TxtPassword.Name = "TxtPassword";
+            this.TxtPassword.Password = true;
+            this.TxtPassword.Size = new System.Drawing.Size(363, 50);
+            this.TxtPassword.TabIndex = 7;
+            this.TxtPassword.Text = "";
+            this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
+            // 
+            // TxtUsername
+            // 
+            this.TxtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtUsername.Depth = 0;
+            this.TxtUsername.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtUsername.Location = new System.Drawing.Point(150, 140);
+            this.TxtUsername.MaxLength = 50;
+            this.TxtUsername.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtUsername.Multiline = false;
+            this.TxtUsername.Name = "TxtUsername";
+            this.TxtUsername.Size = new System.Drawing.Size(364, 50);
+            this.TxtUsername.TabIndex = 6;
+            this.TxtUsername.Text = "";
+            this.TxtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(727, 475);
-            this.Controls.Add(this.CmdLogin);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.TxtPassword);
-            this.Controls.Add(this.TxtUsername);
+            this.ClientSize = new System.Drawing.Size(700, 750);
+            this.Controls.Add(this.materialCard1);
             this.MaximizeBox = false;
             this.Name = "FormLogin";
             this.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Sizable = false;
             this.Text = "Contact Manager Login";
+            this.materialCard1.ResumeLayout(false);
+            this.materialCard1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private MaterialSkin.Controls.MaterialTextBox TxtUsername;
-        private MaterialSkin.Controls.MaterialTextBox TxtPassword;
-        private MaterialSkin.Controls.MaterialLabel label1;
-        private MaterialSkin.Controls.MaterialLabel label2;
+        private MaterialSkin.Controls.MaterialCard materialCard1;
         private MaterialSkin.Controls.MaterialButton CmdLogin;
+        private MaterialSkin.Controls.MaterialLabel label2;
+        private MaterialSkin.Controls.MaterialLabel label1;
+        private MaterialSkin.Controls.MaterialTextBox TxtPassword;
+        private MaterialSkin.Controls.MaterialTextBox TxtUsername;
     }
 }

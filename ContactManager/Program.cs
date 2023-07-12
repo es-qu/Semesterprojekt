@@ -23,6 +23,12 @@ namespace ContactManager
             Application.Run(new FormLogin());
         }
 
+
+        /// <summary>
+        /// Defines the standard theme and color scheme.
+        /// Gets called at the initialisation of every form.
+        /// </summary>
+        /// <returns>The configured MaterialSkinManager to achieve consistent design</returns>
         public static MaterialSkinManager GetStandardManager()
         {
             MaterialSkinManager manager = MaterialSkinManager.Instance;
