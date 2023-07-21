@@ -8,30 +8,31 @@ using System.Windows.Forms;
 
 namespace ContactManager
 {
-    public class Person : FormMain
+    public class Person
     {
-        public string Salutation { get; set; }
-        string firstName;
-        string lastName;
-        DateTime dateOfBirth;
-        bool gender;
-        string title;
-        string socialSecurityNumber;
-        string phoneNumberPrivat;
-        string phoneNumberMobile;
-        string phoneNumberBusiness;
-        string email;
-        bool status;
-        string nationality;
-        string street;
-        string streetNumber;
-        int zipCode;
-        string place;
+        //public string Salutation { get; set; }
+        public int Id { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string dateOfBirth { get; set; }
+        //public bool gender;
+        //public string title;
+        //public string socialSecurityNumber;
+        //public string phoneNumberPrivat;
+        //public string phoneNumberMobile;
+        //public string phoneNumberBusiness;
+        //public string email;
+        //public bool status;
+        //public string nationality;
+        //public string street;
+        //public string streetNumber;
+        //public int zipCode;
+        // public string place;
 
-        public Person()
-        {
-            Salutation = TxtSalutation.Text; //haben es in FormMain.Designer.cs auf public gestellt
+        // public Person()
+        //{
+        //Salutation = TxtSalutation.Text; //haben es in FormMain.Designer.cs auf public gestellt
 
-        }
+        //}
     }
 }
