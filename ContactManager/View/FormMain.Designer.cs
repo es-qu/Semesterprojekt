@@ -977,6 +977,7 @@ namespace ContactManager
             this.RadEmployee.TabStop = true;
             this.RadEmployee.Text = "Employee";
             this.RadEmployee.UseVisualStyleBackColor = true;
+            //Show all Employee Fields 
             this.RadEmployee.CheckedChanged += new System.EventHandler(this.RadEmployee_CheckedChanged);
             // 
             // RadCustomer
@@ -1185,7 +1186,7 @@ namespace ContactManager
 
         }
 
-
+        //FormMain_Load
         private void FormMain_Load(object sender, EventArgs e)
         {
             // Employee TextBoxes
@@ -1274,7 +1275,7 @@ namespace ContactManager
 
 
         }
-
+        //RadEmployee_CheckedChanged
         private void RadEmployee_CheckedChanged(object sender, EventArgs e)
         {
             bool isVisible = RadEmployee.Checked;
@@ -1285,6 +1286,9 @@ namespace ContactManager
             TxtRole.Visible = isVisible;
             TxtDepartement.Visible = isVisible;
             TxtDegreeOfEmployment.Visible = isVisible;
+            txtFirstName.Visible = isVisible;
+            txtLastName.Visible = isVisible;
+            datBirthday.Visible = isVisible;
 
             // Employee Labels
             LblEmployeeNumber.Visible = isVisible;
@@ -1327,6 +1331,10 @@ namespace ContactManager
             RadFemale.Visible = isVisible;
             RadMale.Visible = isVisible;
             RadOther.Visible = isVisible;
+
+            // Employee BNT
+
+            CmdCreatePerson.Visible = isVisible;
 
 
         }
