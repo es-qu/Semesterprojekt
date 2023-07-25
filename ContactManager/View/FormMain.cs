@@ -59,30 +59,8 @@ namespace ContactManager
 
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
-            Person p = new Person();
-
-
-            p.firstName = txtFirstName.Text;
-            p.lastName = txtLastName.Text;
-            p.dateOfBirth = datBirthday.Text;
-
-            SqliteDateAccess.SavePerson(p);
-            //if (/*Radiobutton Customer checked */)
-            //{
-            //    CreateCustomer();
-            //}
-            //else if (/*Radiobutton Employee checked */)
-            //{
-            //    if (/*Checkbox Trainee checked */)
-            //    {
-            //        CreateTrainee();
-            //    }
-            //    else
-            //    {
-            //        CreateEmployee();
-            //    }
-            //}
-
+            Controller controller = new Controller();
+            controller.CreatePerson(txtFirstName.Text, txtLastName.Text, datBirthday.Text);
 
         }
 
@@ -106,7 +84,10 @@ namespace ContactManager
 
         }
 
-        
+        private void materialCard2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 

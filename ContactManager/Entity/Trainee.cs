@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ContactManager.Model
 {
-    internal class Trainee
+    public class Trainee : Employee
     {
+        public string MentorName { get; set; }
+        public DateTime TrainingStartDate { get; set; }
+        public DateTime TrainingEndDate { get; set; }
     }
 }

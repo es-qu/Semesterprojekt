@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace ContactManager.Model
 {
-    internal class Employee
+    public class Employee : Person
     {
+        public string Position { get; set; }
+        public string Department { get; set; }
     }
 }

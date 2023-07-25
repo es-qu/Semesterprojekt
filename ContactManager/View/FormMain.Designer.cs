@@ -260,6 +260,7 @@ namespace ContactManager
             this.materialCard2.Padding = new System.Windows.Forms.Padding(9);
             this.materialCard2.Size = new System.Drawing.Size(1516, 913);
             this.materialCard2.TabIndex = 59;
+            this.materialCard2.Paint += new System.Windows.Forms.PaintEventHandler(this.materialCard2_Paint);
             // 
             // NumYearOfApp
             // 
@@ -977,7 +978,6 @@ namespace ContactManager
             this.RadEmployee.TabStop = true;
             this.RadEmployee.Text = "Employee";
             this.RadEmployee.UseVisualStyleBackColor = true;
-            //Show all Employee Fields 
             this.RadEmployee.CheckedChanged += new System.EventHandler(this.RadEmployee_CheckedChanged);
             // 
             // RadCustomer

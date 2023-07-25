@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using ContactManager.Model;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -42,6 +43,25 @@ namespace ContactManager
         private static string LoadConnectionString(String id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+        }
+        public static void SaveTrainee(Trainee trainee)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                int lastId = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Trainee").Single();
+                trainee.Id = lastId + 1;
+                cnn.Execute("INSERT INTO Trainee(ID, FirstName, LastName, dateOfBirth, Position, Department, MentorName, TrainingStartDate, TrainingEndDate) values(@Id,@firstName,@lastName,@dateOfBirth, @Position, @Department, @MentorName, @TrainingStartDate, @TrainingEndDate)", trainee);
+            }
+        }
+
+        public static void SaveEmployee(Employee employee)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                int lastId = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Employee").Single();
+                employee.Id = lastId + 1;
+                cnn.Execute("INSERT INTO Employee(ID, FirstName, LastName, dateOfBirth, Position, Department) values(@Id,@firstName,@lastName,@dateOfBirth, @Position, @Department)", employee);
+            }
         }
     }
 }
