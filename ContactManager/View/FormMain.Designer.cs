@@ -246,14 +246,14 @@ namespace ContactManager
             this.LblCompanyName.AutoSize = true;
             this.LblCompanyName.Depth = 0;
             this.LblCompanyName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCompanyName.Location = new System.Drawing.Point(8, 10);
+            this.LblCompanyName.Location = new System.Drawing.Point(10, 10);
             this.LblCompanyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblCompanyName.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCompanyName.Name = "LblCompanyName";
             this.LblCompanyName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCompanyName.Size = new System.Drawing.Size(113, 19);
+            this.LblCompanyName.Size = new System.Drawing.Size(120, 19);
             this.LblCompanyName.TabIndex = 30;
-            this.LblCompanyName.Text = "Company name";
+            this.LblCompanyName.Text = "Company name*";
             // 
             // CmbCustomerType
             // 
@@ -275,7 +275,7 @@ namespace ContactManager
             "C",
             "D",
             "E"});
-            this.CmbCustomerType.Location = new System.Drawing.Point(551, 36);
+            this.CmbCustomerType.Location = new System.Drawing.Point(545, 36);
             this.CmbCustomerType.MaxDropDownItems = 4;
             this.CmbCustomerType.MouseState = MaterialSkin.MouseState.OUT;
             this.CmbCustomerType.Name = "CmbCustomerType";
@@ -303,28 +303,28 @@ namespace ContactManager
             this.LblCustomerType.AutoSize = true;
             this.LblCustomerType.Depth = 0;
             this.LblCustomerType.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCustomerType.Location = new System.Drawing.Point(549, 9);
+            this.LblCustomerType.Location = new System.Drawing.Point(542, 9);
             this.LblCustomerType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblCustomerType.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCustomerType.Name = "LblCustomerType";
             this.LblCustomerType.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCustomerType.Size = new System.Drawing.Size(141, 19);
+            this.LblCustomerType.Size = new System.Drawing.Size(148, 19);
             this.LblCustomerType.TabIndex = 32;
-            this.LblCustomerType.Text = "Customer type (A-E)";
+            this.LblCustomerType.Text = "Customer type* (A-E)";
             // 
             // LblCompanyContact
             // 
             this.LblCompanyContact.AutoSize = true;
             this.LblCompanyContact.Depth = 0;
             this.LblCompanyContact.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCompanyContact.Location = new System.Drawing.Point(293, 9);
+            this.LblCompanyContact.Location = new System.Drawing.Point(292, 9);
             this.LblCompanyContact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblCompanyContact.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCompanyContact.Name = "LblCompanyContact";
             this.LblCompanyContact.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCompanyContact.Size = new System.Drawing.Size(126, 19);
+            this.LblCompanyContact.Size = new System.Drawing.Size(133, 19);
             this.LblCompanyContact.TabIndex = 33;
-            this.LblCompanyContact.Text = "Company contact";
+            this.LblCompanyContact.Text = "Company contact*";
             // 
             // TxtCompanyContact
             // 
@@ -373,7 +373,7 @@ namespace ContactManager
             0,
             0,
             0});
-            this.NumDegreeOfEmployment.Location = new System.Drawing.Point(482, 27);
+            this.NumDegreeOfEmployment.Location = new System.Drawing.Point(484, 27);
             this.NumDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(2);
             this.NumDegreeOfEmployment.Name = "NumDegreeOfEmployment";
             this.NumDegreeOfEmployment.Size = new System.Drawing.Size(49, 29);
@@ -417,9 +417,9 @@ namespace ContactManager
             this.LblYearOfApp.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblYearOfApp.Name = "LblYearOfApp";
             this.LblYearOfApp.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblYearOfApp.Size = new System.Drawing.Size(168, 19);
+            this.LblYearOfApp.Size = new System.Drawing.Size(175, 19);
             this.LblYearOfApp.TabIndex = 27;
-            this.LblYearOfApp.Text = "Years of apprenticeship";
+            this.LblYearOfApp.Text = "Years of apprenticeship*";
             // 
             // NumYearOfApp
             // 
@@ -473,9 +473,9 @@ namespace ContactManager
             this.LblDateOfJoining.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblDateOfJoining.Name = "LblDateOfJoining";
             this.LblDateOfJoining.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblDateOfJoining.Size = new System.Drawing.Size(105, 19);
+            this.LblDateOfJoining.Size = new System.Drawing.Size(112, 19);
             this.LblDateOfJoining.TabIndex = 21;
-            this.LblDateOfJoining.Text = "Date of joining";
+            this.LblDateOfJoining.Text = "Date of joining*";
             // 
             // LblDateOfLeaving
             // 
@@ -592,14 +592,14 @@ namespace ContactManager
             this.LblDegreeOfEmployment.AutoSize = true;
             this.LblDegreeOfEmployment.Depth = 0;
             this.LblDegreeOfEmployment.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblDegreeOfEmployment.Location = new System.Drawing.Point(288, 25);
+            this.LblDegreeOfEmployment.Location = new System.Drawing.Point(286, 25);
             this.LblDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblDegreeOfEmployment.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblDegreeOfEmployment.Name = "LblDegreeOfEmployment";
             this.LblDegreeOfEmployment.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblDegreeOfEmployment.Size = new System.Drawing.Size(188, 19);
+            this.LblDegreeOfEmployment.Size = new System.Drawing.Size(195, 19);
             this.LblDegreeOfEmployment.TabIndex = 23;
-            this.LblDegreeOfEmployment.Text = "Degree of employment (%)";
+            this.LblDegreeOfEmployment.Text = "Degree of employment* (%)";
             // 
             // LblCadreLevel
             // 
@@ -620,7 +620,7 @@ namespace ContactManager
             this.LblRole.AutoSize = true;
             this.LblRole.Depth = 0;
             this.LblRole.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblRole.Location = new System.Drawing.Point(289, 87);
+            this.LblRole.Location = new System.Drawing.Point(288, 87);
             this.LblRole.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblRole.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblRole.Name = "LblRole";
@@ -640,7 +640,7 @@ namespace ContactManager
             this.TxtRole.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtRole.Multiline = false;
             this.TxtRole.Name = "TxtRole";
-            this.TxtRole.Size = new System.Drawing.Size(243, 50);
+            this.TxtRole.Size = new System.Drawing.Size(246, 50);
             this.TxtRole.TabIndex = 25;
             this.TxtRole.Text = "";
             // 
@@ -695,7 +695,7 @@ namespace ContactManager
             this.GrpType.Size = new System.Drawing.Size(172, 182);
             this.GrpType.TabIndex = 79;
             this.GrpType.TabStop = false;
-            this.GrpType.Text = "Type";
+            this.GrpType.Text = "Type*";
             // 
             // RadEmployee
             // 
@@ -1031,9 +1031,9 @@ namespace ContactManager
             this.LblPLZ.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblPLZ.Name = "LblPLZ";
             this.LblPLZ.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblPLZ.Size = new System.Drawing.Size(84, 19);
+            this.LblPLZ.Size = new System.Drawing.Size(91, 19);
             this.LblPLZ.TabIndex = 68;
-            this.LblPLZ.Text = "Postal code";
+            this.LblPLZ.Text = "Postal code*";
             // 
             // LblLastName
             // 
@@ -1059,9 +1059,9 @@ namespace ContactManager
             this.LblAddress.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblAddress.Name = "LblAddress";
             this.LblAddress.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblAddress.Size = new System.Drawing.Size(58, 19);
+            this.LblAddress.Size = new System.Drawing.Size(65, 19);
             this.LblAddress.TabIndex = 67;
-            this.LblAddress.Text = "Address";
+            this.LblAddress.Text = "Address*";
             // 
             // TxtFirstName
             // 
@@ -1159,9 +1159,9 @@ namespace ContactManager
             this.LblEmailAddress.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblEmailAddress.Name = "LblEmailAddress";
             this.LblEmailAddress.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblEmailAddress.Size = new System.Drawing.Size(101, 19);
+            this.LblEmailAddress.Size = new System.Drawing.Size(108, 19);
             this.LblEmailAddress.TabIndex = 75;
-            this.LblEmailAddress.Text = "Email address";
+            this.LblEmailAddress.Text = "Email address*";
             // 
             // TxtEmailAddress
             // 
