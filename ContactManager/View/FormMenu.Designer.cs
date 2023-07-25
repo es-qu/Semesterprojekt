@@ -39,16 +39,17 @@
             // 
             // CmdCreate
             // 
+            this.CmdCreate.AutoSize = false;
             this.CmdCreate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CmdCreate.Depth = 0;
             this.CmdCreate.DrawShadows = true;
             this.CmdCreate.HighEmphasis = true;
             this.CmdCreate.Icon = null;
-            this.CmdCreate.Location = new System.Drawing.Point(27, 100);
-            this.CmdCreate.Margin = new System.Windows.Forms.Padding(13, 15, 13, 85);
+            this.CmdCreate.Location = new System.Drawing.Point(18, 40);
+            this.CmdCreate.Margin = new System.Windows.Forms.Padding(9, 10, 9, 55);
             this.CmdCreate.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreate.Name = "CmdCreate";
-            this.CmdCreate.Size = new System.Drawing.Size(76, 36);
+            this.CmdCreate.Size = new System.Drawing.Size(407, 54);
             this.CmdCreate.TabIndex = 1;
             this.CmdCreate.Text = "Create";
             this.CmdCreate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -59,16 +60,17 @@
             // 
             // CmdSearch
             // 
+            this.CmdSearch.AutoSize = false;
             this.CmdSearch.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CmdSearch.Depth = 0;
             this.CmdSearch.DrawShadows = true;
             this.CmdSearch.HighEmphasis = true;
             this.CmdSearch.Icon = null;
-            this.CmdSearch.Location = new System.Drawing.Point(27, 220);
-            this.CmdSearch.Margin = new System.Windows.Forms.Padding(13, 15, 13, 85);
+            this.CmdSearch.Location = new System.Drawing.Point(18, 112);
+            this.CmdSearch.Margin = new System.Windows.Forms.Padding(9, 10, 9, 55);
             this.CmdSearch.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearch.Name = "CmdSearch";
-            this.CmdSearch.Size = new System.Drawing.Size(78, 36);
+            this.CmdSearch.Size = new System.Drawing.Size(407, 54);
             this.CmdSearch.TabIndex = 2;
             this.CmdSearch.Text = "Search";
             this.CmdSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -79,16 +81,17 @@
             // 
             // CmdEdit
             // 
+            this.CmdEdit.AutoSize = false;
             this.CmdEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CmdEdit.Depth = 0;
             this.CmdEdit.DrawShadows = true;
             this.CmdEdit.HighEmphasis = true;
             this.CmdEdit.Icon = null;
-            this.CmdEdit.Location = new System.Drawing.Point(27, 340);
-            this.CmdEdit.Margin = new System.Windows.Forms.Padding(13, 15, 13, 85);
+            this.CmdEdit.Location = new System.Drawing.Point(18, 185);
+            this.CmdEdit.Margin = new System.Windows.Forms.Padding(9, 10, 9, 55);
             this.CmdEdit.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdEdit.Name = "CmdEdit";
-            this.CmdEdit.Size = new System.Drawing.Size(53, 36);
+            this.CmdEdit.Size = new System.Drawing.Size(407, 54);
             this.CmdEdit.TabIndex = 3;
             this.CmdEdit.Text = "Edit";
             this.CmdEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -99,16 +102,17 @@
             // 
             // CmdDelete
             // 
+            this.CmdDelete.AutoSize = false;
             this.CmdDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CmdDelete.Depth = 0;
             this.CmdDelete.DrawShadows = true;
             this.CmdDelete.HighEmphasis = true;
             this.CmdDelete.Icon = null;
-            this.CmdDelete.Location = new System.Drawing.Point(27, 460);
-            this.CmdDelete.Margin = new System.Windows.Forms.Padding(13, 15, 13, 85);
+            this.CmdDelete.Location = new System.Drawing.Point(18, 257);
+            this.CmdDelete.Margin = new System.Windows.Forms.Padding(9, 10, 9, 55);
             this.CmdDelete.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdDelete.Name = "CmdDelete";
-            this.CmdDelete.Size = new System.Drawing.Size(73, 36);
+            this.CmdDelete.Size = new System.Drawing.Size(407, 54);
             this.CmdDelete.TabIndex = 4;
             this.CmdDelete.Text = "Delete";
             this.CmdDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -123,8 +127,8 @@
             this.label2.Depth = 0;
             this.label2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label2.Location = new System.Drawing.Point(280, 471);
-            this.label2.Margin = new System.Windows.Forms.Padding(13, 10, 13, 10);
+            this.label2.Location = new System.Drawing.Point(169, 332);
+            this.label2.Margin = new System.Windows.Forms.Padding(9, 6, 9, 6);
             this.label2.MouseState = MaterialSkin.MouseState.HOVER;
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 19);
@@ -141,23 +145,26 @@
             this.materialCard1.Controls.Add(this.CmdDelete);
             this.materialCard1.Depth = 0;
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard1.Location = new System.Drawing.Point(19, 120);
-            this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
+            this.materialCard1.Location = new System.Drawing.Point(13, 78);
+            this.materialCard1.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
             this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard1.Name = "materialCard1";
-            this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(664, 580);
+            this.materialCard1.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.materialCard1.Size = new System.Drawing.Size(443, 377);
             this.materialCard1.TabIndex = 6;
             // 
             // FormMenu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(700, 730);
+            this.ClientSize = new System.Drawing.Size(467, 474);
             this.Controls.Add(this.materialCard1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "FormMenu";
+            this.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Sizable = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Contact Manager Menu";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
             this.materialCard1.ResumeLayout(false);

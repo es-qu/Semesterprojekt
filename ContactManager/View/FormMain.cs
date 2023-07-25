@@ -57,14 +57,28 @@ namespace ContactManager
             }
         }
 
+        //FormMain_Load
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            //Don't show employee & trainee elements.
+            PnlEmployee.Visible = false;
+            PnlTrainee.Visible = false;
+            ChkTrainee.Visible = false;
+
+            //Don't show customer elements.
+            PnlCustomer.Visible = false;
+
+        }
+
+
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
             Person p = new Person();
 
 
-            p.firstName = txtFirstName.Text;
-            p.lastName = txtLastName.Text;
-            p.dateOfBirth = datBirthday.Text;
+            p.firstName = TxtFirstName.Text;
+            p.lastName = TxtLastName.Text;
+            p.dateOfBirth = DatBirthday.Text;
 
             SqliteDateAccess.SavePerson(p);
             //if (/*Radiobutton Customer checked */)
@@ -106,7 +120,57 @@ namespace ContactManager
 
         }
 
-        
+        private void RadCustomer_CheckedChanged(object sender, EventArgs e)
+        {
+
+            LblTypeSelection.Visible = false;
+
+            if (RadCustomer.Checked == true)
+            {
+                PnlCustomer.Visible = true;
+            }
+            else
+            {
+                PnlCustomer.Visible = false;
+            }
+        }
+
+        private void RadEmployee_CheckedChanged(object sender, EventArgs e)
+        {
+            LblTypeSelection.Visible = false;
+
+            if (RadEmployee.Checked == true)
+            {
+                PnlEmployee.Visible = true;
+                ChkTrainee.Visible = true;
+
+            }
+            else
+            {
+                PnlEmployee.Visible = false;
+                ChkTrainee.Visible = false;
+                PnlTrainee.Visible = false;
+            }
+
+        }
+
+        private void ChkTrainee_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (ChkTrainee.Checked == true && RadEmployee.Checked == true)
+            {
+                PnlTrainee.Visible = true;
+            }
+            else
+            {
+                PnlTrainee.Visible = false;
+            }
+        }
+
+        private void NumDegreeOfEmployment_ValueChanged(object sender, EventArgs e)
+        {
+            PrgDegreeOfEmployment.Value = Convert.ToInt16(NumDegreeOfEmployment.Value);
+        }
     }
 }
 
