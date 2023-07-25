@@ -48,12 +48,12 @@
             this.materialCard1.Depth = 0;
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialCard1.Location = new System.Drawing.Point(12, 78);
-            this.materialCard1.Margin = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.materialCard1.Margin = new System.Windows.Forms.Padding(9);
             this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard1.Name = "materialCard1";
-            this.materialCard1.Padding = new System.Windows.Forms.Padding(9, 9, 9, 9);
+            this.materialCard1.Padding = new System.Windows.Forms.Padding(9);
             this.materialCard1.Size = new System.Drawing.Size(441, 390);
-            this.materialCard1.TabIndex = 6;
+            this.materialCard1.TabIndex = 999;
             // 
             // CmdLogin
             // 
@@ -67,7 +67,7 @@
             this.CmdLogin.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdLogin.Name = "CmdLogin";
             this.CmdLogin.Size = new System.Drawing.Size(68, 36);
-            this.CmdLogin.TabIndex = 10;
+            this.CmdLogin.TabIndex = 3;
             this.CmdLogin.Text = "Log in";
             this.CmdLogin.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdLogin.UseAccentColor = false;
@@ -106,14 +106,14 @@
             this.TxtPassword.Depth = 0;
             this.TxtPassword.Font = new System.Drawing.Font("Roboto", 12F);
             this.TxtPassword.Location = new System.Drawing.Point(101, 214);
-            this.TxtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.TxtPassword.MaxLength = 50;
             this.TxtPassword.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtPassword.Multiline = false;
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.Password = true;
             this.TxtPassword.Size = new System.Drawing.Size(242, 50);
-            this.TxtPassword.TabIndex = 7;
+            this.TxtPassword.TabIndex = 2;
             this.TxtPassword.Text = "";
             this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
             // 
@@ -123,13 +123,13 @@
             this.TxtUsername.Depth = 0;
             this.TxtUsername.Font = new System.Drawing.Font("Roboto", 12F);
             this.TxtUsername.Location = new System.Drawing.Point(100, 91);
-            this.TxtUsername.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtUsername.Margin = new System.Windows.Forms.Padding(2);
             this.TxtUsername.MaxLength = 50;
             this.TxtUsername.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtUsername.Multiline = false;
             this.TxtUsername.Name = "TxtUsername";
             this.TxtUsername.Size = new System.Drawing.Size(243, 50);
-            this.TxtUsername.TabIndex = 6;
+            this.TxtUsername.TabIndex = 1;
             this.TxtUsername.Text = "";
             this.TxtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Controls_KeyDown);
             // 
@@ -139,7 +139,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(467, 487);
             this.Controls.Add(this.materialCard1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FormLogin";
             this.Sizable = false;

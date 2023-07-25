@@ -38,6 +38,7 @@ namespace ContactManager
             this.Search = new System.Windows.Forms.Label();
             this.TabCreateEdit = new System.Windows.Forms.TabPage();
             this.TabCreate = new MaterialSkin.Controls.MaterialCard();
+            this.LblTypeSelection = new System.Windows.Forms.Label();
             this.PnlCustomer = new System.Windows.Forms.Panel();
             this.LblCompanyName = new MaterialSkin.Controls.MaterialLabel();
             this.CmbCustomerType = new MaterialSkin.Controls.MaterialComboBox();
@@ -104,7 +105,6 @@ namespace ContactManager
             this.LblPrivatePhone = new MaterialSkin.Controls.MaterialLabel();
             this.TxtPrivatePhone = new MaterialSkin.Controls.MaterialTextBox();
             this.CmdCreatePerson = new MaterialSkin.Controls.MaterialButton();
-            this.LblTypeSelection = new System.Windows.Forms.Label();
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             this.TabCreateEdit.SuspendLayout();
@@ -215,6 +215,18 @@ namespace ContactManager
             this.TabCreate.Size = new System.Drawing.Size(1330, 620);
             this.TabCreate.TabIndex = 59;
             // 
+            // LblTypeSelection
+            // 
+            this.LblTypeSelection.AutoSize = true;
+            this.LblTypeSelection.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.LblTypeSelection.Font = new System.Drawing.Font("Segoe UI Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTypeSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.LblTypeSelection.Location = new System.Drawing.Point(850, 200);
+            this.LblTypeSelection.Name = "LblTypeSelection";
+            this.LblTypeSelection.Size = new System.Drawing.Size(331, 37);
+            this.LblTypeSelection.TabIndex = 86;
+            this.LblTypeSelection.Text = "Please select a contact type.";
+            // 
             // PnlCustomer
             // 
             this.PnlCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -269,7 +281,7 @@ namespace ContactManager
             this.CmbCustomerType.Name = "CmbCustomerType";
             this.CmbCustomerType.Size = new System.Drawing.Size(76, 49);
             this.CmbCustomerType.StartIndex = 0;
-            this.CmbCustomerType.TabIndex = 84;
+            this.CmbCustomerType.TabIndex = 33;
             // 
             // TxtCompanyName
             // 
@@ -283,7 +295,7 @@ namespace ContactManager
             this.TxtCompanyName.Multiline = false;
             this.TxtCompanyName.Name = "TxtCompanyName";
             this.TxtCompanyName.Size = new System.Drawing.Size(262, 50);
-            this.TxtCompanyName.TabIndex = 61;
+            this.TxtCompanyName.TabIndex = 31;
             this.TxtCompanyName.Text = "";
             // 
             // LblCustomerType
@@ -326,7 +338,7 @@ namespace ContactManager
             this.TxtCompanyContact.Multiline = false;
             this.TxtCompanyContact.Name = "TxtCompanyContact";
             this.TxtCompanyContact.Size = new System.Drawing.Size(239, 50);
-            this.TxtCompanyContact.TabIndex = 64;
+            this.TxtCompanyContact.TabIndex = 32;
             this.TxtCompanyContact.Text = "";
             // 
             // PnlEmployee
@@ -365,7 +377,7 @@ namespace ContactManager
             this.NumDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(2);
             this.NumDegreeOfEmployment.Name = "NumDegreeOfEmployment";
             this.NumDegreeOfEmployment.Size = new System.Drawing.Size(49, 29);
-            this.NumDegreeOfEmployment.TabIndex = 86;
+            this.NumDegreeOfEmployment.TabIndex = 23;
             this.NumDegreeOfEmployment.Value = new decimal(new int[] {
             100,
             0,
@@ -421,7 +433,7 @@ namespace ContactManager
             0});
             this.NumYearOfApp.Name = "NumYearOfApp";
             this.NumYearOfApp.Size = new System.Drawing.Size(44, 29);
-            this.NumYearOfApp.TabIndex = 61;
+            this.NumYearOfApp.TabIndex = 30;
             // 
             // LblCureentAppYear
             // 
@@ -449,7 +461,7 @@ namespace ContactManager
             0});
             this.NumCurrentAppYear.Name = "NumCurrentAppYear";
             this.NumCurrentAppYear.Size = new System.Drawing.Size(49, 29);
-            this.NumCurrentAppYear.TabIndex = 61;
+            this.NumCurrentAppYear.TabIndex = 29;
             // 
             // LblDateOfJoining
             // 
@@ -488,7 +500,7 @@ namespace ContactManager
             this.DatDateOfLeaving.Margin = new System.Windows.Forms.Padding(2);
             this.DatDateOfLeaving.Name = "DatDateOfLeaving";
             this.DatDateOfLeaving.Size = new System.Drawing.Size(109, 29);
-            this.DatDateOfLeaving.TabIndex = 61;
+            this.DatDateOfLeaving.TabIndex = 28;
             this.DatDateOfLeaving.Value = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             // 
             // DatDateOfJoining
@@ -500,7 +512,7 @@ namespace ContactManager
             this.DatDateOfJoining.Margin = new System.Windows.Forms.Padding(2);
             this.DatDateOfJoining.Name = "DatDateOfJoining";
             this.DatDateOfJoining.Size = new System.Drawing.Size(117, 29);
-            this.DatDateOfJoining.TabIndex = 54;
+            this.DatDateOfJoining.TabIndex = 27;
             this.DatDateOfJoining.Value = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             // 
             // TxtEmployeeNumber
@@ -515,7 +527,7 @@ namespace ContactManager
             this.TxtEmployeeNumber.Multiline = false;
             this.TxtEmployeeNumber.Name = "TxtEmployeeNumber";
             this.TxtEmployeeNumber.Size = new System.Drawing.Size(86, 50);
-            this.TxtEmployeeNumber.TabIndex = 53;
+            this.TxtEmployeeNumber.TabIndex = 22;
             this.TxtEmployeeNumber.Text = "";
             // 
             // LblEmployeeNumber
@@ -558,7 +570,7 @@ namespace ContactManager
             this.TxtDepartement.Multiline = false;
             this.TxtDepartement.Name = "TxtDepartement";
             this.TxtDepartement.Size = new System.Drawing.Size(261, 50);
-            this.TxtDepartement.TabIndex = 58;
+            this.TxtDepartement.TabIndex = 24;
             this.TxtDepartement.Text = "";
             // 
             // NumCadreLevel
@@ -573,7 +585,7 @@ namespace ContactManager
             0});
             this.NumCadreLevel.Name = "NumCadreLevel";
             this.NumCadreLevel.Size = new System.Drawing.Size(49, 29);
-            this.NumCadreLevel.TabIndex = 60;
+            this.NumCadreLevel.TabIndex = 26;
             // 
             // LblDegreeOfEmployment
             // 
@@ -629,7 +641,7 @@ namespace ContactManager
             this.TxtRole.Multiline = false;
             this.TxtRole.Name = "TxtRole";
             this.TxtRole.Size = new System.Drawing.Size(243, 50);
-            this.TxtRole.TabIndex = 55;
+            this.TxtRole.TabIndex = 25;
             this.TxtRole.Text = "";
             // 
             // PnlPerson
@@ -696,7 +708,7 @@ namespace ContactManager
             this.RadEmployee.Name = "RadEmployee";
             this.RadEmployee.Ripple = true;
             this.RadEmployee.Size = new System.Drawing.Size(104, 37);
-            this.RadEmployee.TabIndex = 60;
+            this.RadEmployee.TabIndex = 20;
             this.RadEmployee.TabStop = true;
             this.RadEmployee.Text = "Employee";
             this.RadEmployee.UseVisualStyleBackColor = true;
@@ -713,7 +725,7 @@ namespace ContactManager
             this.RadCustomer.Name = "RadCustomer";
             this.RadCustomer.Ripple = true;
             this.RadCustomer.Size = new System.Drawing.Size(103, 37);
-            this.RadCustomer.TabIndex = 61;
+            this.RadCustomer.TabIndex = 19;
             this.RadCustomer.TabStop = true;
             this.RadCustomer.Text = "Customer";
             this.RadCustomer.UseVisualStyleBackColor = true;
@@ -730,7 +742,7 @@ namespace ContactManager
             this.ChkTrainee.Name = "ChkTrainee";
             this.ChkTrainee.Ripple = true;
             this.ChkTrainee.Size = new System.Drawing.Size(88, 37);
-            this.ChkTrainee.TabIndex = 37;
+            this.ChkTrainee.TabIndex = 21;
             this.ChkTrainee.Text = "Trainee";
             this.ChkTrainee.UseVisualStyleBackColor = true;
             this.ChkTrainee.CheckedChanged += new System.EventHandler(this.ChkTrainee_CheckedChanged);
@@ -746,7 +758,7 @@ namespace ContactManager
             this.RadOther.Name = "RadOther";
             this.RadOther.Ripple = true;
             this.RadOther.Size = new System.Drawing.Size(73, 37);
-            this.RadOther.TabIndex = 58;
+            this.RadOther.TabIndex = 4;
             this.RadOther.TabStop = true;
             this.RadOther.Text = "Other";
             this.RadOther.UseVisualStyleBackColor = true;
@@ -762,7 +774,7 @@ namespace ContactManager
             this.RadFemale.Name = "RadFemale";
             this.RadFemale.Ripple = true;
             this.RadFemale.Size = new System.Drawing.Size(87, 37);
-            this.RadFemale.TabIndex = 57;
+            this.RadFemale.TabIndex = 2;
             this.RadFemale.TabStop = true;
             this.RadFemale.Text = "Female";
             this.RadFemale.UseVisualStyleBackColor = true;
@@ -778,7 +790,7 @@ namespace ContactManager
             this.RadMale.Name = "RadMale";
             this.RadMale.Ripple = true;
             this.RadMale.Size = new System.Drawing.Size(70, 37);
-            this.RadMale.TabIndex = 56;
+            this.RadMale.TabIndex = 3;
             this.RadMale.TabStop = true;
             this.RadMale.Text = "Male";
             this.RadMale.UseVisualStyleBackColor = true;
@@ -796,7 +808,7 @@ namespace ContactManager
             this.SwtActive.Name = "SwtActive";
             this.SwtActive.Ripple = true;
             this.SwtActive.Size = new System.Drawing.Size(101, 37);
-            this.SwtActive.TabIndex = 60;
+            this.SwtActive.TabIndex = 1;
             this.SwtActive.Text = "Active";
             this.SwtActive.UseVisualStyleBackColor = true;
             // 
@@ -824,7 +836,7 @@ namespace ContactManager
             this.DatBirthday.Margin = new System.Windows.Forms.Padding(2);
             this.DatBirthday.Name = "DatBirthday";
             this.DatBirthday.Size = new System.Drawing.Size(114, 29);
-            this.DatBirthday.TabIndex = 75;
+            this.DatBirthday.TabIndex = 14;
             this.DatBirthday.Value = new System.DateTime(1999, 1, 1, 0, 0, 0, 0);
             // 
             // TxtPlz
@@ -839,7 +851,7 @@ namespace ContactManager
             this.TxtPlz.Multiline = false;
             this.TxtPlz.Name = "TxtPlz";
             this.TxtPlz.Size = new System.Drawing.Size(96, 50);
-            this.TxtPlz.TabIndex = 73;
+            this.TxtPlz.TabIndex = 10;
             this.TxtPlz.Text = "";
             // 
             // CmbSalutation
@@ -866,7 +878,7 @@ namespace ContactManager
             this.CmbSalutation.Name = "CmbSalutation";
             this.CmbSalutation.Size = new System.Drawing.Size(76, 49);
             this.CmbSalutation.StartIndex = 0;
-            this.CmbSalutation.TabIndex = 78;
+            this.CmbSalutation.TabIndex = 5;
             // 
             // TxtAddress
             // 
@@ -880,7 +892,7 @@ namespace ContactManager
             this.TxtAddress.Multiline = false;
             this.TxtAddress.Name = "TxtAddress";
             this.TxtAddress.Size = new System.Drawing.Size(238, 50);
-            this.TxtAddress.TabIndex = 72;
+            this.TxtAddress.TabIndex = 9;
             this.TxtAddress.Text = "";
             // 
             // LblSalutation
@@ -910,7 +922,7 @@ namespace ContactManager
             this.TxtOasiNr.Multiline = false;
             this.TxtOasiNr.Name = "TxtOasiNr";
             this.TxtOasiNr.Size = new System.Drawing.Size(212, 50);
-            this.TxtOasiNr.TabIndex = 59;
+            this.TxtOasiNr.TabIndex = 13;
             this.TxtOasiNr.Text = "";
             // 
             // TxtPlaceOfResidence
@@ -925,7 +937,7 @@ namespace ContactManager
             this.TxtPlaceOfResidence.Multiline = false;
             this.TxtPlaceOfResidence.Name = "TxtPlaceOfResidence";
             this.TxtPlaceOfResidence.Size = new System.Drawing.Size(210, 50);
-            this.TxtPlaceOfResidence.TabIndex = 70;
+            this.TxtPlaceOfResidence.TabIndex = 11;
             this.TxtPlaceOfResidence.Text = "";
             // 
             // CmbNationality
@@ -948,7 +960,7 @@ namespace ContactManager
             this.CmbNationality.Name = "CmbNationality";
             this.CmbNationality.Size = new System.Drawing.Size(217, 49);
             this.CmbNationality.StartIndex = 0;
-            this.CmbNationality.TabIndex = 77;
+            this.CmbNationality.TabIndex = 12;
             // 
             // TxtTitle
             // 
@@ -962,7 +974,7 @@ namespace ContactManager
             this.TxtTitle.Multiline = false;
             this.TxtTitle.Name = "TxtTitle";
             this.TxtTitle.Size = new System.Drawing.Size(116, 50);
-            this.TxtTitle.TabIndex = 69;
+            this.TxtTitle.TabIndex = 6;
             this.TxtTitle.Text = "";
             // 
             // TxtBusinessAddress
@@ -978,7 +990,7 @@ namespace ContactManager
             this.TxtBusinessAddress.Name = "TxtBusinessAddress";
             this.TxtBusinessAddress.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.TxtBusinessAddress.Size = new System.Drawing.Size(175, 50);
-            this.TxtBusinessAddress.TabIndex = 62;
+            this.TxtBusinessAddress.TabIndex = 18;
             this.TxtBusinessAddress.Text = "";
             // 
             // LblFirstName
@@ -1063,7 +1075,7 @@ namespace ContactManager
             this.TxtFirstName.Multiline = false;
             this.TxtFirstName.Name = "TxtFirstName";
             this.TxtFirstName.Size = new System.Drawing.Size(210, 50);
-            this.TxtFirstName.TabIndex = 46;
+            this.TxtFirstName.TabIndex = 7;
             this.TxtFirstName.Text = "";
             // 
             // LblNationality
@@ -1092,7 +1104,7 @@ namespace ContactManager
             this.TxtLastName.Multiline = false;
             this.TxtLastName.Name = "TxtLastName";
             this.TxtLastName.Size = new System.Drawing.Size(210, 50);
-            this.TxtLastName.TabIndex = 47;
+            this.TxtLastName.TabIndex = 8;
             this.TxtLastName.Text = "";
             // 
             // LblPlaceOfResidence
@@ -1163,7 +1175,7 @@ namespace ContactManager
             this.TxtEmailAddress.Multiline = false;
             this.TxtEmailAddress.Name = "TxtEmailAddress";
             this.TxtEmailAddress.Size = new System.Drawing.Size(175, 50);
-            this.TxtEmailAddress.TabIndex = 76;
+            this.TxtEmailAddress.TabIndex = 16;
             this.TxtEmailAddress.Text = "";
             // 
             // LblBusnissPhone
@@ -1192,7 +1204,7 @@ namespace ContactManager
             this.TxtBusnissPhone.Multiline = false;
             this.TxtBusnissPhone.Name = "TxtBusnissPhone";
             this.TxtBusnissPhone.Size = new System.Drawing.Size(175, 50);
-            this.TxtBusnissPhone.TabIndex = 49;
+            this.TxtBusnissPhone.TabIndex = 17;
             this.TxtBusnissPhone.Text = "";
             // 
             // LblPrivatePhone
@@ -1221,7 +1233,7 @@ namespace ContactManager
             this.TxtPrivatePhone.Multiline = false;
             this.TxtPrivatePhone.Name = "TxtPrivatePhone";
             this.TxtPrivatePhone.Size = new System.Drawing.Size(175, 50);
-            this.TxtPrivatePhone.TabIndex = 50;
+            this.TxtPrivatePhone.TabIndex = 15;
             this.TxtPrivatePhone.Text = "";
             // 
             // CmdCreatePerson
@@ -1237,24 +1249,12 @@ namespace ContactManager
             this.CmdCreatePerson.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreatePerson.Name = "CmdCreatePerson";
             this.CmdCreatePerson.Size = new System.Drawing.Size(688, 91);
-            this.CmdCreatePerson.TabIndex = 55;
+            this.CmdCreatePerson.TabIndex = 34;
             this.CmdCreatePerson.Text = "Save";
             this.CmdCreatePerson.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdCreatePerson.UseAccentColor = false;
             this.CmdCreatePerson.UseVisualStyleBackColor = true;
             this.CmdCreatePerson.Click += new System.EventHandler(this.CmdCreatePerson_Click);
-            // 
-            // LblTypeSelection
-            // 
-            this.LblTypeSelection.AutoSize = true;
-            this.LblTypeSelection.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.LblTypeSelection.Font = new System.Drawing.Font("Segoe UI Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTypeSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.LblTypeSelection.Location = new System.Drawing.Point(850, 200);
-            this.LblTypeSelection.Name = "LblTypeSelection";
-            this.LblTypeSelection.Size = new System.Drawing.Size(331, 37);
-            this.LblTypeSelection.TabIndex = 86;
-            this.LblTypeSelection.Text = "Please select a contact type.";
             // 
             // FormMain
             // 
