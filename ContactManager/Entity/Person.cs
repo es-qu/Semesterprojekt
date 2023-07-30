@@ -10,29 +10,23 @@ namespace ContactManager
 {
     public class Person
     {
-        //public string Salutation { get; set; }
         public int Id { get; set; }
+        public bool status { get; set; }
+        public int gender { get; set; }
+        public string Salutation { get; set; }
+        public string title { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
+        public string street { get; set; }
+        public string streetNumber { get; set; }
+        public string postalCode { get; set; }
+        public string placeOfResidence { get; set; }
+        public string nationality { get; set; }
+        public string socialSecurityNumber { get; set; }
         public string dateOfBirth { get; set; }
-        //public bool gender;
-        //public string title;
-        //public string socialSecurityNumber;
-        //public string phoneNumberPrivat;
-        //public string phoneNumberMobile;
-        //public string phoneNumberBusiness;
-        //public string email;
-        //public bool status;
-        //public string nationality;
-        //public string street;
-        //public string streetNumber;
-        //public int zipCode;
-        // public string place;
-
-        // public Person()
-        //{
-        //Salutation = TxtSalutation.Text; //haben es in FormMain.Designer.cs auf public gestellt
-
-        //}
+        public string phoneNumberPrivat { get; set; }
+        public string phoneNumberMobile { get; set; }
+        public string phoneNumberBusiness { get; set; }
+        public string email { get; set; }
     }
 }

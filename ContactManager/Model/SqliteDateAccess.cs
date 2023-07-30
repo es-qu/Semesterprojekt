@@ -13,12 +13,12 @@ namespace ContactManager
 {
     internal class SqliteDateAccess
     {
-        public static List<Person> LoadPepole(string SearchText)
+        public static List<Person> LoadPeople(string SearchText)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<Person>("Select * from Person where firstName like @Name or lastName like @Name",
-     new { Name = "%" + SearchText + "%" });
+                new { Name = "%" + SearchText + "%" });
                 return output.ToList();
             }
         }
@@ -35,15 +35,18 @@ namespace ContactManager
             }
         }
 
+        /*
         internal static object LoadPeople(string text)
         {
             throw new NotImplementedException();
         }
+        */
 
         private static string LoadConnectionString(String id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
+
         public static void SaveTrainee(Trainee trainee)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))

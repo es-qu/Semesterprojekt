@@ -78,10 +78,10 @@ namespace ContactManager
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void CmdExecSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text;
-            List<Person> people = SqliteDateAccess.LoadPepole(searchText);
+            List<Person> people = SqliteDateAccess.LoadPeople(searchText);
             if (people.Count == 0)
             {
                 txtOutput.Text = "No users found.";
@@ -153,6 +153,11 @@ namespace ContactManager
         private void CmdCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void TxtCompanyContact_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
