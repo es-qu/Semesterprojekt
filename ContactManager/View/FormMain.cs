@@ -74,7 +74,7 @@ namespace ContactManager
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
             Controller controller = new Controller();
-            controller.CreatePerson(txtFirstName.Text, txtLastName.Text, datBirthday.Text);
+            //controller.CreatePerson(txtFirstName.Text, txtLastName.Text, datBirthday.Text);
 
         }
 
