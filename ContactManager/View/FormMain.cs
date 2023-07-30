@@ -149,6 +149,11 @@ namespace ContactManager
         {
             PrgDegreeOfEmployment.Value = Convert.ToInt16(NumDegreeOfEmployment.Value);
         }
+
+        private void CmdCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 

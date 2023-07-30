@@ -33,7 +33,7 @@ namespace ContactManager
             this.TCtrlMain = new MaterialSkin.Controls.MaterialTabControl();
             this.TabSearch = new System.Windows.Forms.TabPage();
             this.txtOutput = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.CmdExecSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.Search = new System.Windows.Forms.Label();
             this.TabCreateEdit = new System.Windows.Forms.TabPage();
@@ -105,6 +105,14 @@ namespace ContactManager
             this.LblPrivatePhone = new MaterialSkin.Controls.MaterialLabel();
             this.TxtPrivatePhone = new MaterialSkin.Controls.MaterialTextBox();
             this.CmdCreatePerson = new MaterialSkin.Controls.MaterialButton();
+            this.CmdCreatePersonAndNew = new MaterialSkin.Controls.MaterialButton();
+            this.CmdCancel = new MaterialSkin.Controls.MaterialButton();
+            this.CmdNotesAll = new MaterialSkin.Controls.MaterialButton();
+            this.LstNoteOut = new System.Windows.Forms.ListBox();
+            this.CmdNoteDelete = new MaterialSkin.Controls.MaterialButton();
+            this.CmdNoteAdd = new MaterialSkin.Controls.MaterialButton();
+            this.LblNotes = new MaterialSkin.Controls.MaterialLabel();
+            this.CmdNoteEdit = new MaterialSkin.Controls.MaterialButton();
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             this.TabCreateEdit.SuspendLayout();
@@ -138,7 +146,7 @@ namespace ContactManager
             // TabSearch
             // 
             this.TabSearch.Controls.Add(this.txtOutput);
-            this.TabSearch.Controls.Add(this.btnSearch);
+            this.TabSearch.Controls.Add(this.CmdExecSearch);
             this.TabSearch.Controls.Add(this.txtSearch);
             this.TabSearch.Controls.Add(this.Search);
             this.TabSearch.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -153,25 +161,25 @@ namespace ContactManager
             // 
             // txtOutput
             // 
-            this.txtOutput.Location = new System.Drawing.Point(170, 137);
+            this.txtOutput.Location = new System.Drawing.Point(22, 51);
             this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
-            this.txtOutput.Size = new System.Drawing.Size(938, 352);
+            this.txtOutput.Size = new System.Drawing.Size(637, 532);
             this.txtOutput.TabIndex = 4;
             // 
-            // btnSearch
+            // CmdExecSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(693, 74);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 3;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
+            this.CmdExecSearch.Location = new System.Drawing.Point(327, 13);
+            this.CmdExecSearch.Name = "CmdExecSearch";
+            this.CmdExecSearch.Size = new System.Drawing.Size(75, 23);
+            this.CmdExecSearch.TabIndex = 3;
+            this.CmdExecSearch.Text = "Search";
+            this.CmdExecSearch.UseVisualStyleBackColor = true;
+            this.CmdExecSearch.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(290, 67);
+            this.txtSearch.Location = new System.Drawing.Point(67, 14);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(244, 20);
             this.txtSearch.TabIndex = 2;
@@ -179,7 +187,7 @@ namespace ContactManager
             // Search
             // 
             this.Search.AutoSize = true;
-            this.Search.Location = new System.Drawing.Point(187, 74);
+            this.Search.Location = new System.Drawing.Point(19, 17);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(42, 14);
             this.Search.TabIndex = 1;
@@ -200,6 +208,14 @@ namespace ContactManager
             // TabCreate
             // 
             this.TabCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.TabCreate.Controls.Add(this.CmdNoteEdit);
+            this.TabCreate.Controls.Add(this.LblNotes);
+            this.TabCreate.Controls.Add(this.CmdNoteAdd);
+            this.TabCreate.Controls.Add(this.CmdNoteDelete);
+            this.TabCreate.Controls.Add(this.LstNoteOut);
+            this.TabCreate.Controls.Add(this.CmdNotesAll);
+            this.TabCreate.Controls.Add(this.CmdCancel);
+            this.TabCreate.Controls.Add(this.CmdCreatePersonAndNew);
             this.TabCreate.Controls.Add(this.LblTypeSelection);
             this.TabCreate.Controls.Add(this.PnlCustomer);
             this.TabCreate.Controls.Add(this.PnlEmployee);
@@ -236,9 +252,9 @@ namespace ContactManager
             this.PnlCustomer.Controls.Add(this.LblCustomerType);
             this.PnlCustomer.Controls.Add(this.LblCompanyContact);
             this.PnlCustomer.Controls.Add(this.TxtCompanyContact);
-            this.PnlCustomer.Location = new System.Drawing.Point(637, 376);
+            this.PnlCustomer.Location = new System.Drawing.Point(637, 19);
             this.PnlCustomer.Name = "PnlCustomer";
-            this.PnlCustomer.Size = new System.Drawing.Size(692, 100);
+            this.PnlCustomer.Size = new System.Drawing.Size(692, 95);
             this.PnlCustomer.TabIndex = 85;
             // 
             // LblCompanyName
@@ -362,7 +378,7 @@ namespace ContactManager
             this.PnlEmployee.Controls.Add(this.TxtRole);
             this.PnlEmployee.Location = new System.Drawing.Point(637, 5);
             this.PnlEmployee.Name = "PnlEmployee";
-            this.PnlEmployee.Size = new System.Drawing.Size(690, 349);
+            this.PnlEmployee.Size = new System.Drawing.Size(690, 350);
             this.PnlEmployee.TabIndex = 83;
             // 
             // NumDegreeOfEmployment
@@ -402,7 +418,7 @@ namespace ContactManager
             this.PnlTrainee.Controls.Add(this.NumYearOfApp);
             this.PnlTrainee.Controls.Add(this.LblCureentAppYear);
             this.PnlTrainee.Controls.Add(this.NumCurrentAppYear);
-            this.PnlTrainee.Location = new System.Drawing.Point(7, 265);
+            this.PnlTrainee.Location = new System.Drawing.Point(7, 263);
             this.PnlTrainee.Name = "PnlTrainee";
             this.PnlTrainee.Size = new System.Drawing.Size(465, 77);
             this.PnlTrainee.TabIndex = 84;
@@ -913,7 +929,6 @@ namespace ContactManager
             // 
             this.TxtOasiNr.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtOasiNr.Depth = 0;
-            this.TxtOasiNr.Enabled = false;
             this.TxtOasiNr.Font = new System.Drawing.Font("Roboto", 12F);
             this.TxtOasiNr.Location = new System.Drawing.Point(249, 299);
             this.TxtOasiNr.Margin = new System.Windows.Forms.Padding(2);
@@ -1244,17 +1259,154 @@ namespace ContactManager
             this.CmdCreatePerson.DrawShadows = true;
             this.CmdCreatePerson.HighEmphasis = true;
             this.CmdCreatePerson.Icon = null;
-            this.CmdCreatePerson.Location = new System.Drawing.Point(637, 504);
+            this.CmdCreatePerson.Location = new System.Drawing.Point(965, 551);
             this.CmdCreatePerson.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmdCreatePerson.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreatePerson.Name = "CmdCreatePerson";
-            this.CmdCreatePerson.Size = new System.Drawing.Size(688, 91);
-            this.CmdCreatePerson.TabIndex = 34;
+            this.CmdCreatePerson.Size = new System.Drawing.Size(146, 44);
+            this.CmdCreatePerson.TabIndex = 98;
             this.CmdCreatePerson.Text = "Save";
             this.CmdCreatePerson.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdCreatePerson.UseAccentColor = false;
             this.CmdCreatePerson.UseVisualStyleBackColor = true;
             this.CmdCreatePerson.Click += new System.EventHandler(this.CmdCreatePerson_Click);
+            // 
+            // CmdCreatePersonAndNew
+            // 
+            this.CmdCreatePersonAndNew.AutoSize = false;
+            this.CmdCreatePersonAndNew.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdCreatePersonAndNew.Depth = 0;
+            this.CmdCreatePersonAndNew.DrawShadows = true;
+            this.CmdCreatePersonAndNew.HighEmphasis = true;
+            this.CmdCreatePersonAndNew.Icon = null;
+            this.CmdCreatePersonAndNew.Location = new System.Drawing.Point(1117, 551);
+            this.CmdCreatePersonAndNew.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdCreatePersonAndNew.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdCreatePersonAndNew.Name = "CmdCreatePersonAndNew";
+            this.CmdCreatePersonAndNew.Size = new System.Drawing.Size(115, 44);
+            this.CmdCreatePersonAndNew.TabIndex = 99;
+            this.CmdCreatePersonAndNew.Text = "Save & New";
+            this.CmdCreatePersonAndNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdCreatePersonAndNew.UseAccentColor = false;
+            this.CmdCreatePersonAndNew.UseVisualStyleBackColor = true;
+            // 
+            // CmdCancel
+            // 
+            this.CmdCancel.AutoSize = false;
+            this.CmdCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdCancel.Depth = 0;
+            this.CmdCancel.DrawShadows = true;
+            this.CmdCancel.HighEmphasis = true;
+            this.CmdCancel.Icon = null;
+            this.CmdCancel.Location = new System.Drawing.Point(1238, 551);
+            this.CmdCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdCancel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdCancel.Name = "CmdCancel";
+            this.CmdCancel.Size = new System.Drawing.Size(88, 44);
+            this.CmdCancel.TabIndex = 100;
+            this.CmdCancel.Text = "Cancel";
+            this.CmdCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdCancel.UseAccentColor = false;
+            this.CmdCancel.UseVisualStyleBackColor = true;
+            this.CmdCancel.Click += new System.EventHandler(this.CmdCancel_Click);
+            // 
+            // CmdNotesAll
+            // 
+            this.CmdNotesAll.AutoSize = false;
+            this.CmdNotesAll.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdNotesAll.Depth = 0;
+            this.CmdNotesAll.DrawShadows = true;
+            this.CmdNotesAll.HighEmphasis = true;
+            this.CmdNotesAll.Icon = null;
+            this.CmdNotesAll.Location = new System.Drawing.Point(965, 471);
+            this.CmdNotesAll.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdNotesAll.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdNotesAll.Name = "CmdNotesAll";
+            this.CmdNotesAll.Size = new System.Drawing.Size(29, 26);
+            this.CmdNotesAll.TabIndex = 89;
+            this.CmdNotesAll.Text = "✎";
+            this.CmdNotesAll.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdNotesAll.UseAccentColor = false;
+            this.CmdNotesAll.UseVisualStyleBackColor = true;
+            // 
+            // LstNoteOut
+            // 
+            this.LstNoteOut.Font = new System.Drawing.Font("Segoe UI Light", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LstNoteOut.FormattingEnabled = true;
+            this.LstNoteOut.ItemHeight = 20;
+            this.LstNoteOut.Location = new System.Drawing.Point(636, 380);
+            this.LstNoteOut.Name = "LstNoteOut";
+            this.LstNoteOut.Size = new System.Drawing.Size(691, 164);
+            this.LstNoteOut.TabIndex = 31;
+            // 
+            // CmdNoteDelete
+            // 
+            this.CmdNoteDelete.AutoSize = false;
+            this.CmdNoteDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdNoteDelete.Depth = 0;
+            this.CmdNoteDelete.DrawShadows = true;
+            this.CmdNoteDelete.HighEmphasis = true;
+            this.CmdNoteDelete.Icon = null;
+            this.CmdNoteDelete.Location = new System.Drawing.Point(692, 551);
+            this.CmdNoteDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdNoteDelete.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdNoteDelete.Name = "CmdNoteDelete";
+            this.CmdNoteDelete.Size = new System.Drawing.Size(49, 44);
+            this.CmdNoteDelete.TabIndex = 96;
+            this.CmdNoteDelete.Text = "-";
+            this.CmdNoteDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdNoteDelete.UseAccentColor = false;
+            this.CmdNoteDelete.UseVisualStyleBackColor = true;
+            // 
+            // CmdNoteAdd
+            // 
+            this.CmdNoteAdd.AutoSize = false;
+            this.CmdNoteAdd.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdNoteAdd.Depth = 0;
+            this.CmdNoteAdd.DrawShadows = true;
+            this.CmdNoteAdd.HighEmphasis = true;
+            this.CmdNoteAdd.Icon = null;
+            this.CmdNoteAdd.Location = new System.Drawing.Point(636, 551);
+            this.CmdNoteAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdNoteAdd.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdNoteAdd.Name = "CmdNoteAdd";
+            this.CmdNoteAdd.Size = new System.Drawing.Size(50, 44);
+            this.CmdNoteAdd.TabIndex = 95;
+            this.CmdNoteAdd.Text = "+";
+            this.CmdNoteAdd.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdNoteAdd.UseAccentColor = false;
+            this.CmdNoteAdd.UseVisualStyleBackColor = true;
+            // 
+            // LblNotes
+            // 
+            this.LblNotes.AutoSize = true;
+            this.LblNotes.Depth = 0;
+            this.LblNotes.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblNotes.Location = new System.Drawing.Point(639, 360);
+            this.LblNotes.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblNotes.Name = "LblNotes";
+            this.LblNotes.Size = new System.Drawing.Size(42, 19);
+            this.LblNotes.TabIndex = 93;
+            this.LblNotes.Text = "Notes";
+            // 
+            // CmdNoteEdit
+            // 
+            this.CmdNoteEdit.AutoSize = false;
+            this.CmdNoteEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdNoteEdit.Depth = 0;
+            this.CmdNoteEdit.DrawShadows = true;
+            this.CmdNoteEdit.HighEmphasis = true;
+            this.CmdNoteEdit.Icon = null;
+            this.CmdNoteEdit.Location = new System.Drawing.Point(747, 551);
+            this.CmdNoteEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdNoteEdit.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdNoteEdit.Name = "CmdNoteEdit";
+            this.CmdNoteEdit.Size = new System.Drawing.Size(49, 44);
+            this.CmdNoteEdit.TabIndex = 97;
+            this.CmdNoteEdit.Text = "✎";
+            this.CmdNoteEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdNoteEdit.UseAccentColor = false;
+            this.CmdNoteEdit.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -1359,7 +1511,7 @@ namespace ContactManager
         private MaterialSkin.Controls.MaterialLabel LblDateOfBirth;
         private MaterialSkin.Controls.MaterialTextBox TxtEmailAddress;
         private MaterialSkin.Controls.MaterialLabel LblEmailAddress;
-        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button CmdExecSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label Search;
         private System.Windows.Forms.TextBox txtOutput;
@@ -1375,5 +1527,13 @@ namespace ContactManager
         private MaterialSkin.Controls.MaterialProgressBar PrgDegreeOfEmployment;
         private System.Windows.Forms.NumericUpDown NumDegreeOfEmployment;
         private System.Windows.Forms.Label LblTypeSelection;
+        private MaterialSkin.Controls.MaterialButton CmdCancel;
+        private MaterialSkin.Controls.MaterialButton CmdCreatePersonAndNew;
+        private MaterialSkin.Controls.MaterialButton CmdNotesAll;
+        private System.Windows.Forms.ListBox LstNoteOut;
+        private MaterialSkin.Controls.MaterialButton CmdNoteAdd;
+        private MaterialSkin.Controls.MaterialButton CmdNoteDelete;
+        private MaterialSkin.Controls.MaterialButton CmdNoteEdit;
+        private MaterialSkin.Controls.MaterialLabel LblNotes;
     }
 }
