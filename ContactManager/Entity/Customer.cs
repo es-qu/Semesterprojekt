@@ -7,15 +7,10 @@ using System.Threading.Tasks;
 
 namespace ContactManager
 {
-    public class Customer:Person
+    public class Customer : Person
     {
         public string CompanyName { get; private set; }
         public char CustomerType { get; private set; }
         public string CompanyContact { get; private set; }
-
-        public Customer()
-        {
-
-        }
     }
 }

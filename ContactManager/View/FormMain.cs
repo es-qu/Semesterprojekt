@@ -73,30 +73,8 @@ namespace ContactManager
 
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
-            Person p = new Person();
-
-
-            p.firstName = TxtFirstName.Text;
-            p.lastName = TxtLastName.Text;
-            p.dateOfBirth = DatBirthday.Text;
-
-            SqliteDateAccess.SavePerson(p);
-            //if (/*Radiobutton Customer checked */)
-            //{
-            //    CreateCustomer();
-            //}
-            //else if (/*Radiobutton Employee checked */)
-            //{
-            //    if (/*Checkbox Trainee checked */)
-            //    {
-            //        CreateTrainee();
-            //    }
-            //    else
-            //    {
-            //        CreateEmployee();
-            //    }
-            //}
-
+            Controller controller = new Controller();
+            controller.CreatePerson(txtFirstName.Text, txtLastName.Text, datBirthday.Text);
 
         }
 
