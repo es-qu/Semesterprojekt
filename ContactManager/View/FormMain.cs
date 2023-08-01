@@ -74,8 +74,12 @@ namespace ContactManager
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
             Controller controller = new Controller();
-            //controller.CreatePerson(txtFirstName.Text, txtLastName.Text, datBirthday.Text);
-
+            controller.CreateEmployee(
+                TxtFirstName.Text,
+                TxtLastName.Text,
+                DatBirthday.Value.ToString("yyyy-MM-dd"),
+                TxtEmployeeNumber.Text 
+            );
         }
 
         private void CmdExecSearch_Click(object sender, EventArgs e)
@@ -153,11 +157,6 @@ namespace ContactManager
         private void CmdCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void TxtCompanyContact_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

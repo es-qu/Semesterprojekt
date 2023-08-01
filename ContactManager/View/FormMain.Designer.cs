@@ -47,6 +47,13 @@ namespace ContactManager
             this.CmdCancel = new MaterialSkin.Controls.MaterialButton();
             this.CmdCreatePersonAndNew = new MaterialSkin.Controls.MaterialButton();
             this.LblTypeSelection = new System.Windows.Forms.Label();
+            this.PnlCustomer = new System.Windows.Forms.Panel();
+            this.LblCompanyName = new MaterialSkin.Controls.MaterialLabel();
+            this.CmbCustomerType = new MaterialSkin.Controls.MaterialComboBox();
+            this.TxtCompanyName = new MaterialSkin.Controls.MaterialTextBox();
+            this.LblCustomerType = new MaterialSkin.Controls.MaterialLabel();
+            this.LblCompanyContact = new MaterialSkin.Controls.MaterialLabel();
+            this.TxtCompanyContact = new MaterialSkin.Controls.MaterialTextBox();
             this.PnlEmployee = new System.Windows.Forms.Panel();
             this.NumDegreeOfEmployment = new System.Windows.Forms.NumericUpDown();
             this.PrgDegreeOfEmployment = new MaterialSkin.Controls.MaterialProgressBar();
@@ -106,17 +113,11 @@ namespace ContactManager
             this.LblPrivatePhone = new MaterialSkin.Controls.MaterialLabel();
             this.TxtPrivatePhone = new MaterialSkin.Controls.MaterialTextBox();
             this.CmdCreatePerson = new MaterialSkin.Controls.MaterialButton();
-            this.TxtCompanyContact = new MaterialSkin.Controls.MaterialTextBox();
-            this.LblCompanyContact = new MaterialSkin.Controls.MaterialLabel();
-            this.LblCustomerType = new MaterialSkin.Controls.MaterialLabel();
-            this.TxtCompanyName = new MaterialSkin.Controls.MaterialTextBox();
-            this.CmbCustomerType = new MaterialSkin.Controls.MaterialComboBox();
-            this.LblCompanyName = new MaterialSkin.Controls.MaterialLabel();
-            this.PnlCustomer = new System.Windows.Forms.Panel();
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             this.TabCreateEdit.SuspendLayout();
             this.TabCreate.SuspendLayout();
+            this.PnlCustomer.SuspendLayout();
             this.PnlEmployee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumDegreeOfEmployment)).BeginInit();
             this.PnlTrainee.SuspendLayout();
@@ -125,7 +126,6 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.NumCadreLevel)).BeginInit();
             this.PnlPerson.SuspendLayout();
             this.GrpType.SuspendLayout();
-            this.PnlCustomer.SuspendLayout();
             this.SuspendLayout();
             // 
             // TCtrlMain
@@ -379,6 +379,122 @@ namespace ContactManager
             this.LblTypeSelection.Size = new System.Drawing.Size(331, 37);
             this.LblTypeSelection.TabIndex = 86;
             this.LblTypeSelection.Text = "Please select a contact type.";
+            // 
+            // PnlCustomer
+            // 
+            this.PnlCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PnlCustomer.Controls.Add(this.LblCompanyName);
+            this.PnlCustomer.Controls.Add(this.CmbCustomerType);
+            this.PnlCustomer.Controls.Add(this.TxtCompanyName);
+            this.PnlCustomer.Controls.Add(this.LblCustomerType);
+            this.PnlCustomer.Controls.Add(this.LblCompanyContact);
+            this.PnlCustomer.Controls.Add(this.TxtCompanyContact);
+            this.PnlCustomer.Location = new System.Drawing.Point(637, 19);
+            this.PnlCustomer.Name = "PnlCustomer";
+            this.PnlCustomer.Size = new System.Drawing.Size(692, 95);
+            this.PnlCustomer.TabIndex = 85;
+            // 
+            // LblCompanyName
+            // 
+            this.LblCompanyName.AutoSize = true;
+            this.LblCompanyName.Depth = 0;
+            this.LblCompanyName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblCompanyName.Location = new System.Drawing.Point(10, 10);
+            this.LblCompanyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCompanyName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblCompanyName.Name = "LblCompanyName";
+            this.LblCompanyName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCompanyName.Size = new System.Drawing.Size(120, 19);
+            this.LblCompanyName.TabIndex = 30;
+            this.LblCompanyName.Text = "Company name*";
+            // 
+            // CmbCustomerType
+            // 
+            this.CmbCustomerType.AutoResize = false;
+            this.CmbCustomerType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CmbCustomerType.Depth = 0;
+            this.CmbCustomerType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CmbCustomerType.DropDownHeight = 174;
+            this.CmbCustomerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbCustomerType.DropDownWidth = 121;
+            this.CmbCustomerType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CmbCustomerType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CmbCustomerType.FormattingEnabled = true;
+            this.CmbCustomerType.IntegralHeight = false;
+            this.CmbCustomerType.ItemHeight = 43;
+            this.CmbCustomerType.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"});
+            this.CmbCustomerType.Location = new System.Drawing.Point(545, 36);
+            this.CmbCustomerType.MaxDropDownItems = 4;
+            this.CmbCustomerType.MouseState = MaterialSkin.MouseState.OUT;
+            this.CmbCustomerType.Name = "CmbCustomerType";
+            this.CmbCustomerType.Size = new System.Drawing.Size(76, 49);
+            this.CmbCustomerType.StartIndex = 0;
+            this.CmbCustomerType.TabIndex = 33;
+            // 
+            // TxtCompanyName
+            // 
+            this.TxtCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCompanyName.Depth = 0;
+            this.TxtCompanyName.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtCompanyName.Location = new System.Drawing.Point(10, 36);
+            this.TxtCompanyName.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCompanyName.MaxLength = 50;
+            this.TxtCompanyName.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtCompanyName.Multiline = false;
+            this.TxtCompanyName.Name = "TxtCompanyName";
+            this.TxtCompanyName.Size = new System.Drawing.Size(262, 50);
+            this.TxtCompanyName.TabIndex = 31;
+            this.TxtCompanyName.Text = "";
+            
+            // 
+            // LblCustomerType
+            // 
+            this.LblCustomerType.AutoSize = true;
+            this.LblCustomerType.Depth = 0;
+            this.LblCustomerType.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblCustomerType.Location = new System.Drawing.Point(542, 9);
+            this.LblCustomerType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCustomerType.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblCustomerType.Name = "LblCustomerType";
+            this.LblCustomerType.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCustomerType.Size = new System.Drawing.Size(148, 19);
+            this.LblCustomerType.TabIndex = 32;
+            this.LblCustomerType.Text = "Customer type* (A-E)";
+            // 
+            // LblCompanyContact
+            // 
+            this.LblCompanyContact.AutoSize = true;
+            this.LblCompanyContact.Depth = 0;
+            this.LblCompanyContact.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblCompanyContact.Location = new System.Drawing.Point(292, 9);
+            this.LblCompanyContact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCompanyContact.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblCompanyContact.Name = "LblCompanyContact";
+            this.LblCompanyContact.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCompanyContact.Size = new System.Drawing.Size(133, 19);
+            this.LblCompanyContact.TabIndex = 33;
+            this.LblCompanyContact.Text = "Company contact*";
+            // 
+            // TxtCompanyContact
+            // 
+            this.TxtCompanyContact.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCompanyContact.Depth = 0;
+            this.TxtCompanyContact.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtCompanyContact.Location = new System.Drawing.Point(291, 36);
+            this.TxtCompanyContact.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCompanyContact.MaxLength = 50;
+            this.TxtCompanyContact.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtCompanyContact.Multiline = false;
+            this.TxtCompanyContact.Name = "TxtCompanyContact";
+            this.TxtCompanyContact.Size = new System.Drawing.Size(239, 50);
+            this.TxtCompanyContact.TabIndex = 32;
+            this.TxtCompanyContact.Text = "";
+         
             // 
             // PnlEmployee
             // 
@@ -1294,121 +1410,6 @@ namespace ContactManager
             this.CmdCreatePerson.UseVisualStyleBackColor = true;
             this.CmdCreatePerson.Click += new System.EventHandler(this.CmdCreatePerson_Click);
             // 
-            // TxtCompanyContact
-            // 
-            this.TxtCompanyContact.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtCompanyContact.Depth = 0;
-            this.TxtCompanyContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TxtCompanyContact.Location = new System.Drawing.Point(291, 36);
-            this.TxtCompanyContact.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCompanyContact.MaxLength = 50;
-            this.TxtCompanyContact.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtCompanyContact.Multiline = false;
-            this.TxtCompanyContact.Name = "TxtCompanyContact";
-            this.TxtCompanyContact.Size = new System.Drawing.Size(239, 50);
-            this.TxtCompanyContact.TabIndex = 32;
-            this.TxtCompanyContact.Text = "";
-            this.TxtCompanyContact.TextChanged += new System.EventHandler(this.TxtCompanyContact_TextChanged);
-            // 
-            // LblCompanyContact
-            // 
-            this.LblCompanyContact.AutoSize = true;
-            this.LblCompanyContact.Depth = 0;
-            this.LblCompanyContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCompanyContact.Location = new System.Drawing.Point(292, 9);
-            this.LblCompanyContact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblCompanyContact.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LblCompanyContact.Name = "LblCompanyContact";
-            this.LblCompanyContact.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCompanyContact.Size = new System.Drawing.Size(133, 19);
-            this.LblCompanyContact.TabIndex = 33;
-            this.LblCompanyContact.Text = "Company contact*";
-            // 
-            // LblCustomerType
-            // 
-            this.LblCustomerType.AutoSize = true;
-            this.LblCustomerType.Depth = 0;
-            this.LblCustomerType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCustomerType.Location = new System.Drawing.Point(542, 9);
-            this.LblCustomerType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblCustomerType.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LblCustomerType.Name = "LblCustomerType";
-            this.LblCustomerType.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCustomerType.Size = new System.Drawing.Size(148, 19);
-            this.LblCustomerType.TabIndex = 32;
-            this.LblCustomerType.Text = "Customer type* (A-E)";
-            // 
-            // TxtCompanyName
-            // 
-            this.TxtCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtCompanyName.Depth = 0;
-            this.TxtCompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.TxtCompanyName.Location = new System.Drawing.Point(10, 36);
-            this.TxtCompanyName.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCompanyName.MaxLength = 50;
-            this.TxtCompanyName.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtCompanyName.Multiline = false;
-            this.TxtCompanyName.Name = "TxtCompanyName";
-            this.TxtCompanyName.Size = new System.Drawing.Size(262, 50);
-            this.TxtCompanyName.TabIndex = 31;
-            this.TxtCompanyName.Text = "";
-            // 
-            // CmbCustomerType
-            // 
-            this.CmbCustomerType.AutoResize = false;
-            this.CmbCustomerType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CmbCustomerType.Depth = 0;
-            this.CmbCustomerType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CmbCustomerType.DropDownHeight = 174;
-            this.CmbCustomerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbCustomerType.DropDownWidth = 121;
-            this.CmbCustomerType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CmbCustomerType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CmbCustomerType.FormattingEnabled = true;
-            this.CmbCustomerType.IntegralHeight = false;
-            this.CmbCustomerType.ItemHeight = 43;
-            this.CmbCustomerType.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "E"});
-            this.CmbCustomerType.Location = new System.Drawing.Point(545, 36);
-            this.CmbCustomerType.MaxDropDownItems = 4;
-            this.CmbCustomerType.MouseState = MaterialSkin.MouseState.OUT;
-            this.CmbCustomerType.Name = "CmbCustomerType";
-            this.CmbCustomerType.Size = new System.Drawing.Size(76, 49);
-            this.CmbCustomerType.StartIndex = 0;
-            this.CmbCustomerType.TabIndex = 33;
-            // 
-            // LblCompanyName
-            // 
-            this.LblCompanyName.AutoSize = true;
-            this.LblCompanyName.Depth = 0;
-            this.LblCompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCompanyName.Location = new System.Drawing.Point(10, 10);
-            this.LblCompanyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblCompanyName.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LblCompanyName.Name = "LblCompanyName";
-            this.LblCompanyName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCompanyName.Size = new System.Drawing.Size(120, 19);
-            this.LblCompanyName.TabIndex = 30;
-            this.LblCompanyName.Text = "Company name*";
-            // 
-            // PnlCustomer
-            // 
-            this.PnlCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PnlCustomer.Controls.Add(this.LblCompanyName);
-            this.PnlCustomer.Controls.Add(this.CmbCustomerType);
-            this.PnlCustomer.Controls.Add(this.TxtCompanyName);
-            this.PnlCustomer.Controls.Add(this.LblCustomerType);
-            this.PnlCustomer.Controls.Add(this.LblCompanyContact);
-            this.PnlCustomer.Controls.Add(this.TxtCompanyContact);
-            this.PnlCustomer.Location = new System.Drawing.Point(637, 19);
-            this.PnlCustomer.Name = "PnlCustomer";
-            this.PnlCustomer.Size = new System.Drawing.Size(692, 95);
-            this.PnlCustomer.TabIndex = 85;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1430,6 +1431,8 @@ namespace ContactManager
             this.TabCreateEdit.ResumeLayout(false);
             this.TabCreate.ResumeLayout(false);
             this.TabCreate.PerformLayout();
+            this.PnlCustomer.ResumeLayout(false);
+            this.PnlCustomer.PerformLayout();
             this.PnlEmployee.ResumeLayout(false);
             this.PnlEmployee.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumDegreeOfEmployment)).EndInit();
@@ -1442,8 +1445,6 @@ namespace ContactManager
             this.PnlPerson.PerformLayout();
             this.GrpType.ResumeLayout(false);
             this.GrpType.PerformLayout();
-            this.PnlCustomer.ResumeLayout(false);
-            this.PnlCustomer.PerformLayout();
             this.ResumeLayout(false);
 
         }
