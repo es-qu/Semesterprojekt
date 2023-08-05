@@ -125,12 +125,23 @@ namespace ContactManager
             {
                 PnlEmployee.Visible = true;
                 ChkTrainee.Visible = true;
+                ChkTrainee.Checked = false;
 
             }
             else
             {
                 PnlEmployee.Visible = false;
                 ChkTrainee.Visible = false;
+                
+            }
+
+            //Trainee Panel visibility when Radiobuttion Employee gets checked
+            if (ChkTrainee.Checked == true && RadEmployee.Checked == true)
+            {
+                PnlTrainee.Visible = true;
+            }
+            else
+            {
                 PnlTrainee.Visible = false;
             }
 
