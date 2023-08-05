@@ -80,7 +80,7 @@ namespace ContactManager
 
         private void CmdExecSearch_Click(object sender, EventArgs e)
         {
-            string searchText = txtSearch.Text;
+            string searchText = TxtSearch.Text;
             List<Person> people = SqliteDateAccess.LoadPeople(searchText);
             if (people.Count == 0)
             {
