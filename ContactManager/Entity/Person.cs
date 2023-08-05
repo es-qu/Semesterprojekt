@@ -28,5 +28,6 @@ namespace ContactManager
         public string phoneNumberMobile { get; set; }
         public string phoneNumberBusiness { get; set; }
         public string email { get; set; }
+        public string note { get; set; }
     }
 }
