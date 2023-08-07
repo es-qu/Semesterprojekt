@@ -11,5 +11,8 @@ namespace ContactManager.Model
         public string Position { get; set; }
         public string Department { get; set; }
         public string EmployeeNumber { get; set; }
+        public string dateofjoining { get; set; }
+        public string dateofleaving { get; set; }
+        public string NumCadreLevel { get; set; }
     }
 }

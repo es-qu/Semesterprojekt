@@ -1,35 +1,47 @@
 ﻿using ContactManager.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ContactManager
 {
     internal class Controller
     {
-        public void CreatePerson(string firstName, string lastName, string dateOfBirth)
-        {
-            Person p = new Person
-            {
-                firstName = firstName,
-                lastName = lastName,
-                dateOfBirth = dateOfBirth
-            };
-
-            SqliteDateAccess.SavePerson(p);
-        }
-
-        public void CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber)  
+        public void CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int  status, string gender, string Salutaion, string title,
+                                    string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
+                                     string phoneBuiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel)  
         {
             Employee e = new Employee
             {
+                status = status == 1,
                 firstName = firstName,
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,
-                EmployeeNumber = employeeNumber  
+                EmployeeNumber = employeeNumber,
+                gender = int.TryParse(gender, out int genderValue) ? genderValue : 0,
+                Salutation = Salutaion,
+                title = title,
+                street = street,
+                postalCode = postalCode,
+                placeOfResidence = placeOfResidence,
+                nationality = nationality,
+                socialSecurityNumber = ahv,
+                phoneNumberPrivat = phonePrivate,
+                phoneNumberBusiness = phoneBuiness,
+                email = email,
+                note = note,
+                Position = Position,
+                Department = Department,
+                NumCadreLevel = NumCadreLevel,
+                dateofjoining = dateofjoining,
+                dateofleaving = dateofleaving
+
             };
 
             SqliteDateAccess.SaveEmployee(e);
@@ -40,21 +52,40 @@ namespace ContactManager
             // Clear input fields
         }
 
-        public void CreateTrainee(string firstName, string lastName, string dateOfBirth, string position, string department, string mentorName, DateTime trainingStart, DateTime trainingEnd)
+        public void CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
+                                    string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
+                                     string phoneBuiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
+                                    string TrainingStartDate, string TrainingEndDate)
         {
             Trainee t = new Trainee
             {
+                status = status == 1,
                 firstName = firstName,
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,
-                Position = position,
-                Department = department,
-                MentorName = mentorName,
-                TrainingStartDate = trainingStart,
-                TrainingEndDate = trainingEnd
+                EmployeeNumber = employeeNumber,
+                gender = int.TryParse(gender, out int genderValue) ? genderValue : 0,
+                Salutation = Salutaion,
+                title = title,
+                street = street,
+                postalCode = postalCode,
+                placeOfResidence = placeOfResidence,
+                nationality = nationality,
+                socialSecurityNumber = ahv,
+                phoneNumberPrivat = phonePrivate,
+                phoneNumberBusiness = phoneBuiness,
+                email = email,
+                note = note,
+                Position = Position,
+                Department = Department,
+                NumCadreLevel = NumCadreLevel,
+                dateofjoining = dateofjoining,
+                dateofleaving = dateofleaving,
+                TrainingStartDate = TrainingStartDate,
+                TrainingEndDate = TrainingEndDate
             };
 
-            SqliteDateAccess.SavePerson(t);
+            SqliteDateAccess.SaveTrainee(t);
         }
 
         public void CreateCustomer(string firstName, string lastName, string dateOfBirth, string companyName, string customerType, string companyContact)

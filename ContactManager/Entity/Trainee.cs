@@ -8,8 +8,7 @@ namespace ContactManager.Model
 {
     public class Trainee : Employee
     {
-        public string MentorName { get; set; }
-        public DateTime TrainingStartDate { get; set; }
-        public DateTime TrainingEndDate { get; set; }
+        public string TrainingStartDate { get; set; }
+        public string TrainingEndDate { get; set; }
     }
 }

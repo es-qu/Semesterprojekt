@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ContactManager.Model;
 using Dapper;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -68,24 +69,92 @@ namespace ContactManager
             //Don't show customer elements.
             PnlCustomer.Visible = false;
 
+            //Nationality
+            CmdNationality.Items.Add("British");
+
         }
 
-
+        public int checkState;
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
             Controller controller = new Controller();
-            controller.CreateEmployee(
-                TxtFirstName.Text,
-                TxtLastName.Text,
-                DatBirthday.Value.ToString("yyyy-MM-dd"),
-                TxtEmployeeNumber.Text 
-            );
+            if (RadEmployee.Checked)
+            {
+                if (ChkTrainee.Checked)
+                {
+                    controller.CreateEmployee(
+                   TxtFirstName.Text,
+                   TxtLastName.Text,
+                   DatBirthday.Value.ToString("yyyy-MM-dd"),
+                   TxtEmployeeNumber.Text,
+                   checkState = (int)SwtActive.CheckState,
+                   RadMale.Checked ? "1" : "0",
+                   CmbSalutation.SelectedItem?.ToString(),
+                   TxtTitle.Text,
+                   TxtAddress.Text,
+                   TxtPlz.Text,
+                   TxtPlaceOfResidence.Text,
+                   CmdNationality.SelectedItem?.ToString(),
+                   TxtOasiNr.Text,
+                   TxtPrivatePhone.Text,
+                   TxtBusnissPhone.Text,
+                   TxtEmailAddress.Text,
+                   LstNoteOut.SelectedItem?.ToString(),
+                   TxtRole.Text,
+                   TxtDepartement.Text,
+                   DatDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                   DatDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                   NumCadreLevel.Value.ToString()
+
+                );
+                }
+                else
+                {
+                    controller.CreateTrainee(
+                 TxtFirstName.Text,
+                 TxtLastName.Text,
+                 DatBirthday.Value.ToString("yyyy-MM-dd"),
+                 TxtEmployeeNumber.Text,
+                 checkState = (int)SwtActive.CheckState,
+                 RadMale.Checked ? "1" : "0",
+                 CmbSalutation.SelectedItem?.ToString(),
+                 TxtTitle.Text,
+                 TxtAddress.Text,
+                 TxtPlz.Text,
+                 TxtPlaceOfResidence.Text,
+                 CmdNationality.SelectedItem?.ToString(),
+                 TxtOasiNr.Text,
+                 TxtPrivatePhone.Text,
+                 TxtBusnissPhone.Text,
+                 TxtEmailAddress.Text,
+                 LstNoteOut.SelectedItem?.ToString(),
+                 TxtRole.Text,
+                 TxtDepartement.Text,
+                 DatDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                 DatDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                 NumCadreLevel.Value.ToString(),
+                 NumCurrentAppYear.Value.ToString(),
+                 NumYearOfApp.Value.ToString()
+                 );
+                }
+            }
+            else if (RadCustomer.Checked)
+            {
+                controller.CreateCustomer(
+                    TxtFirstName.Text,
+                    TxtLastName.Text,
+                    DatBirthday.Value.ToString("yyyy-MM-dd"),
+                    "",
+                    "",
+                    ""
+                    );
+            }
         }
 
         private void CmdExecSearch_Click(object sender, EventArgs e)
         {
             string searchText = txtSearch.Text;
-            List<Person> people = SqliteDateAccess.LoadPeople(searchText);
+            List<Employee> people = SqliteDateAccess.LoadPeople(searchText);
             if (people.Count == 0)
             {
                 txtOutput.Text = "No users found.";
@@ -93,10 +162,10 @@ namespace ContactManager
             else
             {
                 txtOutput.Text = "";
-                foreach (Person person in people)
+                foreach (Employee person in people)
                 {
                     DateTime dob = DateTime.Parse(person.dateOfBirth);
-                    txtOutput.Text += $"First Name: {person.firstName}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
+                    txtOutput.Text += $"First Name: {person.firstName}, EmployeeNumber: {person.EmployeeNumber}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
                 }
             }
 

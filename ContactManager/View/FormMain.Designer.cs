@@ -92,7 +92,7 @@ namespace ContactManager
             this.LblSalutation = new MaterialSkin.Controls.MaterialLabel();
             this.TxtOasiNr = new MaterialSkin.Controls.MaterialTextBox();
             this.TxtPlaceOfResidence = new MaterialSkin.Controls.MaterialTextBox();
-            this.CmbNationality = new MaterialSkin.Controls.MaterialComboBox();
+            this.CmdNationality = new MaterialSkin.Controls.MaterialComboBox();
             this.TxtTitle = new MaterialSkin.Controls.MaterialTextBox();
             this.TxtBusinessAddress = new MaterialSkin.Controls.MaterialTextBox();
             this.LblFirstName = new MaterialSkin.Controls.MaterialLabel();
@@ -450,7 +450,6 @@ namespace ContactManager
             this.TxtCompanyName.Size = new System.Drawing.Size(262, 50);
             this.TxtCompanyName.TabIndex = 31;
             this.TxtCompanyName.Text = "";
-            
             // 
             // LblCustomerType
             // 
@@ -494,7 +493,6 @@ namespace ContactManager
             this.TxtCompanyContact.Size = new System.Drawing.Size(239, 50);
             this.TxtCompanyContact.TabIndex = 32;
             this.TxtCompanyContact.Text = "";
-         
             // 
             // PnlEmployee
             // 
@@ -815,7 +813,7 @@ namespace ContactManager
             this.PnlPerson.Controls.Add(this.LblSalutation);
             this.PnlPerson.Controls.Add(this.TxtOasiNr);
             this.PnlPerson.Controls.Add(this.TxtPlaceOfResidence);
-            this.PnlPerson.Controls.Add(this.CmbNationality);
+            this.PnlPerson.Controls.Add(this.CmdNationality);
             this.PnlPerson.Controls.Add(this.TxtTitle);
             this.PnlPerson.Controls.Add(this.TxtBusinessAddress);
             this.PnlPerson.Controls.Add(this.LblFirstName);
@@ -1094,27 +1092,27 @@ namespace ContactManager
             this.TxtPlaceOfResidence.TabIndex = 11;
             this.TxtPlaceOfResidence.Text = "";
             // 
-            // CmbNationality
+            // CmdNationality
             // 
-            this.CmbNationality.AutoResize = false;
-            this.CmbNationality.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CmbNationality.Depth = 0;
-            this.CmbNationality.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CmbNationality.DropDownHeight = 174;
-            this.CmbNationality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbNationality.DropDownWidth = 121;
-            this.CmbNationality.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CmbNationality.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CmbNationality.FormattingEnabled = true;
-            this.CmbNationality.IntegralHeight = false;
-            this.CmbNationality.ItemHeight = 43;
-            this.CmbNationality.Location = new System.Drawing.Point(15, 300);
-            this.CmbNationality.MaxDropDownItems = 4;
-            this.CmbNationality.MouseState = MaterialSkin.MouseState.OUT;
-            this.CmbNationality.Name = "CmbNationality";
-            this.CmbNationality.Size = new System.Drawing.Size(217, 49);
-            this.CmbNationality.StartIndex = 0;
-            this.CmbNationality.TabIndex = 12;
+            this.CmdNationality.AutoResize = false;
+            this.CmdNationality.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CmdNationality.Depth = 0;
+            this.CmdNationality.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CmdNationality.DropDownHeight = 174;
+            this.CmdNationality.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmdNationality.DropDownWidth = 121;
+            this.CmdNationality.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CmdNationality.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CmdNationality.FormattingEnabled = true;
+            this.CmdNationality.IntegralHeight = false;
+            this.CmdNationality.ItemHeight = 43;
+            this.CmdNationality.Location = new System.Drawing.Point(15, 300);
+            this.CmdNationality.MaxDropDownItems = 4;
+            this.CmdNationality.MouseState = MaterialSkin.MouseState.OUT;
+            this.CmdNationality.Name = "CmdNationality";
+            this.CmdNationality.Size = new System.Drawing.Size(217, 49);
+            this.CmdNationality.StartIndex = 0;
+            this.CmdNationality.TabIndex = 12;
             // 
             // TxtTitle
             // 
@@ -1512,7 +1510,7 @@ namespace ContactManager
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label Search;
         private System.Windows.Forms.TextBox txtOutput;
-        private MaterialSkin.Controls.MaterialComboBox CmbNationality;
+        private MaterialSkin.Controls.MaterialComboBox CmdNationality;
         private MaterialSkin.Controls.MaterialComboBox CmbSalutation;
         private System.Windows.Forms.Panel PnlPerson;
         private System.Windows.Forms.Panel PnlEmployee;
