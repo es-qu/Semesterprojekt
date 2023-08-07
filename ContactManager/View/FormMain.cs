@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,9 @@ namespace ContactManager
             InitializeComponent();
 
             manager.AddFormToManage(this);
+
+            //Countries in ComboBox Nationality
+            PopulateCountryComboBox();
         }
 
         public FormMain(int selectedTab) : this()
@@ -62,12 +66,12 @@ namespace ContactManager
         private void FormMain_Load(object sender, EventArgs e)
         {
             //Don't show employee & trainee elements.
-            PnlEmployee.Visible = false;
-            PnlTrainee.Visible = false;
-            ChkTrainee.Visible = false;
+            PnlCreateInfoEmployee.Visible = false;
+            PnlCreateInfoTrainee.Visible = false;
+            ChkCreateTrainee.Visible = false;
 
             //Don't show customer elements.
-            PnlCustomer.Visible = false;
+            PnlCreateInfoCustomer.Visible = false;
 
             //Nationality
             CmdNationality.Items.Add("British");
@@ -78,6 +82,7 @@ namespace ContactManager
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
             Controller controller = new Controller();
+<<<<<<< HEAD
             if (RadEmployee.Checked)
             {
                 if (ChkTrainee.Checked)
@@ -149,12 +154,25 @@ namespace ContactManager
                     ""
                     );
             }
+=======
+            controller.CreateEmployee(
+                TxtCreateFirstName.Text,
+                TxtCreateLastName.Text,
+                DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                TxtEmployeeNumber.Text 
+            );
+>>>>>>> cde6e7827a880b5454d6b309931dedc26b7b91f8
         }
 
         private void CmdExecSearch_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             string searchText = txtSearch.Text;
             List<Employee> people = SqliteDateAccess.LoadPeople(searchText);
+=======
+            string searchText = TxtSearch.Text;
+            List<Person> people = SqliteDateAccess.LoadPeople(searchText);
+>>>>>>> cde6e7827a880b5454d6b309931dedc26b7b91f8
             if (people.Count == 0)
             {
                 txtOutput.Text = "No users found.";
@@ -171,61 +189,98 @@ namespace ContactManager
 
         }
 
-        private void RadCustomer_CheckedChanged(object sender, EventArgs e)
+        private void RadCreateCustomer_CheckedChanged(object sender, EventArgs e)
         {
 
-            LblTypeSelection.Visible = false;
+            LblCreateTypeSelection.Visible = false;
 
-            if (RadCustomer.Checked == true)
+            if (RadCreateCustomer.Checked == true)
             {
-                PnlCustomer.Visible = true;
+                PnlCreateInfoCustomer.Visible = true;
             }
             else
             {
-                PnlCustomer.Visible = false;
+                PnlCreateInfoCustomer.Visible = false;
             }
         }
 
-        private void RadEmployee_CheckedChanged(object sender, EventArgs e)
+        private void RadCreateEmployee_CheckedChanged(object sender, EventArgs e)
         {
-            LblTypeSelection.Visible = false;
+            LblCreateTypeSelection.Visible = false;
 
-            if (RadEmployee.Checked == true)
+            if (RadCreateEmployee.Checked == true)
             {
-                PnlEmployee.Visible = true;
-                ChkTrainee.Visible = true;
+                PnlCreateInfoEmployee.Visible = true;
+                ChkCreateTrainee.Visible = true;
+                ChkCreateTrainee.Checked = false;
 
             }
             else
             {
-                PnlEmployee.Visible = false;
-                ChkTrainee.Visible = false;
-                PnlTrainee.Visible = false;
+                PnlCreateInfoEmployee.Visible = false;
+                ChkCreateTrainee.Visible = false;
+                
             }
 
-        }
-
-        private void ChkTrainee_CheckedChanged(object sender, EventArgs e)
-        {
-
-            if (ChkTrainee.Checked == true && RadEmployee.Checked == true)
+            //Trainee Panel visibility when Radiobuttion Employee gets checked
+            if (ChkCreateTrainee.Checked == true && RadCreateEmployee.Checked == true)
             {
-                PnlTrainee.Visible = true;
+                PnlCreateInfoTrainee.Visible = true;
             }
             else
             {
-                PnlTrainee.Visible = false;
+                PnlCreateInfoTrainee.Visible = false;
+            }
+
+        }
+
+        private void ChkCreateTrainee_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (ChkCreateTrainee.Checked == true && RadCreateEmployee.Checked == true)
+            {
+                PnlCreateInfoTrainee.Visible = true;
+            }
+            else
+            {
+                PnlCreateInfoTrainee.Visible = false;
             }
         }
 
-        private void NumDegreeOfEmployment_ValueChanged(object sender, EventArgs e)
+        private void NumCreateDegreeOfEmployment_ValueChanged(object sender, EventArgs e)
         {
             PrgDegreeOfEmployment.Value = Convert.ToInt16(NumDegreeOfEmployment.Value);
         }
 
-        private void CmdCancel_Click(object sender, EventArgs e)
+        //Closes the Create Window when the Button CmdCreateCancel is clicked
+        private void CmdCreateCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+
+        //Countries in DropDown
+        private void PopulateCountryComboBox()
+        {
+            
+            // Get the list of all countries using CultureInfo
+            List<string> countriesList = new List<string>();
+            foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
+            {
+                RegionInfo region = new RegionInfo(ci.Name);
+                if (!countriesList.Contains(region.EnglishName))
+                {
+                    countriesList.Add(region.EnglishName);
+                }
+            }
+
+            // Sort the list of countries alphabetically
+            countriesList.Sort();
+
+            // Populate the ComboBox with the list of countries
+            CmbCreateNationality.DataSource = countriesList;
+            
+            
         }
     }
 }
