@@ -34,9 +34,9 @@ namespace ContactManager
             // 
             // FormMain
             // 
-            this.ClientSize = new System.Drawing.Size(858, 702);
+            this.ClientSize = new System.Drawing.Size(1151, 832);
             this.Name = "FormMain";
-            //   this.Load += new System.EventHandler(this.FormMain_Load_1);
+            //this.Load += new System.EventHandler(this.FormMain_Load);
             this.ResumeLayout(false);
 
         }
