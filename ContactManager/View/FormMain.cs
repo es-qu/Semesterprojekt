@@ -24,8 +24,7 @@ namespace ContactManager
         {
             Create,
             Search,
-            Edit,
-            Delete
+
         }
 
         public FormMain()
@@ -50,12 +49,7 @@ namespace ContactManager
                 case Tab.Search:
                     TCtrlMain.SelectedTab = TabSearch;
                     break;
-                case Tab.Edit:
-                    TCtrlMain.SelectedTab = TabSearch;
-                    break;
-                case Tab.Delete:
-                    TCtrlMain.SelectedTab = TabSearch;
-                    break;
+
                 default:
                     break;
             }
