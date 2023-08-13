@@ -10,7 +10,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ContactManager.Model;
 using Dapper;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -36,7 +35,7 @@ namespace ContactManager
             manager.AddFormToManage(this);
 
             //Countries in ComboBox Nationality
-            //PopulateCountryComboBox();
+            PopulateCountryComboBox();
         }
 
         public FormMain(int selectedTab) : this()
@@ -73,96 +72,26 @@ namespace ContactManager
             //Don't show customer elements.
             PnlCreateInfoCustomer.Visible = false;
 
-            //Nationality
-            CmdNationality.Items.Add("British");
-
         }
 
-        public int checkState;
+
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
+            /*
             Controller controller = new Controller();
-
-            if (RadCreateEmployee.Checked)
-            {
-                if (ChkCreateTrainee.Checked)
-                {
-                    controller.CreateEmployee(
-                   TxtCreateFirstName.Text,
-                   TxtCreateLastName.Text,
-                   DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                   TxtEmployeeNumber.Text,
-                   checkState = (int)SwtCreateActive.CheckState,
-                   RadCreateMale.Checked ? "1" : "0",
-                   CmbSalutation.SelectedItem?.ToString(),
-                   TxtCreateTitle.Text,
-                   TxtCreateAddress.Text,
-                   TxtCreatePlz.Text,
-                   TxtCreatePlaceOfResidence.Text,
-                   CmdNationality.SelectedItem?.ToString(),
-                   TxtCreateOasiNr.Text,
-                   TxtCreatePrivatePhone.Text,
-                   TxtCreateBusnissPhone.Text,
-                   TxtCreateEmailAddress.Text,
-                   LstCreateNoteOut.SelectedItem?.ToString(),
-                   TxtRole.Text,
-                   TxtDepartement.Text,
-                   DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                   DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                   NumCadreLevel.Value.ToString()
-
-                );
-                }
-                else
-                {
-                    controller.CreateTrainee(
-                 TxtCreateFirstName.Text,
-                 TxtCreateLastName.Text,
-                 DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                 TxtEmployeeNumber.Text,
-                 checkState = (int)SwtCreateActive.CheckState,
-                 RadCreateMale.Checked ? "1" : "0",
-                 CmbSalutation.SelectedItem?.ToString(),
-                 TxtCreateTitle.Text,
-                 TxtCreateAddress.Text,
-                 TxtCreatePlz.Text,
-                 TxtCreatePlaceOfResidence.Text,
-                 CmdNationality.SelectedItem?.ToString(),
-                 TxtCreateOasiNr.Text,
-                 TxtCreatePrivatePhone.Text,
-                 TxtCreateBusnissPhone.Text,
-                 TxtCreateEmailAddress.Text,
-                 LstCreateNoteOut.SelectedItem?.ToString(),
-                 TxtRole.Text,
-                 TxtDepartement.Text,
-                 DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                 DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                 NumCadreLevel.Value.ToString(),
-                 NumCreateCurrentAppYear.Value.ToString(),
-                 NumCreateYearOfApp.Value.ToString()
-                 );
-                }
-            }
-            else if (RadCreateCustomer.Checked)
-            {
-                controller.CreateCustomer(
-                    TxtCreateFirstName.Text,
-                    TxtCreateLastName.Text,
-                    DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                    "",
-                    "",
-                    ""
-                    );
-            }
-
+            controller.CreateEmployee(
+                TxtCreateFirstName.Text,
+                TxtCreateLastName.Text,
+                DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                TxtEmployeeNumber.Text
+            );
+            */
         }
 
         private void CmdExecSearch_Click(object sender, EventArgs e)
         {
-
             string searchText = TxtSearch.Text;
-            List<Person> people = SqliteDateAccess.LoadPeople( searchText );
-
+            List<Person> people = SqliteDateAccess.LoadPeople(searchText);
             if (people.Count == 0)
             {
                 txtOutput.Text = "No users found.";
@@ -170,10 +99,10 @@ namespace ContactManager
             else
             {
                 txtOutput.Text = "";
-                foreach (Employee person in people)
+                foreach (Person person in people)
                 {
                     DateTime dob = DateTime.Parse(person.dateOfBirth);
-                    txtOutput.Text += $"First Name: {person.firstName}, EmployeeNumber: {person.EmployeeNumber}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
+                    txtOutput.Text += $"First Name: {person.firstName}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
                 }
             }
 
@@ -209,7 +138,7 @@ namespace ContactManager
             {
                 PnlCreateInfoEmployee.Visible = false;
                 ChkCreateTrainee.Visible = false;
-                
+
             }
 
             //Trainee Panel visibility when Radiobuttion Employee gets checked
@@ -250,30 +179,29 @@ namespace ContactManager
 
 
         //Countries in DropDown
-        //  private void PopulateCountryComboBox()
-        // {
+        private void PopulateCountryComboBox()
+        {
 
-        // Get the list of all countries using CultureInfo
-        // List<string> countriesList = new List<string>();
-        //   foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
-        //   {
-        //  RegionInfo region = new RegionInfo(ci.Name);
-        //      if (!countriesList.Contains(region.EnglishName))
-        //     {
-        // countriesList.Add(region.EnglishName);
-        // }
-        //}
+            // Get the list of all countries using CultureInfo
+            List<string> countriesList = new List<string>();
+            foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
+            {
+                RegionInfo region = new RegionInfo(ci.Name);
+                if (!countriesList.Contains(region.EnglishName))
+                {
+                    countriesList.Add(region.EnglishName);
+                }
+            }
 
-        // Sort the list of countries alphabetically
-        //  countriesList.Sort();
+            // Sort the list of countries alphabetically
+            countriesList.Sort();
 
-        // Populate the ComboBox with the list of countries
-        // CmbCreateNationality.DataSource = countriesList;
+            // Populate the ComboBox with the list of countries
+            CmbCreateNationality.DataSource = countriesList;
 
 
+        }
     }
-
-    
 }
 
 

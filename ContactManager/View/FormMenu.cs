@@ -41,17 +41,6 @@ namespace ContactManager
             OpenMainForm(1);
         }
 
-        private void CmdEdit_Click(object sender, EventArgs e)
-        {
-            OpenMainForm(2);
-        }
-
-        private void CmdDelete_Click(object sender, EventArgs e)
-        {
-            OpenMainForm(3);
-        }
-
-
         private void OpenMainForm(int tab = 1)
         {
             Form main = new FormMain(tab);
@@ -68,14 +57,6 @@ namespace ContactManager
 
                 case Keys.S:
                     OpenMainForm(1);
-                    break;
-
-                case Keys.E:
-                    OpenMainForm(2);
-                    break;
-
-                case Keys.D:
-                    OpenMainForm(3);
                     break;
 
                 case Keys.Q:
