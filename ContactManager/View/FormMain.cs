@@ -80,7 +80,7 @@ namespace ContactManager
                 TxtCreateFirstName.Text,
                 TxtCreateLastName.Text,
                 DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                TxtEmployeeNumber.Text,
+                TxtCreateEmployeeNumber.Text,
                 checkState = (int)SwtCreateActive.CheckState,
                 RadCreateMale.Checked ? "1" : "0",
                 CmbCreateSalutation.SelectedItem?.ToString(),
@@ -94,8 +94,8 @@ namespace ContactManager
                 TxtCreateBusnissPhone.Text,
                 TxtCreateEmailAddress.Text,
                 LstCreateNoteOut.SelectedItem?.ToString(),
-                TxtRole.Text,
-                TxtDepartement.Text,
+                TxtCreateRole.Text,
+                TxtCreateDepartement.Text,
                 DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                 DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                 NumCadreLevel.Value.ToString(),
@@ -109,7 +109,7 @@ namespace ContactManager
                   TxtCreateFirstName.Text,
                   TxtCreateLastName.Text,
                   DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                  TxtEmployeeNumber.Text,
+                  TxtCreateEmployeeNumber.Text,
                   checkState = (int)SwtCreateActive.CheckState,
                   RadCreateMale.Checked ? "1" : "0",
                   CmbCreateSalutation.SelectedItem?.ToString(),
@@ -123,8 +123,8 @@ namespace ContactManager
                   TxtCreateBusnissPhone.Text,
                   TxtCreateEmailAddress.Text,
                   LstCreateNoteOut.SelectedItem?.ToString(),
-                  TxtRole.Text,
-                  TxtDepartement.Text,
+                  TxtCreateRole.Text,
+                  TxtCreateDepartement.Text,
                   DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                   DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                   NumCadreLevel.Value.ToString()
@@ -214,7 +214,7 @@ namespace ContactManager
 
         private void NumCreateDegreeOfEmployment_ValueChanged(object sender, EventArgs e)
         {
-            PrgDegreeOfEmployment.Value = Convert.ToInt16(NumDegreeOfEmployment.Value);
+            PrgDegreeOfEmployment.Value = Convert.ToInt16(NumCreateDegreeOfEmployment.Value);
         }
 
         //Closes the Create Window when the Button CmdCreateCancel is clicked
@@ -246,6 +246,15 @@ namespace ContactManager
             CmbCreateNationality.DataSource = countriesList;
 
 
+        }
+
+        private void CmdSearchAdvanced_Click(object sender, EventArgs e)
+        {
+            //Try to show Advanced Search windows over the Search window of FormMain
+            var formAdvancedSearch = new FormSearchAdvanced();
+            formAdvancedSearch.Visible = false;
+            DialogResult dialogResult = ShowDialog(formAdvancedSearch);
+            
         }
     }
 }

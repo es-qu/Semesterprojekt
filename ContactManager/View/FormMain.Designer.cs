@@ -123,15 +123,6 @@ namespace ContactManager
             this.TxtSearch = new System.Windows.Forms.TextBox();
             this.TabCreateEdit = new System.Windows.Forms.TabPage();
             this.TabCreate = new MaterialSkin.Controls.MaterialCard();
-            this.PnlCreateInfoCustomer = new System.Windows.Forms.Panel();
-            this.TxtCreateCustomerNumber = new MaterialSkin.Controls.MaterialTextBox();
-            this.LblCreateCustomerNumber = new MaterialSkin.Controls.MaterialLabel();
-            this.LblCreateCompanyName = new MaterialSkin.Controls.MaterialLabel();
-            this.CmbCreateCustomerType = new MaterialSkin.Controls.MaterialComboBox();
-            this.TxtCreateCompanyName = new MaterialSkin.Controls.MaterialTextBox();
-            this.LblCreateCustomerType = new MaterialSkin.Controls.MaterialLabel();
-            this.LblCreateCompanyContact = new MaterialSkin.Controls.MaterialLabel();
-            this.TxtCreateCompanyContact = new MaterialSkin.Controls.MaterialTextBox();
             this.CmdCreateNoteEdit = new MaterialSkin.Controls.MaterialButton();
             this.LblCreateNotes = new MaterialSkin.Controls.MaterialLabel();
             this.CmdCreateNoteAdd = new MaterialSkin.Controls.MaterialButton();
@@ -179,8 +170,17 @@ namespace ContactManager
             this.LblCreatePrivatePhone = new MaterialSkin.Controls.MaterialLabel();
             this.TxtCreatePrivatePhone = new MaterialSkin.Controls.MaterialTextBox();
             this.CmdCreateSavePerson = new MaterialSkin.Controls.MaterialButton();
+            this.PnlCreateInfoCustomer = new System.Windows.Forms.Panel();
+            this.TxtCreateCustomerNumber = new MaterialSkin.Controls.MaterialTextBox();
+            this.LblCreateCustomerNumber = new MaterialSkin.Controls.MaterialLabel();
+            this.LblCreateCompanyName = new MaterialSkin.Controls.MaterialLabel();
+            this.CmbCreateCustomerType = new MaterialSkin.Controls.MaterialComboBox();
+            this.TxtCreateCompanyName = new MaterialSkin.Controls.MaterialTextBox();
+            this.LblCreateCustomerType = new MaterialSkin.Controls.MaterialLabel();
+            this.LblCreateCompanyContact = new MaterialSkin.Controls.MaterialLabel();
+            this.TxtCreateCompanyContact = new MaterialSkin.Controls.MaterialTextBox();
             this.PnlCreateInfoEmployee = new System.Windows.Forms.Panel();
-            this.NumDegreeOfEmployment = new System.Windows.Forms.NumericUpDown();
+            this.NumCreateDegreeOfEmployment = new System.Windows.Forms.NumericUpDown();
             this.PrgDegreeOfEmployment = new MaterialSkin.Controls.MaterialProgressBar();
             this.PnlCreateInfoTrainee = new System.Windows.Forms.Panel();
             this.LblCreateYearOfApp = new MaterialSkin.Controls.MaterialLabel();
@@ -191,15 +191,15 @@ namespace ContactManager
             this.LblCreateDateOfLeaving = new MaterialSkin.Controls.MaterialLabel();
             this.DatCreateDateOfLeaving = new System.Windows.Forms.DateTimePicker();
             this.DatCreateDateOfJoining = new System.Windows.Forms.DateTimePicker();
-            this.TxtEmployeeNumber = new MaterialSkin.Controls.MaterialTextBox();
+            this.TxtCreateEmployeeNumber = new MaterialSkin.Controls.MaterialTextBox();
             this.LblEmployeeNumber = new MaterialSkin.Controls.MaterialLabel();
             this.LblDepartement = new MaterialSkin.Controls.MaterialLabel();
-            this.TxtDepartement = new MaterialSkin.Controls.MaterialTextBox();
+            this.TxtCreateDepartement = new MaterialSkin.Controls.MaterialTextBox();
             this.NumCadreLevel = new System.Windows.Forms.NumericUpDown();
             this.LblDegreeOfEmployment = new MaterialSkin.Controls.MaterialLabel();
             this.LblCadreLevel = new MaterialSkin.Controls.MaterialLabel();
             this.LblRole = new MaterialSkin.Controls.MaterialLabel();
-            this.TxtRole = new MaterialSkin.Controls.MaterialTextBox();
+            this.TxtCreateRole = new MaterialSkin.Controls.MaterialTextBox();
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             this.PnlSearchPreview.SuspendLayout();
@@ -211,11 +211,11 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchResult)).BeginInit();
             this.TabCreateEdit.SuspendLayout();
             this.TabCreate.SuspendLayout();
-            this.PnlCreateInfoCustomer.SuspendLayout();
             this.PnlCreateInfoGeneral.SuspendLayout();
             this.GrpCreateType.SuspendLayout();
+            this.PnlCreateInfoCustomer.SuspendLayout();
             this.PnlCreateInfoEmployee.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumDegreeOfEmployment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumCreateDegreeOfEmployment)).BeginInit();
             this.PnlCreateInfoTrainee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumCreateYearOfApp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumCreateCurrentAppYear)).BeginInit();
@@ -1238,6 +1238,7 @@ namespace ContactManager
             this.CmdSearchAdvanced.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchAdvanced.UseAccentColor = false;
             this.CmdSearchAdvanced.UseVisualStyleBackColor = true;
+            this.CmdSearchAdvanced.Click += new System.EventHandler(this.CmdSearchAdvanced_Click);
             // 
             // CmdSearchExec2
             // 
@@ -1306,7 +1307,6 @@ namespace ContactManager
             // TabCreate
             // 
             this.TabCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.TabCreate.Controls.Add(this.PnlCreateInfoCustomer);
             this.TabCreate.Controls.Add(this.CmdCreateNoteEdit);
             this.TabCreate.Controls.Add(this.LblCreateNotes);
             this.TabCreate.Controls.Add(this.CmdCreateNoteAdd);
@@ -1319,6 +1319,7 @@ namespace ContactManager
             this.TabCreate.Controls.Add(this.PnlCreateInfoGeneral);
             this.TabCreate.Controls.Add(this.CmdCreateSavePerson);
             this.TabCreate.Controls.Add(this.PnlCreateInfoEmployee);
+            this.TabCreate.Controls.Add(this.PnlCreateInfoCustomer);
             this.TabCreate.Depth = 0;
             this.TabCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TabCreate.Location = new System.Drawing.Point(0, 0);
@@ -1328,151 +1329,6 @@ namespace ContactManager
             this.TabCreate.Padding = new System.Windows.Forms.Padding(9);
             this.TabCreate.Size = new System.Drawing.Size(1330, 620);
             this.TabCreate.TabIndex = 59;
-            // 
-            // PnlCreateInfoCustomer
-            // 
-            this.PnlCreateInfoCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PnlCreateInfoCustomer.Controls.Add(this.TxtCreateCustomerNumber);
-            this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCustomerNumber);
-            this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCompanyName);
-            this.PnlCreateInfoCustomer.Controls.Add(this.CmbCreateCustomerType);
-            this.PnlCreateInfoCustomer.Controls.Add(this.TxtCreateCompanyName);
-            this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCustomerType);
-            this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCompanyContact);
-            this.PnlCreateInfoCustomer.Controls.Add(this.TxtCreateCompanyContact);
-            this.PnlCreateInfoCustomer.Location = new System.Drawing.Point(637, 5);
-            this.PnlCreateInfoCustomer.Name = "PnlCreateInfoCustomer";
-            this.PnlCreateInfoCustomer.Size = new System.Drawing.Size(692, 178);
-            this.PnlCreateInfoCustomer.TabIndex = 85;
-            // 
-            // TxtCreateCustomerNumber
-            // 
-            this.TxtCreateCustomerNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtCreateCustomerNumber.Depth = 0;
-            this.TxtCreateCustomerNumber.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateCustomerNumber.Location = new System.Drawing.Point(148, 13);
-            this.TxtCreateCustomerNumber.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCreateCustomerNumber.MaxLength = 50;
-            this.TxtCreateCustomerNumber.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtCreateCustomerNumber.Multiline = false;
-            this.TxtCreateCustomerNumber.Name = "TxtCreateCustomerNumber";
-            this.TxtCreateCustomerNumber.Size = new System.Drawing.Size(123, 50);
-            this.TxtCreateCustomerNumber.TabIndex = 35;
-            this.TxtCreateCustomerNumber.Text = "";
-            // 
-            // LblCreateCustomerNumber
-            // 
-            this.LblCreateCustomerNumber.AutoSize = true;
-            this.LblCreateCustomerNumber.Depth = 0;
-            this.LblCreateCustomerNumber.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateCustomerNumber.Location = new System.Drawing.Point(10, 26);
-            this.LblCreateCustomerNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblCreateCustomerNumber.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LblCreateCustomerNumber.Name = "LblCreateCustomerNumber";
-            this.LblCreateCustomerNumber.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCreateCustomerNumber.Size = new System.Drawing.Size(127, 19);
-            this.LblCreateCustomerNumber.TabIndex = 34;
-            this.LblCreateCustomerNumber.Text = "Customer number";
-            // 
-            // LblCreateCompanyName
-            // 
-            this.LblCreateCompanyName.AutoSize = true;
-            this.LblCreateCompanyName.Depth = 0;
-            this.LblCreateCompanyName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateCompanyName.Location = new System.Drawing.Point(10, 92);
-            this.LblCreateCompanyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblCreateCompanyName.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LblCreateCompanyName.Name = "LblCreateCompanyName";
-            this.LblCreateCompanyName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCreateCompanyName.Size = new System.Drawing.Size(120, 19);
-            this.LblCreateCompanyName.TabIndex = 30;
-            this.LblCreateCompanyName.Text = "Company name*";
-            // 
-            // CmbCreateCustomerType
-            // 
-            this.CmbCreateCustomerType.AutoResize = false;
-            this.CmbCreateCustomerType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.CmbCreateCustomerType.Depth = 0;
-            this.CmbCreateCustomerType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.CmbCreateCustomerType.DropDownHeight = 174;
-            this.CmbCreateCustomerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CmbCreateCustomerType.DropDownWidth = 121;
-            this.CmbCreateCustomerType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.CmbCreateCustomerType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CmbCreateCustomerType.FormattingEnabled = true;
-            this.CmbCreateCustomerType.IntegralHeight = false;
-            this.CmbCreateCustomerType.ItemHeight = 43;
-            this.CmbCreateCustomerType.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "E"});
-            this.CmbCreateCustomerType.Location = new System.Drawing.Point(454, 12);
-            this.CmbCreateCustomerType.MaxDropDownItems = 4;
-            this.CmbCreateCustomerType.MouseState = MaterialSkin.MouseState.OUT;
-            this.CmbCreateCustomerType.Name = "CmbCreateCustomerType";
-            this.CmbCreateCustomerType.Size = new System.Drawing.Size(76, 49);
-            this.CmbCreateCustomerType.StartIndex = 0;
-            this.CmbCreateCustomerType.TabIndex = 33;
-            // 
-            // TxtCreateCompanyName
-            // 
-            this.TxtCreateCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtCreateCompanyName.Depth = 0;
-            this.TxtCreateCompanyName.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateCompanyName.Location = new System.Drawing.Point(10, 118);
-            this.TxtCreateCompanyName.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCreateCompanyName.MaxLength = 50;
-            this.TxtCreateCompanyName.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtCreateCompanyName.Multiline = false;
-            this.TxtCreateCompanyName.Name = "TxtCreateCompanyName";
-            this.TxtCreateCompanyName.Size = new System.Drawing.Size(262, 50);
-            this.TxtCreateCompanyName.TabIndex = 31;
-            this.TxtCreateCompanyName.Text = "";
-            // 
-            // LblCreateCustomerType
-            // 
-            this.LblCreateCustomerType.AutoSize = true;
-            this.LblCreateCustomerType.Depth = 0;
-            this.LblCreateCustomerType.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateCustomerType.Location = new System.Drawing.Point(292, 25);
-            this.LblCreateCustomerType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblCreateCustomerType.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LblCreateCustomerType.Name = "LblCreateCustomerType";
-            this.LblCreateCustomerType.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCreateCustomerType.Size = new System.Drawing.Size(148, 19);
-            this.LblCreateCustomerType.TabIndex = 32;
-            this.LblCreateCustomerType.Text = "Customer type* (A-E)";
-            // 
-            // LblCreateCompanyContact
-            // 
-            this.LblCreateCompanyContact.AutoSize = true;
-            this.LblCreateCompanyContact.Depth = 0;
-            this.LblCreateCompanyContact.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateCompanyContact.Location = new System.Drawing.Point(292, 91);
-            this.LblCreateCompanyContact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblCreateCompanyContact.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LblCreateCompanyContact.Name = "LblCreateCompanyContact";
-            this.LblCreateCompanyContact.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.LblCreateCompanyContact.Size = new System.Drawing.Size(133, 19);
-            this.LblCreateCompanyContact.TabIndex = 33;
-            this.LblCreateCompanyContact.Text = "Company contact*";
-            // 
-            // TxtCreateCompanyContact
-            // 
-            this.TxtCreateCompanyContact.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtCreateCompanyContact.Depth = 0;
-            this.TxtCreateCompanyContact.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateCompanyContact.Location = new System.Drawing.Point(291, 118);
-            this.TxtCreateCompanyContact.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtCreateCompanyContact.MaxLength = 50;
-            this.TxtCreateCompanyContact.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtCreateCompanyContact.Multiline = false;
-            this.TxtCreateCompanyContact.Name = "TxtCreateCompanyContact";
-            this.TxtCreateCompanyContact.Size = new System.Drawing.Size(239, 50);
-            this.TxtCreateCompanyContact.TabIndex = 32;
-            this.TxtCreateCompanyContact.Text = "";
             // 
             // CmdCreateNoteEdit
             // 
@@ -2234,49 +2090,194 @@ namespace ContactManager
             this.CmdCreateSavePerson.UseVisualStyleBackColor = true;
             this.CmdCreateSavePerson.Click += new System.EventHandler(this.CmdCreatePerson_Click);
             // 
+            // PnlCreateInfoCustomer
+            // 
+            this.PnlCreateInfoCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PnlCreateInfoCustomer.Controls.Add(this.TxtCreateCustomerNumber);
+            this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCustomerNumber);
+            this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCompanyName);
+            this.PnlCreateInfoCustomer.Controls.Add(this.CmbCreateCustomerType);
+            this.PnlCreateInfoCustomer.Controls.Add(this.TxtCreateCompanyName);
+            this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCustomerType);
+            this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCompanyContact);
+            this.PnlCreateInfoCustomer.Controls.Add(this.TxtCreateCompanyContact);
+            this.PnlCreateInfoCustomer.Location = new System.Drawing.Point(637, 5);
+            this.PnlCreateInfoCustomer.Name = "PnlCreateInfoCustomer";
+            this.PnlCreateInfoCustomer.Size = new System.Drawing.Size(692, 178);
+            this.PnlCreateInfoCustomer.TabIndex = 85;
+            // 
+            // TxtCreateCustomerNumber
+            // 
+            this.TxtCreateCustomerNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCreateCustomerNumber.Depth = 0;
+            this.TxtCreateCustomerNumber.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtCreateCustomerNumber.Location = new System.Drawing.Point(148, 13);
+            this.TxtCreateCustomerNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCreateCustomerNumber.MaxLength = 50;
+            this.TxtCreateCustomerNumber.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtCreateCustomerNumber.Multiline = false;
+            this.TxtCreateCustomerNumber.Name = "TxtCreateCustomerNumber";
+            this.TxtCreateCustomerNumber.Size = new System.Drawing.Size(123, 50);
+            this.TxtCreateCustomerNumber.TabIndex = 35;
+            this.TxtCreateCustomerNumber.Text = "";
+            // 
+            // LblCreateCustomerNumber
+            // 
+            this.LblCreateCustomerNumber.AutoSize = true;
+            this.LblCreateCustomerNumber.Depth = 0;
+            this.LblCreateCustomerNumber.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblCreateCustomerNumber.Location = new System.Drawing.Point(10, 26);
+            this.LblCreateCustomerNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateCustomerNumber.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblCreateCustomerNumber.Name = "LblCreateCustomerNumber";
+            this.LblCreateCustomerNumber.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateCustomerNumber.Size = new System.Drawing.Size(127, 19);
+            this.LblCreateCustomerNumber.TabIndex = 34;
+            this.LblCreateCustomerNumber.Text = "Customer number";
+            // 
+            // LblCreateCompanyName
+            // 
+            this.LblCreateCompanyName.AutoSize = true;
+            this.LblCreateCompanyName.Depth = 0;
+            this.LblCreateCompanyName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblCreateCompanyName.Location = new System.Drawing.Point(10, 92);
+            this.LblCreateCompanyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateCompanyName.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblCreateCompanyName.Name = "LblCreateCompanyName";
+            this.LblCreateCompanyName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateCompanyName.Size = new System.Drawing.Size(120, 19);
+            this.LblCreateCompanyName.TabIndex = 30;
+            this.LblCreateCompanyName.Text = "Company name*";
+            // 
+            // CmbCreateCustomerType
+            // 
+            this.CmbCreateCustomerType.AutoResize = false;
+            this.CmbCreateCustomerType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CmbCreateCustomerType.Depth = 0;
+            this.CmbCreateCustomerType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.CmbCreateCustomerType.DropDownHeight = 174;
+            this.CmbCreateCustomerType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CmbCreateCustomerType.DropDownWidth = 121;
+            this.CmbCreateCustomerType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.CmbCreateCustomerType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CmbCreateCustomerType.FormattingEnabled = true;
+            this.CmbCreateCustomerType.IntegralHeight = false;
+            this.CmbCreateCustomerType.ItemHeight = 43;
+            this.CmbCreateCustomerType.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"});
+            this.CmbCreateCustomerType.Location = new System.Drawing.Point(454, 12);
+            this.CmbCreateCustomerType.MaxDropDownItems = 4;
+            this.CmbCreateCustomerType.MouseState = MaterialSkin.MouseState.OUT;
+            this.CmbCreateCustomerType.Name = "CmbCreateCustomerType";
+            this.CmbCreateCustomerType.Size = new System.Drawing.Size(76, 49);
+            this.CmbCreateCustomerType.StartIndex = 0;
+            this.CmbCreateCustomerType.TabIndex = 33;
+            // 
+            // TxtCreateCompanyName
+            // 
+            this.TxtCreateCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCreateCompanyName.Depth = 0;
+            this.TxtCreateCompanyName.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtCreateCompanyName.Location = new System.Drawing.Point(10, 118);
+            this.TxtCreateCompanyName.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCreateCompanyName.MaxLength = 50;
+            this.TxtCreateCompanyName.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtCreateCompanyName.Multiline = false;
+            this.TxtCreateCompanyName.Name = "TxtCreateCompanyName";
+            this.TxtCreateCompanyName.Size = new System.Drawing.Size(262, 50);
+            this.TxtCreateCompanyName.TabIndex = 31;
+            this.TxtCreateCompanyName.Text = "";
+            // 
+            // LblCreateCustomerType
+            // 
+            this.LblCreateCustomerType.AutoSize = true;
+            this.LblCreateCustomerType.Depth = 0;
+            this.LblCreateCustomerType.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblCreateCustomerType.Location = new System.Drawing.Point(292, 25);
+            this.LblCreateCustomerType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateCustomerType.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblCreateCustomerType.Name = "LblCreateCustomerType";
+            this.LblCreateCustomerType.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateCustomerType.Size = new System.Drawing.Size(148, 19);
+            this.LblCreateCustomerType.TabIndex = 32;
+            this.LblCreateCustomerType.Text = "Customer type* (A-E)";
+            // 
+            // LblCreateCompanyContact
+            // 
+            this.LblCreateCompanyContact.AutoSize = true;
+            this.LblCreateCompanyContact.Depth = 0;
+            this.LblCreateCompanyContact.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblCreateCompanyContact.Location = new System.Drawing.Point(292, 91);
+            this.LblCreateCompanyContact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateCompanyContact.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblCreateCompanyContact.Name = "LblCreateCompanyContact";
+            this.LblCreateCompanyContact.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateCompanyContact.Size = new System.Drawing.Size(133, 19);
+            this.LblCreateCompanyContact.TabIndex = 33;
+            this.LblCreateCompanyContact.Text = "Company contact*";
+            // 
+            // TxtCreateCompanyContact
+            // 
+            this.TxtCreateCompanyContact.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCreateCompanyContact.Depth = 0;
+            this.TxtCreateCompanyContact.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtCreateCompanyContact.Location = new System.Drawing.Point(291, 118);
+            this.TxtCreateCompanyContact.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCreateCompanyContact.MaxLength = 50;
+            this.TxtCreateCompanyContact.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtCreateCompanyContact.Multiline = false;
+            this.TxtCreateCompanyContact.Name = "TxtCreateCompanyContact";
+            this.TxtCreateCompanyContact.Size = new System.Drawing.Size(239, 50);
+            this.TxtCreateCompanyContact.TabIndex = 32;
+            this.TxtCreateCompanyContact.Text = "";
+            // 
             // PnlCreateInfoEmployee
             // 
             this.PnlCreateInfoEmployee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PnlCreateInfoEmployee.Controls.Add(this.NumDegreeOfEmployment);
+            this.PnlCreateInfoEmployee.Controls.Add(this.NumCreateDegreeOfEmployment);
             this.PnlCreateInfoEmployee.Controls.Add(this.PrgDegreeOfEmployment);
             this.PnlCreateInfoEmployee.Controls.Add(this.PnlCreateInfoTrainee);
             this.PnlCreateInfoEmployee.Controls.Add(this.LblCreateDateOfJoining);
             this.PnlCreateInfoEmployee.Controls.Add(this.LblCreateDateOfLeaving);
             this.PnlCreateInfoEmployee.Controls.Add(this.DatCreateDateOfLeaving);
             this.PnlCreateInfoEmployee.Controls.Add(this.DatCreateDateOfJoining);
-            this.PnlCreateInfoEmployee.Controls.Add(this.TxtEmployeeNumber);
+            this.PnlCreateInfoEmployee.Controls.Add(this.TxtCreateEmployeeNumber);
             this.PnlCreateInfoEmployee.Controls.Add(this.LblEmployeeNumber);
             this.PnlCreateInfoEmployee.Controls.Add(this.LblDepartement);
-            this.PnlCreateInfoEmployee.Controls.Add(this.TxtDepartement);
+            this.PnlCreateInfoEmployee.Controls.Add(this.TxtCreateDepartement);
             this.PnlCreateInfoEmployee.Controls.Add(this.NumCadreLevel);
             this.PnlCreateInfoEmployee.Controls.Add(this.LblDegreeOfEmployment);
             this.PnlCreateInfoEmployee.Controls.Add(this.LblCadreLevel);
             this.PnlCreateInfoEmployee.Controls.Add(this.LblRole);
-            this.PnlCreateInfoEmployee.Controls.Add(this.TxtRole);
+            this.PnlCreateInfoEmployee.Controls.Add(this.TxtCreateRole);
             this.PnlCreateInfoEmployee.Location = new System.Drawing.Point(637, 5);
             this.PnlCreateInfoEmployee.Name = "PnlCreateInfoEmployee";
             this.PnlCreateInfoEmployee.Size = new System.Drawing.Size(690, 350);
             this.PnlCreateInfoEmployee.TabIndex = 83;
             // 
-            // NumDegreeOfEmployment
+            // NumCreateDegreeOfEmployment
             // 
-            this.NumDegreeOfEmployment.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumDegreeOfEmployment.Increment = new decimal(new int[] {
+            this.NumCreateDegreeOfEmployment.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NumCreateDegreeOfEmployment.Increment = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.NumDegreeOfEmployment.Location = new System.Drawing.Point(484, 27);
-            this.NumDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(2);
-            this.NumDegreeOfEmployment.Name = "NumDegreeOfEmployment";
-            this.NumDegreeOfEmployment.Size = new System.Drawing.Size(49, 29);
-            this.NumDegreeOfEmployment.TabIndex = 23;
-            this.NumDegreeOfEmployment.Value = new decimal(new int[] {
+            this.NumCreateDegreeOfEmployment.Location = new System.Drawing.Point(484, 27);
+            this.NumCreateDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(2);
+            this.NumCreateDegreeOfEmployment.Name = "NumCreateDegreeOfEmployment";
+            this.NumCreateDegreeOfEmployment.Size = new System.Drawing.Size(49, 29);
+            this.NumCreateDegreeOfEmployment.TabIndex = 23;
+            this.NumCreateDegreeOfEmployment.Value = new decimal(new int[] {
             100,
             0,
             0,
             0});
-            this.NumDegreeOfEmployment.ValueChanged += new System.EventHandler(this.NumCreateDegreeOfEmployment_ValueChanged);
+            this.NumCreateDegreeOfEmployment.ValueChanged += new System.EventHandler(this.NumCreateDegreeOfEmployment_ValueChanged);
             // 
             // PrgDegreeOfEmployment
             // 
@@ -2408,20 +2409,20 @@ namespace ContactManager
             this.DatCreateDateOfJoining.TabIndex = 27;
             this.DatCreateDateOfJoining.Value = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             // 
-            // TxtEmployeeNumber
+            // TxtCreateEmployeeNumber
             // 
-            this.TxtEmployeeNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtEmployeeNumber.Depth = 0;
-            this.TxtEmployeeNumber.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtEmployeeNumber.Location = new System.Drawing.Point(146, 12);
-            this.TxtEmployeeNumber.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtEmployeeNumber.MaxLength = 50;
-            this.TxtEmployeeNumber.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtEmployeeNumber.Multiline = false;
-            this.TxtEmployeeNumber.Name = "TxtEmployeeNumber";
-            this.TxtEmployeeNumber.Size = new System.Drawing.Size(123, 50);
-            this.TxtEmployeeNumber.TabIndex = 22;
-            this.TxtEmployeeNumber.Text = "";
+            this.TxtCreateEmployeeNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCreateEmployeeNumber.Depth = 0;
+            this.TxtCreateEmployeeNumber.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtCreateEmployeeNumber.Location = new System.Drawing.Point(146, 12);
+            this.TxtCreateEmployeeNumber.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCreateEmployeeNumber.MaxLength = 50;
+            this.TxtCreateEmployeeNumber.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtCreateEmployeeNumber.Multiline = false;
+            this.TxtCreateEmployeeNumber.Name = "TxtCreateEmployeeNumber";
+            this.TxtCreateEmployeeNumber.Size = new System.Drawing.Size(123, 50);
+            this.TxtCreateEmployeeNumber.TabIndex = 22;
+            this.TxtCreateEmployeeNumber.Text = "";
             // 
             // LblEmployeeNumber
             // 
@@ -2451,20 +2452,20 @@ namespace ContactManager
             this.LblDepartement.TabIndex = 15;
             this.LblDepartement.Text = "Departement";
             // 
-            // TxtDepartement
+            // TxtCreateDepartement
             // 
-            this.TxtDepartement.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtDepartement.Depth = 0;
-            this.TxtDepartement.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtDepartement.Location = new System.Drawing.Point(8, 113);
-            this.TxtDepartement.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtDepartement.MaxLength = 50;
-            this.TxtDepartement.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtDepartement.Multiline = false;
-            this.TxtDepartement.Name = "TxtDepartement";
-            this.TxtDepartement.Size = new System.Drawing.Size(261, 50);
-            this.TxtDepartement.TabIndex = 24;
-            this.TxtDepartement.Text = "";
+            this.TxtCreateDepartement.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCreateDepartement.Depth = 0;
+            this.TxtCreateDepartement.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtCreateDepartement.Location = new System.Drawing.Point(8, 113);
+            this.TxtCreateDepartement.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCreateDepartement.MaxLength = 50;
+            this.TxtCreateDepartement.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtCreateDepartement.Multiline = false;
+            this.TxtCreateDepartement.Name = "TxtCreateDepartement";
+            this.TxtCreateDepartement.Size = new System.Drawing.Size(261, 50);
+            this.TxtCreateDepartement.TabIndex = 24;
+            this.TxtCreateDepartement.Text = "";
             // 
             // NumCadreLevel
             // 
@@ -2522,20 +2523,20 @@ namespace ContactManager
             this.LblRole.TabIndex = 24;
             this.LblRole.Text = "Role (Job title)";
             // 
-            // TxtRole
+            // TxtCreateRole
             // 
-            this.TxtRole.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtRole.Depth = 0;
-            this.TxtRole.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtRole.Location = new System.Drawing.Point(287, 113);
-            this.TxtRole.Margin = new System.Windows.Forms.Padding(2);
-            this.TxtRole.MaxLength = 50;
-            this.TxtRole.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtRole.Multiline = false;
-            this.TxtRole.Name = "TxtRole";
-            this.TxtRole.Size = new System.Drawing.Size(246, 50);
-            this.TxtRole.TabIndex = 25;
-            this.TxtRole.Text = "";
+            this.TxtCreateRole.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCreateRole.Depth = 0;
+            this.TxtCreateRole.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtCreateRole.Location = new System.Drawing.Point(287, 113);
+            this.TxtCreateRole.Margin = new System.Windows.Forms.Padding(2);
+            this.TxtCreateRole.MaxLength = 50;
+            this.TxtCreateRole.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtCreateRole.Multiline = false;
+            this.TxtCreateRole.Name = "TxtCreateRole";
+            this.TxtCreateRole.Size = new System.Drawing.Size(246, 50);
+            this.TxtCreateRole.TabIndex = 25;
+            this.TxtCreateRole.Text = "";
             // 
             // FormMain
             // 
@@ -2570,15 +2571,15 @@ namespace ContactManager
             this.TabCreateEdit.ResumeLayout(false);
             this.TabCreate.ResumeLayout(false);
             this.TabCreate.PerformLayout();
-            this.PnlCreateInfoCustomer.ResumeLayout(false);
-            this.PnlCreateInfoCustomer.PerformLayout();
             this.PnlCreateInfoGeneral.ResumeLayout(false);
             this.PnlCreateInfoGeneral.PerformLayout();
             this.GrpCreateType.ResumeLayout(false);
             this.GrpCreateType.PerformLayout();
+            this.PnlCreateInfoCustomer.ResumeLayout(false);
+            this.PnlCreateInfoCustomer.PerformLayout();
             this.PnlCreateInfoEmployee.ResumeLayout(false);
             this.PnlCreateInfoEmployee.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NumDegreeOfEmployment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumCreateDegreeOfEmployment)).EndInit();
             this.PnlCreateInfoTrainee.ResumeLayout(false);
             this.PnlCreateInfoTrainee.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumCreateYearOfApp)).EndInit();
@@ -2608,8 +2609,8 @@ namespace ContactManager
         private MaterialSkin.Controls.MaterialLabel LblDepartement;
         private MaterialSkin.Controls.MaterialLabel LblEmployeeNumber;
         private MaterialSkin.Controls.MaterialCheckbox ChkCreateTrainee;
-        private MaterialSkin.Controls.MaterialTextBox TxtDepartement;
-        private MaterialSkin.Controls.MaterialTextBox TxtRole;
+        private MaterialSkin.Controls.MaterialTextBox TxtCreateDepartement;
+        private MaterialSkin.Controls.MaterialTextBox TxtCreateRole;
         private System.Windows.Forms.NumericUpDown NumCreateYearOfApp;
         private System.Windows.Forms.NumericUpDown NumCreateCurrentAppYear;
         private System.Windows.Forms.NumericUpDown NumCadreLevel;
@@ -2656,9 +2657,9 @@ namespace ContactManager
         private System.Windows.Forms.Panel PnlCreateInfoEmployee;
         private System.Windows.Forms.Panel PnlCreateInfoTrainee;
         private System.Windows.Forms.GroupBox GrpCreateType;
-        private MaterialSkin.Controls.MaterialTextBox TxtEmployeeNumber;
+        private MaterialSkin.Controls.MaterialTextBox TxtCreateEmployeeNumber;
         private MaterialSkin.Controls.MaterialProgressBar PrgDegreeOfEmployment;
-        private System.Windows.Forms.NumericUpDown NumDegreeOfEmployment;
+        private System.Windows.Forms.NumericUpDown NumCreateDegreeOfEmployment;
         private System.Windows.Forms.Label LblCreateTypeSelection;
         private MaterialSkin.Controls.MaterialButton CmdCreateCancel;
         private MaterialSkin.Controls.MaterialButton CmdCreatePersonSaveAndNew;

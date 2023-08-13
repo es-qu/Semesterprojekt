@@ -44,7 +44,8 @@ namespace ContactManager
         private void OpenMainForm(int tab = 1)
         {
             Form main = new FormMain(tab);
-            main.ShowDialog();
+            //main.ShowDialog();
+            main.Show();
         }
 
         private void Controls_KeyDown(object sender, KeyEventArgs e)

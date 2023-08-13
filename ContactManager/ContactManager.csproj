@@ -64,6 +64,12 @@
     <Compile Include="Entity\Person.cs" />
     <Compile Include="Entity\Trainee.cs" />
     <Compile Include="Model\SqliteDateAccess.cs" />
+    <Compile Include="View\FormSearchAdvanced.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FormSearchAdvanced.Designer.cs">
+      <DependentUpon>FormSearchAdvanced.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +95,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="View\FormSearchAdvanced.resx">
+      <DependentUpon>FormSearchAdvanced.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
