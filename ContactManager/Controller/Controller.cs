@@ -28,7 +28,7 @@ namespace ContactManager
         {
             Employee e = new Employee
             { 
-                status = status == 1,
+                status = status,
                 firstName = firstName,
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,
@@ -68,7 +68,7 @@ namespace ContactManager
         {
             Trainee t = new Trainee
             {
-                status = status == 1,
+                status = status,
                 firstName = firstName,
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,

@@ -72,19 +72,18 @@ namespace ContactManager
             {
                 int lastId = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
                 employee.Id = lastId + 1;
-                cnn.Execute("INSERT INTO Person (ID,status , gender, Salutation, title, firstName, lastName, street, streetNumber, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, phoneNumberMobile, phoneNumberBusiness, email, Note)  " +
-                    " VALUES (@Id, @status, @gender, @Salutation, @title, @firstName, @lastName, @street, @streetNumber, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @phoneNumberMobile, @phoneNumberBusiness, @email, @note)",
+                cnn.Execute("INSERT INTO Person (ID,status , gender, Salutation, title, firstName, lastName, street, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, phoneNumberMobile, phoneNumberBusiness, email, Note)  " +
+                    " VALUES (@Id, @status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @phoneNumberMobile, @phoneNumberBusiness, @email, @note)",
                     new
                     {
                         employee.Id,
-                        status = employee.status ? "true" : "false",
+                        employee.status ,
                         employee.gender,
                         employee.Salutation,
                         employee.title,
                         employee.firstName,
                         employee.lastName,
                         employee.street,
-                        employee.streetNumber,
                         employee.postalCode,
                         employee.placeOfResidence,
                         employee.nationality,
@@ -98,13 +97,17 @@ namespace ContactManager
                     });
 
                 int lastId_e = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
-                cnn.Execute("INSERT INTO Employee (ID, Position, Department, EmployeeNumber) VALUES (@Id, @Position, @Department, @EmployeeNumber)",
+                cnn.Execute("INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
                 new
                     {
                    Id = lastId_e,
                     employee.Position,
                     employee.Department,
-                    employee.EmployeeNumber
+                    employee.EmployeeNumber,
+                    employee.dateofjoining,
+                    employee.dateofleaving,
+                    employee.NumCadreLevel
+
 
                 });
             }

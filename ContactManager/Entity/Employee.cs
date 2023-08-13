@@ -8,7 +8,7 @@ namespace ContactManager.Model
 {
     public class Employee : Person
     {
-        public String Position { get; set; }
+        public string Position { get; set; }
         public string Department { get; set; }
         public string EmployeeNumber { get; set; }
         public string dateofjoining { get; set; }

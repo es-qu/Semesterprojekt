@@ -11,14 +11,13 @@ namespace ContactManager
     public class Person
     {
         public int Id { get; set; }
-        public bool status { get; set; }
+        public int status { get; set; }
         public int gender { get; set; }
         public string Salutation { get; set; }
         public string title { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }
         public string street { get; set; }
-        public string streetNumber { get; set; }
         public string postalCode { get; set; }
         public string placeOfResidence { get; set; }
         public string nationality { get; set; }

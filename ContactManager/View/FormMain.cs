@@ -68,18 +68,70 @@ namespace ContactManager
 
         }
 
-
+        public int checkState;
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
-            /*
             Controller controller = new Controller();
-            controller.CreateEmployee(
+            if (RadCreateEmployee.Checked)
+            {
+                if (ChkCreateTrainee.Checked)
+                {
+                    controller.CreateTrainee(
                 TxtCreateFirstName.Text,
                 TxtCreateLastName.Text,
                 DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                TxtEmployeeNumber.Text
-            );
-            */
+                TxtEmployeeNumber.Text,
+                checkState = (int)SwtCreateActive.CheckState,
+                RadCreateMale.Checked ? "1" : "0",
+                CmbCreateSalutation.SelectedItem?.ToString(),
+                TxtCreateTitle.Text,
+                TxtCreateAddress.Text,
+                TxtCreatePlz.Text,
+                TxtCreatePlaceOfResidence.Text,
+                CmbCreateNationality.SelectedItem?.ToString(),
+                TxtCreateOasiNr.Text,
+                TxtCreatePrivatePhone.Text,
+                TxtCreateBusnissPhone.Text,
+                TxtCreateEmailAddress.Text,
+                LstCreateNoteOut.SelectedItem?.ToString(),
+                TxtRole.Text,
+                TxtDepartement.Text,
+                DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                NumCadreLevel.Value.ToString(),
+                NumCreateCurrentAppYear.Value.ToString(),
+                NumCreateYearOfApp.Value.ToString()
+                );
+                }
+                else
+                {
+                    controller.CreateEmployee(
+                  TxtCreateFirstName.Text,
+                  TxtCreateLastName.Text,
+                  DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                  TxtEmployeeNumber.Text,
+                  checkState = (int)SwtCreateActive.CheckState,
+                  RadCreateMale.Checked ? "1" : "0",
+                  CmbCreateSalutation.SelectedItem?.ToString(),
+                  TxtCreateTitle.Text,
+                  TxtCreateAddress.Text,
+                  TxtCreatePlz.Text,
+                  TxtCreatePlaceOfResidence.Text,
+                  CmbCreateNationality.SelectedItem?.ToString(),
+                  TxtCreateOasiNr.Text,
+                  TxtCreatePrivatePhone.Text,
+                  TxtCreateBusnissPhone.Text,
+                  TxtCreateEmailAddress.Text,
+                  LstCreateNoteOut.SelectedItem?.ToString(),
+                  TxtRole.Text,
+                  TxtDepartement.Text,
+                  DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                  DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                  NumCadreLevel.Value.ToString()
+
+               );
+                }
+            }
         }
 
         private void CmdExecSearch_Click(object sender, EventArgs e)
