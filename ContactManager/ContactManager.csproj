@@ -76,6 +76,11 @@
     <Compile Include="View\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FormMain1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FormMain.resx</DependentUpon>
+    </Compile>
     <Compile Include="View\FormMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +94,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FormMain1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormMenu.resx">
       <DependentUpon>FormMenu.cs</DependentUpon>

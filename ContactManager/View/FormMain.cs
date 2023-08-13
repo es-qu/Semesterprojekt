@@ -36,7 +36,7 @@ namespace ContactManager
             manager.AddFormToManage(this);
 
             //Countries in ComboBox Nationality
-            PopulateCountryComboBox();
+            //PopulateCountryComboBox();
         }
 
         public FormMain(int selectedTab) : this()
@@ -82,33 +82,33 @@ namespace ContactManager
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
             Controller controller = new Controller();
-<<<<<<< HEAD
-            if (RadEmployee.Checked)
+
+            if (RadCreateEmployee.Checked)
             {
-                if (ChkTrainee.Checked)
+                if (ChkCreateTrainee.Checked)
                 {
                     controller.CreateEmployee(
-                   TxtFirstName.Text,
-                   TxtLastName.Text,
-                   DatBirthday.Value.ToString("yyyy-MM-dd"),
+                   TxtCreateFirstName.Text,
+                   TxtCreateLastName.Text,
+                   DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                    TxtEmployeeNumber.Text,
-                   checkState = (int)SwtActive.CheckState,
-                   RadMale.Checked ? "1" : "0",
+                   checkState = (int)SwtCreateActive.CheckState,
+                   RadCreateMale.Checked ? "1" : "0",
                    CmbSalutation.SelectedItem?.ToString(),
-                   TxtTitle.Text,
-                   TxtAddress.Text,
-                   TxtPlz.Text,
-                   TxtPlaceOfResidence.Text,
+                   TxtCreateTitle.Text,
+                   TxtCreateAddress.Text,
+                   TxtCreatePlz.Text,
+                   TxtCreatePlaceOfResidence.Text,
                    CmdNationality.SelectedItem?.ToString(),
-                   TxtOasiNr.Text,
-                   TxtPrivatePhone.Text,
-                   TxtBusnissPhone.Text,
-                   TxtEmailAddress.Text,
-                   LstNoteOut.SelectedItem?.ToString(),
+                   TxtCreateOasiNr.Text,
+                   TxtCreatePrivatePhone.Text,
+                   TxtCreateBusnissPhone.Text,
+                   TxtCreateEmailAddress.Text,
+                   LstCreateNoteOut.SelectedItem?.ToString(),
                    TxtRole.Text,
                    TxtDepartement.Text,
-                   DatDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                   DatDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                   DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                   DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                    NumCadreLevel.Value.ToString()
 
                 );
@@ -116,63 +116,53 @@ namespace ContactManager
                 else
                 {
                     controller.CreateTrainee(
-                 TxtFirstName.Text,
-                 TxtLastName.Text,
-                 DatBirthday.Value.ToString("yyyy-MM-dd"),
+                 TxtCreateFirstName.Text,
+                 TxtCreateLastName.Text,
+                 DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                  TxtEmployeeNumber.Text,
-                 checkState = (int)SwtActive.CheckState,
-                 RadMale.Checked ? "1" : "0",
+                 checkState = (int)SwtCreateActive.CheckState,
+                 RadCreateMale.Checked ? "1" : "0",
                  CmbSalutation.SelectedItem?.ToString(),
-                 TxtTitle.Text,
-                 TxtAddress.Text,
-                 TxtPlz.Text,
-                 TxtPlaceOfResidence.Text,
+                 TxtCreateTitle.Text,
+                 TxtCreateAddress.Text,
+                 TxtCreatePlz.Text,
+                 TxtCreatePlaceOfResidence.Text,
                  CmdNationality.SelectedItem?.ToString(),
-                 TxtOasiNr.Text,
-                 TxtPrivatePhone.Text,
-                 TxtBusnissPhone.Text,
-                 TxtEmailAddress.Text,
-                 LstNoteOut.SelectedItem?.ToString(),
+                 TxtCreateOasiNr.Text,
+                 TxtCreatePrivatePhone.Text,
+                 TxtCreateBusnissPhone.Text,
+                 TxtCreateEmailAddress.Text,
+                 LstCreateNoteOut.SelectedItem?.ToString(),
                  TxtRole.Text,
                  TxtDepartement.Text,
-                 DatDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                 DatDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                 DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                 DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                  NumCadreLevel.Value.ToString(),
-                 NumCurrentAppYear.Value.ToString(),
-                 NumYearOfApp.Value.ToString()
+                 NumCreateCurrentAppYear.Value.ToString(),
+                 NumCreateYearOfApp.Value.ToString()
                  );
                 }
             }
-            else if (RadCustomer.Checked)
+            else if (RadCreateCustomer.Checked)
             {
                 controller.CreateCustomer(
-                    TxtFirstName.Text,
-                    TxtLastName.Text,
-                    DatBirthday.Value.ToString("yyyy-MM-dd"),
+                    TxtCreateFirstName.Text,
+                    TxtCreateLastName.Text,
+                    DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                     "",
                     "",
                     ""
                     );
             }
-=======
-            controller.CreateEmployee(
-                TxtCreateFirstName.Text,
-                TxtCreateLastName.Text,
-                DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                TxtEmployeeNumber.Text 
-            );
->>>>>>> cde6e7827a880b5454d6b309931dedc26b7b91f8
+
         }
 
         private void CmdExecSearch_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
-            string searchText = txtSearch.Text;
-            List<Employee> people = SqliteDateAccess.LoadPeople(searchText);
-=======
+
             string searchText = TxtSearch.Text;
-            List<Person> people = SqliteDateAccess.LoadPeople(searchText);
->>>>>>> cde6e7827a880b5454d6b309931dedc26b7b91f8
+            List<Person> people = SqliteDateAccess.LoadPeople( searchText );
+
             if (people.Count == 0)
             {
                 txtOutput.Text = "No users found.";
@@ -260,29 +250,30 @@ namespace ContactManager
 
 
         //Countries in DropDown
-        private void PopulateCountryComboBox()
-        {
-            
-            // Get the list of all countries using CultureInfo
-            List<string> countriesList = new List<string>();
-            foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
-            {
-                RegionInfo region = new RegionInfo(ci.Name);
-                if (!countriesList.Contains(region.EnglishName))
-                {
-                    countriesList.Add(region.EnglishName);
-                }
-            }
+        //  private void PopulateCountryComboBox()
+        // {
 
-            // Sort the list of countries alphabetically
-            countriesList.Sort();
+        // Get the list of all countries using CultureInfo
+        // List<string> countriesList = new List<string>();
+        //   foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
+        //   {
+        //  RegionInfo region = new RegionInfo(ci.Name);
+        //      if (!countriesList.Contains(region.EnglishName))
+        //     {
+        // countriesList.Add(region.EnglishName);
+        // }
+        //}
 
-            // Populate the ComboBox with the list of countries
-            CmbCreateNationality.DataSource = countriesList;
-            
-            
-        }
+        // Sort the list of countries alphabetically
+        //  countriesList.Sort();
+
+        // Populate the ComboBox with the list of countries
+        // CmbCreateNationality.DataSource = countriesList;
+
+
     }
+
+    
 }
 
 

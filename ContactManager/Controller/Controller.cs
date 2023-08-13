@@ -1,24 +1,33 @@
 ﻿using ContactManager.Model;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ContactManager
 {
     internal class Controller
     {
-        public void CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int  status, string gender, string Salutaion, string title,
+        public void CreatePerson(string firstName, string lastName, string dateOfBirth)
+        {
+            Person p = new Person
+            {
+                firstName = firstName,
+                lastName = lastName,
+                dateOfBirth = dateOfBirth
+            };
+
+            SqliteDateAccess.SavePerson(p);
+        }
+
+        public void CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
                                     string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel)  
+                                     string phoneBuiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel)
         {
             Employee e = new Employee
-            {
+            { 
                 status = status == 1,
                 firstName = firstName,
                 lastName = lastName,
@@ -44,7 +53,7 @@ namespace ContactManager
 
             };
 
-            SqliteDateAccess.SaveEmployee(e);
+        SqliteDateAccess.SaveEmployee(e);
 
             // Show confirmation message
             MessageBox.Show($"Employee {e.firstName} {e.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
@@ -53,9 +62,9 @@ namespace ContactManager
         }
 
         public void CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
-                                    string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
-                                    string TrainingStartDate, string TrainingEndDate)
+                                   string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
+                                    string phoneBuiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
+                                   string TrainingStartDate, string TrainingEndDate)
         {
             Trainee t = new Trainee
             {
@@ -85,7 +94,7 @@ namespace ContactManager
                 TrainingEndDate = TrainingEndDate
             };
 
-            SqliteDateAccess.SaveTrainee(t);
+            SqliteDateAccess.SavePerson(t);
         }
 
         public void CreateCustomer(string firstName, string lastName, string dateOfBirth, string companyName, string customerType, string companyContact)
