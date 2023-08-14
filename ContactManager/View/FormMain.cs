@@ -8,11 +8,13 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Dapper;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ContactManager
 {
@@ -32,9 +34,12 @@ namespace ContactManager
             InitializeComponent();
 
             manager.AddFormToManage(this);
+            
 
             //Countries in ComboBox Nationality
             PopulateCountryComboBox();
+            TxtCreateOasiNr.KeyPress += TxtCreateOasiNr_KeyPress;
+
         }
 
         public FormMain(int selectedTab) : this()
@@ -66,12 +71,45 @@ namespace ContactManager
             //Don't show customer elements.
             PnlCreateInfoCustomer.Visible = false;
 
+            
+
+        }
+
+
+        private void TxtCreateOasiNr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // If the key pressed is not a digit and not a dot, consume the key event (do not input the key)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+
+                // Show a tooltip to inform the user that only numbers and dots are allowed
+                System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+                toolTip.Show("Only numbers and dots are allowed", (Control)sender, 0, ((Control)sender).Height, 2000);
+            }
         }
 
         public int checkState;
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
             Controller controller = new Controller();
+            string gender = RadCreateMale.Checked ? "Male" :
+                     RadCreateFemale.Checked ? "Female" :
+                     RadCreateOther.Checked ? "Other" : null;
+
+            if (gender == null)
+            {
+                // Handle the case when no radio button is selected, e.g., show a MessageBox
+                MessageBox.Show("Please select a gender");
+                return;
+            }
+            // Check if the first name contains only letters
+            Regex regexLetters = new Regex("^[A-Za-z]+$");
+            if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+            {
+                MessageBox.Show("The first name can contain only letters");
+                return;
+            }
             if (RadCreateEmployee.Checked)
             {
                 if (ChkCreateTrainee.Checked)
@@ -82,7 +120,7 @@ namespace ContactManager
                 DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                 TxtCreateEmployeeNumber.Text,
                 checkState = (int)SwtCreateActive.CheckState,
-                RadCreateMale.Checked ? "1" : "0",
+                gender,
                 CmbCreateSalutation.SelectedItem?.ToString(),
                 TxtCreateTitle.Text,
                 TxtCreateAddress.Text,
@@ -100,7 +138,8 @@ namespace ContactManager
                 DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                 NumCadreLevel.Value.ToString(),
                 NumCreateCurrentAppYear.Value.ToString(),
-                NumCreateYearOfApp.Value.ToString()
+                NumCreateYearOfApp.Value.ToString(),
+                this
                 );
                 }
                 else
@@ -127,7 +166,8 @@ namespace ContactManager
                   TxtCreateDepartement.Text,
                   DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                   DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                  NumCadreLevel.Value.ToString()
+                  NumCadreLevel.Value.ToString(),
+                  this
 
                );
                 }
@@ -254,7 +294,7 @@ namespace ContactManager
             var formAdvancedSearch = new FormSearchAdvanced();
             formAdvancedSearch.Visible = false;
             DialogResult dialogResult = ShowDialog(formAdvancedSearch);
-            
+
         }
     }
 }
