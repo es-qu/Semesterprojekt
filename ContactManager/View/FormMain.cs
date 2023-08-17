@@ -1,20 +1,11 @@
-﻿using System;
+﻿using MaterialSkin;
+using MaterialSkin.Controls;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SQLite;
-using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dapper;
-using MaterialSkin;
-using MaterialSkin.Controls;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ContactManager
 {
@@ -25,8 +16,7 @@ namespace ContactManager
         public enum Tab
         {
             Create,
-            Search,
-
+            Search
         }
 
         public FormMain()
@@ -34,12 +24,17 @@ namespace ContactManager
             InitializeComponent();
 
             manager.AddFormToManage(this);
-            
+
 
             //Countries in ComboBox Nationality
             PopulateCountryComboBox();
             TxtCreateOasiNr.KeyPress += TxtCreateOasiNr_KeyPress;
 
+            DataGridViewSearchResult.BackgroundColor = Color.Gray;
+            DataGridViewSearchResult.ForeColor = Color.White;
+
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.ForeColor = Color.Black;
         }
 
         public FormMain(int selectedTab) : this()
@@ -71,7 +66,7 @@ namespace ContactManager
             //Don't show customer elements.
             PnlCreateInfoCustomer.Visible = false;
 
-            
+
 
         }
 
@@ -174,25 +169,25 @@ namespace ContactManager
             }
         }
 
-        private void CmdExecSearch_Click(object sender, EventArgs e)
-        {
-            string searchText = TxtSearch.Text;
-            List<Person> people = SqliteDateAccess.LoadPeople(searchText);
-            if (people.Count == 0)
-            {
-                txtOutput.Text = "No users found.";
-            }
-            else
-            {
-                txtOutput.Text = "";
-                foreach (Person person in people)
-                {
-                    DateTime dob = DateTime.Parse(person.dateOfBirth);
-                    txtOutput.Text += $"First Name: {person.firstName}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
-                }
-            }
+        //private void CmdExecSearch_Click(object sender, EventArgs e)
+        //{
+        //    string searchText = TxtSearch.Text;
+        //    List<Person> people = SqliteDateAccess.LoadPeople(searchText);
+        //    if (people.Count == 0)
+        //    {
+        //        txtOutput.Text = "No users found.";
+        //    }
+        //    else
+        //    {
+        //        txtOutput.Text = "";
+        //        foreach (Person person in people)
+        //        {
+        //            DateTime dob = DateTime.Parse(person.dateOfBirth);
+        //            txtOutput.Text += $"First Name: {person.firstName}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
+        //        }
+        //    }
 
-        }
+        //}
 
         private void RadCreateCustomer_CheckedChanged(object sender, EventArgs e)
         {
@@ -295,6 +290,52 @@ namespace ContactManager
             formAdvancedSearch.Visible = false;
             DialogResult dialogResult = ShowDialog(formAdvancedSearch);
 
+        }
+
+        /// <summary>
+        /// Search button click event, searches persons via Controller and SQLite
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CmdSearchExec_Click(object sender, EventArgs e)
+        {
+            if (TxtSearch.Text != string.Empty)
+            {
+                string searchTerm = TxtSearch.Text;
+                List<Person> res = Controller.SearchContact(searchTerm);
+
+                DataGridViewSearchResult.AutoGenerateColumns = false;
+                DataGridViewSearchResult.Columns.Clear();
+
+                DataGridViewTextBoxColumn idColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "idColumn",
+                    HeaderText = "ID",
+                    DataPropertyName = "Id"
+                };
+                DataGridViewSearchResult.Columns.Add(idColumn);
+
+                DataGridViewTextBoxColumn firstNameColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "firstNameColumn",
+                    HeaderText = "First Name",
+                    DataPropertyName = "firstName"
+                };
+                DataGridViewSearchResult.Columns.Add(firstNameColumn);
+
+                DataGridViewTextBoxColumn lastNameColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "lastNameColumn",
+                    HeaderText = "Last Name",
+                    DataPropertyName = "lastName"
+                };
+                DataGridViewSearchResult.Columns.Add(lastNameColumn);
+
+                DataGridViewSearchResult.DataSource = res;
+
+                DataGridViewSearchResult.CurrentCell = DataGridViewSearchResult.FirstDisplayedCell;
+                int currentSelectedCol = DataGridViewSearchResult.CurrentCell.ColumnIndex;
+            }
         }
     }
 }

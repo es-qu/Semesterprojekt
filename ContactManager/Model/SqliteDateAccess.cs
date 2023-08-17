@@ -112,5 +112,26 @@ namespace ContactManager
                 });
             }
         }
+
+        public static List<Person> SearchPersons(string searchTerm)
+        {
+            List<Person> results = new List<Person>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+                results.AddRange(SearchTable<Person>(conn, searchTerm));
+                conn.Close();
+            }
+
+            return results;
+        }
+
+        private static List<Type> SearchTable<Type>(SQLiteConnection conn, string searchTerm) where Type : Person, new()
+        {
+            string tableName = typeof(Type).Name;
+            string query = $"SELECT * FROM {tableName} WHERE firstName LIKE @searchTerm OR lastName LIKE @searchTerm";
+            return conn.Query<Type>(query, new { searchTerm = $"%{searchTerm}%" }).AsList();
+        }
     }
 }

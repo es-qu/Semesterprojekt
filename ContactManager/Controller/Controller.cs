@@ -88,5 +88,10 @@ namespace ContactManager
             form.Close();
         }
 
+    
+        public static List<Person> SearchContact(string searchTerm)
+        {
+            return SqliteDateAccess.SearchPersons(searchTerm);
+        }
     }
 }
