@@ -32,10 +32,12 @@
             // 
             // FormSearchAdvanced
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(325, 542);
+            this.ClientSize = new System.Drawing.Size(488, 834);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormSearchAdvanced";
+            this.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Text = "Advanced";
             this.ResumeLayout(false);
 

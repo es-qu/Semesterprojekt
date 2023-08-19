@@ -30,8 +30,16 @@ namespace ContactManager
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TCtrlMain = new MaterialSkin.Controls.MaterialTabControl();
             this.TabSearch = new System.Windows.Forms.TabPage();
+            this.LblNoResults = new System.Windows.Forms.Label();
             this.TxtSearchDateOfBirth = new MaterialSkin.Controls.MaterialTextBox();
             this.LblSearchDateOfBirth = new MaterialSkin.Controls.MaterialLabel();
             this.TxtSearchAddress = new MaterialSkin.Controls.MaterialTextBox();
@@ -49,23 +57,24 @@ namespace ContactManager
             this.TxtSearchFirstName = new MaterialSkin.Controls.MaterialTextBox();
             this.TxtSearchLastName = new MaterialSkin.Controls.MaterialTextBox();
             this.PnlSearchPreview = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.LblSearchViewStatus = new System.Windows.Forms.Label();
             this.LblSearchNotes = new MaterialSkin.Controls.MaterialLabel();
-            this.LblSearchPreviewStatus = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.PnlSearchPreviewGeneral = new System.Windows.Forms.Panel();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
+            this.LblSearchViewBusinessAddress = new System.Windows.Forms.Label();
+            this.LblSearchViewBusinessPhone = new System.Windows.Forms.Label();
+            this.LblSearchViewPrivatePhone = new System.Windows.Forms.Label();
+            this.LblSearchViewEmailAddress = new System.Windows.Forms.Label();
+            this.LblSearchViewDateOfBirth = new System.Windows.Forms.Label();
+            this.LblSearchViewOasiNumber = new System.Windows.Forms.Label();
+            this.LblSearchViewNationality = new System.Windows.Forms.Label();
+            this.LblSearchViewPlaceOfResidence = new System.Windows.Forms.Label();
+            this.LblSearchViewPostalCode = new System.Windows.Forms.Label();
+            this.LblSearchViewAddress = new System.Windows.Forms.Label();
+            this.LblSearchViewLastName = new System.Windows.Forms.Label();
+            this.LblSearchViewFirstName = new System.Windows.Forms.Label();
+            this.LblSearchViewTitle = new System.Windows.Forms.Label();
             this.LblSearchHeadlineGeneral = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -237,6 +246,7 @@ namespace ContactManager
             // 
             // TabSearch
             // 
+            this.TabSearch.Controls.Add(this.LblNoResults);
             this.TabSearch.Controls.Add(this.TxtSearchDateOfBirth);
             this.TabSearch.Controls.Add(this.LblSearchDateOfBirth);
             this.TabSearch.Controls.Add(this.TxtSearchAddress);
@@ -272,6 +282,18 @@ namespace ContactManager
             this.TabSearch.Text = "Search";
             this.TabSearch.UseVisualStyleBackColor = true;
             // 
+            // LblNoResults
+            // 
+            this.LblNoResults.AutoSize = true;
+            this.LblNoResults.BackColor = System.Drawing.Color.DimGray;
+            this.LblNoResults.ForeColor = System.Drawing.Color.White;
+            this.LblNoResults.Location = new System.Drawing.Point(479, 718);
+            this.LblNoResults.Name = "LblNoResults";
+            this.LblNoResults.Size = new System.Drawing.Size(86, 19);
+            this.LblNoResults.TabIndex = 128;
+            this.LblNoResults.Text = "No Results";
+            this.LblNoResults.Visible = false;
+            // 
             // TxtSearchDateOfBirth
             // 
             this.TxtSearchDateOfBirth.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -286,6 +308,8 @@ namespace ContactManager
             this.TxtSearchDateOfBirth.Size = new System.Drawing.Size(246, 50);
             this.TxtSearchDateOfBirth.TabIndex = 127;
             this.TxtSearchDateOfBirth.Text = "";
+            this.TxtSearchDateOfBirth.Enter += new System.EventHandler(this.SearchFilters_Enter);
+            this.TxtSearchDateOfBirth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
             // 
             // LblSearchDateOfBirth
             // 
@@ -314,6 +338,8 @@ namespace ContactManager
             this.TxtSearchAddress.Size = new System.Drawing.Size(357, 50);
             this.TxtSearchAddress.TabIndex = 121;
             this.TxtSearchAddress.Text = "";
+            this.TxtSearchAddress.Enter += new System.EventHandler(this.SearchFilters_Enter);
+            this.TxtSearchAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
             // 
             // TxtSearchPlaceOfResidence
             // 
@@ -329,6 +355,8 @@ namespace ContactManager
             this.TxtSearchPlaceOfResidence.Size = new System.Drawing.Size(315, 50);
             this.TxtSearchPlaceOfResidence.TabIndex = 123;
             this.TxtSearchPlaceOfResidence.Text = "";
+            this.TxtSearchPlaceOfResidence.Enter += new System.EventHandler(this.SearchFilters_Enter);
+            this.TxtSearchPlaceOfResidence.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
             // 
             // LblSearchAddress
             // 
@@ -436,6 +464,8 @@ namespace ContactManager
             this.TxtSearchNumber.Size = new System.Drawing.Size(184, 50);
             this.TxtSearchNumber.TabIndex = 116;
             this.TxtSearchNumber.Text = "";
+            this.TxtSearchNumber.Enter += new System.EventHandler(this.SearchFilters_Enter);
+            this.TxtSearchNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
             // 
             // LblSearchNumber
             // 
@@ -490,6 +520,8 @@ namespace ContactManager
             this.TxtSearchFirstName.Size = new System.Drawing.Size(315, 50);
             this.TxtSearchFirstName.TabIndex = 111;
             this.TxtSearchFirstName.Text = "";
+            this.TxtSearchFirstName.Enter += new System.EventHandler(this.SearchFilters_Enter);
+            this.TxtSearchFirstName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
             // 
             // TxtSearchLastName
             // 
@@ -505,11 +537,14 @@ namespace ContactManager
             this.TxtSearchLastName.Size = new System.Drawing.Size(315, 50);
             this.TxtSearchLastName.TabIndex = 112;
             this.TxtSearchLastName.Text = "";
+            this.TxtSearchLastName.Enter += new System.EventHandler(this.SearchFilters_Enter);
+            this.TxtSearchLastName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
             // 
             // PnlSearchPreview
             // 
+            this.PnlSearchPreview.Controls.Add(this.label15);
+            this.PnlSearchPreview.Controls.Add(this.LblSearchViewStatus);
             this.PnlSearchPreview.Controls.Add(this.LblSearchNotes);
-            this.PnlSearchPreview.Controls.Add(this.LblSearchPreviewStatus);
             this.PnlSearchPreview.Controls.Add(this.dataGridView1);
             this.PnlSearchPreview.Controls.Add(this.PnlSearchPreviewGeneral);
             this.PnlSearchPreview.Controls.Add(this.PnlSearchPreviewTrainee);
@@ -523,6 +558,27 @@ namespace ContactManager
             this.PnlSearchPreview.Name = "PnlSearchPreview";
             this.PnlSearchPreview.Size = new System.Drawing.Size(951, 909);
             this.PnlSearchPreview.TabIndex = 107;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(491, 20);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(64, 19);
+            this.label15.TabIndex = 132;
+            this.label15.Text = "Status: ";
+            // 
+            // LblSearchViewStatus
+            // 
+            this.LblSearchViewStatus.AutoSize = true;
+            this.LblSearchViewStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblSearchViewStatus.Location = new System.Drawing.Point(602, 21);
+            this.LblSearchViewStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewStatus.Name = "LblSearchViewStatus";
+            this.LblSearchViewStatus.Size = new System.Drawing.Size(13, 17);
+            this.LblSearchViewStatus.TabIndex = 132;
+            this.LblSearchViewStatus.Text = "-";
             // 
             // LblSearchNotes
             // 
@@ -538,44 +594,61 @@ namespace ContactManager
             this.LblSearchNotes.TabIndex = 129;
             this.LblSearchNotes.Text = "Notes";
             // 
-            // LblSearchPreviewStatus
-            // 
-            this.LblSearchPreviewStatus.AutoSize = true;
-            this.LblSearchPreviewStatus.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblSearchPreviewStatus.Location = new System.Drawing.Point(816, 18);
-            this.LblSearchPreviewStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewStatus.Name = "LblSearchPreviewStatus";
-            this.LblSearchPreviewStatus.Size = new System.Drawing.Size(60, 19);
-            this.LblSearchPreviewStatus.TabIndex = 127;
-            this.LblSearchPreviewStatus.Text = "Status";
-            // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.DimGray;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(30, 568);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.Size = new System.Drawing.Size(917, 305);
             this.dataGridView1.TabIndex = 128;
             // 
             // PnlSearchPreviewGeneral
             // 
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label28);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label27);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label26);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label25);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label24);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label23);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label22);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label21);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label20);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label19);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label18);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label17);
-            this.PnlSearchPreviewGeneral.Controls.Add(this.label15);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewBusinessAddress);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewBusinessPhone);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewPrivatePhone);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewEmailAddress);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewDateOfBirth);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewOasiNumber);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewNationality);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewPlaceOfResidence);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewPostalCode);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewAddress);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewLastName);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewFirstName);
+            this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchViewTitle);
             this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchHeadlineGeneral);
             this.PnlSearchPreviewGeneral.Controls.Add(this.label1);
             this.PnlSearchPreviewGeneral.Controls.Add(this.label2);
@@ -596,135 +669,135 @@ namespace ContactManager
             this.PnlSearchPreviewGeneral.Size = new System.Drawing.Size(402, 354);
             this.PnlSearchPreviewGeneral.TabIndex = 126;
             // 
-            // label28
+            // LblSearchViewBusinessAddress
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(197, 312);
-            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(60, 19);
-            this.label28.TabIndex = 131;
-            this.label28.Text = "label28";
+            this.LblSearchViewBusinessAddress.AutoSize = true;
+            this.LblSearchViewBusinessAddress.Location = new System.Drawing.Point(197, 312);
+            this.LblSearchViewBusinessAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewBusinessAddress.Name = "LblSearchViewBusinessAddress";
+            this.LblSearchViewBusinessAddress.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewBusinessAddress.TabIndex = 131;
+            this.LblSearchViewBusinessAddress.Text = "-";
             // 
-            // label27
+            // LblSearchViewBusinessPhone
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(197, 291);
-            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(60, 19);
-            this.label27.TabIndex = 130;
-            this.label27.Text = "label27";
+            this.LblSearchViewBusinessPhone.AutoSize = true;
+            this.LblSearchViewBusinessPhone.Location = new System.Drawing.Point(197, 291);
+            this.LblSearchViewBusinessPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewBusinessPhone.Name = "LblSearchViewBusinessPhone";
+            this.LblSearchViewBusinessPhone.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewBusinessPhone.TabIndex = 130;
+            this.LblSearchViewBusinessPhone.Text = "-";
             // 
-            // label26
+            // LblSearchViewPrivatePhone
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(197, 269);
-            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(60, 19);
-            this.label26.TabIndex = 129;
-            this.label26.Text = "label26";
+            this.LblSearchViewPrivatePhone.AutoSize = true;
+            this.LblSearchViewPrivatePhone.Location = new System.Drawing.Point(197, 269);
+            this.LblSearchViewPrivatePhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewPrivatePhone.Name = "LblSearchViewPrivatePhone";
+            this.LblSearchViewPrivatePhone.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewPrivatePhone.TabIndex = 129;
+            this.LblSearchViewPrivatePhone.Text = "-";
             // 
-            // label25
+            // LblSearchViewEmailAddress
             // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(197, 248);
-            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(60, 19);
-            this.label25.TabIndex = 128;
-            this.label25.Text = "label25";
+            this.LblSearchViewEmailAddress.AutoSize = true;
+            this.LblSearchViewEmailAddress.Location = new System.Drawing.Point(197, 248);
+            this.LblSearchViewEmailAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewEmailAddress.Name = "LblSearchViewEmailAddress";
+            this.LblSearchViewEmailAddress.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewEmailAddress.TabIndex = 128;
+            this.LblSearchViewEmailAddress.Text = "-";
             // 
-            // label24
+            // LblSearchViewDateOfBirth
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(197, 226);
-            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(60, 19);
-            this.label24.TabIndex = 127;
-            this.label24.Text = "label24";
+            this.LblSearchViewDateOfBirth.AutoSize = true;
+            this.LblSearchViewDateOfBirth.Location = new System.Drawing.Point(197, 226);
+            this.LblSearchViewDateOfBirth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewDateOfBirth.Name = "LblSearchViewDateOfBirth";
+            this.LblSearchViewDateOfBirth.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewDateOfBirth.TabIndex = 127;
+            this.LblSearchViewDateOfBirth.Text = "-";
             // 
-            // label23
+            // LblSearchViewOasiNumber
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(197, 202);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(60, 19);
-            this.label23.TabIndex = 126;
-            this.label23.Text = "label23";
+            this.LblSearchViewOasiNumber.AutoSize = true;
+            this.LblSearchViewOasiNumber.Location = new System.Drawing.Point(197, 202);
+            this.LblSearchViewOasiNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewOasiNumber.Name = "LblSearchViewOasiNumber";
+            this.LblSearchViewOasiNumber.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewOasiNumber.TabIndex = 126;
+            this.LblSearchViewOasiNumber.Text = "-";
             // 
-            // label22
+            // LblSearchViewNationality
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(197, 181);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(60, 19);
-            this.label22.TabIndex = 125;
-            this.label22.Text = "label22";
+            this.LblSearchViewNationality.AutoSize = true;
+            this.LblSearchViewNationality.Location = new System.Drawing.Point(197, 181);
+            this.LblSearchViewNationality.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewNationality.Name = "LblSearchViewNationality";
+            this.LblSearchViewNationality.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewNationality.TabIndex = 125;
+            this.LblSearchViewNationality.Text = "-";
             // 
-            // label21
+            // LblSearchViewPlaceOfResidence
             // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(197, 160);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(60, 19);
-            this.label21.TabIndex = 124;
-            this.label21.Text = "label21";
+            this.LblSearchViewPlaceOfResidence.AutoSize = true;
+            this.LblSearchViewPlaceOfResidence.Location = new System.Drawing.Point(197, 160);
+            this.LblSearchViewPlaceOfResidence.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewPlaceOfResidence.Name = "LblSearchViewPlaceOfResidence";
+            this.LblSearchViewPlaceOfResidence.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewPlaceOfResidence.TabIndex = 124;
+            this.LblSearchViewPlaceOfResidence.Text = "-";
             // 
-            // label20
+            // LblSearchViewPostalCode
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(197, 139);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(60, 19);
-            this.label20.TabIndex = 123;
-            this.label20.Text = "label20";
+            this.LblSearchViewPostalCode.AutoSize = true;
+            this.LblSearchViewPostalCode.Location = new System.Drawing.Point(197, 139);
+            this.LblSearchViewPostalCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewPostalCode.Name = "LblSearchViewPostalCode";
+            this.LblSearchViewPostalCode.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewPostalCode.TabIndex = 123;
+            this.LblSearchViewPostalCode.Text = "-";
             // 
-            // label19
+            // LblSearchViewAddress
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(197, 115);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(60, 19);
-            this.label19.TabIndex = 122;
-            this.label19.Text = "label19";
+            this.LblSearchViewAddress.AutoSize = true;
+            this.LblSearchViewAddress.Location = new System.Drawing.Point(197, 115);
+            this.LblSearchViewAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewAddress.Name = "LblSearchViewAddress";
+            this.LblSearchViewAddress.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewAddress.TabIndex = 122;
+            this.LblSearchViewAddress.Text = "-";
             // 
-            // label18
+            // LblSearchViewLastName
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(197, 95);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(60, 19);
-            this.label18.TabIndex = 121;
-            this.label18.Text = "label18";
+            this.LblSearchViewLastName.AutoSize = true;
+            this.LblSearchViewLastName.Location = new System.Drawing.Point(197, 95);
+            this.LblSearchViewLastName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewLastName.Name = "LblSearchViewLastName";
+            this.LblSearchViewLastName.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewLastName.TabIndex = 121;
+            this.LblSearchViewLastName.Text = "-";
             // 
-            // label17
+            // LblSearchViewFirstName
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(197, 74);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(60, 19);
-            this.label17.TabIndex = 120;
-            this.label17.Text = "label17";
+            this.LblSearchViewFirstName.AutoSize = true;
+            this.LblSearchViewFirstName.Location = new System.Drawing.Point(197, 74);
+            this.LblSearchViewFirstName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewFirstName.Name = "LblSearchViewFirstName";
+            this.LblSearchViewFirstName.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewFirstName.TabIndex = 120;
+            this.LblSearchViewFirstName.Text = "-";
             // 
-            // label15
+            // LblSearchViewTitle
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(197, 52);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(60, 19);
-            this.label15.TabIndex = 119;
-            this.label15.Text = "label15";
+            this.LblSearchViewTitle.AutoSize = true;
+            this.LblSearchViewTitle.Location = new System.Drawing.Point(197, 52);
+            this.LblSearchViewTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchViewTitle.Name = "LblSearchViewTitle";
+            this.LblSearchViewTitle.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchViewTitle.TabIndex = 119;
+            this.LblSearchViewTitle.Text = "-";
             // 
             // LblSearchHeadlineGeneral
             // 
@@ -1319,15 +1392,53 @@ namespace ContactManager
             // 
             // DataGridViewSearchResult
             // 
+            this.DataGridViewSearchResult.AllowUserToAddRows = false;
+            this.DataGridViewSearchResult.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewSearchResult.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.DataGridViewSearchResult.BackgroundColor = System.Drawing.Color.DimGray;
+            this.DataGridViewSearchResult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewSearchResult.DefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGridViewSearchResult.GridColor = System.Drawing.Color.Gray;
             this.DataGridViewSearchResult.Location = new System.Drawing.Point(33, 575);
             this.DataGridViewSearchResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DataGridViewSearchResult.MultiSelect = false;
             this.DataGridViewSearchResult.Name = "DataGridViewSearchResult";
             this.DataGridViewSearchResult.ReadOnly = true;
+            this.DataGridViewSearchResult.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchResult.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.DataGridViewSearchResult.RowHeadersVisible = false;
             this.DataGridViewSearchResult.RowHeadersWidth = 51;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.DataGridViewSearchResult.Size = new System.Drawing.Size(978, 305);
             this.DataGridViewSearchResult.TabIndex = 5;
+            this.DataGridViewSearchResult.SelectionChanged += new System.EventHandler(this.DataGridViewSearchResultSelectionChanged_CellClick);
             // 
             // TxtSearch
             // 
@@ -1335,7 +1446,9 @@ namespace ContactManager
             this.TxtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtSearch.Name = "TxtSearch";
             this.TxtSearch.Size = new System.Drawing.Size(364, 26);
-            this.TxtSearch.TabIndex = 2;
+            this.TxtSearch.TabIndex = 1;
+            this.TxtSearch.Enter += new System.EventHandler(this.TxtSearch_Enter);
+            this.TxtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
             // 
             // TabCreateEdit
             // 
@@ -2766,20 +2879,19 @@ namespace ContactManager
         private System.Windows.Forms.Label LblSearchPreviewCurrentAppYear;
         private System.Windows.Forms.Label LblSearchPreviewYearsOfApp;
         private System.Windows.Forms.Panel PnlSearchPreviewGeneral;
-        private System.Windows.Forms.Label LblSearchPreviewStatus;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label LblSearchViewDateOfBirth;
+        private System.Windows.Forms.Label LblSearchViewOasiNumber;
+        private System.Windows.Forms.Label LblSearchViewNationality;
+        private System.Windows.Forms.Label LblSearchViewPlaceOfResidence;
+        private System.Windows.Forms.Label LblSearchViewPostalCode;
+        private System.Windows.Forms.Label LblSearchViewAddress;
+        private System.Windows.Forms.Label LblSearchViewLastName;
+        private System.Windows.Forms.Label LblSearchViewFirstName;
+        private System.Windows.Forms.Label LblSearchViewTitle;
+        private System.Windows.Forms.Label LblSearchViewBusinessAddress;
+        private System.Windows.Forms.Label LblSearchViewBusinessPhone;
+        private System.Windows.Forms.Label LblSearchViewPrivatePhone;
+        private System.Windows.Forms.Label LblSearchViewEmailAddress;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label33;
@@ -2793,5 +2905,8 @@ namespace ContactManager
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.DataGridView dataGridView1;
         private MaterialSkin.Controls.MaterialLabel LblSearchNotes;
+        private System.Windows.Forms.Label LblNoResults;
+        private System.Windows.Forms.Label LblSearchViewStatus;
+        private System.Windows.Forms.Label label15;
     }
 }

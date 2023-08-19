@@ -89,9 +89,28 @@ namespace ContactManager
         }
 
     
-        public static List<Person> SearchContact(string searchTerm)
+        public static List<Person> SearchContactsByFullText(string searchTerm, bool searchInactive)
         {
-            return SqliteDateAccess.SearchPersons(searchTerm);
+            return SqliteDateAccess.SearchPersonsByFullText(searchTerm, searchInactive);
+        }
+
+        public static List<Person> SearchContactsByFilters(List<Type> types, List<string> filters)
+        {
+            string queryString = string.Empty;
+
+            for (int i = 0; i < filters.Count; i++)
+            {
+                var item = filters[i];
+
+                if (i > 0)
+                {
+                    queryString += "AND";
+                }
+
+                queryString += $" {item} ";
+            }
+
+            return SqliteDateAccess.SearchPersonsByQueryString(types, queryString);
         }
     }
 }
