@@ -30,5 +30,10 @@ namespace ContactManager
                 Application.Exit();
             }
         }
+
+        private void FormSearchAdvanced_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -131,7 +131,7 @@ namespace ContactManager
                 TxtCreatePrivatePhone.Text,
                 TxtCreateBusnissPhone.Text,
                 TxtCreateEmailAddress.Text,
-                LstCreateNoteOut.SelectedItem?.ToString(),
+                TxtCreateNote.Text,
                 TxtCreateRole.Text,
                 TxtCreateDepartement.Text,
                 DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
@@ -161,7 +161,7 @@ namespace ContactManager
                   TxtCreatePrivatePhone.Text,
                   TxtCreateBusnissPhone.Text,
                   TxtCreateEmailAddress.Text,
-                  LstCreateNoteOut.SelectedItem?.ToString(),
+                  TxtCreateNote.Text,
                   TxtCreateRole.Text,
                   TxtCreateDepartement.Text,
                   DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
@@ -291,9 +291,12 @@ namespace ContactManager
         private void CmdSearchAdvanced_Click(object sender, EventArgs e)
         {
             //Try to show Advanced Search windows over the Search window of FormMain
+            
             var formAdvancedSearch = new FormSearchAdvanced();
-            formAdvancedSearch.Visible = false;
-            DialogResult dialogResult = ShowDialog(formAdvancedSearch);
+            formAdvancedSearch.Visible = true;
+            //DialogResult dialogResult = ShowDialog(formAdvancedSearch);
+            //Show(formAdvancedSearch);
+
 
         }
     }
