@@ -6,8 +6,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ContactManager
 {
@@ -124,7 +122,7 @@ namespace ContactManager
                     new
                     {
                         employee.Id,
-                        employee.status ,
+                        employee.status,
                         employee.gender,
                         employee.Salutation,
                         employee.title,
@@ -146,8 +144,8 @@ namespace ContactManager
                 int lastId_e = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
                 cnn.Execute("INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
                 new
-                    {
-                   Id = lastId_e,
+                {
+                    Id = lastId_e,
                     employee.Position,
                     employee.Department,
                     employee.EmployeeNumber,
@@ -168,6 +166,70 @@ namespace ContactManager
                 var maxNumber = cnn.Query<string>($"SELECT IFNULL(MAX({columnName}), 0) FROM {tableName}").FirstOrDefault();
                 return maxNumber + 1;
             }
+=======
+        public static List<Person> SearchPersonsByFullText(string searchTerm, bool searchInactive)
+        {
+            List<Person> results = new List<Person>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+                results.AddRange(SearchTableByFullText<Person>(conn, searchTerm, searchInactive));
+                conn.Close();
+            }
+
+            return results;
+        }
+
+        private static List<Type> SearchTableByFullText<Type>(SQLiteConnection conn, string searchTerm, bool searchInactive) where Type : Person, new()
+        {
+            string tableName = typeof(Type).Name;
+            string query = $"SELECT * FROM {tableName} WHERE (firstName LIKE @searchTerm OR lastName LIKE @searchTerm) AND {((searchInactive) ? "(status = 0 OR status = 1)" : "status = 1")}";
+            return conn.Query<Type>(query, new { searchTerm = $"%{searchTerm}%" }).AsList();
+        }
+
+        public static List<Person> SearchPersonsByQueryString(List<Type> types, string filters)
+        {
+            List<Person> results = new List<Person>();
+
+            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+
+                foreach (Type t in types)
+                {
+                    switch (t)
+                    {
+                        case Type type when type == typeof(Customer):
+                            results.AddRange(SearchTableByQueryString<Customer>(conn, filters));
+                            break;
+
+                        case Type type when type == typeof(Employee):
+                            results.AddRange(SearchTableByQueryString<Employee>(conn, filters));
+                            break;
+
+                        case Type type when type == typeof(Trainee):
+                            results.AddRange(SearchTableByQueryString<Trainee>(conn, filters));
+                            break;
+
+                        default:
+                            results.AddRange(SearchTableByQueryString<Person>(conn, filters));
+                            break;
+                    }
+                }
+
+                conn.Close();
+            }
+
+            return results;
+        }
+
+        private static List<Type> SearchTableByQueryString<Type>(SQLiteConnection conn, string queryString) where Type : Person, new()
+        {
+            string tableName = typeof(Type).Name;
+            string query = $"SELECT * FROM {tableName} WHERE{queryString}";
+            return conn.Query<Type>(query).AsList();
+>>>>>>> 16a515ffcdf9e442d3c0f03eab654c28c433870e
         }
     }
 }
