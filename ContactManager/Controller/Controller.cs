@@ -21,7 +21,7 @@ namespace ContactManager
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,
                 EmployeeNumber = employeeNumber,
-                gender = int.TryParse(gender, out int genderValue) ? genderValue : 0,
+                gender =gender,
                 Salutation = Salutaion,
                 title = title,
                 street = street,
@@ -41,7 +41,7 @@ namespace ContactManager
 
             };
 
-        SqliteDateAccess.SaveEmployee(e);
+        SqliteDataAccess.SaveEmployee(e);
 
             // Show confirmation message
             MessageBox.Show($"Employee {e.firstName} {e.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
@@ -61,7 +61,7 @@ namespace ContactManager
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,
                 EmployeeNumber = employeeNumber,
-                gender = int.TryParse(gender, out int genderValue) ? genderValue : 0,
+                gender = gender,
                 Salutation = Salutaion,
                 title = title,
                 street = street,
@@ -82,10 +82,73 @@ namespace ContactManager
                 TrainingEndDate = TrainingEndDate
             };
 
-            SqliteDateAccess.SavePerson(t);
+            SqliteDataAccess.SaveTrainee(t);
             // Show confirmation message
             MessageBox.Show($"Employee {t.firstName} {t.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
             form.Close();
+        }
+
+        public void CreateCustomer(string firstName, string lastName, string dateOfBirth, string CustomerNumber, int status, string gender, string Salutaion, string title,
+                                    string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
+                                     string phoneBuiness, string email, string note, string CompanyName, string CustomerType, string CompanyContact, Form form)
+        {
+            Customer c = new Customer
+            {
+                status = status,
+                firstName = firstName,
+                lastName = lastName,
+                dateOfBirth = dateOfBirth,
+                CustomerNumber = CustomerNumber,
+                gender = gender,
+                Salutation = Salutaion,
+                title = title,
+                street = street,
+                postalCode = postalCode,
+                placeOfResidence = placeOfResidence,
+                nationality = nationality,
+                socialSecurityNumber = ahv,
+                phoneNumberPrivat = phonePrivate,
+                phoneNumberBusiness = phoneBuiness,
+                email = email,
+                note = note,
+                CompanyName = CompanyName,
+                CustomerType = CustomerType,
+                CompanyContact = CompanyContact
+
+            };
+
+            SqliteDataAccess.SaveCustomer(c);
+
+            // Show confirmation message
+            MessageBox.Show($"Customer {c.firstName} {c.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
+            form.Close();
+
+        }
+
+
+    
+        public static List<Person> SearchContactsByFullText(string searchTerm, bool searchInactive)
+        {
+            return SqliteDataAccess.SearchPersonsByFullText(searchTerm, searchInactive);
+        }
+
+        public static List<Person> SearchContactsByFilters(List<Type> types, List<string> filters)
+        {
+            string queryString = string.Empty;
+
+            for (int i = 0; i < filters.Count; i++)
+            {
+                var item = filters[i];
+
+                if (i > 0)
+                {
+                    queryString += "AND";
+                }
+
+                queryString += $" {item} ";
+            }
+
+            return SqliteDataAccess.SearchPersonsByQueryString(types, queryString);
         }
 
     }

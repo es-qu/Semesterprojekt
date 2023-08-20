@@ -558,7 +558,7 @@
             // 
             // FormSearchAdvanced
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(380, 593);
             this.Controls.Add(this.CmdSearchExec2);

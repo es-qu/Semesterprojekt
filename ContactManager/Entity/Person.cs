@@ -12,7 +12,7 @@ namespace ContactManager
     {
         public int Id { get; set; }
         public int status { get; set; }
-        public int gender { get; set; }
+        public string gender { get; set; }
         public string Salutation { get; set; }
         public string title { get; set; }
         public string firstName { get; set; }
