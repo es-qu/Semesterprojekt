@@ -59,15 +59,5 @@ namespace ContactManager.View {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Point similar to {X=17,Y=17}.
-        /// </summary>
-        public static System.Drawing.Point timer1_TrayLocation {
-            get {
-                object obj = ResourceManager.GetObject("timer1.TrayLocation", resourceCulture);
-                return ((System.Drawing.Point)(obj));
-            }
-        }
     }
 }

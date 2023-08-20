@@ -232,7 +232,7 @@ namespace ContactManager
                 TxtCreatePrivatePhone.Text,
                 TxtCreateBusnissPhone.Text,
                 TxtCreateEmailAddress.Text,
-                LstCreateNoteOut.SelectedItem?.ToString(),
+                TxtCreateNote.Text,
                 TxtCreateCompanyName.Text,
                 CmbCreateCustomerType.SelectedItem.ToString(),
                 TxtCreateCompanyContact.Text,

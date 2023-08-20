@@ -25,6 +25,13 @@ namespace ContactManager
                 InitializeComponent();
 
                 manager.AddFormToManage(this);
+
+                Font fontCurrent = LblSearchHeadlineGeneral.Font;
+                Font newFont = new Font(fontCurrent.FontFamily, fontCurrent.Size + 1, FontStyle.Bold);
+                LblSearchHeadlineGeneral.Font = newFont;
+                LblSearchHeadlineCustomer.Font = newFont;
+                LblSearchHeadlineTrainee.Font = newFont;
+                LblSearchHeadlineEmployee.Font = newFont;
             }
             else
             {
