@@ -161,30 +161,10 @@ namespace ContactManager
                   NumCadreLevel.Value.ToString(),
                   this
 
-               );
+                   );
                 }
             }
         }
-
-        //private void CmdExecSearch_Click(object sender, EventArgs e)
-        //{
-        //    string searchText = TxtSearch.Text;
-        //    List<Person> people = SqliteDateAccess.LoadPeople(searchText);
-        //    if (people.Count == 0)
-        //    {
-        //        txtOutput.Text = "No users found.";
-        //    }
-        //    else
-        //    {
-        //        txtOutput.Text = "";
-        //        foreach (Person person in people)
-        //        {
-        //            DateTime dob = DateTime.Parse(person.dateOfBirth);
-        //            txtOutput.Text += $"First Name: {person.firstName}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
-        //        }
-        //    }
-
-        //}
 
         private void RadCreateCustomer_CheckedChanged(object sender, EventArgs e)
         {
@@ -371,6 +351,14 @@ namespace ContactManager
                 };
                 DataGridViewSearchResult.Columns.Add(lastNameColumn);
 
+                DataGridViewTextBoxColumn dateOfBirthColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "dateOfBirthColumn",
+                    HeaderText = "Date of birth",
+                    DataPropertyName = "dateOfBirth"
+                };
+                DataGridViewSearchResult.Columns.Add(dateOfBirthColumn);
+
                 if (searchResults.Count > 0)
                 {
                     LblNoResults.Visible = false;
@@ -486,7 +474,3 @@ namespace ContactManager
         }
     }
 }
-
-
-
-
