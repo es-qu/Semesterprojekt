@@ -16,6 +16,8 @@ namespace ContactManager
     {
         MaterialSkinManager manager = Program.GetStandardManager();
 
+        public List<object> searchParams = new List<object>();
+
         public FormSearchAdvanced()
         {
             if (Program.Auth)
