@@ -244,7 +244,7 @@ namespace ContactManager
         private void CmdExecSearch_Click(object sender, EventArgs e)
         {
             string searchText = TxtSearch.Text;
-            List<Person> people = SqliteDateAccess.LoadPeople(searchText);
+            List<Person> people = SqliteDataAccess.LoadPeople(searchText);
             if (people.Count == 0)
             {
                 TxtSearch.Text = "No users found.";
@@ -270,7 +270,7 @@ namespace ContactManager
             {
                 PnlCreateInfoCustomer.Visible = true;
                 // Generate the next Customer number
-                TxtCreateCustomerNumber.Text = SqliteDateAccess.GetNextNumber("Customer", "CustomerNumber").ToString();
+                TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber").ToString();
             }
             else
             {
@@ -289,7 +289,7 @@ namespace ContactManager
                 ChkCreateTrainee.Checked = false;
 
                 // Generate the next employee number
-                TxtCreateEmployeeNumber.Text = SqliteDateAccess.GetNextNumber("Employee", "EmployeeNumber").ToString();
+                TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber").ToString();
             }
             else
             {

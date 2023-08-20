@@ -41,7 +41,7 @@ namespace ContactManager
 
             };
 
-        SqliteDateAccess.SaveEmployee(e);
+        SqliteDataAccess.SaveEmployee(e);
 
             // Show confirmation message
             MessageBox.Show($"Employee {e.firstName} {e.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
@@ -82,7 +82,7 @@ namespace ContactManager
                 TrainingEndDate = TrainingEndDate
             };
 
-            SqliteDateAccess.SaveTrainee(t);
+            SqliteDataAccess.SaveTrainee(t);
             // Show confirmation message
             MessageBox.Show($"Employee {t.firstName} {t.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
             form.Close();
@@ -117,7 +117,7 @@ namespace ContactManager
 
             };
 
-            SqliteDateAccess.SaveCustomer(c);
+            SqliteDataAccess.SaveCustomer(c);
 
             // Show confirmation message
             MessageBox.Show($"Customer {c.firstName} {c.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
@@ -129,7 +129,7 @@ namespace ContactManager
     
         public static List<Person> SearchContactsByFullText(string searchTerm, bool searchInactive)
         {
-            return SqliteDateAccess.SearchPersonsByFullText(searchTerm, searchInactive);
+            return SqliteDataAccess.SearchPersonsByFullText(searchTerm, searchInactive);
         }
 
         public static List<Person> SearchContactsByFilters(List<Type> types, List<string> filters)
@@ -148,7 +148,7 @@ namespace ContactManager
                 queryString += $" {item} ";
             }
 
-            return SqliteDateAccess.SearchPersonsByQueryString(types, queryString);
+            return SqliteDataAccess.SearchPersonsByQueryString(types, queryString);
         }
 
     }
