@@ -243,19 +243,19 @@ namespace ContactManager
 
         private void CmdExecSearch_Click(object sender, EventArgs e)
         {
-            string searchText = txtOutput.Text;
+            string searchText = TxtSearch.Text;
             List<Person> people = SqliteDateAccess.LoadPeople(searchText);
             if (people.Count == 0)
             {
-                txtOutput.Text = "No users found.";
+                TxtSearch.Text = "No users found.";
             }
             else
             {
-                txtOutput.Text = "";
+                TxtSearch.Text = "";
                 foreach (Person person in people)
                 {
                     DateTime dob = DateTime.Parse(person.dateOfBirth);
-                    txtOutput.Text += $"First Name: {person.firstName}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
+                    TxtSearch.Text += $"First Name: {person.firstName}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
                 }
             }
 

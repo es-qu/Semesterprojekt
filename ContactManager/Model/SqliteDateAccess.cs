@@ -167,7 +167,7 @@ namespace ContactManager
                 var maxNumber = cnn.Query<string>($"SELECT IFNULL(MAX({columnName}), 0) FROM {tableName}").FirstOrDefault();
                 return maxNumber + 1;
             }
-
+        }
 
             public static List<Person> SearchPersonsByFullText(string searchTerm, bool searchInactive)
             {
@@ -232,6 +232,6 @@ namespace ContactManager
                 string query = $"SELECT * FROM {tableName} WHERE{queryString}";
                 return conn.Query<Type>(query).AsList();
             }
-        }
+        
     }
 }
