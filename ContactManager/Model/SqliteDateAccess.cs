@@ -63,7 +63,7 @@ namespace ContactManager
                 });
             }
 
-            }
+        }
 
         private static string LoadConnectionString(String id = "Default")
         {
@@ -92,7 +92,7 @@ namespace ContactManager
                         trainee.placeOfResidence,
                         trainee.nationality,
                         trainee.socialSecurityNumber,
-                        trainee.dateOfBirth, 
+                        trainee.dateOfBirth,
                         trainee.phoneNumberPrivat,
                         trainee.phoneNumberMobile,
                         trainee.phoneNumberBusiness,
@@ -159,6 +159,7 @@ namespace ContactManager
         }
 
 
+
         public static string GetNextNumber(string tableName, string columnName)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -166,70 +167,71 @@ namespace ContactManager
                 var maxNumber = cnn.Query<string>($"SELECT IFNULL(MAX({columnName}), 0) FROM {tableName}").FirstOrDefault();
                 return maxNumber + 1;
             }
-=======
-        public static List<Person> SearchPersonsByFullText(string searchTerm, bool searchInactive)
-        {
-            List<Person> results = new List<Person>();
 
-            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+
+            public static List<Person> SearchPersonsByFullText(string searchTerm, bool searchInactive)
             {
-                conn.Open();
-                results.AddRange(SearchTableByFullText<Person>(conn, searchTerm, searchInactive));
-                conn.Close();
-            }
+                List<Person> results = new List<Person>();
 
-            return results;
-        }
-
-        private static List<Type> SearchTableByFullText<Type>(SQLiteConnection conn, string searchTerm, bool searchInactive) where Type : Person, new()
-        {
-            string tableName = typeof(Type).Name;
-            string query = $"SELECT * FROM {tableName} WHERE (firstName LIKE @searchTerm OR lastName LIKE @searchTerm) AND {((searchInactive) ? "(status = 0 OR status = 1)" : "status = 1")}";
-            return conn.Query<Type>(query, new { searchTerm = $"%{searchTerm}%" }).AsList();
-        }
-
-        public static List<Person> SearchPersonsByQueryString(List<Type> types, string filters)
-        {
-            List<Person> results = new List<Person>();
-
-            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                conn.Open();
-
-                foreach (Type t in types)
+                using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    switch (t)
-                    {
-                        case Type type when type == typeof(Customer):
-                            results.AddRange(SearchTableByQueryString<Customer>(conn, filters));
-                            break;
-
-                        case Type type when type == typeof(Employee):
-                            results.AddRange(SearchTableByQueryString<Employee>(conn, filters));
-                            break;
-
-                        case Type type when type == typeof(Trainee):
-                            results.AddRange(SearchTableByQueryString<Trainee>(conn, filters));
-                            break;
-
-                        default:
-                            results.AddRange(SearchTableByQueryString<Person>(conn, filters));
-                            break;
-                    }
+                    conn.Open();
+                    results.AddRange(SearchTableByFullText<Person>(conn, searchTerm, searchInactive));
+                    conn.Close();
                 }
 
-                conn.Close();
+                return results;
             }
 
-            return results;
-        }
+            private static List<Type> SearchTableByFullText<Type>(SQLiteConnection conn, string searchTerm, bool searchInactive) where Type : Person, new()
+            {
+                string tableName = typeof(Type).Name;
+                string query = $"SELECT * FROM {tableName} WHERE (firstName LIKE @searchTerm OR lastName LIKE @searchTerm) AND {((searchInactive) ? "(status = 0 OR status = 1)" : "status = 1")}";
+                return conn.Query<Type>(query, new { searchTerm = $"%{searchTerm}%" }).AsList();
+            }
 
-        private static List<Type> SearchTableByQueryString<Type>(SQLiteConnection conn, string queryString) where Type : Person, new()
-        {
-            string tableName = typeof(Type).Name;
-            string query = $"SELECT * FROM {tableName} WHERE{queryString}";
-            return conn.Query<Type>(query).AsList();
->>>>>>> 16a515ffcdf9e442d3c0f03eab654c28c433870e
+            public static List<Person> SearchPersonsByQueryString(List<Type> types, string filters)
+            {
+                List<Person> results = new List<Person>();
+
+                using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    conn.Open();
+
+                    foreach (Type t in types)
+                    {
+                        switch (t)
+                        {
+                            case Type type when type == typeof(Customer):
+                                results.AddRange(SearchTableByQueryString<Customer>(conn, filters));
+                                break;
+
+                            case Type type when type == typeof(Employee):
+                                results.AddRange(SearchTableByQueryString<Employee>(conn, filters));
+                                break;
+
+                            case Type type when type == typeof(Trainee):
+                                results.AddRange(SearchTableByQueryString<Trainee>(conn, filters));
+                                break;
+
+                            default:
+                                results.AddRange(SearchTableByQueryString<Person>(conn, filters));
+                                break;
+                        }
+                    }
+
+                    conn.Close();
+                }
+
+                return results;
+            }
+
+            private static List<Type> SearchTableByQueryString<Type>(SQLiteConnection conn, string queryString) where Type : Person, new()
+            {
+                string tableName = typeof(Type).Name;
+                string query = $"SELECT * FROM {tableName} WHERE{queryString}";
+                return conn.Query<Type>(query).AsList();
+            }
         }
     }
 }
