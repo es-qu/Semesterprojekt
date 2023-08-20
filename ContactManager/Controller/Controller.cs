@@ -21,7 +21,7 @@ namespace ContactManager
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,
                 EmployeeNumber = employeeNumber,
-                gender = int.TryParse(gender, out int genderValue) ? genderValue : 0,
+                gender =gender,
                 Salutation = Salutaion,
                 title = title,
                 street = street,
@@ -61,7 +61,7 @@ namespace ContactManager
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,
                 EmployeeNumber = employeeNumber,
-                gender = int.TryParse(gender, out int genderValue) ? genderValue : 0,
+                gender = gender,
                 Salutation = Salutaion,
                 title = title,
                 street = street,
@@ -82,10 +82,47 @@ namespace ContactManager
                 TrainingEndDate = TrainingEndDate
             };
 
-            SqliteDateAccess.SavePerson(t);
+            SqliteDateAccess.SaveTrainee(t);
             // Show confirmation message
             MessageBox.Show($"Employee {t.firstName} {t.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
             form.Close();
+        }
+
+        public void CreateCustomer(string firstName, string lastName, string dateOfBirth, string CustomerNumber, int status, string gender, string Salutaion, string title,
+                                    string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
+                                     string phoneBuiness, string email, string note, string CompanyName, string CustomerType, string CompanyContact, Form form)
+        {
+            Customer c = new Customer
+            {
+                status = status,
+                firstName = firstName,
+                lastName = lastName,
+                dateOfBirth = dateOfBirth,
+                CustomerNumber = CustomerNumber,
+                gender = gender,
+                Salutation = Salutaion,
+                title = title,
+                street = street,
+                postalCode = postalCode,
+                placeOfResidence = placeOfResidence,
+                nationality = nationality,
+                socialSecurityNumber = ahv,
+                phoneNumberPrivat = phonePrivate,
+                phoneNumberBusiness = phoneBuiness,
+                email = email,
+                note = note,
+                CompanyName = CompanyName,
+                CustomerType = CustomerType,
+                CompanyContact = CompanyContact
+
+            };
+
+            SqliteDateAccess.SaveCustomer(c);
+
+            // Show confirmation message
+            MessageBox.Show($"Customer {c.firstName} {c.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
+            form.Close();
+
         }
 
     }

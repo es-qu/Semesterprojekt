@@ -34,11 +34,20 @@ namespace ContactManager
             InitializeComponent();
 
             manager.AddFormToManage(this);
-            
+
 
             //Countries in ComboBox Nationality
             PopulateCountryComboBox();
             TxtCreateOasiNr.KeyPress += TxtCreateOasiNr_KeyPress;
+
+
+            this.RadCreateMale.CheckedChanged += new System.EventHandler(this.RadCreateMale_CheckedChanged);
+            this.RadCreateFemale.CheckedChanged += new System.EventHandler(this.RadCreateFemale_CheckedChanged);
+            this.RadCreateOther.CheckedChanged += new System.EventHandler(this.RadCreateOther_CheckedChanged);
+
+            // Disable the employee && Customer number text box
+            TxtCreateEmployeeNumber.Enabled = false;
+            TxtCreateCustomerNumber.Enabled = false;
 
         }
 
@@ -71,10 +80,48 @@ namespace ContactManager
             //Don't show customer elements.
             PnlCreateInfoCustomer.Visible = false;
 
-            
+
 
         }
 
+        // Event handler for RadCreateMale
+        private void RadCreateMale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadCreateMale.Checked)
+            {
+                ChangeFormColor(MaterialSkin.Primary.Blue500);
+            }
+        }
+
+        // Event handler for RadCreateFemale
+        private void RadCreateFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadCreateFemale.Checked)
+            {
+                ChangeFormColor(MaterialSkin.Primary.Pink500);
+            }
+        }
+
+        // Event handler for RadCreateOther
+        private void RadCreateOther_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadCreateOther.Checked)
+            {
+                ChangeFormColor(MaterialSkin.Primary.Grey500);
+            }
+        }
+
+        private void ChangeFormColor(MaterialSkin.Primary primaryColor)
+        {
+            manager.ColorScheme = new ColorScheme(
+                primaryColor,
+                primaryColor,
+                primaryColor,
+                Accent.Blue100,
+                TextShade.WHITE
+            );
+            Refresh();
+        }
 
         private void TxtCreateOasiNr_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -85,7 +132,7 @@ namespace ContactManager
 
                 // Show a tooltip to inform the user that only numbers and dots are allowed
                 System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
-                toolTip.Show("Only numbers and dots are allowed", (Control)sender, 0, ((Control)sender).Height, 2000);
+                toolTip.Show("Only numbers allowed", (Control)sender, 0, ((Control)sender).Height, 2000);
             }
         }
 
@@ -104,7 +151,7 @@ namespace ContactManager
                 return;
             }
             // Check if the first name contains only letters
-            Regex regexLetters = new Regex("^[A-Za-z]+$");
+            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
             if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
             {
                 MessageBox.Show("The first name can contain only letters");
@@ -150,7 +197,7 @@ namespace ContactManager
                   DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                   TxtCreateEmployeeNumber.Text,
                   checkState = (int)SwtCreateActive.CheckState,
-                  RadCreateMale.Checked ? "1" : "0",
+                  gender,
                   CmbCreateSalutation.SelectedItem?.ToString(),
                   TxtCreateTitle.Text,
                   TxtCreateAddress.Text,
@@ -171,12 +218,39 @@ namespace ContactManager
 
                );
                 }
+
+            }
+            else if (RadCreateCustomer.Checked)
+            {
+                controller.CreateCustomer(
+                TxtCreateFirstName.Text,
+                TxtCreateLastName.Text,
+                DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                TxtCreateCustomerNumber.Text,
+                checkState = (int)SwtCreateActive.CheckState,
+                gender,
+                CmbCreateSalutation.SelectedItem?.ToString(),
+                TxtCreateTitle.Text,
+                TxtCreateAddress.Text,
+                TxtCreatePlz.Text,
+                TxtCreatePlaceOfResidence.Text,
+                CmbCreateNationality.SelectedItem?.ToString(),
+                TxtCreateOasiNr.Text,
+                TxtCreatePrivatePhone.Text,
+                TxtCreateBusnissPhone.Text,
+                TxtCreateEmailAddress.Text,
+                LstCreateNoteOut.SelectedItem?.ToString(),
+                TxtCreateCompanyName.Text,
+                CmbCreateCustomerType.SelectedItem.ToString(),
+                TxtCreateCompanyContact.Text,
+                this
+                );
             }
         }
 
         private void CmdExecSearch_Click(object sender, EventArgs e)
         {
-            string searchText = TxtSearch.Text;
+            string searchText = txtOutput.Text;
             List<Person> people = SqliteDateAccess.LoadPeople(searchText);
             if (people.Count == 0)
             {
@@ -202,6 +276,8 @@ namespace ContactManager
             if (RadCreateCustomer.Checked == true)
             {
                 PnlCreateInfoCustomer.Visible = true;
+                // Generate the next Customer number
+                TxtCreateCustomerNumber.Text = SqliteDateAccess.GetNextNumber("Customer", "CustomerNumber").ToString();
             }
             else
             {
@@ -219,6 +295,8 @@ namespace ContactManager
                 ChkCreateTrainee.Visible = true;
                 ChkCreateTrainee.Checked = false;
 
+                // Generate the next employee number
+                TxtCreateEmployeeNumber.Text = SqliteDateAccess.GetNextNumber("Employee", "EmployeeNumber").ToString();
             }
             else
             {

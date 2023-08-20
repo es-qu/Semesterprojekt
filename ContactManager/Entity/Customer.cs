@@ -12,5 +12,6 @@ namespace ContactManager
         public string CompanyName { get; set; }
         public string CustomerType { get; set; }
         public string CompanyContact { get;  set; }
+        public string CustomerNumber { get; set; }
     }
 }
