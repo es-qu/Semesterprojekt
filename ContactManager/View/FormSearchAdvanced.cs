@@ -16,9 +16,9 @@ namespace ContactManager
     {
         MaterialSkinManager manager = Program.GetStandardManager();
 
-        public List<object> searchParams = new List<object>();
+        FormMain parentFormMain;
 
-        public FormSearchAdvanced()
+        public FormSearchAdvanced(FormMain parentFormMain)
         {
             if (Program.Auth)
             {
@@ -33,6 +33,10 @@ namespace ContactManager
                 LblSearchHeadlineCustomer.Font = newFont;
                 LblSearchHeadlineTrainee.Font = newFont;
                 LblSearchHeadlineEmployee.Font = newFont;
+
+                // Sync the GUI with the filters object of FormMain
+                this.parentFormMain = parentFormMain;
+                syncAdvancedGUI();
             }
             else
             {
@@ -57,6 +61,42 @@ namespace ContactManager
             PnlSearchAdvancedCustomer.Enabled = ChkSearchAdvancedTypeCustomer.Checked;
             PnlSearchAdvancedEmployee.Enabled = ChkSearchAdvancedTypeEmployee.Checked;
             PnlSearchAdvancedTrainee.Enabled = ChkSearchAdvancedTypeTrainee.Checked;
+        }
+
+        /// <summary>
+        /// Store and sync states
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormSearchAdvanced_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            storeSearchAdvancedFilters();
+            parentFormMain.syncSearchGUI();
+            //parentFormMain.CmdSearchExec_Click(sender, e);
+        }
+
+        /// <summary>
+        /// Save the states of all fields in advanced search into the filter object of FormMain
+        /// </summary>
+        public void storeSearchAdvancedFilters()
+        {
+            parentFormMain.filters.Inactive = ChkSearchAdvancedInactive.Checked;
+
+            parentFormMain.filters.TypeCustomer = ChkSearchAdvancedTypeCustomer.Checked;
+            parentFormMain.filters.TypeEmployee = ChkSearchAdvancedTypeEmployee.Checked;
+            parentFormMain.filters.TypeTrainee = ChkSearchAdvancedTypeTrainee.Checked;
+        }
+
+        /// <summary>
+        /// Copy the states in FormMain's filters object into FormSearchAdvanced's GUI
+        /// </summary>
+        public void syncAdvancedGUI()
+        {
+            ChkSearchAdvancedInactive.Checked = parentFormMain.filters.Inactive;
+
+            ChkSearchAdvancedTypeCustomer.Checked = parentFormMain.filters.TypeCustomer;
+            ChkSearchAdvancedTypeEmployee.Checked = parentFormMain.filters.TypeEmployee;
+            ChkSearchAdvancedTypeTrainee.Checked = parentFormMain.filters.TypeTrainee;
         }
     }
 }

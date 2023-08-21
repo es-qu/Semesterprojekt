@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -13,6 +14,8 @@ namespace ContactManager
     public partial class FormMain : MaterialForm
     {
         MaterialSkinManager manager = Program.GetStandardManager();
+
+        public SearchFilters filters = new SearchFilters();
 
         List<Person> searchResults;
 
@@ -366,16 +369,11 @@ namespace ContactManager
         /// <param name="e"></param>
         private void CmdSearchAdvanced_Click(object sender, EventArgs e)
         {
-            List<object> searchParams = new List<object>();
+            // Save the filter input states to sync them later with advanced search GUI
+            storeSearchFilters();
 
-            FormSearchAdvanced formSearchAdvanced = new FormSearchAdvanced();
-
-            if (formSearchAdvanced.ShowDialog() == DialogResult.OK)
-            {
-                searchParams = formSearchAdvanced.searchParams;
-            }
-
-
+            FormSearchAdvanced formSearchAdvanced = new FormSearchAdvanced(this);
+            formSearchAdvanced.ShowDialog();
         }
 
         /// <summary>
@@ -383,7 +381,7 @@ namespace ContactManager
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CmdSearchExec_Click(object sender, EventArgs e)
+        public void CmdSearchExec_Click(object sender, EventArgs e)
         {
             searchResults = null;
 
@@ -396,43 +394,24 @@ namespace ContactManager
 
             if (TxtSearch.Text != string.Empty)
             {
+                // Fulltext search
+
                 string searchTerm = TxtSearch.Text;
                 searchResults = Controller.SearchContactsByFullText(searchTerm, ChkSearchInactive.Checked);
             }
             else
             {
-                List<Type> types = new List<Type>();
-                List<string> searchParams = new List<string>();
+                // Filter search
 
-                // Type filter
-                if (ChkSearchTypeCustomer.Checked) types.Add(typeof(Customer));
-                if (ChkSearchTypeEmployee.Checked) types.Add(typeof(Employee));
-                if (ChkSearchTypeTrainee.Checked) types.Add(typeof(Trainee));
-                if (types.Count == 3) types.Clear();
+                searchResults = Controller.SearchContactsByFilters(filters);
 
-                // Inactive filter
-                if (ChkSearchInactive.Checked) searchParams.Add("(status = 0 OR status = 1)");
-                else searchParams.Add("status = 1");
-
-                // First name, last name
-                if (TxtSearchFirstName.Text != string.Empty) searchParams.Add($"firstName LIKE '{TxtSearchFirstName.Text}'");
-                if (TxtSearchLastName.Text != string.Empty) searchParams.Add($"lastName LIKE '{TxtSearchLastName.Text}'");
-
-                // Customer no. / employee no.
-                if (TxtSearchNumber.Text != string.Empty) searchParams.Add($"(CustomerNumber = '{TxtSearchNumber.Text}' OR EmployeeNumber = '{TxtSearchNumber.Text}')");
-
-                // Search address, place of residence
-                if (TxtSearchAddress.Text != string.Empty) searchParams.Add($"street LIKE '{TxtSearchAddress.Text}'");
-                if (TxtSearchPlaceOfResidence.Text != string.Empty) searchParams.Add($"placeOfResidence LIKE '{TxtSearchPlaceOfResidence.Text}'");
-
-                // Date of birth
-                if (TxtSearchDateOfBirth.Text != string.Empty) searchParams.Add($"dateOfBirth LIKE '{TxtSearchDateOfBirth.Text}'");
-
-                searchResults = (searchParams.Count > 0)
-                    ? Controller.SearchContactsByFilters((types.Count > 0) ? types : new List<Type>() { typeof(Person) }, searchParams)
-                    : null;
+                //searchResults = (searchParams.Count > 0)
+                //? Controller.SearchContactsByFilters((types.Count > 0) ? types : new List<Type>() { typeof(Person) }, this.searchFilterList)
+                //: null;
             }
 
+
+            // Display the results
 
             if (searchResults != null)
             {
@@ -572,6 +551,30 @@ namespace ContactManager
             TxtSearchAddress.Clear();
             TxtSearchPlaceOfResidence.Clear();
             TxtSearchDateOfBirth.Clear();
+        }
+
+        /// <summary>
+        /// Sync the search GUI with the input states in filters object
+        /// </summary>
+        public void syncSearchGUI()
+        {
+            ChkSearchInactive.Checked = filters.Inactive;
+
+            ChkSearchTypeCustomer.Checked = filters.TypeCustomer;
+            ChkSearchTypeEmployee.Checked = filters.TypeEmployee;
+            ChkSearchTypeTrainee.Checked = filters.TypeTrainee;
+        }
+
+        /// <summary>
+        /// Save the states of all inputs into filters object
+        /// </summary>
+        public void storeSearchFilters()
+        {
+            filters.Inactive = ChkSearchInactive.Checked;
+
+            filters.TypeCustomer = ChkSearchTypeCustomer.Checked;
+            filters.TypeEmployee = ChkSearchTypeEmployee.Checked;
+            filters.TypeTrainee = ChkSearchTypeTrainee.Checked;
         }
     }
 }
