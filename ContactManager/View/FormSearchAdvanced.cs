@@ -26,6 +26,7 @@ namespace ContactManager
 
                 manager.AddFormToManage(this);
 
+                // Set fontstyle for headlines of filter information sections by type
                 Font fontCurrent = LblSearchHeadlineGeneral.Font;
                 Font newFont = new Font(fontCurrent.FontFamily, fontCurrent.Size + 1, FontStyle.Bold);
                 LblSearchHeadlineGeneral.Font = newFont;
@@ -40,9 +41,22 @@ namespace ContactManager
             }
         }
 
+
+
         private void FormSearchAdvanced_Load(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// ChkSearchAdvancedType_CheckedChange
+        /// is a method to change the fontcolor to black and disable the information panels by type
+        /// </summary>
+        private void ChkSearchAdvancedType_CheckedChange(object sender, EventArgs e)
+        {
+            PnlSearchAdvancedCustomer.Enabled = ChkSearchAdvancedTypeCustomer.Checked;
+            PnlSearchAdvancedEmployee.Enabled = ChkSearchAdvancedTypeEmployee.Checked;
+            PnlSearchAdvancedTrainee.Enabled = ChkSearchAdvancedTypeTrainee.Checked;
         }
     }
 }

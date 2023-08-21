@@ -374,6 +374,8 @@ namespace ContactManager
             {
                 searchParams = formSearchAdvanced.searchParams;
             }
+
+
         }
 
         /// <summary>

@@ -42,6 +42,7 @@
             this.TxtSearchAdvancedLastName = new System.Windows.Forms.TextBox();
             this.TxtSearchAdvancedFirstName = new System.Windows.Forms.TextBox();
             this.TxtSearchAdvancedTitle = new System.Windows.Forms.TextBox();
+            this.LblSearchHeadlineGeneral = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -74,9 +75,7 @@
             this.ChkSearchAdvancedTypeCustomer = new MaterialSkin.Controls.MaterialCheckbox();
             this.ChkSearchAdvancedInactive = new MaterialSkin.Controls.MaterialCheckbox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.CmdSearchAdvancedExec = new MaterialSkin.Controls.MaterialButton();
-            this.LblSearchHeadlineGeneral = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.PnlSearchAdvancedEmployee = new System.Windows.Forms.Panel();
             this.TxtSearchAdvancedDateOfLeaving = new System.Windows.Forms.TextBox();
             this.TxtSearchAdvancedDateOfJoining = new System.Windows.Forms.TextBox();
             this.TxtSearchAdvancedDegreeOfEmployment = new System.Windows.Forms.TextBox();
@@ -90,13 +89,14 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
+            this.CmdSearchAdvancedExec = new MaterialSkin.Controls.MaterialButton();
             this.TxtSearchAdvancedNumber = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.PnlSearchAdvancedGeneral.SuspendLayout();
             this.PnlSearchAdvancedTrainee.SuspendLayout();
             this.PnlSearchAdvancedCustomer.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.PnlSearchAdvancedEmployee.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlSearchAdvancedGeneral
@@ -129,7 +129,7 @@
             this.PnlSearchAdvancedGeneral.Controls.Add(this.label8);
             this.PnlSearchAdvancedGeneral.Controls.Add(this.label9);
             this.PnlSearchAdvancedGeneral.Location = new System.Drawing.Point(3, 3);
-            this.PnlSearchAdvancedGeneral.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PnlSearchAdvancedGeneral.Margin = new System.Windows.Forms.Padding(2);
             this.PnlSearchAdvancedGeneral.Name = "PnlSearchAdvancedGeneral";
             this.PnlSearchAdvancedGeneral.Size = new System.Drawing.Size(403, 346);
             this.PnlSearchAdvancedGeneral.TabIndex = 127;
@@ -137,7 +137,7 @@
             // TxtSearchAdvancedBusinessAddress
             // 
             this.TxtSearchAdvancedBusinessAddress.Location = new System.Drawing.Point(194, 316);
-            this.TxtSearchAdvancedBusinessAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedBusinessAddress.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedBusinessAddress.Name = "TxtSearchAdvancedBusinessAddress";
             this.TxtSearchAdvancedBusinessAddress.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedBusinessAddress.TabIndex = 18;
@@ -145,7 +145,7 @@
             // TxtSearchAdvancedBusinessPhone
             // 
             this.TxtSearchAdvancedBusinessPhone.Location = new System.Drawing.Point(194, 292);
-            this.TxtSearchAdvancedBusinessPhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedBusinessPhone.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedBusinessPhone.Name = "TxtSearchAdvancedBusinessPhone";
             this.TxtSearchAdvancedBusinessPhone.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedBusinessPhone.TabIndex = 17;
@@ -153,7 +153,7 @@
             // TxtSearchAdvancedPrivatePhone
             // 
             this.TxtSearchAdvancedPrivatePhone.Location = new System.Drawing.Point(194, 268);
-            this.TxtSearchAdvancedPrivatePhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedPrivatePhone.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedPrivatePhone.Name = "TxtSearchAdvancedPrivatePhone";
             this.TxtSearchAdvancedPrivatePhone.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedPrivatePhone.TabIndex = 16;
@@ -161,7 +161,7 @@
             // TxtSearchAdvancedEmailAddress
             // 
             this.TxtSearchAdvancedEmailAddress.Location = new System.Drawing.Point(195, 244);
-            this.TxtSearchAdvancedEmailAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedEmailAddress.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedEmailAddress.Name = "TxtSearchAdvancedEmailAddress";
             this.TxtSearchAdvancedEmailAddress.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedEmailAddress.TabIndex = 15;
@@ -169,7 +169,7 @@
             // TxtSearchAdvancedDateOfBirth
             // 
             this.TxtSearchAdvancedDateOfBirth.Location = new System.Drawing.Point(195, 220);
-            this.TxtSearchAdvancedDateOfBirth.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedDateOfBirth.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedDateOfBirth.Name = "TxtSearchAdvancedDateOfBirth";
             this.TxtSearchAdvancedDateOfBirth.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedDateOfBirth.TabIndex = 14;
@@ -177,7 +177,7 @@
             // TxtSearchAdvancedOasiNr
             // 
             this.TxtSearchAdvancedOasiNr.Location = new System.Drawing.Point(195, 196);
-            this.TxtSearchAdvancedOasiNr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedOasiNr.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedOasiNr.Name = "TxtSearchAdvancedOasiNr";
             this.TxtSearchAdvancedOasiNr.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedOasiNr.TabIndex = 13;
@@ -185,7 +185,7 @@
             // TxtSearchAdvancedNationality
             // 
             this.TxtSearchAdvancedNationality.Location = new System.Drawing.Point(195, 172);
-            this.TxtSearchAdvancedNationality.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedNationality.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedNationality.Name = "TxtSearchAdvancedNationality";
             this.TxtSearchAdvancedNationality.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedNationality.TabIndex = 12;
@@ -193,7 +193,7 @@
             // TxtSearchAdvancedPlaceOfResidence
             // 
             this.TxtSearchAdvancedPlaceOfResidence.Location = new System.Drawing.Point(195, 148);
-            this.TxtSearchAdvancedPlaceOfResidence.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedPlaceOfResidence.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedPlaceOfResidence.Name = "TxtSearchAdvancedPlaceOfResidence";
             this.TxtSearchAdvancedPlaceOfResidence.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedPlaceOfResidence.TabIndex = 11;
@@ -201,7 +201,7 @@
             // TxtSearchAdvancedPostalCode
             // 
             this.TxtSearchAdvancedPostalCode.Location = new System.Drawing.Point(195, 124);
-            this.TxtSearchAdvancedPostalCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedPostalCode.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedPostalCode.Name = "TxtSearchAdvancedPostalCode";
             this.TxtSearchAdvancedPostalCode.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedPostalCode.TabIndex = 10;
@@ -209,7 +209,7 @@
             // TxtSearchAdvancedAddress
             // 
             this.TxtSearchAdvancedAddress.Location = new System.Drawing.Point(195, 100);
-            this.TxtSearchAdvancedAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedAddress.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedAddress.Name = "TxtSearchAdvancedAddress";
             this.TxtSearchAdvancedAddress.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedAddress.TabIndex = 9;
@@ -217,7 +217,7 @@
             // TxtSearchAdvancedLastName
             // 
             this.TxtSearchAdvancedLastName.Location = new System.Drawing.Point(195, 76);
-            this.TxtSearchAdvancedLastName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedLastName.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedLastName.Name = "TxtSearchAdvancedLastName";
             this.TxtSearchAdvancedLastName.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedLastName.TabIndex = 8;
@@ -225,7 +225,7 @@
             // TxtSearchAdvancedFirstName
             // 
             this.TxtSearchAdvancedFirstName.Location = new System.Drawing.Point(195, 52);
-            this.TxtSearchAdvancedFirstName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedFirstName.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedFirstName.Name = "TxtSearchAdvancedFirstName";
             this.TxtSearchAdvancedFirstName.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedFirstName.TabIndex = 7;
@@ -233,10 +233,21 @@
             // TxtSearchAdvancedTitle
             // 
             this.TxtSearchAdvancedTitle.Location = new System.Drawing.Point(195, 28);
-            this.TxtSearchAdvancedTitle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedTitle.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedTitle.Name = "TxtSearchAdvancedTitle";
             this.TxtSearchAdvancedTitle.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedTitle.TabIndex = 6;
+            // 
+            // LblSearchHeadlineGeneral
+            // 
+            this.LblSearchHeadlineGeneral.AutoSize = true;
+            this.LblSearchHeadlineGeneral.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSearchHeadlineGeneral.Location = new System.Drawing.Point(1, 2);
+            this.LblSearchHeadlineGeneral.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblSearchHeadlineGeneral.Name = "LblSearchHeadlineGeneral";
+            this.LblSearchHeadlineGeneral.Size = new System.Drawing.Size(50, 14);
+            this.LblSearchHeadlineGeneral.TabIndex = 0;
+            this.LblSearchHeadlineGeneral.Text = "General";
             // 
             // label1
             // 
@@ -376,7 +387,7 @@
             this.PnlSearchAdvancedTrainee.Controls.Add(this.LblSearchPreviewCurrentAppYear);
             this.PnlSearchAdvancedTrainee.Controls.Add(this.LblSearchPreviewYearsOfApp);
             this.PnlSearchAdvancedTrainee.Location = new System.Drawing.Point(3, 645);
-            this.PnlSearchAdvancedTrainee.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PnlSearchAdvancedTrainee.Margin = new System.Windows.Forms.Padding(2);
             this.PnlSearchAdvancedTrainee.Name = "PnlSearchAdvancedTrainee";
             this.PnlSearchAdvancedTrainee.Size = new System.Drawing.Size(405, 82);
             this.PnlSearchAdvancedTrainee.TabIndex = 128;
@@ -384,7 +395,7 @@
             // TxtSearchAdvancedYearOfApp
             // 
             this.TxtSearchAdvancedYearOfApp.Location = new System.Drawing.Point(195, 55);
-            this.TxtSearchAdvancedYearOfApp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedYearOfApp.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedYearOfApp.Name = "TxtSearchAdvancedYearOfApp";
             this.TxtSearchAdvancedYearOfApp.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedYearOfApp.TabIndex = 29;
@@ -403,7 +414,7 @@
             // TxtSearchAdvancedCurrentAppYear
             // 
             this.TxtSearchAdvancedCurrentAppYear.Location = new System.Drawing.Point(195, 31);
-            this.TxtSearchAdvancedCurrentAppYear.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedCurrentAppYear.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedCurrentAppYear.Name = "TxtSearchAdvancedCurrentAppYear";
             this.TxtSearchAdvancedCurrentAppYear.Size = new System.Drawing.Size(206, 20);
             this.TxtSearchAdvancedCurrentAppYear.TabIndex = 28;
@@ -438,7 +449,7 @@
             this.PnlSearchAdvancedCustomer.Controls.Add(this.LblSearchPreviewCustomerType);
             this.PnlSearchAdvancedCustomer.Controls.Add(this.LblSearchPreviewCompanyName);
             this.PnlSearchAdvancedCustomer.Location = new System.Drawing.Point(3, 353);
-            this.PnlSearchAdvancedCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PnlSearchAdvancedCustomer.Margin = new System.Windows.Forms.Padding(2);
             this.PnlSearchAdvancedCustomer.Name = "PnlSearchAdvancedCustomer";
             this.PnlSearchAdvancedCustomer.Size = new System.Drawing.Size(403, 106);
             this.PnlSearchAdvancedCustomer.TabIndex = 129;
@@ -446,7 +457,7 @@
             // TxtSearchAdvancedCompanyContact
             // 
             this.TxtSearchAdvancedCompanyContact.Location = new System.Drawing.Point(195, 77);
-            this.TxtSearchAdvancedCompanyContact.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedCompanyContact.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedCompanyContact.Name = "TxtSearchAdvancedCompanyContact";
             this.TxtSearchAdvancedCompanyContact.Size = new System.Drawing.Size(207, 20);
             this.TxtSearchAdvancedCompanyContact.TabIndex = 21;
@@ -465,7 +476,7 @@
             // TxtSearchAdvancedCompanyName
             // 
             this.TxtSearchAdvancedCompanyName.Location = new System.Drawing.Point(195, 53);
-            this.TxtSearchAdvancedCompanyName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedCompanyName.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedCompanyName.Name = "TxtSearchAdvancedCompanyName";
             this.TxtSearchAdvancedCompanyName.Size = new System.Drawing.Size(207, 20);
             this.TxtSearchAdvancedCompanyName.TabIndex = 20;
@@ -483,7 +494,7 @@
             // TxtSearchAdvancedCustomerType
             // 
             this.TxtSearchAdvancedCustomerType.Location = new System.Drawing.Point(195, 29);
-            this.TxtSearchAdvancedCustomerType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TxtSearchAdvancedCustomerType.Margin = new System.Windows.Forms.Padding(2);
             this.TxtSearchAdvancedCustomerType.Name = "TxtSearchAdvancedCustomerType";
             this.TxtSearchAdvancedCustomerType.Size = new System.Drawing.Size(207, 20);
             this.TxtSearchAdvancedCustomerType.TabIndex = 19;
@@ -524,6 +535,7 @@
             this.ChkSearchAdvancedTypeTrainee.TabIndex = 3;
             this.ChkSearchAdvancedTypeTrainee.Text = "Trainee";
             this.ChkSearchAdvancedTypeTrainee.UseVisualStyleBackColor = true;
+            this.ChkSearchAdvancedTypeTrainee.CheckedChanged += new System.EventHandler(this.ChkSearchAdvancedType_CheckedChange);
             // 
             // ChkSearchAdvancedTypeEmployee
             // 
@@ -541,6 +553,7 @@
             this.ChkSearchAdvancedTypeEmployee.TabIndex = 2;
             this.ChkSearchAdvancedTypeEmployee.Text = "Employee";
             this.ChkSearchAdvancedTypeEmployee.UseVisualStyleBackColor = true;
+            this.ChkSearchAdvancedTypeEmployee.CheckedChanged += new System.EventHandler(this.ChkSearchAdvancedType_CheckedChange);
             // 
             // ChkSearchAdvancedTypeCustomer
             // 
@@ -558,6 +571,7 @@
             this.ChkSearchAdvancedTypeCustomer.TabIndex = 1;
             this.ChkSearchAdvancedTypeCustomer.Text = "Customer";
             this.ChkSearchAdvancedTypeCustomer.UseVisualStyleBackColor = true;
+            this.ChkSearchAdvancedTypeCustomer.CheckedChanged += new System.EventHandler(this.ChkSearchAdvancedType_CheckedChange);
             // 
             // ChkSearchAdvancedInactive
             // 
@@ -577,66 +591,36 @@
             // panel1
             // 
             this.panel1.AutoScroll = true;
-            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.PnlSearchAdvancedEmployee);
             this.panel1.Controls.Add(this.PnlSearchAdvancedGeneral);
             this.panel1.Controls.Add(this.PnlSearchAdvancedTrainee);
             this.panel1.Controls.Add(this.PnlSearchAdvancedCustomer);
             this.panel1.Location = new System.Drawing.Point(5, 184);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(427, 441);
             this.panel1.TabIndex = 134;
             // 
-            // CmdSearchAdvancedExec
+            // PnlSearchAdvancedEmployee
             // 
-            this.CmdSearchAdvancedExec.AutoSize = false;
-            this.CmdSearchAdvancedExec.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CmdSearchAdvancedExec.Depth = 0;
-            this.CmdSearchAdvancedExec.DrawShadows = true;
-            this.CmdSearchAdvancedExec.HighEmphasis = true;
-            this.CmdSearchAdvancedExec.Icon = null;
-            this.CmdSearchAdvancedExec.Location = new System.Drawing.Point(202, 107);
-            this.CmdSearchAdvancedExec.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.CmdSearchAdvancedExec.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CmdSearchAdvancedExec.Name = "CmdSearchAdvancedExec";
-            this.CmdSearchAdvancedExec.Size = new System.Drawing.Size(211, 32);
-            this.CmdSearchAdvancedExec.TabIndex = 135;
-            this.CmdSearchAdvancedExec.Text = "Search";
-            this.CmdSearchAdvancedExec.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CmdSearchAdvancedExec.UseAccentColor = false;
-            this.CmdSearchAdvancedExec.UseVisualStyleBackColor = true;
-            // 
-            // LblSearchHeadlineGeneral
-            // 
-            this.LblSearchHeadlineGeneral.AutoSize = true;
-            this.LblSearchHeadlineGeneral.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblSearchHeadlineGeneral.Location = new System.Drawing.Point(1, 2);
-            this.LblSearchHeadlineGeneral.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblSearchHeadlineGeneral.Name = "LblSearchHeadlineGeneral";
-            this.LblSearchHeadlineGeneral.Size = new System.Drawing.Size(50, 14);
-            this.LblSearchHeadlineGeneral.TabIndex = 0;
-            this.LblSearchHeadlineGeneral.Text = "General";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.TxtSearchAdvancedDateOfLeaving);
-            this.panel2.Controls.Add(this.TxtSearchAdvancedDateOfJoining);
-            this.panel2.Controls.Add(this.TxtSearchAdvancedDegreeOfEmployment);
-            this.panel2.Controls.Add(this.TxtSearchAdvancedCadreLevel);
-            this.panel2.Controls.Add(this.TxtSearchAdvancedRole);
-            this.panel2.Controls.Add(this.TxtSearchAdvancedDepartement);
-            this.panel2.Controls.Add(this.LblSearchHeadlineEmployee);
-            this.panel2.Controls.Add(this.label15);
-            this.panel2.Controls.Add(this.label16);
-            this.panel2.Controls.Add(this.label17);
-            this.panel2.Controls.Add(this.label18);
-            this.panel2.Controls.Add(this.label20);
-            this.panel2.Controls.Add(this.label22);
-            this.panel2.Location = new System.Drawing.Point(3, 463);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(403, 178);
-            this.panel2.TabIndex = 130;
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.TxtSearchAdvancedDateOfLeaving);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.TxtSearchAdvancedDateOfJoining);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.TxtSearchAdvancedDegreeOfEmployment);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.TxtSearchAdvancedCadreLevel);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.TxtSearchAdvancedRole);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.TxtSearchAdvancedDepartement);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.LblSearchHeadlineEmployee);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.label15);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.label16);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.label17);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.label18);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.label20);
+            this.PnlSearchAdvancedEmployee.Controls.Add(this.label22);
+            this.PnlSearchAdvancedEmployee.Location = new System.Drawing.Point(3, 463);
+            this.PnlSearchAdvancedEmployee.Margin = new System.Windows.Forms.Padding(2);
+            this.PnlSearchAdvancedEmployee.Name = "PnlSearchAdvancedEmployee";
+            this.PnlSearchAdvancedEmployee.Size = new System.Drawing.Size(403, 178);
+            this.PnlSearchAdvancedEmployee.TabIndex = 130;
             // 
             // TxtSearchAdvancedDateOfLeaving
             // 
@@ -757,6 +741,25 @@
             this.label22.TabIndex = 111;
             this.label22.Text = "Date of leaving";
             // 
+            // CmdSearchAdvancedExec
+            // 
+            this.CmdSearchAdvancedExec.AutoSize = false;
+            this.CmdSearchAdvancedExec.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdSearchAdvancedExec.Depth = 0;
+            this.CmdSearchAdvancedExec.DrawShadows = true;
+            this.CmdSearchAdvancedExec.HighEmphasis = true;
+            this.CmdSearchAdvancedExec.Icon = null;
+            this.CmdSearchAdvancedExec.Location = new System.Drawing.Point(202, 107);
+            this.CmdSearchAdvancedExec.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.CmdSearchAdvancedExec.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdSearchAdvancedExec.Name = "CmdSearchAdvancedExec";
+            this.CmdSearchAdvancedExec.Size = new System.Drawing.Size(211, 32);
+            this.CmdSearchAdvancedExec.TabIndex = 135;
+            this.CmdSearchAdvancedExec.Text = "Search";
+            this.CmdSearchAdvancedExec.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdSearchAdvancedExec.UseAccentColor = false;
+            this.CmdSearchAdvancedExec.UseVisualStyleBackColor = true;
+            // 
             // TxtSearchAdvancedNumber
             // 
             this.TxtSearchAdvancedNumber.Location = new System.Drawing.Point(202, 150);
@@ -788,11 +791,11 @@
             this.Controls.Add(this.ChkSearchAdvancedTypeTrainee);
             this.Controls.Add(this.ChkSearchAdvancedTypeEmployee);
             this.Controls.Add(this.ChkSearchAdvancedTypeCustomer);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "FormSearchAdvanced";
             this.Opacity = 0.97D;
-            this.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.Sizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -805,8 +808,8 @@
             this.PnlSearchAdvancedCustomer.ResumeLayout(false);
             this.PnlSearchAdvancedCustomer.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.PnlSearchAdvancedEmployee.ResumeLayout(false);
+            this.PnlSearchAdvancedEmployee.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -862,7 +865,7 @@
         private System.Windows.Forms.Panel panel1;
         private MaterialSkin.Controls.MaterialButton CmdSearchAdvancedExec;
         private System.Windows.Forms.Label LblSearchHeadlineGeneral;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel PnlSearchAdvancedEmployee;
         private System.Windows.Forms.TextBox TxtSearchAdvancedDateOfLeaving;
         private System.Windows.Forms.TextBox TxtSearchAdvancedDateOfJoining;
         private System.Windows.Forms.TextBox TxtSearchAdvancedDegreeOfEmployment;
