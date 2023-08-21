@@ -17,7 +17,7 @@ namespace ContactManager
 
         public SearchFilters filters = new SearchFilters();
 
-        List<Person> searchResults;
+        List<object> searchResults;
 
         public enum Tab
         {
@@ -397,7 +397,8 @@ namespace ContactManager
                 // Fulltext search
 
                 string searchTerm = TxtSearch.Text;
-                searchResults = Controller.SearchContactsByFullText(searchTerm, ChkSearchInactive.Checked);
+
+                searchResults = Controller.SearchContactsByFullText(filters, searchTerm, ChkSearchInactive.Checked);
             }
             else
             {
@@ -408,6 +409,9 @@ namespace ContactManager
                 //searchResults = (searchParams.Count > 0)
                 //? Controller.SearchContactsByFilters((types.Count > 0) ? types : new List<Type>() { typeof(Person) }, this.searchFilterList)
                 //: null;
+
+                storeSearchFilters();
+                searchResults = Controller.SearchContactsByFilters(filters);
             }
 
 
@@ -439,6 +443,17 @@ namespace ContactManager
                 };
                 DataGridViewSearchResult.Columns.Add(dateOfBirthColumn);
 
+                DataGridViewTextBoxColumn statusColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "statusColumn",
+                    HeaderText = "Status",
+                    DataPropertyName = "status"
+                };
+                DataGridViewSearchResult.Columns.Add(statusColumn);
+
+                DataGridViewSearchResult.CellFormatting += DataGridViewSearchResult_CellFormatting;
+
+
                 if (searchResults.Count > 0)
                 {
                     LblNoResults.Visible = false;
@@ -464,6 +479,27 @@ namespace ContactManager
         }
 
         /// <summary>
+        /// Format the result in status column
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataGridViewSearchResult_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex == DataGridViewSearchResult.Columns["statusColumn"].Index && e.RowIndex >= 0)
+            {
+                if(searchResults != null)
+                {
+                    if(searchResults.Count > 0)
+                    {
+                        Person res = (Person)searchResults[e.RowIndex];
+
+                        e.Value = (res.status == 0) ? "Inactive" : "Active";
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// When the selected field in seach results changes, update the preview
         /// </summary>
         /// <param name="sender"></param>
@@ -478,7 +514,7 @@ namespace ContactManager
 
                     if (currentRow != null && currentRow.Index < searchResults.Count)
                     {
-                        var clickedPerson = searchResults[currentRow.Index];
+                        var clickedPerson = (Person)searchResults[currentRow.Index];
 
                         LblSearchViewStatus.Text = (clickedPerson.status != 0) ? "Active" : "Inactive";
                         LblSearchViewTitle.Text = clickedPerson.title;
@@ -494,6 +530,17 @@ namespace ContactManager
                         LblSearchViewPrivatePhone.Text = clickedPerson.phoneNumberPrivat;
                         LblSearchViewBusinessPhone.Text = clickedPerson.phoneNumberBusiness;
                         //LblSearchViewBusinessAddress.Text = clickedPerson;
+
+                        // Display type specific informations
+                        switch (searchResults[currentRow.Index].GetType())
+                        {
+                            case Type type when type == typeof(Customer):
+                                Customer customer = (Customer)searchResults[currentRow.Index];
+                                break;
+
+                            default:
+                                break;
+                        }
                     }
                 }
                 else

@@ -129,8 +129,12 @@ namespace ContactManager
 
 
     
-        public static List<Person> SearchContactsByFullText(string searchTerm, bool searchInactive)
+        public static List<object> SearchContactsByFullText(SearchFilters filters, string searchTerm, bool searchInactive)
         {
+            List<Type> types = getTypes(filters);
+
+            // SearchByQueryString ? ----------------------------------------------------------- EG
+
             return SqliteDataAccess.SearchPersonsByFullText(searchTerm, searchInactive);
         }
 
@@ -193,7 +197,7 @@ namespace ContactManager
             return queryString;
         }
 
-        public static List<Person> SearchContactsByFilters(SearchFilters filters)
+        public static List<object> SearchContactsByFilters(SearchFilters filters)
         {
             List<Type> types = getTypes(filters);
             List<string> sqlCondotions = createSqlStatements(filters);

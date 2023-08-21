@@ -169,9 +169,9 @@ namespace ContactManager
             }
         }
 
-        public static List<Person> SearchPersonsByFullText(string searchTerm, bool searchInactive)
+        public static List<object> SearchPersonsByFullText(string searchTerm, bool searchInactive)
         {
-            List<Person> results = new List<Person>();
+            List<object> results = new List<object>();
 
             using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -190,9 +190,9 @@ namespace ContactManager
             return conn.Query<Type>(query, new { searchTerm = $"%{searchTerm}%" }).AsList();
         }
 
-        public static List<Person> SearchPersonsByQueryString(List<Type> types, string filters)
+        public static List<object> SearchPersonsByQueryString(List<Type> types, string queryString)
         {
-            List<Person> results = new List<Person>();
+            List<object> results = new List<object>();
 
             using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -203,19 +203,18 @@ namespace ContactManager
                     switch (t)
                     {
                         case Type type when type == typeof(Customer):
-                            results.AddRange(SearchTableByQueryString<Customer>(conn, filters));
+                            results.AddRange(SearchTableByQueryString<Customer>(conn, queryString));
                             break;
 
                         case Type type when type == typeof(Employee):
-                            results.AddRange(SearchTableByQueryString<Employee>(conn, filters));
+                            results.AddRange(SearchTableByQueryString<Employee>(conn, queryString));
                             break;
 
                         case Type type when type == typeof(Trainee):
-                            results.AddRange(SearchTableByQueryString<Trainee>(conn, filters));
+                            results.AddRange(SearchTableByQueryString<Trainee>(conn, queryString));
                             break;
 
                         default:
-                            results.AddRange(SearchTableByQueryString<Person>(conn, filters));
                             break;
                     }
                 }
@@ -228,8 +227,8 @@ namespace ContactManager
 
         private static List<Type> SearchTableByQueryString<Type>(SQLiteConnection conn, string queryString) where Type : Person, new()
         {
-            string tableName = typeof(Type).Name;
-            string query = $"SELECT * FROM {tableName} WHERE{queryString}";
+            string joinedTableName = typeof(Type).Name;
+            string query = $"SELECT * FROM Person INNER JOIN {joinedTableName} ON Person.id = {joinedTableName}.id WHERE{queryString}";
             return conn.Query<Type>(query).AsList();
         }
 
