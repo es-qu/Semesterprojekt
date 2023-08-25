@@ -244,26 +244,6 @@ namespace ContactManager
             }
         }
 
-        private void CmdExecSearch_Click(object sender, EventArgs e)
-        {
-            string searchText = TxtSearch.Text;
-            List<Person> people = SqliteDataAccess.LoadPeople(searchText);
-            if (people.Count == 0)
-            {
-                TxtSearch.Text = "No users found.";
-            }
-            else
-            {
-                TxtSearch.Text = "";
-                foreach (Person person in people)
-                {
-                    DateTime dob = DateTime.Parse(person.dateOfBirth);
-                    TxtSearch.Text += $"First Name: {person.firstName}, Last Name: {person.lastName}, Date of Birth: {dob.ToString("yyyy-MM-dd")}\n";
-                }
-            }
-
-        }
-
         private void RadCreateCustomer_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -392,26 +372,26 @@ namespace ContactManager
 
             LblSearchResultCounter.Text = "Results: 0";
 
+            storeSearchFilters();
+
             if (TxtSearch.Text != string.Empty)
             {
                 // Fulltext search
 
                 string searchTerm = TxtSearch.Text;
-
-                searchResults = Controller.SearchContactsByFullText(filters, searchTerm, ChkSearchInactive.Checked);
+                searchResults = Controller.SearchContactsByFullText(filters, searchTerm);
             }
             else
             {
-                // Filter search
-
-                searchResults = Controller.SearchContactsByFilters(filters);
-
-                //searchResults = (searchParams.Count > 0)
-                //? Controller.SearchContactsByFilters((types.Count > 0) ? types : new List<Type>() { typeof(Person) }, this.searchFilterList)
-                //: null;
-
-                storeSearchFilters();
-                searchResults = Controller.SearchContactsByFilters(filters);
+                if (!Controller.FiltersAreClear(filters))
+                {
+                    // Filter search
+                    searchResults = Controller.SearchContactsByFilters(filters);
+                } else
+                {
+                    string searchTerm = "";
+                    searchResults = Controller.SearchContactsByFullText(filters, searchTerm);
+                }
             }
 
 
@@ -622,6 +602,12 @@ namespace ContactManager
             filters.TypeCustomer = ChkSearchTypeCustomer.Checked;
             filters.TypeEmployee = ChkSearchTypeEmployee.Checked;
             filters.TypeTrainee = ChkSearchTypeTrainee.Checked;
+
+            filters.FirstName = TxtSearchFirstName.Text;
+
+            //
+            //  Add all other filters --------------------------------------------------------
+            //
         }
     }
 }

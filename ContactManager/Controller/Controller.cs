@@ -1,11 +1,6 @@
 ﻿using ContactManager.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data.SqlTypes;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ContactManager
@@ -17,13 +12,13 @@ namespace ContactManager
                                      string phoneBuiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel, Form form)
         {
             Employee e = new Employee
-            { 
+            {
                 status = status,
                 firstName = firstName,
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,
                 EmployeeNumber = employeeNumber,
-                gender =gender,
+                gender = gender,
                 Salutation = Salutaion,
                 title = title,
                 street = street,
@@ -43,7 +38,7 @@ namespace ContactManager
 
             };
 
-        SqliteDataAccess.SaveEmployee(e);
+            SqliteDataAccess.SaveEmployee(e);
 
             // Show confirmation message
             MessageBox.Show($"Employee {e.firstName} {e.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
@@ -124,20 +119,79 @@ namespace ContactManager
             // Show confirmation message
             MessageBox.Show($"Customer {c.firstName} {c.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
             form.Close();
-
         }
 
 
-    
-        public static List<object> SearchContactsByFullText(SearchFilters filters, string searchTerm, bool searchInactive)
+        /// <summary>
+        /// Check if the filters are set.
+        /// </summary>
+        /// <param name="filters">Filter states</param>
+        /// <returns>True if no filter is set, else false</returns>
+        public static bool FiltersAreClear(SearchFilters filters)
+        {
+            bool clear = true;
+
+            // First name, last name
+            clear = (filters.FirstName == string.Empty && clear);
+            clear = (filters.LastName == string.Empty && clear);
+
+            // Customer no. / employee no.
+            clear = (filters.Number == string.Empty && clear);
+
+            // Search address, place of residence
+            clear = (filters.Address == string.Empty && clear);
+            clear = (filters.PlaceOfResidence == string.Empty && clear);
+
+            // Date of birth
+            clear = (filters.DateOfBirth == string.Empty && clear);
+
+
+            //
+            //  Add all other filters --------------------------------------------------------
+            //
+
+
+            return clear;
+        }
+
+        /// <summary>
+        /// Search contacts with fulltext search.
+        /// </summary>
+        /// <param name="filters">Filter states object</param>
+        /// <param name="searchTerm">Content of searchbar</param>
+        /// <returns>Instances of Contact, Employee and Trainee that match the criteria</returns>
+        public static List<object> SearchContactsByFullText(SearchFilters filters, string searchTerm)
         {
             List<Type> types = getTypes(filters);
+            
+            string filterCondition =
+                $"firstName LIKE '%{searchTerm}%' " +
+                $"OR lastName LIKE '%{searchTerm}%' " +
+                $"OR street LIKE '%{searchTerm}%' " +
+                $"OR placeOfResidence LIKE '%{searchTerm}%' " +
+                $"OR dateOfBirth LIKE '%{searchTerm}%'";
 
-            // SearchByQueryString ? ----------------------------------------------------------- EG
+            string inactiveCondition = (filters.Inactive) ? "(status = 0 OR status = 1)" : "status = 1";
 
-            return SqliteDataAccess.SearchPersonsByFullText(searchTerm, searchInactive);
+            List<object> res = new List<object>();
+
+            string customerSqlCondition = $"({filterCondition} OR CustomerNumber LIKE '%{searchTerm}%') AND {inactiveCondition}";
+            if (types.Contains(typeof(Customer))) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Customer) }, customerSqlCondition));
+
+            string employeeSqlCondition = $"({filterCondition} OR EmployeeNumber LIKE '%{searchTerm}%') AND {inactiveCondition}";
+            if (types.Contains(typeof(Employee))) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Employee) }, employeeSqlCondition));
+
+            string traineeSqlCondition = $"({filterCondition}) AND {inactiveCondition}";
+            if (types.Contains(typeof(Trainee))) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Trainee) }, traineeSqlCondition));
+
+            return res;
         }
 
+        /// <summary>
+        /// Extracts the types that are active in the given search filters
+        /// </summary>
+        /// <param name="filters">Filter states</param>
+        /// <returns>The active types</returns>
         public static List<Type> getTypes(SearchFilters filters)
         {
             List<Type> types = new List<Type>();
@@ -146,14 +200,19 @@ namespace ContactManager
             if (filters.TypeCustomer) types.Add(typeof(Customer));
             if (filters.TypeEmployee) types.Add(typeof(Employee));
             if (filters.TypeTrainee) types.Add(typeof(Trainee));
-            types = (types.Count == 0) 
-                ? new List<Type>() { typeof(Customer), typeof(Employee), typeof(Trainee) } 
+            types = (types.Count == 0)
+                ? new List<Type>() { typeof(Customer), typeof(Employee), typeof(Trainee) }
                 : types;
 
             return types;
         }
 
-        public static List<string> createSqlStatements(SearchFilters filters)
+        /// <summary>
+        /// Create statements to be used in SQL WHERE clause to search contacts
+        /// </summary>
+        /// <param name="filters">Filter states object</param>
+        /// <returns>A list of conditions</returns>
+        public static List<string> createSqlConditions(SearchFilters filters)
         {
             List<string> sqlConditions = new List<string>();
 
@@ -178,6 +237,11 @@ namespace ContactManager
             return sqlConditions;
         }
 
+        /// <summary>
+        /// Join the conditions to one string that will be used as WHERE condition in DB
+        /// </summary>
+        /// <param name="sqlConditions">List of conditions</param>
+        /// <returns>String for WHERE statement</returns>
         public static string createQueryString(List<string> sqlConditions)
         {
             string queryString = string.Empty;
@@ -197,10 +261,15 @@ namespace ContactManager
             return queryString;
         }
 
+        /// <summary>
+        /// Search contacts using filters.
+        /// </summary>
+        /// <param name="filters">Search filter states object</param>
+        /// <returns>Instances of Contact, Employee and Trainee that match the criteria</returns>
         public static List<object> SearchContactsByFilters(SearchFilters filters)
         {
             List<Type> types = getTypes(filters);
-            List<string> sqlCondotions = createSqlStatements(filters);
+            List<string> sqlCondotions = createSqlConditions(filters);
             string queryString = createQueryString(sqlCondotions);
 
             return SqliteDataAccess.SearchPersonsByQueryString(types, queryString);

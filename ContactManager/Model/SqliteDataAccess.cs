@@ -228,7 +228,7 @@ namespace ContactManager
         private static List<Type> SearchTableByQueryString<Type>(SQLiteConnection conn, string queryString) where Type : Person, new()
         {
             string joinedTableName = typeof(Type).Name;
-            string query = $"SELECT * FROM Person INNER JOIN {joinedTableName} ON Person.id = {joinedTableName}.id WHERE{queryString}";
+            string query = $"SELECT * FROM Person INNER JOIN {joinedTableName} ON Person.id = {joinedTableName}.id WHERE {queryString}";
             return conn.Query<Type>(query).AsList();
         }
 
