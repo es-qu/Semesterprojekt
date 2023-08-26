@@ -586,11 +586,20 @@ namespace ContactManager
         /// </summary>
         public void syncSearchGUI()
         {
+            // Check boxes
             ChkSearchInactive.Checked = filters.Inactive;
 
             ChkSearchTypeCustomer.Checked = filters.TypeCustomer;
             ChkSearchTypeEmployee.Checked = filters.TypeEmployee;
             ChkSearchTypeTrainee.Checked = filters.TypeTrainee;
+
+            // Quick search
+            TxtSearchFirstName.Text = filters.FirstName;
+            TxtSearchLastName.Text = filters.LastName;
+            TxtSearchNumber.Text = filters.Number;
+            TxtSearchAddress.Text = filters.Address;
+            TxtSearchPlaceOfResidence.Text = filters.PlaceOfResidence;
+            TxtSearchDateOfBirth.Text = filters.DateOfBirth;
         }
 
         /// <summary>
@@ -598,6 +607,7 @@ namespace ContactManager
         /// </summary>
         public void storeSearchFilters()
         {
+            // Check boxes
             filters.Inactive = ChkSearchInactive.Checked;
 
             filters.TypeCustomer = ChkSearchTypeCustomer.Checked;
@@ -611,11 +621,6 @@ namespace ContactManager
             filters.Address = TxtSearchAddress.Text;
             filters.PlaceOfResidence = TxtSearchPlaceOfResidence.Text;
             filters.DateOfBirth = TxtSearchDateOfBirth.Text;
-            //
-
-            //
-            //  Add all other filters --------------------------------------------------------
-            //
         }
     }
 }

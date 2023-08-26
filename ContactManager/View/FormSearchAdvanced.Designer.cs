@@ -702,6 +702,7 @@
             this.CmdSearchAdvancedExec.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchAdvancedExec.UseAccentColor = false;
             this.CmdSearchAdvancedExec.UseVisualStyleBackColor = true;
+            this.CmdSearchAdvancedExec.Click += new System.EventHandler(this.CmdSearchAdvancedExec_Click);
             // 
             // TxtSearchAdvancedNumber
             // 

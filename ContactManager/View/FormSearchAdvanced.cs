@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using MaterialSkin;
+﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace ContactManager
 {
@@ -72,7 +66,7 @@ namespace ContactManager
         {
             storeSearchAdvancedFilters();
             parentFormMain.syncSearchGUI();
-            //parentFormMain.CmdSearchExec_Click(sender, e);
+            parentFormMain.CmdSearchExec_Click(sender, e);
         }
 
         /// <summary>
@@ -80,11 +74,38 @@ namespace ContactManager
         /// </summary>
         public void storeSearchAdvancedFilters()
         {
+            // Storing checkbox states
             parentFormMain.filters.Inactive = ChkSearchAdvancedInactive.Checked;
 
             parentFormMain.filters.TypeCustomer = ChkSearchAdvancedTypeCustomer.Checked;
             parentFormMain.filters.TypeEmployee = ChkSearchAdvancedTypeEmployee.Checked;
             parentFormMain.filters.TypeTrainee = ChkSearchAdvancedTypeTrainee.Checked;
+
+            // Storing General Information
+            parentFormMain.filters.Number = TxtSearchAdvancedNumber.Text;
+            parentFormMain.filters.Title = TxtSearchAdvancedTitle.Text;
+            parentFormMain.filters.FirstName = TxtSearchAdvancedFirstName.Text;
+            parentFormMain.filters.LastName = TxtSearchAdvancedLastName.Text;
+            parentFormMain.filters.Address = TxtSearchAdvancedAddress.Text;
+            parentFormMain.filters.PostalCode = TxtSearchAdvancedPostalCode.Text;
+            parentFormMain.filters.PlaceOfResidence = TxtSearchAdvancedPlaceOfResidence.Text;
+
+            // Storing Customer Information
+            parentFormMain.filters.CustomerType = TxtSearchAdvancedCustomerType.Text;
+            parentFormMain.filters.CompanyName = TxtSearchAdvancedCompanyName.Text;
+            parentFormMain.filters.CompanyContact = TxtSearchAdvancedCompanyContact.Text;
+
+            // Storing Trainee Information
+            parentFormMain.filters.CurrentApprenticeshipYear = TxtSearchAdvancedCurrentAppYear.Text;
+            parentFormMain.filters.YearsOfApprenticeship = TxtSearchAdvancedYearOfApp.Text;
+
+            // Storing Employee Information
+            parentFormMain.filters.Departement = TxtSearchAdvancedDepartement.Text;
+            parentFormMain.filters.Role = TxtSearchAdvancedRole.Text;
+            parentFormMain.filters.CadreLevel = TxtSearchAdvancedCadreLevel.Text;
+            parentFormMain.filters.DegreeOfEmployment = TxtSearchAdvancedDegreeOfEmployment.Text;
+            parentFormMain.filters.DateOfJoining = TxtSearchAdvancedDateOfJoining.Text;
+            parentFormMain.filters.DateOfLeaving = TxtSearchAdvancedDateOfLeaving.Text;
         }
 
         /// <summary>
@@ -92,11 +113,43 @@ namespace ContactManager
         /// </summary>
         public void syncAdvancedGUI()
         {
+            // Syncing checkbox states
             ChkSearchAdvancedInactive.Checked = parentFormMain.filters.Inactive;
 
             ChkSearchAdvancedTypeCustomer.Checked = parentFormMain.filters.TypeCustomer;
             ChkSearchAdvancedTypeEmployee.Checked = parentFormMain.filters.TypeEmployee;
             ChkSearchAdvancedTypeTrainee.Checked = parentFormMain.filters.TypeTrainee;
+
+            // Syncing General Information
+            TxtSearchAdvancedNumber.Text = parentFormMain.filters.Number;
+            TxtSearchAdvancedTitle.Text = parentFormMain.filters.Title;
+            TxtSearchAdvancedFirstName.Text = parentFormMain.filters.FirstName;
+            TxtSearchAdvancedLastName.Text = parentFormMain.filters.LastName;
+            TxtSearchAdvancedAddress.Text = parentFormMain.filters.Address;
+            TxtSearchAdvancedPostalCode.Text = parentFormMain.filters.PostalCode;
+            TxtSearchAdvancedPlaceOfResidence.Text = parentFormMain.filters.PlaceOfResidence;
+
+            // Syncing Customer Information
+            TxtSearchAdvancedCustomerType.Text = parentFormMain.filters.CustomerType;
+            TxtSearchAdvancedCompanyName.Text = parentFormMain.filters.CompanyName;
+            TxtSearchAdvancedCompanyContact.Text = parentFormMain.filters.CompanyContact;
+
+            // Syncing Trainee Information
+            TxtSearchAdvancedCurrentAppYear.Text = parentFormMain.filters.CurrentApprenticeshipYear;
+            TxtSearchAdvancedYearOfApp.Text = parentFormMain.filters.YearsOfApprenticeship;
+
+            // Syncing Employee Information
+            TxtSearchAdvancedDepartement.Text = parentFormMain.filters.Departement;
+            TxtSearchAdvancedRole.Text = parentFormMain.filters.Role;
+            TxtSearchAdvancedCadreLevel.Text = parentFormMain.filters.CadreLevel;
+            TxtSearchAdvancedDegreeOfEmployment.Text = parentFormMain.filters.DegreeOfEmployment;
+            TxtSearchAdvancedDateOfJoining.Text = parentFormMain.filters.DateOfJoining;
+            TxtSearchAdvancedDateOfLeaving.Text = parentFormMain.filters.DateOfLeaving;
+        }
+
+        private void CmdSearchAdvancedExec_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
