@@ -169,27 +169,13 @@ namespace ContactManager
             }
         }
 
-        public static List<object> SearchPersonsByFullText(string searchTerm, bool searchInactive)
-        {
-            List<object> results = new List<object>();
-
-            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
-            {
-                conn.Open();
-                results.AddRange(SearchTableByFullText<Person>(conn, searchTerm, searchInactive));
-                conn.Close();
-            }
-
-            return results;
-        }
-
-        private static List<Type> SearchTableByFullText<Type>(SQLiteConnection conn, string searchTerm, bool searchInactive) where Type : Person, new()
-        {
-            string tableName = typeof(Type).Name;
-            string query = $"SELECT * FROM {tableName} WHERE (firstName LIKE @searchTerm OR lastName LIKE @searchTerm) AND {((searchInactive) ? "(status = 0 OR status = 1)" : "status = 1")}";
-            return conn.Query<Type>(query, new { searchTerm = $"%{searchTerm}%" }).AsList();
-        }
-
+        /// <summary>
+        /// Search for contacts in db according to a list of the chosen types and a query string.
+        /// Adds the data from multiple queries into one list to be returned.
+        /// </summary>
+        /// <param name="types">Selected types of Person</param>
+        /// <param name="queryString">WHERE condition to filter results</param>
+        /// <returns>Instances of objects inheriting from Person according to selected types</returns>
         public static List<object> SearchPersonsByQueryString(List<Type> types, string queryString)
         {
             List<object> results = new List<object>();
@@ -225,6 +211,17 @@ namespace ContactManager
             return results;
         }
 
+        /// <summary>
+        /// The actual SQL SELECT gets done here.
+        /// One type of Person at a time can be browsed.
+        /// </summary>
+        /// <typeparam name="Type">
+        /// Accepts a Type that inherits from Person.
+        /// This defines the Type of the response and the table to join.
+        /// </typeparam>
+        /// <param name="conn">SQL db connection</param>
+        /// <param name="queryString">WHERE condition</param>
+        /// <returns></returns>
         private static List<Type> SearchTableByQueryString<Type>(SQLiteConnection conn, string queryString) where Type : Person, new()
         {
             string joinedTableName = typeof(Type).Name;

@@ -163,7 +163,7 @@ namespace ContactManager
         public static List<object> SearchContactsByFullText(SearchFilters filters, string searchTerm)
         {
             List<Type> types = getTypes(filters);
-            
+
             string filterCondition =
                 $"firstName LIKE '%{searchTerm}%' " +
                 $"OR lastName LIKE '%{searchTerm}%' " +
@@ -225,6 +225,8 @@ namespace ContactManager
             if (filters.LastName != string.Empty) sqlConditions.Add($"lastName LIKE '{filters.LastName}'");
 
             // Customer no. / employee no.
+            // --------------------------- Doesn't work !!! --------------------- :/
+
             if (filters.Number != string.Empty) sqlConditions.Add($"(CustomerNumber = '{filters.Number}' OR EmployeeNumber = '{filters.Number}')");
 
             // Search address, place of residence

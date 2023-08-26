@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -603,7 +604,14 @@ namespace ContactManager
             filters.TypeEmployee = ChkSearchTypeEmployee.Checked;
             filters.TypeTrainee = ChkSearchTypeTrainee.Checked;
 
+            // Quick search
             filters.FirstName = TxtSearchFirstName.Text;
+            filters.LastName = TxtSearchLastName.Text;
+            filters.Number = TxtSearchNumber.Text;
+            filters.Address = TxtSearchAddress.Text;
+            filters.PlaceOfResidence = TxtSearchPlaceOfResidence.Text;
+            filters.DateOfBirth = TxtSearchDateOfBirth.Text;
+            //
 
             //
             //  Add all other filters --------------------------------------------------------
