@@ -1,6 +1,8 @@
 ﻿using ContactManager.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ContactManager
@@ -129,27 +131,34 @@ namespace ContactManager
         /// <returns>True if no filter is set, else false</returns>
         public static bool FiltersAreClear(SearchFilters filters)
         {
-            bool clear = true;
+            bool clear = 
+                string.IsNullOrEmpty(filters.Number) &&
+                string.IsNullOrEmpty(filters.Title) &&
+                string.IsNullOrEmpty(filters.FirstName) &&
+                string.IsNullOrEmpty(filters.LastName) &&
+                string.IsNullOrEmpty(filters.Address) &&
+                string.IsNullOrEmpty(filters.PostalCode) &&
+                string.IsNullOrEmpty(filters.PlaceOfResidence) &&
+                string.IsNullOrEmpty(filters.Nationality) &&
+                string.IsNullOrEmpty(filters.OasiNumber) &&
+                string.IsNullOrEmpty(filters.EmailAddress) &&
+                string.IsNullOrEmpty(filters.PrivatePhone) &&
+                string.IsNullOrEmpty(filters.BusinessPhone) &&
+                string.IsNullOrEmpty(filters.BusinessAddress) &&
 
-            // First name, last name
-            clear = (filters.FirstName == string.Empty && clear);
-            clear = (filters.LastName == string.Empty && clear);
+                string.IsNullOrEmpty(filters.CustomerType) &&
+                string.IsNullOrEmpty(filters.CompanyName) &&
+                string.IsNullOrEmpty(filters.CompanyContact) &&
 
-            // Customer no. / employee no.
-            clear = (filters.Number == string.Empty && clear);
+                string.IsNullOrEmpty(filters.CurrentApprenticeshipYear) &&
+                string.IsNullOrEmpty(filters.YearsOfApprenticeship) &&
 
-            // Search address, place of residence
-            clear = (filters.Address == string.Empty && clear);
-            clear = (filters.PlaceOfResidence == string.Empty && clear);
-
-            // Date of birth
-            clear = (filters.DateOfBirth == string.Empty && clear);
-
-
-            //
-            //  Add all other filters --------------------------------------------------------
-            //
-
+                string.IsNullOrEmpty(filters.Departement) &&
+                string.IsNullOrEmpty(filters.Role) &&
+                string.IsNullOrEmpty(filters.CadreLevel) &&
+                string.IsNullOrEmpty(filters.DegreeOfEmployment) &&
+                string.IsNullOrEmpty(filters.DateOfJoining) &&
+                string.IsNullOrEmpty(filters.DateOfLeaving);
 
             return clear;
         }
@@ -212,29 +221,54 @@ namespace ContactManager
         /// </summary>
         /// <param name="filters">Filter states object</param>
         /// <returns>A list of conditions</returns>
-        public static List<string> createSqlConditions(SearchFilters filters)
+        public static Dictionary<string, List<string>> createSqlConditions(SearchFilters filters)
         {
-            List<string> sqlConditions = new List<string>();
+            Dictionary<string, List<string>> sqlConditions = new Dictionary<string, List<string>>() { };
 
-            // Inactive filter
-            if (filters.Inactive) sqlConditions.Add("(status = 0 OR status = 1)");
-            else sqlConditions.Add("status = 1");
+            // General Information
+            List<string> generic = new List<string>();
+            if (!string.IsNullOrEmpty(filters.Title)) generic.Add($"title LIKE '%{filters.Title}%'");
+            if (!string.IsNullOrEmpty(filters.FirstName)) generic.Add($"firstName LIKE '%{filters.FirstName}%'");
+            if (!string.IsNullOrEmpty(filters.LastName)) generic.Add($"lastName LIKE '%{filters.LastName}%'");
+            if (!string.IsNullOrEmpty(filters.PostalCode)) generic.Add($"postalCode LIKE '%{filters.PostalCode}%'");
+            if (!string.IsNullOrEmpty(filters.Nationality)) generic.Add($"nationality LIKE '%{filters.Nationality}%'");
+            if (!string.IsNullOrEmpty(filters.OasiNumber)) generic.Add($"oasiNumber LIKE '%{filters.OasiNumber}%'");
+            if (!string.IsNullOrEmpty(filters.EmailAddress)) generic.Add($"emailAddress LIKE '%{filters.EmailAddress}%'");
+            if (!string.IsNullOrEmpty(filters.PrivatePhone)) generic.Add($"privatePhone LIKE '%{filters.PrivatePhone}%'");
+            if (!string.IsNullOrEmpty(filters.BusinessPhone)) generic.Add($"businessPhone LIKE '%{filters.BusinessPhone}%'");
+            if (!string.IsNullOrEmpty(filters.BusinessAddress)) generic.Add($"businessAddress LIKE '%{filters.BusinessAddress}%'");
+            sqlConditions["generic"] = generic;
 
-            // First name, last name
-            if (filters.FirstName != string.Empty) sqlConditions.Add($"firstName LIKE '{filters.FirstName}'");
-            if (filters.LastName != string.Empty) sqlConditions.Add($"lastName LIKE '{filters.LastName}'");
+            // Customer Information
+            List<string> customer = new List<string>();
+            if (!string.IsNullOrEmpty(filters.Number)) customer.Add($"CustomerNumber LIKE '%{filters.Number}%'");
+            if (!string.IsNullOrEmpty(filters.CustomerType)) customer.Add($"customerType LIKE '%{filters.CustomerType}%'");
+            if (!string.IsNullOrEmpty(filters.CompanyName)) customer.Add($"companyName LIKE '%{filters.CompanyName}%'");
+            if (!string.IsNullOrEmpty(filters.CompanyContact)) customer.Add($"companyContact LIKE '%{filters.CompanyContact}%'");
+            sqlConditions["customer"] = customer;
 
-            // Customer no. / employee no.
-            // --------------------------- Doesn't work !!! --------------------- :/
+            // Employee Information
+            List<string> employee = new List<string>();
+            if (!string.IsNullOrEmpty(filters.Number)) employee.Add($"EmployeeNumber LIKE '%{filters.Number}%'");
+            if (!string.IsNullOrEmpty(filters.Departement)) employee.Add($"departement LIKE '%{filters.Departement}%'");
+            if (!string.IsNullOrEmpty(filters.Role)) employee.Add($"role LIKE '%{filters.Role}%'");
+            if (!string.IsNullOrEmpty(filters.CadreLevel)) employee.Add($"cadreLevel LIKE '%{filters.CadreLevel}%'");
+            if (!string.IsNullOrEmpty(filters.DegreeOfEmployment)) employee.Add($"degreeOfEmployment LIKE '%{filters.DegreeOfEmployment}%'");
+            if (!string.IsNullOrEmpty(filters.DateOfJoining)) employee.Add($"dateOfJoining LIKE '%{filters.DateOfJoining}%'");
+            if (!string.IsNullOrEmpty(filters.DateOfLeaving)) employee.Add($"dateOfLeaving LIKE '%{filters.DateOfLeaving}%'");
+            sqlConditions["employee"] = employee;
 
-            if (filters.Number != string.Empty) sqlConditions.Add($"(CustomerNumber = '{filters.Number}' OR EmployeeNumber = '{filters.Number}')");
+            // Trainee Information
+            List<string> trainee = new List<string>();
+            if (!string.IsNullOrEmpty(filters.CurrentApprenticeshipYear)) trainee.Add($"currentApprenticeshipYear LIKE '%{filters.CurrentApprenticeshipYear}%'");
+            if (!string.IsNullOrEmpty(filters.YearsOfApprenticeship)) trainee.Add($"yearsOfApprenticeship LIKE '%{filters.YearsOfApprenticeship}%'");
+            sqlConditions["trainee"] = trainee;
 
-            // Search address, place of residence
-            if (filters.Address != string.Empty) sqlConditions.Add($"street LIKE '{filters.Address}'");
-            if (filters.PlaceOfResidence != string.Empty) sqlConditions.Add($"placeOfResidence LIKE '{filters.PlaceOfResidence}'");
-
-            // Date of birth
-            if (filters.DateOfBirth != string.Empty) sqlConditions.Add($"dateOfBirth LIKE '{filters.DateOfBirth}'");
+            // Search Inactive Checkbox
+            List<string> inactive = new List<string>();
+            if (filters.Inactive) inactive.Add("(status = 0 OR status = 1)");
+            else inactive.Add("status = 1");
+            sqlConditions["inactive"] = inactive;
 
             return sqlConditions;
         }
@@ -271,11 +305,26 @@ namespace ContactManager
         public static List<object> SearchContactsByFilters(SearchFilters filters)
         {
             List<Type> types = getTypes(filters);
-            List<string> sqlCondotions = createSqlConditions(filters);
-            string queryString = createQueryString(sqlCondotions);
+            Dictionary<string, List<string>> sqlConditions = createSqlConditions(filters);
 
-            return SqliteDataAccess.SearchPersonsByQueryString(types, queryString);
+            string genericQueryString = createQueryString(sqlConditions["generic"]);
+            string customerQueryString = createQueryString(sqlConditions["customer"]);
+            string employeeQueryString = createQueryString(sqlConditions["employee"]);
+            string traineeQueryString = createQueryString(sqlConditions["trainee"]);
+            string inactiveQueryString = createQueryString(sqlConditions["inactive"]);
+
+            List<object> res = new List<object>();
+
+            string customerSqlCondition = $"{((genericQueryString.Length > 0) ? genericQueryString + " AND " : "")}{((customerQueryString.Length > 0) ? customerQueryString + " AND " : "")}{inactiveQueryString}";
+            if (types.Contains(typeof(Customer))) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Customer) }, customerSqlCondition));
+
+            string employeeSqlCondition = $"{((genericQueryString.Length > 0) ? genericQueryString + " AND " : "")}{((employeeQueryString.Length > 0) ? employeeQueryString + " AND " : "")}{inactiveQueryString}";
+            if (types.Contains(typeof(Employee))) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Employee) }, employeeSqlCondition));
+
+            string traineeSqlCondition = $"{((genericQueryString.Length > 0) ? genericQueryString + " AND " : "")}{((employeeQueryString.Length > 0) ? employeeQueryString + " AND " : "")}{((traineeQueryString.Length > 0) ? traineeQueryString + " AND " : "")}{inactiveQueryString}";
+            if (types.Contains(typeof(Trainee))) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Trainee) }, traineeSqlCondition));
+
+            return res;
         }
-
     }
 }

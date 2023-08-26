@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -388,7 +386,8 @@ namespace ContactManager
                 {
                     // Filter search
                     searchResults = Controller.SearchContactsByFilters(filters);
-                } else
+                }
+                else
                 {
                     string searchTerm = "";
                     searchResults = Controller.SearchContactsByFullText(filters, searchTerm);
@@ -468,9 +467,9 @@ namespace ContactManager
         {
             if (e.ColumnIndex == DataGridViewSearchResult.Columns["statusColumn"].Index && e.RowIndex >= 0)
             {
-                if(searchResults != null)
+                if (searchResults != null)
                 {
-                    if(searchResults.Count > 0)
+                    if (searchResults.Count > 0)
                     {
                         Person res = (Person)searchResults[e.RowIndex];
 
@@ -513,14 +512,57 @@ namespace ContactManager
                         //LblSearchViewBusinessAddress.Text = clickedPerson;
 
                         // Display type specific informations
-                        switch (searchResults[currentRow.Index].GetType())
-                        {
-                            case Type type when type == typeof(Customer):
-                                Customer customer = (Customer)searchResults[currentRow.Index];
-                                break;
+                        LblSearchPreviewNumber.Text = "-";
+                        LblSearchPreviewType.Text = "-";
+                        LblCreateCustomerType.Text = "-";
+                        LblSearchPreviewCompanyName.Text = "-";
+                        LblSearchPreviewCompanyContact.Text = "-";
 
-                            default:
-                                break;
+                        PnlSearchPreviewCustomer.Visible = false;
+                        PnlSearchPreviewEmployee.Visible = false;
+                        PnlSearchPreviewTrainee.Visible = false;
+
+                        var type = searchResults[currentRow.Index].GetType();
+
+                        if (type == typeof(Customer))
+                        {
+                            Customer customer = (Customer)searchResults[currentRow.Index];
+                            LblSearchPreviewNumber.Text = customer.CustomerNumber;
+                            LblSearchPreviewType.Text = "Customer";
+                            LblCreateCustomerType.Text = customer.CustomerType;
+                            LblSearchPreviewCompanyName.Text = customer.CompanyName;
+                            LblSearchPreviewCompanyContact.Text = customer.CompanyContact;
+
+                            PnlSearchPreviewCustomer.Visible = true;
+                            PnlSearchPreviewEmployee.Visible = false;
+                            PnlSearchPreviewTrainee.Visible = false;
+                        }
+                        else if (type.IsAssignableFrom(typeof(Employee)))
+                        {
+                            if (type == typeof(Trainee))
+                            {
+                                Trainee trainee = (Trainee)searchResults[currentRow.Index];
+                                LblSearchPreviewNumber.Text = trainee.EmployeeNumber;
+                                LblSearchPreviewType.Text = "Trainee";
+
+                                PnlSearchPreviewTrainee.Visible = true;
+                            }
+                            else
+                            {
+                                Employee employee = (Employee)searchResults[currentRow.Index];
+                                LblSearchPreviewNumber.Text = employee.EmployeeNumber;
+                                LblSearchPreviewType.Text = "Employee";
+
+                                PnlSearchPreviewEmployee.Visible = true;
+                            }
+                        }
+                        else
+                        {
+                            LblSearchPreviewNumber.Text = "-";
+                            LblSearchPreviewType.Text = "-";
+                            LblCreateCustomerType.Text = "-";
+                            LblSearchPreviewCompanyName.Text = "-";
+                            LblSearchPreviewCompanyContact.Text = "-";
                         }
                     }
                 }
@@ -538,7 +580,13 @@ namespace ContactManager
                     LblSearchViewEmailAddress.Text = "-";
                     LblSearchViewPrivatePhone.Text = "-";
                     LblSearchViewBusinessPhone.Text = "-";
-                    //LblSearchViewBusinessAddress.Text = "-";
+                    LblSearchViewBusinessAddress.Text = "-";
+
+                    LblSearchPreviewNumber.Text = "-";
+                    LblSearchPreviewType.Text = "-";
+                    LblCreateCustomerType.Text = "-";
+                    LblSearchPreviewCompanyName.Text = "-";
+                    LblSearchPreviewCompanyContact.Text = "-";
                 }
             }
         }
