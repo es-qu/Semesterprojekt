@@ -700,7 +700,12 @@ namespace ContactManager
         {
             if (searchResults != null)
             {
-                // Edit
+
+                // Visability Delete Button
+                CmdCreateDeletePerson.Visible = true;
+
+                // Edit             
+
                 DataGridViewRow currentRow = DataGridViewSearchResult.Rows[DataGridViewSearchResult.SelectedCells[0].RowIndex];
 
                 if (currentRow != null && currentRow.Index < searchResults.Count)
@@ -710,20 +715,92 @@ namespace ContactManager
                     // Fill out generic fields
                     SwtCreateActive.Checked = (contact.status == 0) ? false : true;
 
+                    switch(contact.gender)
+                    {
+                        case "Female":
+                            RadCreateFemale.Checked = true;
+                            break;
+
+                        case "Male":
+                            RadCreateMale.Checked = true;
+                            break;
+
+                        case "Other":
+                            RadCreateOther.Checked = true;
+                            break;
+
+                        default:
+                            RadCreateFemale.Checked = false;
+                            RadCreateMale.Checked = false;
+                            RadCreateOther.Checked = false;
+                            break;
+                    }
+
+                    /**************** HIER MUSS NOCH SALUTATION FOLGEN *********************
+                    Funktioniert das mit .Text sonst muss man nach Inhalt vom Index der Combobox Liste --> Testergebnis: erst nach hover wird aktualisiert
+                    CmbCreateSalutation.Text = contact.Salutation;
+                    ******************/
+
+                    TxtCreateTitle.Text = contact.title;
+                    TxtCreateFirstName.Text = contact.firstName;
+                    TxtCreateLastName.Text = contact.lastName;
+                    TxtCreateAddress.Text = contact.street;
+                    TxtCreatePlz.Text = contact.postalCode;
+                    TxtCreatePlaceOfResidence.Text = contact.placeOfResidence;
+
+                    /***************** Funktioniert das mit .Text wirklich? --> Testergebnis: erst nach hover wird aktualisiert*******
+                    CmbCreateNationality.Text = contact.nationality;
+                    *****/
+
+                    TxtCreateOasiNr.Text = contact.socialSecurityNumber;
+                    DatCreateBirthday.Text = contact.dateOfBirth;
+                    TxtCreatePrivatePhone.Text = contact.phoneNumberPrivat;
+                    TxtCreateEmailAddress.Text = contact.email;
+                    TxtCreateBusnissPhone.Text = contact.phoneNumberBusiness;
+                    //HIER BUSINESS ADDRESS TxtCreateBusinessAddress.Text = contact.businessAdress;
+                    TxtCreateBusnissPhone.Text = contact.phoneNumberBusiness;
+
+                   
                     // Fill out specific fields
                     Type type = contact.GetType();
 
                     if (type == typeof(Customer))
                     {
                         contact = (Customer)contact;
+                        RadCreateCustomer.Checked = true;
+                        // Hier kommen die Customer Angabe --> 
+                        // TxtCreateCustomerNumber.Text = ;
+                        // CmbCreateCustomerType.Text = ; --> evtl. hier auch per Index Combobox List und nicht per Text möglich
+                        // TxtCreateCompanyName.Text = ;
+                        // TxtCreateCompanyContact.Text = ;
+
                     }
                     else if (type == typeof(Employee))
                     {
                         contact = (Employee)contact;
+                        RadCreateEmployee.Checked = true;
+                        // Hier kommt die Employee Angabe -->
+                        // TxtCreateEmployeeNumber.Text = ;
+                        // NumCreateDegreeOfEmployment.Value = ;
+                        // TxtCreateDepartement.Text = ;
+                        // NumCadreLevel.Value = ;
+                        // DatCreateDateOfJoining.Text = ;
+                        // DatCreateDateOfLeaving.Text = ;
                     }
                     else if (type == typeof(Trainee))
                     {
                         contact = (Trainee)contact;
+                        RadCreateEmployee.Checked = true;
+                        ChkCreateTrainee.Checked = true;
+                        // Hier kommt die Employee(Trainiee) Number --> 
+                        // TxtCreateEmployeeNumber.Text = ;
+                        // NumCreateDegreeOfEmployment.Value = ;
+                        // TxtCreateDepartement.Text = ;
+                        // NumCadreLevel.Value = ;
+                        // DatCreateDateOfJoining.Text = ;
+                        // DatCreateDateOfLeaving.Text = ;
+                        // NumCreateCurrentAppYear.Value = ;
+                        // NumCreateYearOfApp.Value = ;
                     }
                 }
                 else
