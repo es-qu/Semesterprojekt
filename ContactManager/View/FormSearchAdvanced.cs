@@ -151,5 +151,11 @@ namespace ContactManager
         {
             Close();
         }
+
+        private void CmdSearchAdvancedClear_Click(object sender, EventArgs e)
+        {
+            parentFormMain.filters = new SearchFilters();
+            syncAdvancedGUI();
+        }
     }
 }
