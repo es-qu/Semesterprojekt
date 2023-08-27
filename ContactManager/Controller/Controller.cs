@@ -231,8 +231,10 @@ namespace ContactManager
             if (!string.IsNullOrEmpty(filters.Title)) generic.Add($"title LIKE '%{filters.Title}%'");
             if (!string.IsNullOrEmpty(filters.FirstName)) generic.Add($"firstName LIKE '%{filters.FirstName}%'");
             if (!string.IsNullOrEmpty(filters.LastName)) generic.Add($"lastName LIKE '%{filters.LastName}%'");
-            if (!string.IsNullOrEmpty(filters.DateOfBirth)) generic.Add($"dateOfBirth LIKE '%{filters.DateOfBirth}%'");
+            if (!string.IsNullOrEmpty(filters.Address)) generic.Add($"street LIKE '%{filters.Address}%'");
             if (!string.IsNullOrEmpty(filters.PostalCode)) generic.Add($"postalCode LIKE '%{filters.PostalCode}%'");
+            if (!string.IsNullOrEmpty(filters.DateOfBirth)) generic.Add($"dateOfBirth LIKE '%{filters.DateOfBirth}%'");
+            if (!string.IsNullOrEmpty(filters.PlaceOfResidence)) generic.Add($"placeOfResidence LIKE '%{filters.PlaceOfResidence}%'");
             if (!string.IsNullOrEmpty(filters.Nationality)) generic.Add($"nationality LIKE '%{filters.Nationality}%'");
             if (!string.IsNullOrEmpty(filters.OasiNumber)) generic.Add($"oasiNumber LIKE '%{filters.OasiNumber}%'");
             if (!string.IsNullOrEmpty(filters.EmailAddress)) generic.Add($"emailAddress LIKE '%{filters.EmailAddress}%'");

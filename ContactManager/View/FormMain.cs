@@ -494,6 +494,13 @@ namespace ContactManager
 
                     if (currentRow != null && currentRow.Index < searchResults.Count)
                     {
+                        // Enable buttons
+                        CmdSearchPersonEdit.Enabled = true;
+                        CmdSearchPersonDelete.Enabled = true;
+                        CmdSearchNoteSave.Enabled = true;
+                        CmdSearchNoteEdit.Enabled = true;
+                        CmdSearchNoteClear.Enabled = true;
+
                         var clickedPerson = (Person)searchResults[currentRow.Index];
 
                         LblSearchPreviewStatusOutput.Text = (clickedPerson.status != 0) ? "Active" : "Inactive";
@@ -523,12 +530,6 @@ namespace ContactManager
                         PnlSearchPreviewTrainee.Visible = false;
 
                         var type = searchResults[currentRow.Index].GetType();
-
-                        CmdSearchPersonEdit.Enabled = true;
-                        CmdSearchPersonDelete.Enabled = true;
-                        CmdSearchNoteSave.Enabled = true;
-                        CmdSearchNoteEdit.Enabled = true;
-                        CmdSearchNoteClear.Enabled = true;
 
                         if (type == typeof(Customer))
                         {
@@ -592,6 +593,7 @@ namespace ContactManager
                     LblSearchPreviewCompanyNameOutput.Text = "-";
                     LblSearchPreviewCompanyContactOutput.Text = "-";
 
+                    // Disable buttons
                     CmdSearchPersonEdit.Enabled = false;
                     CmdSearchPersonDelete.Enabled = false;
                     CmdSearchNoteSave.Enabled = false;
@@ -721,6 +723,16 @@ namespace ContactManager
                 }
                 else { MessageBox.Show("Please select a contact to delete."); }
             } else { MessageBox.Show("Please select a contact to delete."); }
+        }
+
+        private void CmdSearchCancel_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void CmdSearchCreate_Click(object sender, EventArgs e)
+        {
+            TCtrlMain.SelectedTab = TabCreateEdit;
         }
     }
 }
