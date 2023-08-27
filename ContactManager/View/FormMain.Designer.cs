@@ -245,6 +245,7 @@ namespace ContactManager
             this.TCtrlMain.SelectedIndex = 0;
             this.TCtrlMain.Size = new System.Drawing.Size(1912, 982);
             this.TCtrlMain.TabIndex = 0;
+            this.TCtrlMain.SelectedIndexChanged += new System.EventHandler(this.TCtrlMain_SelectedIndexChanged);
             // 
             // TabSearch
             // 
@@ -650,6 +651,7 @@ namespace ContactManager
             this.CmdSearchNoteEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CmdSearchNoteEdit.Depth = 0;
             this.CmdSearchNoteEdit.DrawShadows = true;
+            this.CmdSearchNoteEdit.Enabled = false;
             this.CmdSearchNoteEdit.HighEmphasis = true;
             this.CmdSearchNoteEdit.Icon = null;
             this.CmdSearchNoteEdit.Location = new System.Drawing.Point(642, 868);
@@ -669,6 +671,7 @@ namespace ContactManager
             this.CmdSearchNoteSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CmdSearchNoteSave.Depth = 0;
             this.CmdSearchNoteSave.DrawShadows = true;
+            this.CmdSearchNoteSave.Enabled = false;
             this.CmdSearchNoteSave.HighEmphasis = true;
             this.CmdSearchNoteSave.Icon = null;
             this.CmdSearchNoteSave.Location = new System.Drawing.Point(548, 868);
@@ -688,6 +691,7 @@ namespace ContactManager
             this.CmdSearchNoteClear.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CmdSearchNoteClear.Depth = 0;
             this.CmdSearchNoteClear.DrawShadows = true;
+            this.CmdSearchNoteClear.Enabled = false;
             this.CmdSearchNoteClear.HighEmphasis = true;
             this.CmdSearchNoteClear.Icon = null;
             this.CmdSearchNoteClear.Location = new System.Drawing.Point(736, 868);
@@ -1078,6 +1082,7 @@ namespace ContactManager
             this.CmdSearchPersonEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CmdSearchPersonEdit.Depth = 0;
             this.CmdSearchPersonEdit.DrawShadows = true;
+            this.CmdSearchPersonEdit.Enabled = false;
             this.CmdSearchPersonEdit.HighEmphasis = true;
             this.CmdSearchPersonEdit.Icon = null;
             this.CmdSearchPersonEdit.Location = new System.Drawing.Point(30, 455);
@@ -1090,6 +1095,7 @@ namespace ContactManager
             this.CmdSearchPersonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchPersonEdit.UseAccentColor = false;
             this.CmdSearchPersonEdit.UseVisualStyleBackColor = true;
+            this.CmdSearchPersonEdit.Click += new System.EventHandler(this.CmdSearchPersonEdit_Click);
             // 
             // PnlSearchPreviewCustomer
             // 
@@ -1184,6 +1190,7 @@ namespace ContactManager
             this.CmdSearchPersonDelete.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CmdSearchPersonDelete.Depth = 0;
             this.CmdSearchPersonDelete.DrawShadows = true;
+            this.CmdSearchPersonDelete.Enabled = false;
             this.CmdSearchPersonDelete.HighEmphasis = true;
             this.CmdSearchPersonDelete.Icon = null;
             this.CmdSearchPersonDelete.Location = new System.Drawing.Point(126, 455);
@@ -1196,6 +1203,7 @@ namespace ContactManager
             this.CmdSearchPersonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchPersonDelete.UseAccentColor = false;
             this.CmdSearchPersonDelete.UseVisualStyleBackColor = true;
+            this.CmdSearchPersonDelete.Click += new System.EventHandler(this.CmdSearchPersonDelete_Click);
             // 
             // PnlSearchPreviewEmployee
             // 

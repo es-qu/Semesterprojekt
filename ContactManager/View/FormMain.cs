@@ -524,6 +524,12 @@ namespace ContactManager
 
                         var type = searchResults[currentRow.Index].GetType();
 
+                        CmdSearchPersonEdit.Enabled = true;
+                        CmdSearchPersonDelete.Enabled = true;
+                        CmdSearchNoteSave.Enabled = true;
+                        CmdSearchNoteEdit.Enabled = true;
+                        CmdSearchNoteClear.Enabled = true;
+
                         if (type == typeof(Customer))
                         {
                             Customer customer = (Customer)searchResults[currentRow.Index];
@@ -585,6 +591,13 @@ namespace ContactManager
                     LblSearchPreviewCustomerTypeOutput.Text = "-";
                     LblSearchPreviewCompanyNameOutput.Text = "-";
                     LblSearchPreviewCompanyContactOutput.Text = "-";
+
+                    CmdSearchPersonEdit.Enabled = false;
+                    CmdSearchPersonDelete.Enabled = false;
+                    CmdSearchNoteSave.Enabled = false;
+                    CmdSearchNoteEdit.Enabled = false;
+                    CmdSearchNoteClear.Enabled = false;
+
                 }
             }
         }
@@ -673,6 +686,41 @@ namespace ContactManager
         {
             filters = new SearchFilters();
             syncSearchGUI();
+        }
+
+        private void CmdSearchPersonEdit_Click(object sender, EventArgs e)
+        {
+            TCtrlMain.SelectedTab = TabCreateEdit;
+        }
+
+        private void TCtrlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (searchResults != null)
+            {
+                MessageBox.Show("edit");
+                if (searchResults.Count > 0)
+                {
+                    // Edit
+                    MessageBox.Show("edit");
+                }
+            }
+            else
+            {
+                // Create
+                MessageBox.Show("create");
+            }
+        }
+
+        private void CmdSearchPersonDelete_Click(object sender, EventArgs e)
+        {
+            if(DataGridViewSearchResult.SelectedCells != null)
+            {
+                if (DataGridViewSearchResult.SelectedCells.Count == 1)
+                {
+                    MessageBox.Show("del");
+                }
+                else { MessageBox.Show("Please select a contact to delete."); }
+            } else { MessageBox.Show("Please select a contact to delete."); }
         }
     }
 }
