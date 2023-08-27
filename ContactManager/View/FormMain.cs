@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -699,30 +700,50 @@ namespace ContactManager
         {
             if (searchResults != null)
             {
-                MessageBox.Show("edit");
-                if (searchResults.Count > 0)
+                // Edit
+                DataGridViewRow currentRow = DataGridViewSearchResult.Rows[DataGridViewSearchResult.SelectedCells[0].RowIndex];
+
+                if (currentRow != null && currentRow.Index < searchResults.Count)
                 {
-                    // Edit
-                    MessageBox.Show("edit");
+                    Person contact = (Person)searchResults[currentRow.Index];
+
+                    // Fill out generic fields
+                    SwtCreateActive.Checked = (contact.status == 0) ? false : true;
+
+                    // Fill out specific fields
+                    Type type = contact.GetType();
+
+                    if (type == typeof(Customer))
+                    {
+                        contact = (Customer)contact;
+                    }
+                    else if (type == typeof(Employee))
+                    {
+                        contact = (Employee)contact;
+                    }
+                    else if (type == typeof(Trainee))
+                    {
+                        contact = (Trainee)contact;
+                    }
                 }
-            }
-            else
-            {
-                // Create
-                MessageBox.Show("create");
+                else
+                {
+                    // Create
+                }
             }
         }
 
         private void CmdSearchPersonDelete_Click(object sender, EventArgs e)
         {
-            if(DataGridViewSearchResult.SelectedCells != null)
+            if (DataGridViewSearchResult.SelectedCells != null)
             {
                 if (DataGridViewSearchResult.SelectedCells.Count == 1)
                 {
                     MessageBox.Show("del");
                 }
                 else { MessageBox.Show("Please select a contact to delete."); }
-            } else { MessageBox.Show("Please select a contact to delete."); }
+            }
+            else { MessageBox.Show("Please select a contact to delete."); }
         }
 
         private void CmdSearchCancel_Click(object sender, EventArgs e)
@@ -734,5 +755,5 @@ namespace ContactManager
         {
             TCtrlMain.SelectedTab = TabCreateEdit;
         }
+        }
     }
-}
