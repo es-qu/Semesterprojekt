@@ -30,10 +30,10 @@ namespace ContactManager
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TCtrlMain = new MaterialSkin.Controls.MaterialTabControl();
             this.TabSearch = new System.Windows.Forms.TabPage();
             this.LblSearchPerson = new MaterialSkin.Controls.MaterialLabel();
@@ -290,7 +290,7 @@ namespace ContactManager
             this.LblSearchPerson.Depth = 0;
             this.LblSearchPerson.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.LblSearchPerson.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LblSearchPerson.Location = new System.Drawing.Point(19, 334);
+            this.LblSearchPerson.Location = new System.Drawing.Point(19, 343);
             this.LblSearchPerson.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchPerson.Name = "LblSearchPerson";
             this.LblSearchPerson.Size = new System.Drawing.Size(53, 19);
@@ -594,7 +594,7 @@ namespace ContactManager
             this.CmdSearchNoteEdit.DrawShadows = true;
             this.CmdSearchNoteEdit.HighEmphasis = true;
             this.CmdSearchNoteEdit.Icon = null;
-            this.CmdSearchNoteEdit.Location = new System.Drawing.Point(514, 557);
+            this.CmdSearchNoteEdit.Location = new System.Drawing.Point(514, 564);
             this.CmdSearchNoteEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmdSearchNoteEdit.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchNoteEdit.Name = "CmdSearchNoteEdit";
@@ -613,7 +613,7 @@ namespace ContactManager
             this.CmdSearchNoteSave.DrawShadows = true;
             this.CmdSearchNoteSave.HighEmphasis = true;
             this.CmdSearchNoteSave.Icon = null;
-            this.CmdSearchNoteSave.Location = new System.Drawing.Point(450, 557);
+            this.CmdSearchNoteSave.Location = new System.Drawing.Point(450, 564);
             this.CmdSearchNoteSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmdSearchNoteSave.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchNoteSave.Name = "CmdSearchNoteSave";
@@ -632,7 +632,7 @@ namespace ContactManager
             this.CmdSearchNoteClear.DrawShadows = true;
             this.CmdSearchNoteClear.HighEmphasis = true;
             this.CmdSearchNoteClear.Icon = null;
-            this.CmdSearchNoteClear.Location = new System.Drawing.Point(578, 557);
+            this.CmdSearchNoteClear.Location = new System.Drawing.Point(578, 564);
             this.CmdSearchNoteClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmdSearchNoteClear.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchNoteClear.Name = "CmdSearchNoteClear";
@@ -646,7 +646,7 @@ namespace ContactManager
             // TxtSearchNote
             // 
             this.TxtSearchNote.Enabled = false;
-            this.TxtSearchNote.Location = new System.Drawing.Point(20, 357);
+            this.TxtSearchNote.Location = new System.Drawing.Point(20, 364);
             this.TxtSearchNote.Multiline = true;
             this.TxtSearchNote.Name = "TxtSearchNote";
             this.TxtSearchNote.Size = new System.Drawing.Size(624, 198);
@@ -655,7 +655,7 @@ namespace ContactManager
             // LblSearchPreviewStatus
             // 
             this.LblSearchPreviewStatus.AutoSize = true;
-            this.LblSearchPreviewStatus.Location = new System.Drawing.Point(327, 12);
+            this.LblSearchPreviewStatus.Location = new System.Drawing.Point(327, 6);
             this.LblSearchPreviewStatus.Name = "LblSearchPreviewStatus";
             this.LblSearchPreviewStatus.Size = new System.Drawing.Size(44, 14);
             this.LblSearchPreviewStatus.TabIndex = 132;
@@ -665,7 +665,7 @@ namespace ContactManager
             // 
             this.LblSearchPreviewStatusOutput.AutoSize = true;
             this.LblSearchPreviewStatusOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchPreviewStatusOutput.Location = new System.Drawing.Point(404, 9);
+            this.LblSearchPreviewStatusOutput.Location = new System.Drawing.Point(382, 6);
             this.LblSearchPreviewStatusOutput.Name = "LblSearchPreviewStatusOutput";
             this.LblSearchPreviewStatusOutput.Size = new System.Drawing.Size(13, 17);
             this.LblSearchPreviewStatusOutput.TabIndex = 132;
@@ -677,7 +677,7 @@ namespace ContactManager
             this.LblSearchNotes.Depth = 0;
             this.LblSearchNotes.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.LblSearchNotes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LblSearchNotes.Location = new System.Drawing.Point(17, 329);
+            this.LblSearchNotes.Location = new System.Drawing.Point(17, 338);
             this.LblSearchNotes.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchNotes.Name = "LblSearchNotes";
             this.LblSearchNotes.Size = new System.Drawing.Size(42, 19);
@@ -713,15 +713,15 @@ namespace ContactManager
             this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchPreviewPrivatePhone);
             this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchPreviewOasiNumber);
             this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchPreviewDateOfBirth);
-            this.PnlSearchPreviewGeneral.Location = new System.Drawing.Point(6, 35);
+            this.PnlSearchPreviewGeneral.Location = new System.Drawing.Point(6, 29);
             this.PnlSearchPreviewGeneral.Name = "PnlSearchPreviewGeneral";
-            this.PnlSearchPreviewGeneral.Size = new System.Drawing.Size(318, 230);
+            this.PnlSearchPreviewGeneral.Size = new System.Drawing.Size(318, 264);
             this.PnlSearchPreviewGeneral.TabIndex = 126;
             // 
             // LblSearchPreviewBusinessAddress
             // 
             this.LblSearchPreviewBusinessAddress.AutoSize = true;
-            this.LblSearchPreviewBusinessAddress.Location = new System.Drawing.Point(131, 203);
+            this.LblSearchPreviewBusinessAddress.Location = new System.Drawing.Point(145, 246);
             this.LblSearchPreviewBusinessAddress.Name = "LblSearchPreviewBusinessAddress";
             this.LblSearchPreviewBusinessAddress.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewBusinessAddress.TabIndex = 131;
@@ -730,7 +730,7 @@ namespace ContactManager
             // LblSearchPreviewBusinessPhoneOutput
             // 
             this.LblSearchPreviewBusinessPhoneOutput.AutoSize = true;
-            this.LblSearchPreviewBusinessPhoneOutput.Location = new System.Drawing.Point(131, 189);
+            this.LblSearchPreviewBusinessPhoneOutput.Location = new System.Drawing.Point(145, 228);
             this.LblSearchPreviewBusinessPhoneOutput.Name = "LblSearchPreviewBusinessPhoneOutput";
             this.LblSearchPreviewBusinessPhoneOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewBusinessPhoneOutput.TabIndex = 130;
@@ -739,7 +739,7 @@ namespace ContactManager
             // LblSearchPreviewPrivatePhoneOutput
             // 
             this.LblSearchPreviewPrivatePhoneOutput.AutoSize = true;
-            this.LblSearchPreviewPrivatePhoneOutput.Location = new System.Drawing.Point(131, 175);
+            this.LblSearchPreviewPrivatePhoneOutput.Location = new System.Drawing.Point(145, 210);
             this.LblSearchPreviewPrivatePhoneOutput.Name = "LblSearchPreviewPrivatePhoneOutput";
             this.LblSearchPreviewPrivatePhoneOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewPrivatePhoneOutput.TabIndex = 129;
@@ -748,7 +748,7 @@ namespace ContactManager
             // LblSearchPreviewEmailAddressOutput
             // 
             this.LblSearchPreviewEmailAddressOutput.AutoSize = true;
-            this.LblSearchPreviewEmailAddressOutput.Location = new System.Drawing.Point(131, 161);
+            this.LblSearchPreviewEmailAddressOutput.Location = new System.Drawing.Point(145, 192);
             this.LblSearchPreviewEmailAddressOutput.Name = "LblSearchPreviewEmailAddressOutput";
             this.LblSearchPreviewEmailAddressOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewEmailAddressOutput.TabIndex = 128;
@@ -757,7 +757,7 @@ namespace ContactManager
             // LblSearchPreviewDateOfBirthOutput
             // 
             this.LblSearchPreviewDateOfBirthOutput.AutoSize = true;
-            this.LblSearchPreviewDateOfBirthOutput.Location = new System.Drawing.Point(131, 147);
+            this.LblSearchPreviewDateOfBirthOutput.Location = new System.Drawing.Point(145, 174);
             this.LblSearchPreviewDateOfBirthOutput.Name = "LblSearchPreviewDateOfBirthOutput";
             this.LblSearchPreviewDateOfBirthOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewDateOfBirthOutput.TabIndex = 127;
@@ -766,7 +766,7 @@ namespace ContactManager
             // LblSearchPreviewOasiNumberOutput
             // 
             this.LblSearchPreviewOasiNumberOutput.AutoSize = true;
-            this.LblSearchPreviewOasiNumberOutput.Location = new System.Drawing.Point(131, 131);
+            this.LblSearchPreviewOasiNumberOutput.Location = new System.Drawing.Point(145, 156);
             this.LblSearchPreviewOasiNumberOutput.Name = "LblSearchPreviewOasiNumberOutput";
             this.LblSearchPreviewOasiNumberOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewOasiNumberOutput.TabIndex = 126;
@@ -775,7 +775,7 @@ namespace ContactManager
             // LblSearchPreviewNationalityOutput
             // 
             this.LblSearchPreviewNationalityOutput.AutoSize = true;
-            this.LblSearchPreviewNationalityOutput.Location = new System.Drawing.Point(131, 118);
+            this.LblSearchPreviewNationalityOutput.Location = new System.Drawing.Point(145, 138);
             this.LblSearchPreviewNationalityOutput.Name = "LblSearchPreviewNationalityOutput";
             this.LblSearchPreviewNationalityOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewNationalityOutput.TabIndex = 125;
@@ -784,7 +784,7 @@ namespace ContactManager
             // LblSearchPreviewPlaceOfResidenceOutput
             // 
             this.LblSearchPreviewPlaceOfResidenceOutput.AutoSize = true;
-            this.LblSearchPreviewPlaceOfResidenceOutput.Location = new System.Drawing.Point(131, 104);
+            this.LblSearchPreviewPlaceOfResidenceOutput.Location = new System.Drawing.Point(145, 120);
             this.LblSearchPreviewPlaceOfResidenceOutput.Name = "LblSearchPreviewPlaceOfResidenceOutput";
             this.LblSearchPreviewPlaceOfResidenceOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewPlaceOfResidenceOutput.TabIndex = 124;
@@ -793,7 +793,7 @@ namespace ContactManager
             // LblSearchPreviewPostalCodeOutput
             // 
             this.LblSearchPreviewPostalCodeOutput.AutoSize = true;
-            this.LblSearchPreviewPostalCodeOutput.Location = new System.Drawing.Point(131, 90);
+            this.LblSearchPreviewPostalCodeOutput.Location = new System.Drawing.Point(145, 102);
             this.LblSearchPreviewPostalCodeOutput.Name = "LblSearchPreviewPostalCodeOutput";
             this.LblSearchPreviewPostalCodeOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewPostalCodeOutput.TabIndex = 123;
@@ -802,7 +802,7 @@ namespace ContactManager
             // LblSearchPreviewAddressOutput
             // 
             this.LblSearchPreviewAddressOutput.AutoSize = true;
-            this.LblSearchPreviewAddressOutput.Location = new System.Drawing.Point(131, 75);
+            this.LblSearchPreviewAddressOutput.Location = new System.Drawing.Point(145, 84);
             this.LblSearchPreviewAddressOutput.Name = "LblSearchPreviewAddressOutput";
             this.LblSearchPreviewAddressOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewAddressOutput.TabIndex = 122;
@@ -811,7 +811,7 @@ namespace ContactManager
             // LblSearchPreviewLastNameOutput
             // 
             this.LblSearchPreviewLastNameOutput.AutoSize = true;
-            this.LblSearchPreviewLastNameOutput.Location = new System.Drawing.Point(131, 62);
+            this.LblSearchPreviewLastNameOutput.Location = new System.Drawing.Point(145, 66);
             this.LblSearchPreviewLastNameOutput.Name = "LblSearchPreviewLastNameOutput";
             this.LblSearchPreviewLastNameOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewLastNameOutput.TabIndex = 121;
@@ -820,7 +820,7 @@ namespace ContactManager
             // LblSearchPreviewFirstNameOutput
             // 
             this.LblSearchPreviewFirstNameOutput.AutoSize = true;
-            this.LblSearchPreviewFirstNameOutput.Location = new System.Drawing.Point(131, 48);
+            this.LblSearchPreviewFirstNameOutput.Location = new System.Drawing.Point(145, 48);
             this.LblSearchPreviewFirstNameOutput.Name = "LblSearchPreviewFirstNameOutput";
             this.LblSearchPreviewFirstNameOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewFirstNameOutput.TabIndex = 120;
@@ -829,7 +829,7 @@ namespace ContactManager
             // LblSearchPreviewTitleOutput
             // 
             this.LblSearchPreviewTitleOutput.AutoSize = true;
-            this.LblSearchPreviewTitleOutput.Location = new System.Drawing.Point(131, 34);
+            this.LblSearchPreviewTitleOutput.Location = new System.Drawing.Point(145, 30);
             this.LblSearchPreviewTitleOutput.Name = "LblSearchPreviewTitleOutput";
             this.LblSearchPreviewTitleOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewTitleOutput.TabIndex = 119;
@@ -848,7 +848,7 @@ namespace ContactManager
             // LblSearchPreviewTitle
             // 
             this.LblSearchPreviewTitle.AutoSize = true;
-            this.LblSearchPreviewTitle.Location = new System.Drawing.Point(12, 34);
+            this.LblSearchPreviewTitle.Location = new System.Drawing.Point(12, 30);
             this.LblSearchPreviewTitle.Name = "LblSearchPreviewTitle";
             this.LblSearchPreviewTitle.Size = new System.Drawing.Size(26, 14);
             this.LblSearchPreviewTitle.TabIndex = 106;
@@ -866,7 +866,7 @@ namespace ContactManager
             // LblSearchPreviewLastName
             // 
             this.LblSearchPreviewLastName.AutoSize = true;
-            this.LblSearchPreviewLastName.Location = new System.Drawing.Point(12, 62);
+            this.LblSearchPreviewLastName.Location = new System.Drawing.Point(12, 66);
             this.LblSearchPreviewLastName.Name = "LblSearchPreviewLastName";
             this.LblSearchPreviewLastName.Size = new System.Drawing.Size(57, 14);
             this.LblSearchPreviewLastName.TabIndex = 108;
@@ -875,7 +875,7 @@ namespace ContactManager
             // LblSearchPreviewAddress
             // 
             this.LblSearchPreviewAddress.AutoSize = true;
-            this.LblSearchPreviewAddress.Location = new System.Drawing.Point(12, 77);
+            this.LblSearchPreviewAddress.Location = new System.Drawing.Point(12, 84);
             this.LblSearchPreviewAddress.Name = "LblSearchPreviewAddress";
             this.LblSearchPreviewAddress.Size = new System.Drawing.Size(49, 14);
             this.LblSearchPreviewAddress.TabIndex = 109;
@@ -884,7 +884,7 @@ namespace ContactManager
             // LblSearchPreviewBusinessAddressOutput
             // 
             this.LblSearchPreviewBusinessAddressOutput.AutoSize = true;
-            this.LblSearchPreviewBusinessAddressOutput.Location = new System.Drawing.Point(12, 203);
+            this.LblSearchPreviewBusinessAddressOutput.Location = new System.Drawing.Point(12, 246);
             this.LblSearchPreviewBusinessAddressOutput.Name = "LblSearchPreviewBusinessAddressOutput";
             this.LblSearchPreviewBusinessAddressOutput.Size = new System.Drawing.Size(95, 14);
             this.LblSearchPreviewBusinessAddressOutput.TabIndex = 118;
@@ -893,7 +893,7 @@ namespace ContactManager
             // LblSearchPreviewPostalCode
             // 
             this.LblSearchPreviewPostalCode.AutoSize = true;
-            this.LblSearchPreviewPostalCode.Location = new System.Drawing.Point(12, 90);
+            this.LblSearchPreviewPostalCode.Location = new System.Drawing.Point(12, 102);
             this.LblSearchPreviewPostalCode.Name = "LblSearchPreviewPostalCode";
             this.LblSearchPreviewPostalCode.Size = new System.Drawing.Size(63, 14);
             this.LblSearchPreviewPostalCode.TabIndex = 110;
@@ -902,7 +902,7 @@ namespace ContactManager
             // LblSearchPreviewEmailAddress
             // 
             this.LblSearchPreviewEmailAddress.AutoSize = true;
-            this.LblSearchPreviewEmailAddress.Location = new System.Drawing.Point(12, 161);
+            this.LblSearchPreviewEmailAddress.Location = new System.Drawing.Point(12, 192);
             this.LblSearchPreviewEmailAddress.Name = "LblSearchPreviewEmailAddress";
             this.LblSearchPreviewEmailAddress.Size = new System.Drawing.Size(74, 14);
             this.LblSearchPreviewEmailAddress.TabIndex = 117;
@@ -911,7 +911,7 @@ namespace ContactManager
             // LblSearchPreviewPlaceOfResidence
             // 
             this.LblSearchPreviewPlaceOfResidence.AutoSize = true;
-            this.LblSearchPreviewPlaceOfResidence.Location = new System.Drawing.Point(12, 104);
+            this.LblSearchPreviewPlaceOfResidence.Location = new System.Drawing.Point(12, 120);
             this.LblSearchPreviewPlaceOfResidence.Name = "LblSearchPreviewPlaceOfResidence";
             this.LblSearchPreviewPlaceOfResidence.Size = new System.Drawing.Size(97, 14);
             this.LblSearchPreviewPlaceOfResidence.TabIndex = 111;
@@ -920,7 +920,7 @@ namespace ContactManager
             // LblSearchPreviewBusinessPhone
             // 
             this.LblSearchPreviewBusinessPhone.AutoSize = true;
-            this.LblSearchPreviewBusinessPhone.Location = new System.Drawing.Point(12, 189);
+            this.LblSearchPreviewBusinessPhone.Location = new System.Drawing.Point(12, 228);
             this.LblSearchPreviewBusinessPhone.Name = "LblSearchPreviewBusinessPhone";
             this.LblSearchPreviewBusinessPhone.Size = new System.Drawing.Size(85, 14);
             this.LblSearchPreviewBusinessPhone.TabIndex = 116;
@@ -929,7 +929,7 @@ namespace ContactManager
             // LblSearchPreviewNationality
             // 
             this.LblSearchPreviewNationality.AutoSize = true;
-            this.LblSearchPreviewNationality.Location = new System.Drawing.Point(12, 118);
+            this.LblSearchPreviewNationality.Location = new System.Drawing.Point(12, 138);
             this.LblSearchPreviewNationality.Name = "LblSearchPreviewNationality";
             this.LblSearchPreviewNationality.Size = new System.Drawing.Size(56, 14);
             this.LblSearchPreviewNationality.TabIndex = 112;
@@ -938,7 +938,7 @@ namespace ContactManager
             // LblSearchPreviewPrivatePhone
             // 
             this.LblSearchPreviewPrivatePhone.AutoSize = true;
-            this.LblSearchPreviewPrivatePhone.Location = new System.Drawing.Point(12, 175);
+            this.LblSearchPreviewPrivatePhone.Location = new System.Drawing.Point(12, 210);
             this.LblSearchPreviewPrivatePhone.Name = "LblSearchPreviewPrivatePhone";
             this.LblSearchPreviewPrivatePhone.Size = new System.Drawing.Size(73, 14);
             this.LblSearchPreviewPrivatePhone.TabIndex = 115;
@@ -947,7 +947,7 @@ namespace ContactManager
             // LblSearchPreviewOasiNumber
             // 
             this.LblSearchPreviewOasiNumber.AutoSize = true;
-            this.LblSearchPreviewOasiNumber.Location = new System.Drawing.Point(12, 133);
+            this.LblSearchPreviewOasiNumber.Location = new System.Drawing.Point(12, 156);
             this.LblSearchPreviewOasiNumber.Name = "LblSearchPreviewOasiNumber";
             this.LblSearchPreviewOasiNumber.Size = new System.Drawing.Size(71, 14);
             this.LblSearchPreviewOasiNumber.TabIndex = 113;
@@ -956,7 +956,7 @@ namespace ContactManager
             // LblSearchPreviewDateOfBirth
             // 
             this.LblSearchPreviewDateOfBirth.AutoSize = true;
-            this.LblSearchPreviewDateOfBirth.Location = new System.Drawing.Point(12, 147);
+            this.LblSearchPreviewDateOfBirth.Location = new System.Drawing.Point(12, 174);
             this.LblSearchPreviewDateOfBirth.Name = "LblSearchPreviewDateOfBirth";
             this.LblSearchPreviewDateOfBirth.Size = new System.Drawing.Size(66, 14);
             this.LblSearchPreviewDateOfBirth.TabIndex = 114;
@@ -969,7 +969,7 @@ namespace ContactManager
             this.PnlSearchPreviewTrainee.Controls.Add(this.label14);
             this.PnlSearchPreviewTrainee.Controls.Add(this.LblSearchPreviewCurrentAppYear);
             this.PnlSearchPreviewTrainee.Controls.Add(this.LblSearchPreviewYearsOfApp);
-            this.PnlSearchPreviewTrainee.Location = new System.Drawing.Point(330, 176);
+            this.PnlSearchPreviewTrainee.Location = new System.Drawing.Point(330, 200);
             this.PnlSearchPreviewTrainee.Name = "PnlSearchPreviewTrainee";
             this.PnlSearchPreviewTrainee.Size = new System.Drawing.Size(314, 69);
             this.PnlSearchPreviewTrainee.TabIndex = 125;
@@ -978,7 +978,7 @@ namespace ContactManager
             // LblSearchPreviewYearsOfAppOutput
             // 
             this.LblSearchPreviewYearsOfAppOutput.AutoSize = true;
-            this.LblSearchPreviewYearsOfAppOutput.Location = new System.Drawing.Point(175, 48);
+            this.LblSearchPreviewYearsOfAppOutput.Location = new System.Drawing.Point(175, 39);
             this.LblSearchPreviewYearsOfAppOutput.Name = "LblSearchPreviewYearsOfAppOutput";
             this.LblSearchPreviewYearsOfAppOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewYearsOfAppOutput.TabIndex = 133;
@@ -987,7 +987,7 @@ namespace ContactManager
             // LblSearchPreviewCurrentAppYearOutput
             // 
             this.LblSearchPreviewCurrentAppYearOutput.AutoSize = true;
-            this.LblSearchPreviewCurrentAppYearOutput.Location = new System.Drawing.Point(175, 34);
+            this.LblSearchPreviewCurrentAppYearOutput.Location = new System.Drawing.Point(175, 21);
             this.LblSearchPreviewCurrentAppYearOutput.Name = "LblSearchPreviewCurrentAppYearOutput";
             this.LblSearchPreviewCurrentAppYearOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewCurrentAppYearOutput.TabIndex = 132;
@@ -997,7 +997,7 @@ namespace ContactManager
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(12, 9);
+            this.label14.Location = new System.Drawing.Point(12, 3);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(115, 14);
             this.label14.TabIndex = 1;
@@ -1006,7 +1006,7 @@ namespace ContactManager
             // LblSearchPreviewCurrentAppYear
             // 
             this.LblSearchPreviewCurrentAppYear.AutoSize = true;
-            this.LblSearchPreviewCurrentAppYear.Location = new System.Drawing.Point(12, 34);
+            this.LblSearchPreviewCurrentAppYear.Location = new System.Drawing.Point(12, 21);
             this.LblSearchPreviewCurrentAppYear.Name = "LblSearchPreviewCurrentAppYear";
             this.LblSearchPreviewCurrentAppYear.Size = new System.Drawing.Size(142, 14);
             this.LblSearchPreviewCurrentAppYear.TabIndex = 121;
@@ -1015,7 +1015,7 @@ namespace ContactManager
             // LblSearchPreviewYearsOfApp
             // 
             this.LblSearchPreviewYearsOfApp.AutoSize = true;
-            this.LblSearchPreviewYearsOfApp.Location = new System.Drawing.Point(12, 48);
+            this.LblSearchPreviewYearsOfApp.Location = new System.Drawing.Point(12, 39);
             this.LblSearchPreviewYearsOfApp.Name = "LblSearchPreviewYearsOfApp";
             this.LblSearchPreviewYearsOfApp.Size = new System.Drawing.Size(123, 14);
             this.LblSearchPreviewYearsOfApp.TabIndex = 122;
@@ -1024,7 +1024,7 @@ namespace ContactManager
             // LblSearchPreviewType
             // 
             this.LblSearchPreviewType.AutoSize = true;
-            this.LblSearchPreviewType.Location = new System.Drawing.Point(137, 12);
+            this.LblSearchPreviewType.Location = new System.Drawing.Point(137, 6);
             this.LblSearchPreviewType.Name = "LblSearchPreviewType";
             this.LblSearchPreviewType.Size = new System.Drawing.Size(33, 14);
             this.LblSearchPreviewType.TabIndex = 120;
@@ -1033,7 +1033,7 @@ namespace ContactManager
             // LblSearchPreviewNumber
             // 
             this.LblSearchPreviewNumber.AutoSize = true;
-            this.LblSearchPreviewNumber.Location = new System.Drawing.Point(17, 12);
+            this.LblSearchPreviewNumber.Location = new System.Drawing.Point(17, 6);
             this.LblSearchPreviewNumber.Name = "LblSearchPreviewNumber";
             this.LblSearchPreviewNumber.Size = new System.Drawing.Size(23, 14);
             this.LblSearchPreviewNumber.TabIndex = 119;
@@ -1047,7 +1047,7 @@ namespace ContactManager
             this.CmdSearchPersonEdit.DrawShadows = true;
             this.CmdSearchPersonEdit.HighEmphasis = true;
             this.CmdSearchPersonEdit.Icon = null;
-            this.CmdSearchPersonEdit.Location = new System.Drawing.Point(21, 269);
+            this.CmdSearchPersonEdit.Location = new System.Drawing.Point(20, 296);
             this.CmdSearchPersonEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmdSearchPersonEdit.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchPersonEdit.Name = "CmdSearchPersonEdit";
@@ -1067,16 +1067,16 @@ namespace ContactManager
             this.PnlSearchPreviewCustomer.Controls.Add(this.LblSearchPreviewCompanyContact);
             this.PnlSearchPreviewCustomer.Controls.Add(this.LblSearchPreviewCustomerType);
             this.PnlSearchPreviewCustomer.Controls.Add(this.LblSearchPreviewCompanyName);
-            this.PnlSearchPreviewCustomer.Location = new System.Drawing.Point(330, 35);
+            this.PnlSearchPreviewCustomer.Location = new System.Drawing.Point(330, 29);
             this.PnlSearchPreviewCustomer.Name = "PnlSearchPreviewCustomer";
-            this.PnlSearchPreviewCustomer.Size = new System.Drawing.Size(314, 90);
+            this.PnlSearchPreviewCustomer.Size = new System.Drawing.Size(314, 89);
             this.PnlSearchPreviewCustomer.TabIndex = 124;
             this.PnlSearchPreviewCustomer.Visible = false;
             // 
             // LblSearchPreviewCompanyContactOutput
             // 
             this.LblSearchPreviewCompanyContactOutput.AutoSize = true;
-            this.LblSearchPreviewCompanyContactOutput.Location = new System.Drawing.Point(175, 61);
+            this.LblSearchPreviewCompanyContactOutput.Location = new System.Drawing.Point(175, 66);
             this.LblSearchPreviewCompanyContactOutput.Name = "LblSearchPreviewCompanyContactOutput";
             this.LblSearchPreviewCompanyContactOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewCompanyContactOutput.TabIndex = 126;
@@ -1085,7 +1085,7 @@ namespace ContactManager
             // LblSearchPreviewCompanyNameOutput
             // 
             this.LblSearchPreviewCompanyNameOutput.AutoSize = true;
-            this.LblSearchPreviewCompanyNameOutput.Location = new System.Drawing.Point(175, 47);
+            this.LblSearchPreviewCompanyNameOutput.Location = new System.Drawing.Point(175, 48);
             this.LblSearchPreviewCompanyNameOutput.Name = "LblSearchPreviewCompanyNameOutput";
             this.LblSearchPreviewCompanyNameOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewCompanyNameOutput.TabIndex = 125;
@@ -1094,7 +1094,7 @@ namespace ContactManager
             // LblSearchPreviewCustomerTypeOutput
             // 
             this.LblSearchPreviewCustomerTypeOutput.AutoSize = true;
-            this.LblSearchPreviewCustomerTypeOutput.Location = new System.Drawing.Point(175, 32);
+            this.LblSearchPreviewCustomerTypeOutput.Location = new System.Drawing.Point(175, 30);
             this.LblSearchPreviewCustomerTypeOutput.Name = "LblSearchPreviewCustomerTypeOutput";
             this.LblSearchPreviewCustomerTypeOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewCustomerTypeOutput.TabIndex = 124;
@@ -1113,7 +1113,7 @@ namespace ContactManager
             // LblSearchPreviewCompanyContact
             // 
             this.LblSearchPreviewCompanyContact.AutoSize = true;
-            this.LblSearchPreviewCompanyContact.Location = new System.Drawing.Point(12, 62);
+            this.LblSearchPreviewCompanyContact.Location = new System.Drawing.Point(12, 66);
             this.LblSearchPreviewCompanyContact.Name = "LblSearchPreviewCompanyContact";
             this.LblSearchPreviewCompanyContact.Size = new System.Drawing.Size(91, 14);
             this.LblSearchPreviewCompanyContact.TabIndex = 123;
@@ -1122,7 +1122,7 @@ namespace ContactManager
             // LblSearchPreviewCustomerType
             // 
             this.LblSearchPreviewCustomerType.AutoSize = true;
-            this.LblSearchPreviewCustomerType.Location = new System.Drawing.Point(12, 34);
+            this.LblSearchPreviewCustomerType.Location = new System.Drawing.Point(12, 30);
             this.LblSearchPreviewCustomerType.Name = "LblSearchPreviewCustomerType";
             this.LblSearchPreviewCustomerType.Size = new System.Drawing.Size(106, 14);
             this.LblSearchPreviewCustomerType.TabIndex = 121;
@@ -1152,16 +1152,16 @@ namespace ContactManager
             this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewRole);
             this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDegreeOfEmployment);
             this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDepartement);
-            this.PnlSearchPreviewEmployee.Location = new System.Drawing.Point(330, 35);
+            this.PnlSearchPreviewEmployee.Location = new System.Drawing.Point(330, 29);
             this.PnlSearchPreviewEmployee.Name = "PnlSearchPreviewEmployee";
-            this.PnlSearchPreviewEmployee.Size = new System.Drawing.Size(314, 142);
+            this.PnlSearchPreviewEmployee.Size = new System.Drawing.Size(314, 170);
             this.PnlSearchPreviewEmployee.TabIndex = 125;
             this.PnlSearchPreviewEmployee.Visible = false;
             // 
             // LblSearchPreviewDateOfLeavingOutput
             // 
             this.LblSearchPreviewDateOfLeavingOutput.AutoSize = true;
-            this.LblSearchPreviewDateOfLeavingOutput.Location = new System.Drawing.Point(175, 118);
+            this.LblSearchPreviewDateOfLeavingOutput.Location = new System.Drawing.Point(175, 140);
             this.LblSearchPreviewDateOfLeavingOutput.Name = "LblSearchPreviewDateOfLeavingOutput";
             this.LblSearchPreviewDateOfLeavingOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewDateOfLeavingOutput.TabIndex = 132;
@@ -1170,7 +1170,7 @@ namespace ContactManager
             // LblSearchPreviewDateOfJoiningOutput
             // 
             this.LblSearchPreviewDateOfJoiningOutput.AutoSize = true;
-            this.LblSearchPreviewDateOfJoiningOutput.Location = new System.Drawing.Point(175, 104);
+            this.LblSearchPreviewDateOfJoiningOutput.Location = new System.Drawing.Point(175, 121);
             this.LblSearchPreviewDateOfJoiningOutput.Name = "LblSearchPreviewDateOfJoiningOutput";
             this.LblSearchPreviewDateOfJoiningOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewDateOfJoiningOutput.TabIndex = 131;
@@ -1179,7 +1179,7 @@ namespace ContactManager
             // LblSearchPreviewCadreLevelOutput
             // 
             this.LblSearchPreviewCadreLevelOutput.AutoSize = true;
-            this.LblSearchPreviewCadreLevelOutput.Location = new System.Drawing.Point(175, 77);
+            this.LblSearchPreviewCadreLevelOutput.Location = new System.Drawing.Point(175, 84);
             this.LblSearchPreviewCadreLevelOutput.Name = "LblSearchPreviewCadreLevelOutput";
             this.LblSearchPreviewCadreLevelOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewCadreLevelOutput.TabIndex = 130;
@@ -1188,7 +1188,7 @@ namespace ContactManager
             // LblSearchPreviewRoleOutput
             // 
             this.LblSearchPreviewRoleOutput.AutoSize = true;
-            this.LblSearchPreviewRoleOutput.Location = new System.Drawing.Point(175, 62);
+            this.LblSearchPreviewRoleOutput.Location = new System.Drawing.Point(175, 66);
             this.LblSearchPreviewRoleOutput.Name = "LblSearchPreviewRoleOutput";
             this.LblSearchPreviewRoleOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewRoleOutput.TabIndex = 129;
@@ -1206,7 +1206,7 @@ namespace ContactManager
             // LblSearchPreviewDegreeOfEmploymentOutput
             // 
             this.LblSearchPreviewDegreeOfEmploymentOutput.AutoSize = true;
-            this.LblSearchPreviewDegreeOfEmploymentOutput.Location = new System.Drawing.Point(175, 33);
+            this.LblSearchPreviewDegreeOfEmploymentOutput.Location = new System.Drawing.Point(175, 30);
             this.LblSearchPreviewDegreeOfEmploymentOutput.Name = "LblSearchPreviewDegreeOfEmploymentOutput";
             this.LblSearchPreviewDegreeOfEmploymentOutput.Size = new System.Drawing.Size(11, 14);
             this.LblSearchPreviewDegreeOfEmploymentOutput.TabIndex = 127;
@@ -1215,7 +1215,7 @@ namespace ContactManager
             // LblSearchPreviewDateOfLeaving
             // 
             this.LblSearchPreviewDateOfLeaving.AutoSize = true;
-            this.LblSearchPreviewDateOfLeaving.Location = new System.Drawing.Point(12, 116);
+            this.LblSearchPreviewDateOfLeaving.Location = new System.Drawing.Point(12, 138);
             this.LblSearchPreviewDateOfLeaving.Name = "LblSearchPreviewDateOfLeaving";
             this.LblSearchPreviewDateOfLeaving.Size = new System.Drawing.Size(79, 14);
             this.LblSearchPreviewDateOfLeaving.TabIndex = 126;
@@ -1224,7 +1224,7 @@ namespace ContactManager
             // LblSearchPreviewDateOfJoining
             // 
             this.LblSearchPreviewDateOfJoining.AutoSize = true;
-            this.LblSearchPreviewDateOfJoining.Location = new System.Drawing.Point(12, 103);
+            this.LblSearchPreviewDateOfJoining.Location = new System.Drawing.Point(12, 120);
             this.LblSearchPreviewDateOfJoining.Name = "LblSearchPreviewDateOfJoining";
             this.LblSearchPreviewDateOfJoining.Size = new System.Drawing.Size(75, 14);
             this.LblSearchPreviewDateOfJoining.TabIndex = 125;
@@ -1233,7 +1233,7 @@ namespace ContactManager
             // LblSearchPreviewCadreLevel
             // 
             this.LblSearchPreviewCadreLevel.AutoSize = true;
-            this.LblSearchPreviewCadreLevel.Location = new System.Drawing.Point(12, 75);
+            this.LblSearchPreviewCadreLevel.Location = new System.Drawing.Point(12, 84);
             this.LblSearchPreviewCadreLevel.Name = "LblSearchPreviewCadreLevel";
             this.LblSearchPreviewCadreLevel.Size = new System.Drawing.Size(88, 14);
             this.LblSearchPreviewCadreLevel.TabIndex = 124;
@@ -1252,7 +1252,7 @@ namespace ContactManager
             // LblSearchPreviewRole
             // 
             this.LblSearchPreviewRole.AutoSize = true;
-            this.LblSearchPreviewRole.Location = new System.Drawing.Point(12, 62);
+            this.LblSearchPreviewRole.Location = new System.Drawing.Point(12, 66);
             this.LblSearchPreviewRole.Name = "LblSearchPreviewRole";
             this.LblSearchPreviewRole.Size = new System.Drawing.Size(75, 14);
             this.LblSearchPreviewRole.TabIndex = 123;
@@ -1261,7 +1261,7 @@ namespace ContactManager
             // LblSearchPreviewDegreeOfEmployment
             // 
             this.LblSearchPreviewDegreeOfEmployment.AutoSize = true;
-            this.LblSearchPreviewDegreeOfEmployment.Location = new System.Drawing.Point(12, 34);
+            this.LblSearchPreviewDegreeOfEmployment.Location = new System.Drawing.Point(12, 30);
             this.LblSearchPreviewDegreeOfEmployment.Name = "LblSearchPreviewDegreeOfEmployment";
             this.LblSearchPreviewDegreeOfEmployment.Size = new System.Drawing.Size(136, 14);
             this.LblSearchPreviewDegreeOfEmployment.TabIndex = 121;
@@ -1284,7 +1284,7 @@ namespace ContactManager
             this.CmdSearchPersonDelete.DrawShadows = true;
             this.CmdSearchPersonDelete.HighEmphasis = true;
             this.CmdSearchPersonDelete.Icon = null;
-            this.CmdSearchPersonDelete.Location = new System.Drawing.Point(83, 269);
+            this.CmdSearchPersonDelete.Location = new System.Drawing.Point(84, 296);
             this.CmdSearchPersonDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmdSearchPersonDelete.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchPersonDelete.Name = "CmdSearchPersonDelete";
@@ -1301,7 +1301,7 @@ namespace ContactManager
             this.LblSearchResultCounter.Depth = 0;
             this.LblSearchResultCounter.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.LblSearchResultCounter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LblSearchResultCounter.Location = new System.Drawing.Point(19, 568);
+            this.LblSearchResultCounter.Location = new System.Drawing.Point(19, 571);
             this.LblSearchResultCounter.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchResultCounter.Name = "LblSearchResultCounter";
             this.LblSearchResultCounter.Size = new System.Drawing.Size(70, 19);
@@ -1316,7 +1316,7 @@ namespace ContactManager
             this.CmdSearchCreate.DrawShadows = true;
             this.CmdSearchCreate.HighEmphasis = true;
             this.CmdSearchCreate.Icon = null;
-            this.CmdSearchCreate.Location = new System.Drawing.Point(599, 562);
+            this.CmdSearchCreate.Location = new System.Drawing.Point(599, 569);
             this.CmdSearchCreate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmdSearchCreate.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchCreate.Name = "CmdSearchCreate";
@@ -1387,44 +1387,44 @@ namespace ContactManager
             this.DataGridViewSearchResult.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.DataGridViewSearchResult.BackgroundColor = System.Drawing.Color.DimGray;
             this.DataGridViewSearchResult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewSearchResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridViewSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewSearchResult.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewSearchResult.DefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridViewSearchResult.GridColor = System.Drawing.Color.Gray;
-            this.DataGridViewSearchResult.Location = new System.Drawing.Point(18, 362);
+            this.DataGridViewSearchResult.Location = new System.Drawing.Point(18, 369);
             this.DataGridViewSearchResult.MultiSelect = false;
             this.DataGridViewSearchResult.Name = "DataGridViewSearchResult";
             this.DataGridViewSearchResult.ReadOnly = true;
             this.DataGridViewSearchResult.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewSearchResult.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchResult.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridViewSearchResult.RowHeadersVisible = false;
             this.DataGridViewSearchResult.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGridViewSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewSearchResult.Size = new System.Drawing.Size(656, 198);
             this.DataGridViewSearchResult.TabIndex = 5;
             this.DataGridViewSearchResult.SelectionChanged += new System.EventHandler(this.DataGridViewSearchResultSelectionChanged_CellClick);
@@ -2667,7 +2667,7 @@ namespace ContactManager
             // 
             this.LblSearchPreviewTypeOutput.AutoSize = true;
             this.LblSearchPreviewTypeOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchPreviewTypeOutput.Location = new System.Drawing.Point(188, 9);
+            this.LblSearchPreviewTypeOutput.Location = new System.Drawing.Point(181, 6);
             this.LblSearchPreviewTypeOutput.Name = "LblSearchPreviewTypeOutput";
             this.LblSearchPreviewTypeOutput.Size = new System.Drawing.Size(13, 17);
             this.LblSearchPreviewTypeOutput.TabIndex = 133;
@@ -2677,7 +2677,7 @@ namespace ContactManager
             // 
             this.LblSearchPreviewNumberOutput.AutoSize = true;
             this.LblSearchPreviewNumberOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchPreviewNumberOutput.Location = new System.Drawing.Point(49, 9);
+            this.LblSearchPreviewNumberOutput.Location = new System.Drawing.Point(51, 6);
             this.LblSearchPreviewNumberOutput.Name = "LblSearchPreviewNumberOutput";
             this.LblSearchPreviewNumberOutput.Size = new System.Drawing.Size(13, 17);
             this.LblSearchPreviewNumberOutput.TabIndex = 134;
@@ -2687,7 +2687,7 @@ namespace ContactManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1293, 715);
+            this.ClientSize = new System.Drawing.Size(1341, 715);
             this.Controls.Add(this.TCtrlMain);
             this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.MaximizeBox = false;
