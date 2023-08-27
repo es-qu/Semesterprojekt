@@ -231,9 +231,5 @@
             get { return yearsOfApprenticeship; }
             set { yearsOfApprenticeship = value; }
         }
-
-        // Customer informations
-        // Employee informations
-        // Trainee informations
     }
 }

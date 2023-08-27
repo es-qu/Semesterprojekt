@@ -514,9 +514,9 @@ namespace ContactManager
                         // Display type specific informations
                         LblSearchPreviewNumber.Text = "-";
                         LblSearchPreviewType.Text = "-";
-                        LblCreateCustomerType.Text = "-";
-                        LblSearchPreviewCompanyName.Text = "-";
-                        LblSearchPreviewCompanyContact.Text = "-";
+                        //LblCreateCustomerType.Text = "-";
+                        //LblSearchPreviewCompanyName.Text = "-";
+                        //LblSearchPreviewCompanyContact.Text = "-";
 
                         PnlSearchPreviewCustomer.Visible = false;
                         PnlSearchPreviewEmployee.Visible = false;
@@ -529,9 +529,9 @@ namespace ContactManager
                             Customer customer = (Customer)searchResults[currentRow.Index];
                             LblSearchPreviewNumber.Text = customer.CustomerNumber;
                             LblSearchPreviewType.Text = "Customer";
-                            LblCreateCustomerType.Text = customer.CustomerType;
-                            LblSearchPreviewCompanyName.Text = customer.CompanyName;
-                            LblSearchPreviewCompanyContact.Text = customer.CompanyContact;
+                            //LblCreateCustomerType.Text = customer.CustomerType;
+                            //LblSearchPreviewCompanyName.Text = customer.CompanyName;
+                            //LblSearchPreviewCompanyContact.Text = customer.CompanyContact;
 
                             PnlSearchPreviewCustomer.Visible = true;
                             PnlSearchPreviewEmployee.Visible = false;
@@ -560,9 +560,9 @@ namespace ContactManager
                         {
                             LblSearchPreviewNumber.Text = "-";
                             LblSearchPreviewType.Text = "-";
-                            LblCreateCustomerType.Text = "-";
-                            LblSearchPreviewCompanyName.Text = "-";
-                            LblSearchPreviewCompanyContact.Text = "-";
+                            //LblCreateCustomerType.Text = "-";
+                            //LblSearchPreviewCompanyName.Text = "-";
+                            //LblSearchPreviewCompanyContact.Text = "-";
                         }
                     }
                 }
