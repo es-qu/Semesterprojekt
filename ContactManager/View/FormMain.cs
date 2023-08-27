@@ -516,19 +516,19 @@ namespace ContactManager
                     {
                         var clickedPerson = (Person)searchResults[currentRow.Index];
 
-                        LblSearchViewStatus.Text = (clickedPerson.status != 0) ? "Active" : "Inactive";
-                        LblSearchViewTitle.Text = clickedPerson.title;
-                        LblSearchViewFirstName.Text = clickedPerson.firstName;
-                        LblSearchViewLastName.Text = clickedPerson.lastName;
-                        LblSearchViewAddress.Text = clickedPerson.street;
-                        LblSearchViewPostalCode.Text = clickedPerson.postalCode;
-                        LblSearchViewPlaceOfResidence.Text = clickedPerson.placeOfResidence;
-                        LblSearchViewNationality.Text = clickedPerson.nationality;
-                        LblSearchViewOasiNumber.Text = clickedPerson.socialSecurityNumber;
-                        LblSearchViewDateOfBirth.Text = clickedPerson.dateOfBirth;
-                        LblSearchViewEmailAddress.Text = clickedPerson.email;
-                        LblSearchViewPrivatePhone.Text = clickedPerson.phoneNumberPrivat;
-                        LblSearchViewBusinessPhone.Text = clickedPerson.phoneNumberBusiness;
+                        LblSearchPreviewStatusOutput.Text = (clickedPerson.status != 0) ? "Active" : "Inactive";
+                        LblSearchPreviewTitleOutput.Text = clickedPerson.title;
+                        LblSearchPreviewFirstNameOutput.Text = clickedPerson.firstName;
+                        LblSearchPreviewLastNameOutput.Text = clickedPerson.lastName;
+                        LblSearchPreviewAddressOutput.Text = clickedPerson.street;
+                        LblSearchPreviewPostalCodeOutput.Text = clickedPerson.postalCode;
+                        LblSearchPreviewPlaceOfResidenceOutput.Text = clickedPerson.placeOfResidence;
+                        LblSearchPreviewNationalityOutput.Text = clickedPerson.nationality;
+                        LblSearchPreviewOasiNumberOutput.Text = clickedPerson.socialSecurityNumber;
+                        LblSearchPreviewDateOfBirthOutput.Text = clickedPerson.dateOfBirth;
+                        LblSearchPreviewEmailAddressOutput.Text = clickedPerson.email;
+                        LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.phoneNumberPrivat;
+                        LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.phoneNumberBusiness;
                         //LblSearchViewBusinessAddress.Text = clickedPerson;
 
                         // Display type specific informations
@@ -545,18 +545,18 @@ namespace ContactManager
                 }
                 else
                 {
-                    LblSearchViewTitle.Text = "-";
-                    LblSearchViewFirstName.Text = "-";
-                    LblSearchViewLastName.Text = "-";
-                    LblSearchViewAddress.Text = "-";
-                    LblSearchViewPostalCode.Text = "-";
-                    LblSearchViewPlaceOfResidence.Text = "-";
-                    LblSearchViewNationality.Text = "-";
-                    LblSearchViewOasiNumber.Text = "-";
-                    LblSearchViewDateOfBirth.Text = "-";
-                    LblSearchViewEmailAddress.Text = "-";
-                    LblSearchViewPrivatePhone.Text = "-";
-                    LblSearchViewBusinessPhone.Text = "-";
+                    LblSearchPreviewTitleOutput.Text = "-";
+                    LblSearchPreviewFirstNameOutput.Text = "-";
+                    LblSearchPreviewLastNameOutput.Text = "-";
+                    LblSearchPreviewAddressOutput.Text = "-";
+                    LblSearchPreviewPostalCodeOutput.Text = "-";
+                    LblSearchPreviewPlaceOfResidenceOutput.Text = "-";
+                    LblSearchPreviewNationalityOutput.Text = "-";
+                    LblSearchPreviewOasiNumberOutput.Text = "-";
+                    LblSearchPreviewDateOfBirthOutput.Text = "-";
+                    LblSearchPreviewEmailAddressOutput.Text = "-";
+                    LblSearchPreviewPrivatePhoneOutput.Text = "-";
+                    LblSearchPreviewBusinessPhoneOutput.Text = "-";
                     //LblSearchViewBusinessAddress.Text = "-";
                 }
             }

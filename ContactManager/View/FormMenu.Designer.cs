@@ -70,7 +70,7 @@
             this.CmdSearch.Name = "CmdSearch";
             this.CmdSearch.Size = new System.Drawing.Size(407, 54);
             this.CmdSearch.TabIndex = 2;
-            this.CmdSearch.Text = "Search";
+            this.CmdSearch.Text = "Search / Edit / Delete";
             this.CmdSearch.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearch.UseAccentColor = false;
             this.CmdSearch.UseVisualStyleBackColor = true;
