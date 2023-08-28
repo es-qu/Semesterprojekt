@@ -174,6 +174,7 @@ namespace ContactManager
                 TxtCreatePrivatePhone.Text,
                 TxtCreateBusnissPhone.Text,
                 TxtCreateEmailAddress.Text,
+                TxtCreateBusinessAddress.Text,
                 TxtCreateNote.Text,
                 TxtCreateRole.Text,
                 TxtCreateDepartement.Text,
@@ -204,6 +205,7 @@ namespace ContactManager
                   TxtCreatePrivatePhone.Text,
                   TxtCreateBusnissPhone.Text,
                   TxtCreateEmailAddress.Text,
+                  TxtCreateBusinessAddress.Text,
                   TxtCreateNote.Text,
                   TxtCreateRole.Text,
                   TxtCreateDepartement.Text,
@@ -235,6 +237,7 @@ namespace ContactManager
                 TxtCreatePrivatePhone.Text,
                 TxtCreateBusnissPhone.Text,
                 TxtCreateEmailAddress.Text,
+                TxtCreateBusinessAddress.Text,
                 TxtCreateNote.Text,
                 TxtCreateCompanyName.Text,
                 CmbCreateCustomerType.SelectedItem.ToString(),
@@ -246,14 +249,13 @@ namespace ContactManager
 
         private void RadCreateCustomer_CheckedChanged(object sender, EventArgs e)
         {
-
             LblCreateTypeSelection.Visible = false;
 
             if (RadCreateCustomer.Checked == true)
             {
                 PnlCreateInfoCustomer.Visible = true;
                 // Generate the next Customer number
-                TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber").ToString();
+                TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber", "CUST");
             }
             else
             {
@@ -272,14 +274,14 @@ namespace ContactManager
                 ChkCreateTrainee.Checked = false;
 
                 // Generate the next employee number
-                TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber").ToString();
+                TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber", "EMP");
             }
             else
             {
                 PnlCreateInfoEmployee.Visible = false;
                 ChkCreateTrainee.Visible = false;
-
             }
+
 
             //Trainee Panel visibility when Radiobuttion Employee gets checked
             if (ChkCreateTrainee.Checked == true && RadCreateEmployee.Checked == true)
