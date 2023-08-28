@@ -841,5 +841,10 @@ namespace ContactManager
         {
             TCtrlMain.SelectedTab = TabCreateEdit;
         }
+
+        private void CmdSearchNoteSave_Click(object sender, EventArgs e)
+        {
+
         }
+    }
     }
