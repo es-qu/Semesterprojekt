@@ -189,7 +189,6 @@ namespace ContactManager
             this.LblCreateCustomerType = new MaterialSkin.Controls.MaterialLabel();
             this.LblCreateCompanyContact = new MaterialSkin.Controls.MaterialLabel();
             this.TxtCreateCompanyContact = new MaterialSkin.Controls.MaterialTextBox();
-<<<<<<< Updated upstream
             this.PnlCreateInfoEmployee = new System.Windows.Forms.Panel();
             this.NumCreateDegreeOfEmployment = new System.Windows.Forms.NumericUpDown();
             this.PrgDegreeOfEmployment = new MaterialSkin.Controls.MaterialProgressBar();
@@ -211,8 +210,6 @@ namespace ContactManager
             this.LblCadreLevel = new MaterialSkin.Controls.MaterialLabel();
             this.LblRole = new MaterialSkin.Controls.MaterialLabel();
             this.TxtCreateRole = new MaterialSkin.Controls.MaterialTextBox();
-=======
->>>>>>> Stashed changes
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             this.PnlSearchPreview.SuspendLayout();
@@ -1500,11 +1497,7 @@ namespace ContactManager
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateBlue;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridViewSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
-<<<<<<< Updated upstream
             this.DataGridViewSearchResult.Size = new System.Drawing.Size(608, 198);
-=======
-            this.DataGridViewSearchResult.Size = new System.Drawing.Size(656, 198);
->>>>>>> Stashed changes
             this.DataGridViewSearchResult.TabIndex = 5;
             this.DataGridViewSearchResult.SelectionChanged += new System.EventHandler(this.DataGridViewSearchResultSelectionChanged_CellClick);
             // 
@@ -1561,11 +1554,7 @@ namespace ContactManager
             this.CmdCreateDeletePerson.DrawShadows = true;
             this.CmdCreateDeletePerson.HighEmphasis = true;
             this.CmdCreateDeletePerson.Icon = null;
-<<<<<<< Updated upstream
             this.CmdCreateDeletePerson.Location = new System.Drawing.Point(820, 552);
-=======
-            this.CmdCreateDeletePerson.Location = new System.Drawing.Point(786, 551);
->>>>>>> Stashed changes
             this.CmdCreateDeletePerson.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.CmdCreateDeletePerson.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreateDeletePerson.Name = "CmdCreateDeletePerson";
@@ -1573,11 +1562,7 @@ namespace ContactManager
             this.CmdCreateDeletePerson.TabIndex = 103;
             this.CmdCreateDeletePerson.Text = "DELETE";
             this.CmdCreateDeletePerson.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-<<<<<<< Updated upstream
             this.CmdCreateDeletePerson.UseAccentColor = true;
-=======
-            this.CmdCreateDeletePerson.UseAccentColor = false;
->>>>>>> Stashed changes
             this.CmdCreateDeletePerson.UseVisualStyleBackColor = true;
             this.CmdCreateDeletePerson.Visible = false;
             // 
@@ -1602,6 +1587,7 @@ namespace ContactManager
             // 
             // TxtCreateNote
             // 
+            this.TxtCreateNote.Enabled = false;
             this.TxtCreateNote.Location = new System.Drawing.Point(637, 382);
             this.TxtCreateNote.Multiline = true;
             this.TxtCreateNote.Name = "TxtCreateNote";
@@ -1906,8 +1892,6 @@ namespace ContactManager
             this.CmbCreateSalutation.Size = new System.Drawing.Size(76, 49);
             this.CmbCreateSalutation.StartIndex = 0;
             this.CmbCreateSalutation.TabIndex = 5;
-            this.CmbCreateSalutation.TextChanged += new System.EventHandler(this.CmdCreatePerson_Click);
-
             // 
             // TxtCreateAddress
             // 
@@ -2429,7 +2413,6 @@ namespace ContactManager
             this.TxtCreateCompanyContact.TabIndex = 32;
             this.TxtCreateCompanyContact.Text = "";
             // 
-<<<<<<< Updated upstream
             // PnlCreateInfoEmployee
             // 
             this.PnlCreateInfoEmployee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -2733,8 +2716,6 @@ namespace ContactManager
             this.TxtCreateRole.TabIndex = 25;
             this.TxtCreateRole.Text = "";
             // 
-=======
->>>>>>> Stashed changes
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
