@@ -10,7 +10,6 @@ namespace ContactManager
 {
     public class Person
     {
-        public int Id { get; set; }
         public int status { get; set; }
         public string gender { get; set; }
         public string Salutation { get; set; }
@@ -24,7 +23,7 @@ namespace ContactManager
         public string socialSecurityNumber { get; set; }
         public string dateOfBirth { get; set; }
         public string phoneNumberPrivat { get; set; }
-        public string phoneNumberMobile { get; set; }
+        public string EmailBusiness { get; set; }
         public string phoneNumberBusiness { get; set; }
         public string email { get; set; }
         public string note { get; set; }

@@ -35,6 +35,9 @@ namespace ContactManager
             //Countries in ComboBox Nationality
             PopulateCountryComboBox();
             TxtCreateOasiNr.KeyPress += TxtCreateOasiNr_KeyPress;
+            TxtCreatePlz.KeyPress += TxtCreateOasiNr_KeyPress;
+            TxtCreatePrivatePhone.KeyPress += TxtCreateOasiNr_KeyPress;
+
 
 
             this.RadCreateMale.CheckedChanged += new System.EventHandler(this.RadCreateMale_CheckedChanged);
@@ -86,6 +89,7 @@ namespace ContactManager
             if (RadCreateMale.Checked)
             {
                 ChangeFormColor(MaterialSkin.Primary.Blue500);
+                CmbCreateSalutation.SelectedItem = "Mr";
             }
         }
 
@@ -95,6 +99,8 @@ namespace ContactManager
             if (RadCreateFemale.Checked)
             {
                 ChangeFormColor(MaterialSkin.Primary.Pink500);
+                CmbCreateSalutation.SelectedItem = "Ms";
+
             }
         }
 
@@ -104,6 +110,7 @@ namespace ContactManager
             if (RadCreateOther.Checked)
             {
                 ChangeFormColor(MaterialSkin.Primary.Grey500);
+                CmbCreateSalutation.SelectedItem = "Mx";
             }
         }
 
@@ -140,20 +147,29 @@ namespace ContactManager
                      RadCreateFemale.Checked ? "Female" :
                      RadCreateOther.Checked ? "Other" : null;
 
+<<<<<<< Updated upstream
             #region Mandatory Fields
+=======
+
+>>>>>>> Stashed changes
             if (gender == null)
             {
                 // Handle the case when no radio button is selected, e.g., show a MessageBox
                 MessageBox.Show("Please select a gender");
                 return;
             }
+
             // Check if the first name contains only letters
-            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
-            if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+            if (!string.IsNullOrEmpty(TxtCreateFirstName.Text))
             {
-                MessageBox.Show("The first name can contain only letters");
-                return;
+                Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
+                if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+                {
+                    MessageBox.Show("The first name can contain only letters");
+                    return;
+                }
             }
+<<<<<<< Updated upstream
             if (!regexLetters.IsMatch(TxtCreateLastName.Text))
             {
                 MessageBox.Show("The last name can contain only letters");
@@ -161,6 +177,8 @@ namespace ContactManager
             }
             #endregion
 
+=======
+>>>>>>> Stashed changes
 
             if (RadCreateEmployee.Checked)
             {
@@ -183,6 +201,7 @@ namespace ContactManager
                 TxtCreatePrivatePhone.Text,
                 TxtCreateBusnissPhone.Text,
                 TxtCreateEmailAddress.Text,
+                TxtCreateBusinessAddress.Text,
                 TxtCreateNote.Text,
                 TxtCreateRole.Text,
                 TxtCreateDepartement.Text,
@@ -213,6 +232,7 @@ namespace ContactManager
                   TxtCreatePrivatePhone.Text,
                   TxtCreateBusnissPhone.Text,
                   TxtCreateEmailAddress.Text,
+                  TxtCreateBusinessAddress.Text,
                   TxtCreateNote.Text,
                   TxtCreateRole.Text,
                   TxtCreateDepartement.Text,
@@ -244,6 +264,7 @@ namespace ContactManager
                 TxtCreatePrivatePhone.Text,
                 TxtCreateBusnissPhone.Text,
                 TxtCreateEmailAddress.Text,
+                TxtCreateBusinessAddress.Text,
                 TxtCreateNote.Text,
                 TxtCreateCompanyName.Text,
                 CmbCreateCustomerType.SelectedItem.ToString(),
@@ -262,7 +283,7 @@ namespace ContactManager
             {
                 PnlCreateInfoCustomer.Visible = true;
                 // Generate the next Customer number
-                TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber").ToString();
+                TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber", "CUST");
             }
             else
             {
@@ -281,7 +302,7 @@ namespace ContactManager
                 ChkCreateTrainee.Checked = false;
 
                 // Generate the next employee number
-                TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber").ToString();
+                TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber", "EMP").ToString();
             }
             else
             {
@@ -652,6 +673,7 @@ namespace ContactManager
             TxtSearchDateOfBirth.Clear();
         }
 
+<<<<<<< Updated upstream
         /// <summary>
         /// Sync the search GUI with the input states in filters object
         /// </summary>
@@ -846,5 +868,8 @@ namespace ContactManager
         {
 
         }
+=======
+       
+>>>>>>> Stashed changes
     }
     }
