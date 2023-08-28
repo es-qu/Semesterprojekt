@@ -25,7 +25,7 @@ namespace ContactManager
             Search
         }
 
-        public FormMain()   
+        public FormMain()
         {
             InitializeComponent();
 
@@ -140,7 +140,6 @@ namespace ContactManager
                      RadCreateFemale.Checked ? "Female" :
                      RadCreateOther.Checked ? "Other" : null;
 
-            #region Mandatory Fields
             if (gender == null)
             {
                 // Handle the case when no radio button is selected, e.g., show a MessageBox
@@ -154,14 +153,6 @@ namespace ContactManager
                 MessageBox.Show("The first name can contain only letters");
                 return;
             }
-            if (!regexLetters.IsMatch(TxtCreateLastName.Text))
-            {
-                MessageBox.Show("The last name can contain only letters");
-                return;
-            }
-            #endregion
-
-
             if (RadCreateEmployee.Checked)
             {
                 if (ChkCreateTrainee.Checked)
