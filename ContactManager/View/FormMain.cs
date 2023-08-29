@@ -36,11 +36,6 @@ namespace ContactManager
             PopulateCountryComboBox();
             TxtCreateOasiNr.KeyPress += TxtCreateOasiNr_KeyPress;
 
-
-            this.RadCreateMale.CheckedChanged += new System.EventHandler(this.RadCreateMale_CheckedChanged);
-            this.RadCreateFemale.CheckedChanged += new System.EventHandler(this.RadCreateFemale_CheckedChanged);
-            this.RadCreateOther.CheckedChanged += new System.EventHandler(this.RadCreateOther_CheckedChanged);
-
             // Disable the employee && Customer number text box
             TxtCreateEmployeeNumber.Enabled = false;
             TxtCreateCustomerNumber.Enabled = false;
@@ -80,45 +75,7 @@ namespace ContactManager
 
         }
 
-        // Event handler for RadCreateMale
-        private void RadCreateMale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RadCreateMale.Checked)
-            {
-                ChangeFormColor(MaterialSkin.Primary.Blue500);
-            }
-        }
-
-        // Event handler for RadCreateFemale
-        private void RadCreateFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RadCreateFemale.Checked)
-            {
-                ChangeFormColor(MaterialSkin.Primary.Pink500);
-            }
-        }
-
-        // Event handler for RadCreateOther
-        private void RadCreateOther_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RadCreateOther.Checked)
-            {
-                ChangeFormColor(MaterialSkin.Primary.Grey500);
-            }
-        }
-
-        private void ChangeFormColor(MaterialSkin.Primary primaryColor)
-        {
-            manager.ColorScheme = new ColorScheme(
-                primaryColor,
-                primaryColor,
-                primaryColor,
-                Accent.Blue100,
-                TextShade.WHITE
-            );
-            Refresh();
-        }
-
+       
         private void TxtCreateOasiNr_KeyPress(object sender, KeyPressEventArgs e)
         {
             // If the key pressed is not a digit and not a dot, consume the key event (do not input the key)
@@ -247,6 +204,9 @@ namespace ContactManager
             }
         }
 
+
+        // Falg for Customer and employee
+        private bool isEditMode = false;
         private void RadCreateCustomer_CheckedChanged(object sender, EventArgs e)
         {
             LblCreateTypeSelection.Visible = false;
@@ -255,13 +215,16 @@ namespace ContactManager
             {
                 PnlCreateInfoCustomer.Visible = true;
                 // Generate the next Customer number
-                TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber", "CUST");
+                if (!isEditMode)
+                {
+                    TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber", "CUST");
+                }
             }
             else
             {
                 PnlCreateInfoCustomer.Visible = false;
             }
-        }
+    }
 
         private void RadCreateEmployee_CheckedChanged(object sender, EventArgs e)
         {
@@ -272,9 +235,11 @@ namespace ContactManager
                 PnlCreateInfoEmployee.Visible = true;
                 ChkCreateTrainee.Visible = true;
                 ChkCreateTrainee.Checked = false;
-
-                // Generate the next employee number
-                TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber", "EMP");
+                if (!isEditMode)
+                {
+                    // Generate the next employee number
+                    TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber", "EMP");
+                }
             }
             else
             {
