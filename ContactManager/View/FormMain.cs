@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -172,7 +171,7 @@ namespace ContactManager
                 CmbCreateNationality.SelectedItem?.ToString(),
                 TxtCreateOasiNr.Text,
                 TxtCreatePrivatePhone.Text,
-                TxtCreateBusnissPhone.Text,
+                TxtCreateBusinessPhone.Text,
                 TxtCreateEmailAddress.Text,
                 TxtCreateBusinessAddress.Text,
                 TxtCreateNote.Text,
@@ -203,7 +202,7 @@ namespace ContactManager
                   CmbCreateNationality.SelectedItem?.ToString(),
                   TxtCreateOasiNr.Text,
                   TxtCreatePrivatePhone.Text,
-                  TxtCreateBusnissPhone.Text,
+                  TxtCreateBusinessPhone.Text,
                   TxtCreateEmailAddress.Text,
                   TxtCreateBusinessAddress.Text,
                   TxtCreateNote.Text,
@@ -235,7 +234,7 @@ namespace ContactManager
                 CmbCreateNationality.SelectedItem?.ToString(),
                 TxtCreateOasiNr.Text,
                 TxtCreatePrivatePhone.Text,
-                TxtCreateBusnissPhone.Text,
+                TxtCreateBusinessPhone.Text,
                 TxtCreateEmailAddress.Text,
                 TxtCreateBusinessAddress.Text,
                 TxtCreateNote.Text,
@@ -519,9 +518,10 @@ namespace ContactManager
                         LblSearchPreviewEmailAddressOutput.Text = clickedPerson.email;
                         LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.phoneNumberPrivat;
                         LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.phoneNumberBusiness;
-                        //LblSearchPreviewBusinessAddressOutput.Text = clickedPerson;
+                        LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.EmailBusiness;
 
                         // Display type specific informations
+
                         LblSearchPreviewNumberOutput.Text = "-";
                         LblSearchPreviewTypeOutput.Text = "-";
                         LblSearchPreviewCustomerTypeOutput.Text = "-";
@@ -545,7 +545,7 @@ namespace ContactManager
 
                             PnlSearchPreviewCustomer.Visible = true;
                         }
-                        else if (type.IsAssignableFrom(typeof(Employee)))
+                        else if (type == typeof(Employee) || type == typeof(Trainee))
                         {
                             if (type == typeof(Trainee))
                             {
@@ -560,9 +560,9 @@ namespace ContactManager
                                 Employee employee = (Employee)searchResults[currentRow.Index];
                                 LblSearchPreviewNumberOutput.Text = employee.EmployeeNumber;
                                 LblSearchPreviewTypeOutput.Text = "Employee";
-
-                                PnlSearchPreviewEmployee.Visible = true;
                             }
+
+                            PnlSearchPreviewEmployee.Visible = true;
                         }
                         else
                         {
@@ -576,6 +576,7 @@ namespace ContactManager
                 }
                 else
                 {
+                    // Clear all labels
                     LblSearchPreviewTitleOutput.Text = "-";
                     LblSearchPreviewFirstNameOutput.Text = "-";
                     LblSearchPreviewLastNameOutput.Text = "-";
@@ -717,7 +718,7 @@ namespace ContactManager
                     // Fill out generic fields
                     SwtCreateActive.Checked = (contact.status == 0) ? false : true;
 
-                    switch(contact.gender)
+                    switch (contact.gender)
                     {
                         case "Female":
                             RadCreateFemale.Checked = true;
@@ -758,11 +759,11 @@ namespace ContactManager
                     DatCreateBirthday.Text = contact.dateOfBirth;
                     TxtCreatePrivatePhone.Text = contact.phoneNumberPrivat;
                     TxtCreateEmailAddress.Text = contact.email;
-                    TxtCreateBusnissPhone.Text = contact.phoneNumberBusiness;
-                    //HIER BUSINESS ADDRESS TxtCreateBusinessAddress.Text = contact.businessAdress;
-                    TxtCreateBusnissPhone.Text = contact.phoneNumberBusiness;
+                    TxtCreateBusinessPhone.Text = contact.phoneNumberBusiness;
+                    TxtCreateBusinessAddress.Text = contact.EmailBusiness;
+                    TxtCreateBusinessPhone.Text = contact.phoneNumberBusiness;
 
-                   
+
                     // Fill out specific fields
                     Type type = contact.GetType();
 
@@ -840,4 +841,4 @@ namespace ContactManager
 
         }
     }
-    }
+}

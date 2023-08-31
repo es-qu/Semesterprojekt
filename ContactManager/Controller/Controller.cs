@@ -11,7 +11,7 @@ namespace ContactManager
     {
         public void CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
                                     string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string EmailBusiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel, Form form)
+                                     string phoneBuiness, string email, string EmailBusiness, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel, Form form)
         {
             Employee e = new Employee
             {
@@ -51,7 +51,7 @@ namespace ContactManager
 
         public void CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
                                     string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string EmailBusiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
+                                     string phoneBuiness, string email, string EmailBusiness, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
                                     string TrainingStartDate, string TrainingEndDate, Form form)
         {
             Trainee t = new Trainee
@@ -89,9 +89,9 @@ namespace ContactManager
             form.Close();
         }
 
-        public void CreateCustomer(string firstName, string lastName, string dateOfBirth, string CustomerNumber, int status, string gender, string Salutaion, string title,
-                                    string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string EmailBusiness, string email, string note, string CompanyName, string CustomerType, string CompanyContact, Form form)
+        public void CreateCustomer(string firstName, string lastName, string dateOfBirth, string CustomerNumber, int status, string gender, string Salutation, string title,
+                                    string street, string postalCode, string placeOfResidence, string nationality, string oasiNr, string phonePrivate,
+                                     string phoneBuiness, string email, string EmailBusiness, string note, string CompanyName, string CustomerType, string CompanyContact, Form form)
         {
             Customer c = new Customer
             {
@@ -101,13 +101,13 @@ namespace ContactManager
                 dateOfBirth = dateOfBirth,
                 CustomerNumber = CustomerNumber,
                 gender = gender,
-                Salutation = Salutaion,
+                Salutation = Salutation,
                 title = title,
                 street = street,
                 postalCode = postalCode,
                 placeOfResidence = placeOfResidence,
                 nationality = nationality,
-                socialSecurityNumber = ahv,
+                socialSecurityNumber = oasiNr,
                 phoneNumberPrivat = phonePrivate,
                 phoneNumberBusiness = phoneBuiness,
                 email = email,

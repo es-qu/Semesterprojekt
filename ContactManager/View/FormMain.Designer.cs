@@ -176,7 +176,7 @@ namespace ContactManager
             this.LblCreateEmailAddress = new MaterialSkin.Controls.MaterialLabel();
             this.TxtCreateEmailAddress = new MaterialSkin.Controls.MaterialTextBox();
             this.LblCreateBusnissPhone = new MaterialSkin.Controls.MaterialLabel();
-            this.TxtCreateBusnissPhone = new MaterialSkin.Controls.MaterialTextBox();
+            this.TxtCreateBusinessPhone = new MaterialSkin.Controls.MaterialTextBox();
             this.LblCreatePrivatePhone = new MaterialSkin.Controls.MaterialLabel();
             this.TxtCreatePrivatePhone = new MaterialSkin.Controls.MaterialTextBox();
             this.CmdCreateSavePerson = new MaterialSkin.Controls.MaterialButton();
@@ -1755,7 +1755,7 @@ namespace ContactManager
             this.PnlCreateInfoGeneral.Controls.Add(this.LblCreateEmailAddress);
             this.PnlCreateInfoGeneral.Controls.Add(this.TxtCreateEmailAddress);
             this.PnlCreateInfoGeneral.Controls.Add(this.LblCreateBusnissPhone);
-            this.PnlCreateInfoGeneral.Controls.Add(this.TxtCreateBusnissPhone);
+            this.PnlCreateInfoGeneral.Controls.Add(this.TxtCreateBusinessPhone);
             this.PnlCreateInfoGeneral.Controls.Add(this.LblCreatePrivatePhone);
             this.PnlCreateInfoGeneral.Controls.Add(this.TxtCreatePrivatePhone);
             this.PnlCreateInfoGeneral.Location = new System.Drawing.Point(7, 6);
@@ -2263,18 +2263,18 @@ namespace ContactManager
             // 
             // TxtCreateBusnissPhone
             // 
-            this.TxtCreateBusnissPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TxtCreateBusnissPhone.Depth = 0;
-            this.TxtCreateBusnissPhone.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateBusnissPhone.Location = new System.Drawing.Point(27, 620);
-            this.TxtCreateBusnissPhone.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.TxtCreateBusnissPhone.MaxLength = 50;
-            this.TxtCreateBusnissPhone.MouseState = MaterialSkin.MouseState.OUT;
-            this.TxtCreateBusnissPhone.Multiline = false;
-            this.TxtCreateBusnissPhone.Name = "TxtCreateBusnissPhone";
-            this.TxtCreateBusnissPhone.Size = new System.Drawing.Size(233, 50);
-            this.TxtCreateBusnissPhone.TabIndex = 17;
-            this.TxtCreateBusnissPhone.Text = "";
+            this.TxtCreateBusinessPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TxtCreateBusinessPhone.Depth = 0;
+            this.TxtCreateBusinessPhone.Font = new System.Drawing.Font("Roboto", 12F);
+            this.TxtCreateBusinessPhone.Location = new System.Drawing.Point(27, 620);
+            this.TxtCreateBusinessPhone.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.TxtCreateBusinessPhone.MaxLength = 50;
+            this.TxtCreateBusinessPhone.MouseState = MaterialSkin.MouseState.OUT;
+            this.TxtCreateBusinessPhone.Multiline = false;
+            this.TxtCreateBusinessPhone.Name = "TxtCreateBusnissPhone";
+            this.TxtCreateBusinessPhone.Size = new System.Drawing.Size(233, 50);
+            this.TxtCreateBusinessPhone.TabIndex = 17;
+            this.TxtCreateBusinessPhone.Text = "";
             // 
             // LblCreatePrivatePhone
             // 
@@ -2845,7 +2845,7 @@ namespace ContactManager
         private System.Windows.Forms.DateTimePicker DatCreateDateOfJoining;
         private MaterialSkin.Controls.MaterialButton CmdCreateSavePerson;
         private MaterialSkin.Controls.MaterialTextBox TxtCreatePrivatePhone;
-        private MaterialSkin.Controls.MaterialTextBox TxtCreateBusnissPhone;
+        private MaterialSkin.Controls.MaterialTextBox TxtCreateBusinessPhone;
         private MaterialSkin.Controls.MaterialLabel LblCreateBusnissPhone;
         private MaterialSkin.Controls.MaterialLabel LblCreatePrivatePhone;
         private MaterialSkin.Controls.MaterialCard TabCreate;
