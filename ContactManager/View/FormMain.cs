@@ -189,7 +189,7 @@ namespace ContactManager
             if (RadCreateCustomer.Checked)
             {
                 // Check if the customer Type has changed
-                if (CmbCreateCustomerType.Text == "")
+                if (CmbCreateCustomerType.Text == "-")
                 {
                     MessageBox.Show("Please select the customer type (A-E)");
                     return;
@@ -214,9 +214,12 @@ namespace ContactManager
             //--------------------------------------
             if (RadCreateEmployee.Checked)
             {
-
-
-                //NumCreateDegreeOfEmployment.Value
+                // Check if the degree of employment is not empty
+                if (NumCreateDegreeOfEmployment.Value < 1)
+                {
+                    MessageBox.Show("The degree of employment needs to be over zero");
+                    return;
+                }
 
                 // Check if the date of joining is changed
                 if (dateMax > DatCreateDateOfJoining.Value && DatCreateDateOfJoining.Value > dateMin)
@@ -233,7 +236,12 @@ namespace ContactManager
                 // looks if Employee is a Trainee
                 if (ChkCreateTrainee.Checked)
                 {
-                    //NumCreateYearOfApp.Value
+                    // Check if the years of apprenticeship is not empty
+                    if (NumCreateYearOfApp.Value < 1)
+                    {
+                        MessageBox.Show("The years of apprenticeship needs to be over zero");
+                        return;
+                    }
                 }
             }
 
