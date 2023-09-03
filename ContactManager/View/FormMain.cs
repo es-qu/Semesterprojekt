@@ -3,6 +3,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -34,11 +35,6 @@ namespace ContactManager
             //Countries in ComboBox Nationality
             PopulateCountryComboBox();
             TxtCreateOasiNr.KeyPress += TxtCreateOasiNr_KeyPress;
-
-
-            this.RadCreateMale.CheckedChanged += new System.EventHandler(this.RadCreateMale_CheckedChanged);
-            this.RadCreateFemale.CheckedChanged += new System.EventHandler(this.RadCreateFemale_CheckedChanged);
-            this.RadCreateOther.CheckedChanged += new System.EventHandler(this.RadCreateOther_CheckedChanged);
 
             // Disable the employee && Customer number text box
             TxtCreateEmployeeNumber.Enabled = false;
@@ -79,44 +75,6 @@ namespace ContactManager
 
         }
 
-        // Event handler for RadCreateMale
-        private void RadCreateMale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RadCreateMale.Checked)
-            {
-                ChangeFormColor(MaterialSkin.Primary.Blue500);
-            }
-        }
-
-        // Event handler for RadCreateFemale
-        private void RadCreateFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RadCreateFemale.Checked)
-            {
-                ChangeFormColor(MaterialSkin.Primary.Pink500);
-            }
-        }
-
-        // Event handler for RadCreateOther
-        private void RadCreateOther_CheckedChanged(object sender, EventArgs e)
-        {
-            if (RadCreateOther.Checked)
-            {
-                ChangeFormColor(MaterialSkin.Primary.Grey500);
-            }
-        }
-
-        private void ChangeFormColor(MaterialSkin.Primary primaryColor)
-        {
-            manager.ColorScheme = new ColorScheme(
-                primaryColor,
-                primaryColor,
-                primaryColor,
-                Accent.Blue100,
-                TextShade.WHITE
-            );
-            Refresh();
-        }
 
         private void TxtCreateOasiNr_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -135,23 +93,160 @@ namespace ContactManager
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
             Controller controller = new Controller();
+
             string gender = RadCreateMale.Checked ? "Male" :
                      RadCreateFemale.Checked ? "Female" :
                      RadCreateOther.Checked ? "Other" : null;
 
+            #region MandatoryFields
+            // Variables for If-Statements
+            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
+            var dateMin = new DateTime(1900, 1, 1);
+            var dateMax = new DateTime(2100, 1, 1);
+            
+
+            // Handle the case when no radio button is selected for person type
+            if (!RadCreateCustomer.Checked && !RadCreateEmployee.Checked)
+            {
+                MessageBox.Show("Please select a type");
+                return;
+            }
+
+            // Handle the case when no radio button is selected for gender
             if (gender == null)
             {
-                // Handle the case when no radio button is selected, e.g., show a MessageBox
                 MessageBox.Show("Please select a gender");
                 return;
             }
-            // Check if the first name contains only letters
-            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
-            if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+
+            // Check if the first name contains only letters and is not empty
+            if (TxtCreateFirstName.Text == "")
             {
-                MessageBox.Show("The first name can contain only letters");
+                MessageBox.Show("The first name can not be empty");
                 return;
             }
+            else if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+            {
+                MessageBox.Show("The first name can only contain letters");
+                return;
+            }
+
+            // Check if the last name contains only letters and is not empty
+            if (TxtCreateLastName.Text == "")
+            {
+                MessageBox.Show("The last name can not be empty");
+                return;
+            }
+            else if (!regexLetters.IsMatch(TxtCreateLastName.Text))
+            {
+                MessageBox.Show("The last name can only contain letters");
+                return;
+            }
+
+            // Check if the address is not empty
+            if (TxtCreateAddress.Text == "")
+            {
+                MessageBox.Show("The address can not be empty");
+                return;
+            }
+
+            // Check if the postal code is not empty
+            if (TxtCreatePlz.Text == "")
+            {
+                MessageBox.Show("The postal code can not be empty");
+                return;
+            }
+
+            // Check if the Place of residence is not empty
+            if (TxtCreatePlaceOfResidence.Text == "")
+            {
+                MessageBox.Show("The place of residence can not be empty");
+                return;
+            }
+
+            // Check if the Birthday is changed
+            if (dateMax > DatCreateBirthday.Value && DatCreateBirthday.Value > dateMin)
+            {
+                Debug.WriteLine("Date is correct");
+            }
+            else
+            {
+                MessageBox.Show("Please set the date of birth");
+                return;
+            }
+
+            // Check if the Email is not empty
+            if (TxtCreateEmailAddress.Text == "")
+            {
+                MessageBox.Show("The email address can not be empty");
+                return;
+            }
+
+
+            //--------------------------------------
+            //              Customer
+            //--------------------------------------
+            if (RadCreateCustomer.Checked)
+            {
+                // Check if the customer Type has changed
+                if (CmbCreateCustomerType.Text == "-")
+                {
+                    MessageBox.Show("Please select the customer type (A-E)");
+                    return;
+                }
+
+                // Check if the Company Name is not empty
+                if (TxtCreateCompanyName.Text == "")
+                {
+                    MessageBox.Show("The company name can not be empty");
+                    return;
+                }
+
+                // Check if the Company contact is not empty
+                if (TxtCreateCompanyContact.Text == "")
+                {
+                    MessageBox.Show("The company contact can not be empty");
+                    return;
+                }
+            }
+            //--------------------------------------
+            //              Employee
+            //--------------------------------------
+            if (RadCreateEmployee.Checked)
+            {
+                // Check if the degree of employment is not empty
+                if (NumCreateDegreeOfEmployment.Value < 1)
+                {
+                    MessageBox.Show("The degree of employment needs to be over zero");
+                    return;
+                }
+
+                // Check if the date of joining is changed
+                if (dateMax > DatCreateDateOfJoining.Value && DatCreateDateOfJoining.Value > dateMin)
+                {
+                    Debug.WriteLine("Date is correct");
+                }
+                else
+                {
+                    MessageBox.Show("Please set the date of joining");
+                    return;
+                }
+
+
+                // looks if Employee is a Trainee
+                if (ChkCreateTrainee.Checked)
+                {
+                    // Check if the years of apprenticeship is not empty
+                    if (NumCreateYearOfApp.Value < 1)
+                    {
+                        MessageBox.Show("The years of apprenticeship needs to be over zero");
+                        return;
+                    }
+                }
+            }
+
+            #endregion
+
             if (RadCreateEmployee.Checked)
             {
                 if (ChkCreateTrainee.Checked)
@@ -246,6 +341,9 @@ namespace ContactManager
             }
         }
 
+
+        // Falg for Customer and employee
+        private bool isEditMode = false;
         private void RadCreateCustomer_CheckedChanged(object sender, EventArgs e)
         {
             LblCreateTypeSelection.Visible = false;
@@ -254,7 +352,10 @@ namespace ContactManager
             {
                 PnlCreateInfoCustomer.Visible = true;
                 // Generate the next Customer number
-                TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber", "CUST");
+                if (!isEditMode)
+                {
+                    TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber", "CUST");
+                }
             }
             else
             {
@@ -271,9 +372,11 @@ namespace ContactManager
                 PnlCreateInfoEmployee.Visible = true;
                 ChkCreateTrainee.Visible = true;
                 ChkCreateTrainee.Checked = false;
-
-                // Generate the next employee number
-                TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber", "EMP");
+                if (!isEditMode)
+                {
+                    // Generate the next employee number
+                    TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber", "EMP");
+                }
             }
             else
             {
