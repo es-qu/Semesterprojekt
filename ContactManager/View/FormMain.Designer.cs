@@ -30,10 +30,10 @@ namespace ContactManager
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TCtrlMain = new MaterialSkin.Controls.MaterialTabControl();
             this.TabSearch = new System.Windows.Forms.TabPage();
             this.CmdSearchClear = new MaterialSkin.Controls.MaterialButton();
@@ -183,6 +183,7 @@ namespace ContactManager
             this.TxtCreateBusinessPhone = new MaterialSkin.Controls.MaterialTextBox();
             this.LblCreatePrivatePhone = new MaterialSkin.Controls.MaterialLabel();
             this.TxtCreatePrivatePhone = new MaterialSkin.Controls.MaterialTextBox();
+            this.GrpCreateGender = new System.Windows.Forms.GroupBox();
             this.CmdCreateSavePerson = new MaterialSkin.Controls.MaterialButton();
             this.PnlCreateInfoCustomer = new System.Windows.Forms.Panel();
             this.TxtCreateCustomerNumber = new MaterialSkin.Controls.MaterialTextBox();
@@ -214,7 +215,6 @@ namespace ContactManager
             this.LblCadreLevel = new MaterialSkin.Controls.MaterialLabel();
             this.LblRole = new MaterialSkin.Controls.MaterialLabel();
             this.TxtCreateRole = new MaterialSkin.Controls.MaterialTextBox();
-            this.GrpCreateGender = new System.Windows.Forms.GroupBox();
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchResult)).BeginInit();
@@ -682,44 +682,44 @@ namespace ContactManager
             this.DataGridViewSearchResult.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.DataGridViewSearchResult.BackgroundColor = System.Drawing.Color.DimGray;
             this.DataGridViewSearchResult.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewSearchResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DataGridViewSearchResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewSearchResult.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewSearchResult.DefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridViewSearchResult.GridColor = System.Drawing.Color.Gray;
             this.DataGridViewSearchResult.Location = new System.Drawing.Point(9, 383);
             this.DataGridViewSearchResult.MultiSelect = false;
             this.DataGridViewSearchResult.Name = "DataGridViewSearchResult";
             this.DataGridViewSearchResult.ReadOnly = true;
             this.DataGridViewSearchResult.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewSearchResult.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchResult.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DataGridViewSearchResult.RowHeadersVisible = false;
             this.DataGridViewSearchResult.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGridViewSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewSearchResult.Size = new System.Drawing.Size(608, 184);
             this.DataGridViewSearchResult.TabIndex = 5;
             this.DataGridViewSearchResult.SelectionChanged += new System.EventHandler(this.DataGridViewSearchResultSelectionChanged_CellClick);
@@ -2250,18 +2250,18 @@ namespace ContactManager
             this.LblCreateBusnissPhone.TabIndex = 47;
             this.LblCreateBusnissPhone.Text = "Business phone";
             // 
-            // TxtCreateBusnissPhone
+            // TxtCreateBusinessPhone
             // 
             this.TxtCreateBusinessPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateBusinessPhone.Depth = 0;
             this.TxtCreateBusinessPhone.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateBusinessPhone.Location = new System.Drawing.Point(27, 620);
-            this.TxtCreateBusinessPhone.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.TxtCreateBusinessPhone.Location = new System.Drawing.Point(18, 504);
+            this.TxtCreateBusinessPhone.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.TxtCreateBusinessPhone.MaxLength = 50;
             this.TxtCreateBusinessPhone.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateBusinessPhone.Multiline = false;
-            this.TxtCreateBusinessPhone.Name = "TxtCreateBusnissPhone";
-            this.TxtCreateBusinessPhone.Size = new System.Drawing.Size(233, 50);
+            this.TxtCreateBusinessPhone.Name = "TxtCreateBusinessPhone";
+            this.TxtCreateBusinessPhone.Size = new System.Drawing.Size(175, 50);
             this.TxtCreateBusinessPhone.TabIndex = 17;
             this.TxtCreateBusinessPhone.Text = "";
             // 
@@ -2293,6 +2293,15 @@ namespace ContactManager
             this.TxtCreatePrivatePhone.Size = new System.Drawing.Size(175, 50);
             this.TxtCreatePrivatePhone.TabIndex = 15;
             this.TxtCreatePrivatePhone.Text = "";
+            // 
+            // GrpCreateGender
+            // 
+            this.GrpCreateGender.Location = new System.Drawing.Point(131, 3);
+            this.GrpCreateGender.Name = "GrpCreateGender";
+            this.GrpCreateGender.Size = new System.Drawing.Size(277, 66);
+            this.GrpCreateGender.TabIndex = 80;
+            this.GrpCreateGender.TabStop = false;
+            this.GrpCreateGender.Text = "Gender*";
             // 
             // CmdCreateSavePerson
             // 
@@ -2757,15 +2766,6 @@ namespace ContactManager
             this.TxtCreateRole.Size = new System.Drawing.Size(216, 50);
             this.TxtCreateRole.TabIndex = 25;
             this.TxtCreateRole.Text = "";
-            // 
-            // GrpCreateGender
-            // 
-            this.GrpCreateGender.Location = new System.Drawing.Point(131, 3);
-            this.GrpCreateGender.Name = "GrpCreateGender";
-            this.GrpCreateGender.Size = new System.Drawing.Size(277, 66);
-            this.GrpCreateGender.TabIndex = 80;
-            this.GrpCreateGender.TabStop = false;
-            this.GrpCreateGender.Text = "Gender*";
             // 
             // FormMain
             // 
