@@ -610,6 +610,8 @@ namespace ContactManager
 
                         LblSearchPreviewStatusOutput.Text = (clickedPerson.status != 0) ? "Active" : "Inactive";
                         LblSearchPreviewTitleOutput.Text = clickedPerson.title;
+                        LblSearchPreviewGenderOutput.Text = clickedPerson.gender;
+                        LblSearchPreviewSalutationOutput.Text = clickedPerson.Salutation;
                         LblSearchPreviewFirstNameOutput.Text = clickedPerson.firstName;
                         LblSearchPreviewLastNameOutput.Text = clickedPerson.lastName;
                         LblSearchPreviewAddressOutput.Text = clickedPerson.street;
@@ -631,6 +633,16 @@ namespace ContactManager
                         LblSearchPreviewCompanyNameOutput.Text = "-";
                         LblSearchPreviewCompanyContactOutput.Text = "-";
 
+                        LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
+                        LblSearchPreviewDepartementOutput.Text = "-";
+                        LblSearchPreviewRoleOutput.Text = "-";
+                        LblSearchPreviewCadreLevelOutput.Text = "-";
+                        LblSearchPreviewDateOfJoiningOutput.Text = "-";
+                        LblSearchPreviewDateOfLeavingOutput.Text = "-";
+
+                        LblSearchPreviewCurrentAppYearOutput.Text = "-";
+                        LblSearchPreviewYearsOfAppOutput.Text = "-";
+
                         PnlSearchPreviewCustomer.Visible = false;
                         PnlSearchPreviewEmployee.Visible = false;
                         PnlSearchPreviewTrainee.Visible = false;
@@ -650,20 +662,33 @@ namespace ContactManager
                         }
                         else if (type == typeof(Employee) || type == typeof(Trainee))
                         {
+                            Employee employee = (Employee)searchResults[currentRow.Index];
+
                             if (type == typeof(Trainee))
                             {
                                 Trainee trainee = (Trainee)searchResults[currentRow.Index];
-                                LblSearchPreviewNumberOutput.Text = trainee.EmployeeNumber;
                                 LblSearchPreviewTypeOutput.Text = "Trainee";
+
+                                // ------------------------------------- Change class trainee
+                                LblSearchPreviewCurrentAppYearOutput.Text = "-";
+                                LblSearchPreviewYearsOfAppOutput.Text = "-";
 
                                 PnlSearchPreviewTrainee.Visible = true;
                             }
                             else
                             {
-                                Employee employee = (Employee)searchResults[currentRow.Index];
-                                LblSearchPreviewNumberOutput.Text = employee.EmployeeNumber;
                                 LblSearchPreviewTypeOutput.Text = "Employee";
                             }
+
+                            LblSearchPreviewNumberOutput.Text = employee.EmployeeNumber;
+
+                            // ------------------------------------------ Change class employee
+                            LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
+                            LblSearchPreviewDepartementOutput.Text = employee.Department;
+                            LblSearchPreviewRoleOutput.Text = "-";
+                            LblSearchPreviewCadreLevelOutput.Text = employee.NumCadreLevel;
+                            LblSearchPreviewDateOfJoiningOutput.Text = employee.dateofjoining;
+                            LblSearchPreviewDateOfLeavingOutput.Text = employee.dateofleaving;
 
                             PnlSearchPreviewEmployee.Visible = true;
                         }
@@ -681,6 +706,8 @@ namespace ContactManager
                 {
                     // Clear all labels
                     LblSearchPreviewTitleOutput.Text = "-";
+                    LblSearchPreviewGenderOutput.Text = "-";
+                    LblSearchPreviewSalutationOutput.Text = "-";
                     LblSearchPreviewFirstNameOutput.Text = "-";
                     LblSearchPreviewLastNameOutput.Text = "-";
                     LblSearchPreviewAddressOutput.Text = "-";
@@ -699,6 +726,13 @@ namespace ContactManager
                     LblSearchPreviewCustomerTypeOutput.Text = "-";
                     LblSearchPreviewCompanyNameOutput.Text = "-";
                     LblSearchPreviewCompanyContactOutput.Text = "-";
+
+                    LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
+                    LblSearchPreviewDepartementOutput.Text = "-";
+                    LblSearchPreviewRoleOutput.Text = "-";
+                    LblSearchPreviewCadreLevelOutput.Text = "-";
+                    LblSearchPreviewDateOfJoiningOutput.Text = "-";
+                    LblSearchPreviewDateOfLeavingOutput.Text = "-";
 
                     // Disable buttons
                     CmdSearchPersonEdit.Enabled = false;

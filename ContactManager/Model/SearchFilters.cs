@@ -16,6 +16,8 @@
 
         private string number = string.Empty;
         private string title = string.Empty;
+        private string gender = string.Empty;
+        private string salutation = string.Empty;
         private string firstName = string.Empty;
         private string lastName = string.Empty;
         private string address = string.Empty;
@@ -89,6 +91,18 @@
         {
             get { return title; }
             set { title = value; }
+        }
+
+        public string Gender
+        {
+            get { return gender; }
+            set { gender = value; }
+        }
+
+        public string Salutation
+        {
+            get { return salutation; }
+            set { salutation = value; }
         }
 
         public string FirstName
