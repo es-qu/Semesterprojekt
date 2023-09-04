@@ -3,9 +3,9 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -95,19 +95,126 @@ namespace ContactManager
         {
 
             Controller controller = new Controller();
+
             string gender = RadCreateMale.Checked ? "Male" :
                      RadCreateFemale.Checked ? "Female" :
                      RadCreateOther.Checked ? "Other" : null;
 
+            #region MandatoryFields
+            // Variables for If-Statements
+            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
+            var dateMin = new DateTime(1900, 1, 1);
+            var dateMax = new DateTime(2100, 1, 1);
+            
+
+            // Handle the case when no radio button is selected for person type
+            if (!RadCreateCustomer.Checked && !RadCreateEmployee.Checked)
+            {
+                MessageBox.Show("Please select a type");
+                return;
+            }
+
+            // Handle the case when no radio button is selected for gender
             if (gender == null)
             {
-                // Handle the case when no radio button is selected, e.g., show a MessageBox
                 MessageBox.Show("Please select a gender");
                 return;
             }
-            // Check if the first name contains only letters
-            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
-            if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+
+            // Check if the first name contains only letters and is not empty
+            if (TxtCreateFirstName.Text == "")
+            {
+                MessageBox.Show("The first name can not be empty");
+                return;
+            }
+            else if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+            {
+                MessageBox.Show("The first name can only contain letters");
+                return;
+            }
+
+            // Check if the last name contains only letters and is not empty
+            if (TxtCreateLastName.Text == "")
+            {
+                MessageBox.Show("The last name can not be empty");
+                return;
+            }
+            else if (!regexLetters.IsMatch(TxtCreateLastName.Text))
+            {
+                MessageBox.Show("The last name can only contain letters");
+                return;
+            }
+
+            // Check if the address is not empty
+            if (TxtCreateAddress.Text == "")
+            {
+                MessageBox.Show("The address can not be empty");
+                return;
+            }
+
+            // Check if the postal code is not empty
+            if (TxtCreatePlz.Text == "")
+            {
+                MessageBox.Show("The postal code can not be empty");
+                return;
+            }
+
+            // Check if the Place of residence is not empty
+            if (TxtCreatePlaceOfResidence.Text == "")
+            {
+                MessageBox.Show("The place of residence can not be empty");
+                return;
+            }
+
+            // Check if the Birthday is changed
+            if (dateMax > DatCreateBirthday.Value && DatCreateBirthday.Value > dateMin)
+            {
+                Debug.WriteLine("Date is correct");
+            }
+            else
+            {
+                MessageBox.Show("Please set the date of birth");
+                return;
+            }
+
+            // Check if the Email is not empty
+            if (TxtCreateEmailAddress.Text == "")
+            {
+                MessageBox.Show("The email address can not be empty");
+                return;
+            }
+
+
+            //--------------------------------------
+            //              Customer
+            //--------------------------------------
+            if (RadCreateCustomer.Checked)
+            {
+                // Check if the customer Type has changed
+                if (CmbCreateCustomerType.Text == "-")
+                {
+                    MessageBox.Show("Please select the customer type (A-E)");
+                    return;
+                }
+
+                // Check if the Company Name is not empty
+                if (TxtCreateCompanyName.Text == "")
+                {
+                    MessageBox.Show("The company name can not be empty");
+                    return;
+                }
+
+                // Check if the Company contact is not empty
+                if (TxtCreateCompanyContact.Text == "")
+                {
+                    MessageBox.Show("The company contact can not be empty");
+                    return;
+                }
+            }
+            //--------------------------------------
+            //              Employee
+            //--------------------------------------
+            if (RadCreateEmployee.Checked)
             {
                 MessageBox.Show("The first name can contain only letters");
                 return;
@@ -621,6 +728,8 @@ namespace ContactManager
                         //selectedPersonId = clickedPerson.;
                         LblSearchPreviewStatusOutput.Text = (clickedPerson.status != 0) ? "Active" : "Inactive";
                         LblSearchPreviewTitleOutput.Text = clickedPerson.title;
+                        LblSearchPreviewGenderOutput.Text = clickedPerson.gender;
+                        LblSearchPreviewSalutationOutput.Text = clickedPerson.Salutation;
                         LblSearchPreviewFirstNameOutput.Text = clickedPerson.firstName;
                         LblSearchPreviewLastNameOutput.Text = clickedPerson.lastName;
                         LblSearchPreviewAddressOutput.Text = clickedPerson.street;
@@ -632,14 +741,25 @@ namespace ContactManager
                         LblSearchPreviewEmailAddressOutput.Text = clickedPerson.email;
                         LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.phoneNumberPrivat;
                         LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.phoneNumberBusiness;
-                        //LblSearchPreviewBusinessAddressOutput.Text = clickedPerson;
+                        LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.EmailBusiness;
 
                         // Display type specific informations
+
                         LblSearchPreviewNumberOutput.Text = "-";
                         LblSearchPreviewTypeOutput.Text = "-";
                         LblSearchPreviewCustomerTypeOutput.Text = "-";
                         LblSearchPreviewCompanyNameOutput.Text = "-";
                         LblSearchPreviewCompanyContactOutput.Text = "-";
+
+                        LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
+                        LblSearchPreviewDepartementOutput.Text = "-";
+                        LblSearchPreviewRoleOutput.Text = "-";
+                        LblSearchPreviewCadreLevelOutput.Text = "-";
+                        LblSearchPreviewDateOfJoiningOutput.Text = "-";
+                        LblSearchPreviewDateOfLeavingOutput.Text = "-";
+
+                        LblSearchPreviewCurrentAppYearOutput.Text = "-";
+                        LblSearchPreviewYearsOfAppOutput.Text = "-";
 
                         PnlSearchPreviewCustomer.Visible = false;
                         PnlSearchPreviewEmployee.Visible = false;
@@ -659,25 +779,37 @@ namespace ContactManager
 
                             PnlSearchPreviewCustomer.Visible = true;
                         }
-                        else if (type.IsAssignableFrom(typeof(Employee)))
+                        else if (type == typeof(Employee) || type == typeof(Trainee))
                         {
+                            Employee employee = (Employee)searchResults[currentRow.Index];
+
                             if (type == typeof(Trainee))
                             {
                                 Trainee trainee = (Trainee)searchResults[currentRow.Index];
-                                LblSearchPreviewNumberOutput.Text = trainee.EmployeeNumber;
                                 LblSearchPreviewTypeOutput.Text = "Trainee";
+
+                                // ------------------------------------- Change class trainee
+                                LblSearchPreviewCurrentAppYearOutput.Text = "-";
+                                LblSearchPreviewYearsOfAppOutput.Text = "-";
 
                                 PnlSearchPreviewTrainee.Visible = true;
                             }
                             else
                             {
-                                Employee employee = (Employee)searchResults[currentRow.Index];
-                                LblSearchPreviewNumberOutput.Text = employee.EmployeeNumber;
-                                selectedPerson = employee.EmployeeNumber;
                                 LblSearchPreviewTypeOutput.Text = "Employee";
-
-                                PnlSearchPreviewEmployee.Visible = true;
                             }
+
+                            LblSearchPreviewNumberOutput.Text = employee.EmployeeNumber;
+
+                            // ------------------------------------------ Change class employee
+                            LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
+                            LblSearchPreviewDepartementOutput.Text = employee.Department;
+                            LblSearchPreviewRoleOutput.Text = "-";
+                            LblSearchPreviewCadreLevelOutput.Text = employee.NumCadreLevel;
+                            LblSearchPreviewDateOfJoiningOutput.Text = employee.dateofjoining;
+                            LblSearchPreviewDateOfLeavingOutput.Text = employee.dateofleaving;
+
+                            PnlSearchPreviewEmployee.Visible = true;
                         }
                         else
                         {
@@ -691,7 +823,10 @@ namespace ContactManager
                 }
                 else
                 {
+                    // Clear all labels
                     LblSearchPreviewTitleOutput.Text = "-";
+                    LblSearchPreviewGenderOutput.Text = "-";
+                    LblSearchPreviewSalutationOutput.Text = "-";
                     LblSearchPreviewFirstNameOutput.Text = "-";
                     LblSearchPreviewLastNameOutput.Text = "-";
                     LblSearchPreviewAddressOutput.Text = "-";
@@ -710,6 +845,13 @@ namespace ContactManager
                     LblSearchPreviewCustomerTypeOutput.Text = "-";
                     LblSearchPreviewCompanyNameOutput.Text = "-";
                     LblSearchPreviewCompanyContactOutput.Text = "-";
+
+                    LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
+                    LblSearchPreviewDepartementOutput.Text = "-";
+                    LblSearchPreviewRoleOutput.Text = "-";
+                    LblSearchPreviewCadreLevelOutput.Text = "-";
+                    LblSearchPreviewDateOfJoiningOutput.Text = "-";
+                    LblSearchPreviewDateOfLeavingOutput.Text = "-";
 
                     // Disable buttons
                     CmdSearchPersonEdit.Enabled = false;
@@ -875,9 +1017,9 @@ namespace ContactManager
                     DatCreateBirthday.Text = contact.dateOfBirth;
                     TxtCreatePrivatePhone.Text = contact.phoneNumberPrivat;
                     TxtCreateEmailAddress.Text = contact.email;
-                    TxtCreateBusnissPhone.Text = contact.phoneNumberBusiness;
-                    //HIER BUSINESS ADDRESS TxtCreateBusinessAddress.Text = contact.businessAdress;
-                    TxtCreateBusnissPhone.Text = contact.phoneNumberBusiness;
+                    TxtCreateBusinessPhone.Text = contact.phoneNumberBusiness;
+                    TxtCreateBusinessAddress.Text = contact.EmailBusiness;
+                    TxtCreateBusinessPhone.Text = contact.phoneNumberBusiness;
 
 
                     // Fill out specific fields

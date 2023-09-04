@@ -11,7 +11,7 @@ namespace ContactManager
     {
         public Boolean CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
                                     string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string EmailBusiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel, Form form)
+                                     string phoneBuiness, string email, string EmailBusiness, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel, Form form)
         {
             Employee e = new Employee
             {
@@ -51,7 +51,7 @@ namespace ContactManager
 
         public Boolean CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
                                     string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string EmailBusiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
+                                     string phoneBuiness, string email, string EmailBusiness, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
                                     string TrainingStartDate, string TrainingEndDate, Form form)
         {
             Trainee t = new Trainee
@@ -101,13 +101,13 @@ namespace ContactManager
                 dateOfBirth = dateOfBirth,
                 CustomerNumber = CustomerNumber,
                 gender = gender,
-                Salutation = Salutaion,
+                Salutation = Salutation,
                 title = title,
                 street = street,
                 postalCode = postalCode,
                 placeOfResidence = placeOfResidence,
                 nationality = nationality,
-                socialSecurityNumber = ahv,
+                socialSecurityNumber = oasiNr,
                 phoneNumberPrivat = phonePrivate,
                 phoneNumberBusiness = phoneBuiness,
                 email = email,
@@ -136,6 +136,8 @@ namespace ContactManager
             bool clear = 
                 string.IsNullOrEmpty(filters.Number) &&
                 string.IsNullOrEmpty(filters.Title) &&
+                string.IsNullOrEmpty(filters.Gender) &&
+                string.IsNullOrEmpty(filters.Salutation) &&
                 string.IsNullOrEmpty(filters.FirstName) &&
                 string.IsNullOrEmpty(filters.LastName) &&
                 string.IsNullOrEmpty(filters.DateOfBirth) &&
@@ -231,6 +233,8 @@ namespace ContactManager
             // General Information
             List<string> generic = new List<string>();
             if (!string.IsNullOrEmpty(filters.Title)) generic.Add($"title LIKE '%{filters.Title}%'");
+            if (!string.IsNullOrEmpty(filters.Gender)) generic.Add($"gender LIKE '{filters.Gender}%'");
+            if (!string.IsNullOrEmpty(filters.Salutation)) generic.Add($"Salutation LIKE '%{filters.Salutation}%'");
             if (!string.IsNullOrEmpty(filters.FirstName)) generic.Add($"firstName LIKE '%{filters.FirstName}%'");
             if (!string.IsNullOrEmpty(filters.LastName)) generic.Add($"lastName LIKE '%{filters.LastName}%'");
             if (!string.IsNullOrEmpty(filters.Address)) generic.Add($"street LIKE '%{filters.Address}%'");
@@ -322,13 +326,13 @@ namespace ContactManager
             List<object> res = new List<object>();
 
             string customerSqlCondition = $"{((genericQueryString.Length > 0) ? genericQueryString + " AND " : "")}{((customerQueryString.Length > 0) ? customerQueryString + " AND " : "")}{inactiveQueryString}";
-            if (types.Contains(typeof(Customer))) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Customer) }, customerSqlCondition));
+            if (types.Contains(typeof(Customer)) && employeeQueryString.Count() == 0 && traineeQueryString.Count() == 0) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Customer) }, customerSqlCondition));
 
             string employeeSqlCondition = $"{((genericQueryString.Length > 0) ? genericQueryString + " AND " : "")}{((employeeQueryString.Length > 0) ? employeeQueryString + " AND " : "")}{inactiveQueryString}";
-            if (types.Contains(typeof(Employee))) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Employee) }, employeeSqlCondition));
+            if (types.Contains(typeof(Employee)) && customerQueryString.Count() == 0 && traineeQueryString.Count() == 0) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Employee) }, employeeSqlCondition));
 
             string traineeSqlCondition = $"{((genericQueryString.Length > 0) ? genericQueryString + " AND " : "")}{((employeeQueryString.Length > 0) ? employeeQueryString + " AND " : "")}{((traineeQueryString.Length > 0) ? traineeQueryString + " AND " : "")}{inactiveQueryString}";
-            if (types.Contains(typeof(Trainee))) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Trainee) }, traineeSqlCondition));
+            if (types.Contains(typeof(Trainee)) && customerQueryString.Count() == 0) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Trainee) }, traineeSqlCondition));
 
             return res;
         }

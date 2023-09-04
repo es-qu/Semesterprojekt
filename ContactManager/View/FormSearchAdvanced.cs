@@ -84,20 +84,25 @@ namespace ContactManager
             // Storing General Information
             parentFormMain.filters.Number = TxtSearchAdvancedNumber.Text;
             parentFormMain.filters.Title = TxtSearchAdvancedTitle.Text;
+            parentFormMain.filters.Gender = TxtSearchAdvancedGender.Text;
+            parentFormMain.filters.Salutation = TxtSearchAdvancedSalutation.Text;
             parentFormMain.filters.FirstName = TxtSearchAdvancedFirstName.Text;
             parentFormMain.filters.LastName = TxtSearchAdvancedLastName.Text;
             parentFormMain.filters.Address = TxtSearchAdvancedAddress.Text;
             parentFormMain.filters.PostalCode = TxtSearchAdvancedPostalCode.Text;
             parentFormMain.filters.PlaceOfResidence = TxtSearchAdvancedPlaceOfResidence.Text;
+            parentFormMain.filters.Nationality = TxtSearchAdvancedNationality.Text;
+            parentFormMain.filters.OasiNumber = TxtSearchAdvancedOasiNr.Text;
+            parentFormMain.filters.DateOfBirth = TxtSearchAdvancedDateOfBirth.Text;
+            parentFormMain.filters.EmailAddress = TxtSearchAdvancedEmailAddress.Text;
+            parentFormMain.filters.PrivatePhone = TxtSearchAdvancedPrivatePhone.Text;
+            parentFormMain.filters.BusinessPhone = TxtSearchAdvancedBusinessPhone.Text;
+            parentFormMain.filters.BusinessAddress = TxtSearchAdvancedBusinessAddress.Text;
 
             // Storing Customer Information
             parentFormMain.filters.CustomerType = TxtSearchAdvancedCustomerType.Text;
             parentFormMain.filters.CompanyName = TxtSearchAdvancedCompanyName.Text;
             parentFormMain.filters.CompanyContact = TxtSearchAdvancedCompanyContact.Text;
-
-            // Storing Trainee Information
-            parentFormMain.filters.CurrentApprenticeshipYear = TxtSearchAdvancedCurrentAppYear.Text;
-            parentFormMain.filters.YearsOfApprenticeship = TxtSearchAdvancedYearOfApp.Text;
 
             // Storing Employee Information
             parentFormMain.filters.Departement = TxtSearchAdvancedDepartement.Text;
@@ -106,6 +111,10 @@ namespace ContactManager
             parentFormMain.filters.DegreeOfEmployment = TxtSearchAdvancedDegreeOfEmployment.Text;
             parentFormMain.filters.DateOfJoining = TxtSearchAdvancedDateOfJoining.Text;
             parentFormMain.filters.DateOfLeaving = TxtSearchAdvancedDateOfLeaving.Text;
+
+            // Storing Trainee Information
+            parentFormMain.filters.CurrentApprenticeshipYear = TxtSearchAdvancedCurrentAppYear.Text;
+            parentFormMain.filters.YearsOfApprenticeship = TxtSearchAdvancedYearOfApp.Text;
         }
 
         /// <summary>
@@ -123,20 +132,25 @@ namespace ContactManager
             // Syncing General Information
             TxtSearchAdvancedNumber.Text = parentFormMain.filters.Number;
             TxtSearchAdvancedTitle.Text = parentFormMain.filters.Title;
+            TxtSearchAdvancedGender.Text = parentFormMain.filters.Gender;
+            TxtSearchAdvancedSalutation.Text = parentFormMain.filters.Salutation;
             TxtSearchAdvancedFirstName.Text = parentFormMain.filters.FirstName;
             TxtSearchAdvancedLastName.Text = parentFormMain.filters.LastName;
             TxtSearchAdvancedAddress.Text = parentFormMain.filters.Address;
             TxtSearchAdvancedPostalCode.Text = parentFormMain.filters.PostalCode;
             TxtSearchAdvancedPlaceOfResidence.Text = parentFormMain.filters.PlaceOfResidence;
+            TxtSearchAdvancedNationality.Text = parentFormMain.filters.Nationality;
+            TxtSearchAdvancedOasiNr.Text = parentFormMain.filters.OasiNumber;
+            TxtSearchAdvancedDateOfBirth.Text = parentFormMain.filters.DateOfBirth;
+            TxtSearchAdvancedEmailAddress.Text = parentFormMain.filters.EmailAddress;
+            TxtSearchAdvancedPrivatePhone.Text = parentFormMain.filters.PrivatePhone;
+            TxtSearchAdvancedBusinessPhone.Text = parentFormMain.filters.BusinessPhone;
+            TxtSearchAdvancedBusinessAddress.Text = parentFormMain.filters.BusinessAddress;
 
             // Syncing Customer Information
             TxtSearchAdvancedCustomerType.Text = parentFormMain.filters.CustomerType;
             TxtSearchAdvancedCompanyName.Text = parentFormMain.filters.CompanyName;
             TxtSearchAdvancedCompanyContact.Text = parentFormMain.filters.CompanyContact;
-
-            // Syncing Trainee Information
-            TxtSearchAdvancedCurrentAppYear.Text = parentFormMain.filters.CurrentApprenticeshipYear;
-            TxtSearchAdvancedYearOfApp.Text = parentFormMain.filters.YearsOfApprenticeship;
 
             // Syncing Employee Information
             TxtSearchAdvancedDepartement.Text = parentFormMain.filters.Departement;
@@ -145,6 +159,10 @@ namespace ContactManager
             TxtSearchAdvancedDegreeOfEmployment.Text = parentFormMain.filters.DegreeOfEmployment;
             TxtSearchAdvancedDateOfJoining.Text = parentFormMain.filters.DateOfJoining;
             TxtSearchAdvancedDateOfLeaving.Text = parentFormMain.filters.DateOfLeaving;
+
+            // Syncing Trainee Information
+            TxtSearchAdvancedCurrentAppYear.Text = parentFormMain.filters.CurrentApprenticeshipYear;
+            TxtSearchAdvancedYearOfApp.Text = parentFormMain.filters.YearsOfApprenticeship;
         }
 
         private void CmdSearchAdvancedExec_Click(object sender, EventArgs e)

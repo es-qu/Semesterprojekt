@@ -13,15 +13,15 @@ namespace ContactManager
 {
     internal class SqliteDataAccess
     {
-        public static List<Person> LoadPeople(string SearchText)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var output = cnn.Query<Person>("Select * from Person where firstName like @Name or lastName like @Name",
-                new { Name = "%" + SearchText + "%" });
-                return output.ToList();
-            }
-        }
+        //public static List<Person> LoadPeople(string SearchText)
+        //{
+        //    using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+        //    {
+        //        var output = cnn.Query<Person>("Select * from Person where firstName like @Name or lastName like @Name",
+        //        new { Name = "%" + SearchText + "%" });
+        //        return output.ToList();
+        //    }
+        //}
 
         public static void SaveCustomer(Customer customer)
         {
@@ -46,9 +46,9 @@ namespace ContactManager
                         customer.socialSecurityNumber,
                         customer.dateOfBirth,
                         customer.phoneNumberPrivat,
-                        customer.EmailBusiness,
-                        customer.phoneNumberBusiness,
                         customer.email,
+                        customer.phoneNumberBusiness,
+                        customer.EmailBusiness,
                         customer.note
                     });
 
@@ -169,9 +169,9 @@ namespace ContactManager
                     employee.socialSecurityNumber,
                     employee.dateOfBirth,
                     employee.phoneNumberPrivat,
-                    employee.EmailBusiness,
-                    employee.phoneNumberBusiness,
                     employee.email,
+                    employee.phoneNumberBusiness,
+                    employee.EmailBusiness,
                     employee.note
                 });
 
@@ -186,8 +186,6 @@ namespace ContactManager
                     employee.dateofjoining,
                     employee.dateofleaving,
                     employee.NumCadreLevel
-
-
                 });
             }
         }
@@ -347,10 +345,13 @@ namespace ContactManager
         /// <returns></returns>
         private static List<Type> SearchTableByQueryString<Type>(SQLiteConnection conn, string queryString) where Type : Person, new()
         {
-            string joinedTableName = typeof(Type).Name;
+            string joinTargetTableName = typeof(Type).Name;
+
             string query = (typeof(Type) != typeof(Trainee))
-                ? $"SELECT * FROM Person INNER JOIN {joinedTableName} ON Person.id = {joinedTableName}.id WHERE {queryString}"
-                : $"SELECT * FROM Person INNER JOIN Employee ON Person.id = Employee.id INNER JOIN {joinedTableName} ON Person.id = {joinedTableName}.id WHERE {queryString}";
+                ? $"SELECT * FROM Person INNER JOIN {joinTargetTableName} ON Person.id = {joinTargetTableName}.id WHERE NOT EXISTS (SELECT 1 FROM Trainee WHERE Trainee.id = {joinTargetTableName}.id) AND {queryString}"
+                : $"SELECT * FROM Person INNER JOIN Employee ON Person.id = Employee.id INNER JOIN {joinTargetTableName} ON Person.id = {joinTargetTableName}.id WHERE {queryString}";
+
+
             return conn.Query<Type>(query).AsList();
         }
     }
