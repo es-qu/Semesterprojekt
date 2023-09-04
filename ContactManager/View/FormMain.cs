@@ -42,7 +42,7 @@ namespace ContactManager
 
 
         }
-        private string selectedPerson;
+        public string selectedPerson;
         public FormMain(int selectedTab) : this()
         {
             Tab tab = (Tab)selectedTab;
@@ -102,7 +102,7 @@ namespace ContactManager
 
             #region MandatoryFields
             // Variables for If-Statements
-            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
+            //Regex regexLetters = new Regex("A-Za-zÄ-Üä-ü");
             var dateMin = new DateTime(1900, 1, 1);
             var dateMax = new DateTime(2100, 1, 1);
             
@@ -122,67 +122,67 @@ namespace ContactManager
             }
 
             // Check if the first name contains only letters and is not empty
-            if (TxtCreateFirstName.Text == "")
-            {
-                MessageBox.Show("The first name can not be empty");
-                return;
-            }
-            else if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
-            {
-                MessageBox.Show("The first name can only contain letters");
-                return;
-            }
+            //if (TxtCreateFirstName.Text == "")
+            //{
+            //    MessageBox.Show("The first name can not be empty");
+            //    return;
+            //}
+            //else if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+            //{
+            //    MessageBox.Show("The first name can only contain letters");
+            //    return;
+            //}
 
             // Check if the last name contains only letters and is not empty
-            if (TxtCreateLastName.Text == "")
-            {
-                MessageBox.Show("The last name can not be empty");
-                return;
-            }
-            else if (!regexLetters.IsMatch(TxtCreateLastName.Text))
-            {
-                MessageBox.Show("The last name can only contain letters");
-                return;
-            }
+            //if (TxtCreateLastName.Text == "")
+            //{
+            //    MessageBox.Show("The last name can not be empty");
+            //    return;
+            //}
+            // else if (!regexLetters.IsMatch(TxtCreateLastName.Text))
+            // {
+            //  MessageBox.Show("The last name can only contain letters");
+            // return;
+            // }
 
             // Check if the address is not empty
-            if (TxtCreateAddress.Text == "")
-            {
-                MessageBox.Show("The address can not be empty");
-                return;
-            }
+            //if (TxtCreateAddress.Text == "")
+            //{
+            //    MessageBox.Show("The address can not be empty");
+            //    return;
+            //}
 
             // Check if the postal code is not empty
-            if (TxtCreatePlz.Text == "")
-            {
-                MessageBox.Show("The postal code can not be empty");
-                return;
-            }
+            //if (TxtCreatePlz.Text == "")
+            //{
+            //    MessageBox.Show("The postal code can not be empty");
+            //    return;
+            //}
 
-            // Check if the Place of residence is not empty
-            if (TxtCreatePlaceOfResidence.Text == "")
-            {
-                MessageBox.Show("The place of residence can not be empty");
-                return;
-            }
+            //// Check if the Place of residence is not empty
+            //if (TxtCreatePlaceOfResidence.Text == "")
+            //{
+            //    MessageBox.Show("The place of residence can not be empty");
+            //    return;
+            //}
 
-            // Check if the Birthday is changed
-            if (dateMax > DatCreateBirthday.Value && DatCreateBirthday.Value > dateMin)
-            {
-                Debug.WriteLine("Date is correct");
-            }
-            else
-            {
-                MessageBox.Show("Please set the date of birth");
-                return;
-            }
+            //// Check if the Birthday is changed
+            //if (dateMax > DatCreateBirthday.Value && DatCreateBirthday.Value > dateMin)
+            //{
+            //    Debug.WriteLine("Date is correct");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Please set the date of birth");
+            //    return;
+            //}
 
-            // Check if the Email is not empty
-            if (TxtCreateEmailAddress.Text == "")
-            {
-                MessageBox.Show("The email address can not be empty");
-                return;
-            }
+            //// Check if the Email is not empty
+            //if (TxtCreateEmailAddress.Text == "")
+            //{
+            //    MessageBox.Show("The email address can not be empty");
+            //    return;
+            //}
 
 
             //--------------------------------------
@@ -214,11 +214,11 @@ namespace ContactManager
             //--------------------------------------
             //              Employee
             //--------------------------------------
-            if (RadCreateEmployee.Checked)
-            {
-                MessageBox.Show("The first name can contain only letters");
-                return;
-            }
+            //if (RadCreateEmployee.Checked)
+            //{
+            //    MessageBox.Show("The first name can contain only letters");
+            //    return;
+            //}
             #endregion
 
             if (isEditMode == false)
@@ -485,6 +485,7 @@ namespace ContactManager
         private void RadCreateEmployee_CheckedChanged(object sender, EventArgs e)
         {
             LblCreateTypeSelection.Visible = false;
+           
 
             if (RadCreateEmployee.Checked == true)
             {
@@ -803,8 +804,10 @@ namespace ContactManager
 
                             LblSearchPreviewNumberOutput.Text = employee.EmployeeNumber;
 
-                            // ------------------------------------------ Change class employee
-                            LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
+                            selectedPerson = employee.EmployeeNumber;
+
+                           // ------------------------------------------ Change class employee
+                           LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
                             LblSearchPreviewDepartementOutput.Text = employee.Department;
                             LblSearchPreviewRoleOutput.Text = "-";
                             LblSearchPreviewCadreLevelOutput.Text = employee.NumCadreLevel;
@@ -955,8 +958,9 @@ namespace ContactManager
         private void CmdSearchPersonEdit_Click(object sender, EventArgs e)
         {
             isEditMode = true;
-            TCtrlMain.SelectedTab = TabCreateEdit;
             UpdateEmployeeNumber();
+            TCtrlMain.SelectedTab = TabCreateEdit;
+            
         }
 
         private void TCtrlMain_SelectedIndexChanged(object sender, EventArgs e)
@@ -977,7 +981,7 @@ namespace ContactManager
 
                     // Fill out generic fields
                     SwtCreateActive.Checked = (contact.status == 0) ? false : true;
-
+                    
                     switch (contact.gender)
                     {
                         case "Female":
