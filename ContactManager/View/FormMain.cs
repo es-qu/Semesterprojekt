@@ -499,8 +499,10 @@ namespace ContactManager
                 }
                 else
                 {
+
                     // Get existing employee number
                     TxtCreateEmployeeNumber.Text = selectedPerson;
+                   
                 }
             }
             else
@@ -530,6 +532,7 @@ namespace ContactManager
             {
                 PnlCreateInfoEmployee.Visible = false;
                 ChkCreateTrainee.Visible = false;
+                
             }
 
 
@@ -809,6 +812,7 @@ namespace ContactManager
                             LblSearchPreviewCompanyContactOutput.Text = customer.CompanyContact;
 
                             PnlSearchPreviewCustomer.Visible = true;
+                            selectedPerson = customer.CustomerNumber;
                         }
                         else if (type == typeof(Employee) || type == typeof(Trainee))
                         {
@@ -987,6 +991,7 @@ namespace ContactManager
         {
             isEditMode = true;
             UpdateEmployeeNumber();
+            
             TCtrlMain.SelectedTab = TabCreateEdit;
             
         }
@@ -1127,7 +1132,17 @@ namespace ContactManager
             }
             else
             {
-                TxtCreateEmployeeNumber.Text = selectedPerson;
+                if (selectedPerson.Contains("EMP"))
+                {
+                    TxtCreateEmployeeNumber.Text = selectedPerson;
+                    RadCreateCustomer.Enabled = false;
+                }
+                else if (selectedPerson.Contains("CUS"))
+                {
+                    TxtCreateCustomerNumber.Text = selectedPerson;
+                    RadCreateEmployee.Enabled = false;
+                }
+                
             }
         }
 
