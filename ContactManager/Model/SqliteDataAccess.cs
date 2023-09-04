@@ -6,6 +6,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Runtime.Remoting.Lifetime;
+using System.Security.Policy;
 
 namespace ContactManager
 {
@@ -65,6 +67,7 @@ namespace ContactManager
 
         }
 
+
         private static string LoadConnectionString(String id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
@@ -74,50 +77,67 @@ namespace ContactManager
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-
-                int rowsAffected = cnn.Execute(
-                        "INSERT INTO Person (status, gender, Salutation, title, firstName, lastName, street, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note)  " +
-                        " VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
-                        new
-                        {
-                            trainee.status,
-                            trainee.gender,
-                            trainee.Salutation,
-                            trainee.title,
-                            trainee.firstName,
-                            trainee.lastName,
-                            trainee.street,
-                            trainee.postalCode,
-                            trainee.placeOfResidence,
-                            trainee.nationality,
-                            trainee.socialSecurityNumber,
-                            trainee.dateOfBirth,
-                            trainee.phoneNumberPrivat,
-                            trainee.EmailBusiness,
-                            trainee.phoneNumberBusiness,
-                            trainee.email,
-                            trainee.note
-                        });
-                if (rowsAffected > 0)
+                // Insert into Person, Employee and Trainee tables
+                var TraineeId = cnn.Query<int>("SELECT ID FROM Employee WHERE EmployeeNumber = @EmployeeNumber", new { EmployeeNumber = trainee.EmployeeNumber }).FirstOrDefault();
+                if (TraineeId == 0)
                 {
-                    int lastId = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
-                    cnn.Execute(
-                        "INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
-                        new
-                        {
-                            Id = lastId,
-                            trainee.Position,
-                            trainee.Department,
-                            trainee.EmployeeNumber,
-                            trainee.dateofjoining,
-                            trainee.dateofleaving,
-                            trainee.NumCadreLevel
-                        });
+                    int rowsAffected = cnn.Execute(
+                   "INSERT INTO Person (status, gender, Salutation, title, firstName, lastName, street, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note)  " +
+                   " VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
+                   new
+                   {
+                       trainee.status,
+                       trainee.gender,
+                       trainee.Salutation,
+                       trainee.title,
+                       trainee.firstName,
+                       trainee.lastName,
+                       trainee.street,
+                       trainee.postalCode,
+                       trainee.placeOfResidence,
+                       trainee.nationality,
+                       trainee.socialSecurityNumber,
+                       trainee.dateOfBirth,
+                       trainee.phoneNumberPrivat,
+                       trainee.EmailBusiness,
+                       trainee.phoneNumberBusiness,
+                       trainee.email,
+                       trainee.note
+                   });
+                    if (rowsAffected > 0)
+                    {
+                        int lastId = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
+                        cnn.Execute(
+                            "INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
+                            new
+                            {
+                                Id = lastId,
+                                trainee.Position,
+                                trainee.Department,
+                                trainee.EmployeeNumber,
+                                trainee.dateofjoining,
+                                trainee.dateofleaving,
+                                trainee.NumCadreLevel
+                            });
+                        cnn.Execute(
+                            "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
+                            new
+                            {
+                                Id = lastId,
+                                trainee.TrainingStartDate,
+                                trainee.TrainingEndDate
+                            });
+                    }
+
+                }
+                else
+                {
+                    // Only insert into Trainee table...
                     cnn.Execute(
                         "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
                         new
                         {
-                            Id = lastId,
+                            Id = TraineeId,
                             trainee.TrainingStartDate,
                             trainee.TrainingEndDate
                         });
@@ -174,6 +194,8 @@ namespace ContactManager
 
 
 
+
+
         public static string GetNextNumber(string tableName, string columnName, string idType)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -208,6 +230,67 @@ namespace ContactManager
                 return prefix + maxNumberInt.ToString("D" + prefixLength);
             }
         }
+
+
+        public static bool DeleteEmployee(string employeeNumber)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                // First, get the ID of the person associated with the employee
+                var personId = cnn.Query<int>("SELECT ID FROM Employee WHERE EmployeeNumber = @EmployeeNumber", new { EmployeeNumber = employeeNumber }).FirstOrDefault();
+
+                if (personId != 0) // If the employee is found
+                {
+                    // Check if the person is also a Trainee
+                    var isTrainee = cnn.Query<int>("SELECT COUNT(*) FROM Trainee WHERE ID = @ID", new { ID = personId }).Single() > 0;
+
+                    if (isTrainee)
+                    {
+                        // If the person is also a Trainee, just delete the Employee record
+                        return cnn.Execute("DELETE FROM Employee WHERE EmployeeNumber = @EmployeeNumber", new { EmployeeNumber = employeeNumber }) > 0;
+
+                    }
+                    else
+                    {
+                        // If the person is not a Trainee, delete both the Employee and the Person record
+                        var employeeDeleted = cnn.Execute("DELETE FROM Employee WHERE EmployeeNumber = @EmployeeNumber", new { EmployeeNumber = employeeNumber });
+
+                        var personDeleted = cnn.Execute("DELETE FROM Person WHERE ID = @ID", new { ID = personId });
+
+                        return employeeDeleted > 0 && personDeleted > 0;
+                    }
+                }
+
+                return false; // If the employee was not found, return false
+            }
+        }
+
+
+        public static bool DeleteCustomer(string customerNumber)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                // First, get the ID of the person associated with the customer
+                var personId = cnn.Query<int>("SELECT ID FROM Customer WHERE CustomerNumber = @CustomerNumber", new { CustomerNumber = customerNumber }).FirstOrDefault();
+
+                if (personId != 0) // If the customer is found
+                {
+                    // Delete the customer
+                    var customerDeleted = cnn.Execute("DELETE FROM Customer WHERE CustomerNumber = @CustomerNumber", new { CustomerNumber = customerNumber });
+
+                    // Delete the person
+                    var personDeleted = cnn.Execute("DELETE FROM Person WHERE ID = @ID", new { ID = personId });
+
+                    // Return true if both deletions were successful (i.e., affected at least one row)
+                    return customerDeleted > 0 && personDeleted > 0;
+                }
+
+                // If the customer was not found, return false
+                return false;
+            }
+        }
+
+
 
         /// <summary>
         /// Search for contacts in db according to a list of the chosen types and a query string.

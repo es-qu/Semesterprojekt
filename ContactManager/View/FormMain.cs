@@ -40,8 +40,9 @@ namespace ContactManager
             TxtCreateEmployeeNumber.Enabled = false;
             TxtCreateCustomerNumber.Enabled = false;
 
-        }
 
+        }
+        private string selectedPerson;
         public FormMain(int selectedTab) : this()
         {
             Tab tab = (Tab)selectedTab;
@@ -75,7 +76,7 @@ namespace ContactManager
 
         }
 
-       
+
         private void TxtCreateOasiNr_KeyPress(object sender, KeyPressEventArgs e)
         {
             // If the key pressed is not a digit and not a dot, consume the key event (do not input the key)
@@ -92,6 +93,7 @@ namespace ContactManager
         public int checkState;
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
+
             Controller controller = new Controller();
             string gender = RadCreateMale.Checked ? "Male" :
                      RadCreateFemale.Checked ? "Female" :
@@ -110,97 +112,236 @@ namespace ContactManager
                 MessageBox.Show("The first name can contain only letters");
                 return;
             }
-            if (RadCreateEmployee.Checked)
+            if (isEditMode == false)
             {
-                if (ChkCreateTrainee.Checked)
+                if (RadCreateEmployee.Checked)
                 {
-                    controller.CreateTrainee(
-                TxtCreateFirstName.Text,
-                TxtCreateLastName.Text,
-                DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                TxtCreateEmployeeNumber.Text,
-                checkState = (int)SwtCreateActive.CheckState,
-                gender,
-                CmbCreateSalutation.SelectedItem?.ToString(),
-                TxtCreateTitle.Text,
-                TxtCreateAddress.Text,
-                TxtCreatePlz.Text,
-                TxtCreatePlaceOfResidence.Text,
-                CmbCreateNationality.SelectedItem?.ToString(),
-                TxtCreateOasiNr.Text,
-                TxtCreatePrivatePhone.Text,
-                TxtCreateBusnissPhone.Text,
-                TxtCreateEmailAddress.Text,
-                TxtCreateBusinessAddress.Text,
-                TxtCreateNote.Text,
-                TxtCreateRole.Text,
-                TxtCreateDepartement.Text,
-                DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                NumCadreLevel.Value.ToString(),
-                NumCreateCurrentAppYear.Value.ToString(),
-                NumCreateYearOfApp.Value.ToString(),
-                this
-                );
+                    if (ChkCreateTrainee.Checked)
+                    {
+                        bool success = controller.CreateTrainee(
+                    TxtCreateFirstName.Text,
+                    TxtCreateLastName.Text,
+                    DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                    TxtCreateEmployeeNumber.Text,
+                    checkState = (int)SwtCreateActive.CheckState,
+                    gender,
+                    CmbCreateSalutation.SelectedItem?.ToString(),
+                    TxtCreateTitle.Text,
+                    TxtCreateAddress.Text,
+                    TxtCreatePlz.Text,
+                    TxtCreatePlaceOfResidence.Text,
+                    CmbCreateNationality.SelectedItem?.ToString(),
+                    TxtCreateOasiNr.Text,
+                    TxtCreatePrivatePhone.Text,
+                    TxtCreateBusnissPhone.Text,
+                    TxtCreateEmailAddress.Text,
+                    TxtCreateBusinessAddress.Text,
+                    TxtCreateNote.Text,
+                    TxtCreateRole.Text,
+                    TxtCreateDepartement.Text,
+                    DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                    DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                    NumCadreLevel.Value.ToString(),
+                    NumCreateCurrentAppYear.Value.ToString(),
+                    NumCreateYearOfApp.Value.ToString(),
+                    this
+                    );
+                        if (success)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        bool success = controller.CreateEmployee(
+                       TxtCreateFirstName.Text,
+                       TxtCreateLastName.Text,
+                       DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                       TxtCreateEmployeeNumber.Text,
+                       checkState = (int)SwtCreateActive.CheckState,
+                       gender,
+                       CmbCreateSalutation.SelectedItem?.ToString(),
+                       TxtCreateTitle.Text,
+                       TxtCreateAddress.Text,
+                       TxtCreatePlz.Text,
+                       TxtCreatePlaceOfResidence.Text,
+                       CmbCreateNationality.SelectedItem?.ToString(),
+                       TxtCreateOasiNr.Text,
+                       TxtCreatePrivatePhone.Text,
+                       TxtCreateBusnissPhone.Text,
+                       TxtCreateEmailAddress.Text,
+                       TxtCreateBusinessAddress.Text,
+                       TxtCreateNote.Text,
+                       TxtCreateRole.Text,
+                       TxtCreateDepartement.Text,
+                       DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                       DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                       NumCadreLevel.Value.ToString(),
+                       this
+
+                        );
+                        if (success)
+                        {
+                            this.Close();
+                        }
+                    }
+
+                }
+
+
+                else if (RadCreateCustomer.Checked)
+                {
+                    bool success = controller.CreateCustomer(
+                    TxtCreateFirstName.Text,
+                    TxtCreateLastName.Text,
+                    DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                    TxtCreateCustomerNumber.Text,
+                    checkState = (int)SwtCreateActive.CheckState,
+                    gender,
+                    CmbCreateSalutation.SelectedItem?.ToString(),
+                    TxtCreateTitle.Text,
+                    TxtCreateAddress.Text,
+                    TxtCreatePlz.Text,
+                    TxtCreatePlaceOfResidence.Text,
+                    CmbCreateNationality.SelectedItem?.ToString(),
+                    TxtCreateOasiNr.Text,
+                    TxtCreatePrivatePhone.Text,
+                    TxtCreateBusnissPhone.Text,
+                    TxtCreateEmailAddress.Text,
+                    TxtCreateBusinessAddress.Text,
+                    TxtCreateNote.Text,
+                    TxtCreateCompanyName.Text,
+                    CmbCreateCustomerType.SelectedItem.ToString(),
+                    TxtCreateCompanyContact.Text,
+                    this
+                    );
+                    if (success)
+                    {
+                        this.Close();
+                    }
+                }
+            }
+            else
+            {
+
+                if (RadCreateEmployee.Checked)
+                {
+                    bool deletionSuccessful = SqliteDataAccess.DeleteEmployee(TxtCreateEmployeeNumber.Text);
+
+                    if (deletionSuccessful)
+                    {
+                        if (RadCreateEmployee.Checked)
+                        {
+                            if (ChkCreateTrainee.Checked)
+                            {
+                                bool success = controller.CreateTrainee(
+                            TxtCreateFirstName.Text,
+                            TxtCreateLastName.Text,
+                            DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                            TxtCreateEmployeeNumber.Text,
+                            checkState = (int)SwtCreateActive.CheckState,
+                            gender,
+                            CmbCreateSalutation.SelectedItem?.ToString(),
+                            TxtCreateTitle.Text,
+                            TxtCreateAddress.Text,
+                            TxtCreatePlz.Text,
+                            TxtCreatePlaceOfResidence.Text,
+                            CmbCreateNationality.SelectedItem?.ToString(),
+                            TxtCreateOasiNr.Text,
+                            TxtCreatePrivatePhone.Text,
+                            TxtCreateBusnissPhone.Text,
+                            TxtCreateEmailAddress.Text,
+                            TxtCreateBusinessAddress.Text,
+                            TxtCreateNote.Text,
+                            TxtCreateRole.Text,
+                            TxtCreateDepartement.Text,
+                            DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                            DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                            NumCadreLevel.Value.ToString(),
+                            NumCreateCurrentAppYear.Value.ToString(),
+                            NumCreateYearOfApp.Value.ToString(),
+                            this
+                            );
+                                if (success)
+                                {
+                                    this.Close();
+                                }
+                            }
+                            else
+                            {
+                                bool success = controller.CreateEmployee(
+                               TxtCreateFirstName.Text,
+                               TxtCreateLastName.Text,
+                               DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                               TxtCreateEmployeeNumber.Text,
+                               checkState = (int)SwtCreateActive.CheckState,
+                               gender,
+                               CmbCreateSalutation.SelectedItem?.ToString(),
+                               TxtCreateTitle.Text,
+                               TxtCreateAddress.Text,
+                               TxtCreatePlz.Text,
+                               TxtCreatePlaceOfResidence.Text,
+                               CmbCreateNationality.SelectedItem?.ToString(),
+                               TxtCreateOasiNr.Text,
+                               TxtCreatePrivatePhone.Text,
+                               TxtCreateBusnissPhone.Text,
+                               TxtCreateEmailAddress.Text,
+                               TxtCreateBusinessAddress.Text,
+                               TxtCreateNote.Text,
+                               TxtCreateRole.Text,
+                               TxtCreateDepartement.Text,
+                               DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                               DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                               NumCadreLevel.Value.ToString(),
+                               this
+
+                                );
+                                if (success)
+                                {
+                                    this.Close();
+                                }
+                            }
+
+                        }
+
+                    }
                 }
                 else
                 {
-                    controller.CreateEmployee(
-                  TxtCreateFirstName.Text,
-                  TxtCreateLastName.Text,
-                  DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                  TxtCreateEmployeeNumber.Text,
-                  checkState = (int)SwtCreateActive.CheckState,
-                  gender,
-                  CmbCreateSalutation.SelectedItem?.ToString(),
-                  TxtCreateTitle.Text,
-                  TxtCreateAddress.Text,
-                  TxtCreatePlz.Text,
-                  TxtCreatePlaceOfResidence.Text,
-                  CmbCreateNationality.SelectedItem?.ToString(),
-                  TxtCreateOasiNr.Text,
-                  TxtCreatePrivatePhone.Text,
-                  TxtCreateBusnissPhone.Text,
-                  TxtCreateEmailAddress.Text,
-                  TxtCreateBusinessAddress.Text,
-                  TxtCreateNote.Text,
-                  TxtCreateRole.Text,
-                  TxtCreateDepartement.Text,
-                  DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                  DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                  NumCadreLevel.Value.ToString(),
-                  this
+                    bool deletionSuccessful = SqliteDataAccess.DeleteCustomer(TxtCreateCustomerNumber.Text);
 
-                   );
+                    if (deletionSuccessful)
+                    {
+                        bool success = controller.CreateCustomer(
+                        TxtCreateFirstName.Text,
+                        TxtCreateLastName.Text,
+                        DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                        TxtCreateCustomerNumber.Text,
+                        checkState = (int)SwtCreateActive.CheckState,
+                        gender,
+                        CmbCreateSalutation.SelectedItem?.ToString(),
+                        TxtCreateTitle.Text,
+                        TxtCreateAddress.Text,
+                        TxtCreatePlz.Text,
+                        TxtCreatePlaceOfResidence.Text,
+                        CmbCreateNationality.SelectedItem?.ToString(),
+                        TxtCreateOasiNr.Text,
+                        TxtCreatePrivatePhone.Text,
+                        TxtCreateBusnissPhone.Text,
+                        TxtCreateEmailAddress.Text,
+                        TxtCreateBusinessAddress.Text,
+                        TxtCreateNote.Text,
+                        TxtCreateCompanyName.Text,
+                        CmbCreateCustomerType.SelectedItem.ToString(),
+                        TxtCreateCompanyContact.Text,
+                        this
+                        );
+                        if (success)
+                        {
+                            this.Close();
+                        }
+                    }
                 }
-
-            }
-            else if (RadCreateCustomer.Checked)
-            {
-                controller.CreateCustomer(
-                TxtCreateFirstName.Text,
-                TxtCreateLastName.Text,
-                DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                TxtCreateCustomerNumber.Text,
-                checkState = (int)SwtCreateActive.CheckState,
-                gender,
-                CmbCreateSalutation.SelectedItem?.ToString(),
-                TxtCreateTitle.Text,
-                TxtCreateAddress.Text,
-                TxtCreatePlz.Text,
-                TxtCreatePlaceOfResidence.Text,
-                CmbCreateNationality.SelectedItem?.ToString(),
-                TxtCreateOasiNr.Text,
-                TxtCreatePrivatePhone.Text,
-                TxtCreateBusnissPhone.Text,
-                TxtCreateEmailAddress.Text,
-                TxtCreateBusinessAddress.Text,
-                TxtCreateNote.Text,
-                TxtCreateCompanyName.Text,
-                CmbCreateCustomerType.SelectedItem.ToString(),
-                TxtCreateCompanyContact.Text,
-                this
-                );
             }
         }
 
@@ -219,12 +360,18 @@ namespace ContactManager
                 {
                     TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber", "CUST");
                 }
+                else
+                {
+                    // Get existing employee number
+                    TxtCreateEmployeeNumber.Text = selectedPerson;
+                }
             }
             else
             {
+
                 PnlCreateInfoCustomer.Visible = false;
             }
-    }
+        }
 
         private void RadCreateEmployee_CheckedChanged(object sender, EventArgs e)
         {
@@ -462,6 +609,7 @@ namespace ContactManager
 
                     if (currentRow != null && currentRow.Index < searchResults.Count)
                     {
+
                         // Enable buttons
                         CmdSearchPersonEdit.Enabled = true;
                         CmdSearchPersonDelete.Enabled = true;
@@ -470,7 +618,7 @@ namespace ContactManager
                         CmdSearchNoteClear.Enabled = true;
 
                         var clickedPerson = (Person)searchResults[currentRow.Index];
-
+                        //selectedPersonId = clickedPerson.;
                         LblSearchPreviewStatusOutput.Text = (clickedPerson.status != 0) ? "Active" : "Inactive";
                         LblSearchPreviewTitleOutput.Text = clickedPerson.title;
                         LblSearchPreviewFirstNameOutput.Text = clickedPerson.firstName;
@@ -502,6 +650,7 @@ namespace ContactManager
                         if (type == typeof(Customer))
                         {
                             Customer customer = (Customer)searchResults[currentRow.Index];
+
                             LblSearchPreviewNumberOutput.Text = customer.CustomerNumber;
                             LblSearchPreviewTypeOutput.Text = "Customer";
                             LblSearchPreviewCustomerTypeOutput.Text = customer.CustomerType;
@@ -524,6 +673,7 @@ namespace ContactManager
                             {
                                 Employee employee = (Employee)searchResults[currentRow.Index];
                                 LblSearchPreviewNumberOutput.Text = employee.EmployeeNumber;
+                                selectedPerson = employee.EmployeeNumber;
                                 LblSearchPreviewTypeOutput.Text = "Employee";
 
                                 PnlSearchPreviewEmployee.Visible = true;
@@ -660,7 +810,9 @@ namespace ContactManager
 
         private void CmdSearchPersonEdit_Click(object sender, EventArgs e)
         {
+            isEditMode = true;
             TCtrlMain.SelectedTab = TabCreateEdit;
+            UpdateEmployeeNumber();
         }
 
         private void TCtrlMain_SelectedIndexChanged(object sender, EventArgs e)
@@ -682,7 +834,7 @@ namespace ContactManager
                     // Fill out generic fields
                     SwtCreateActive.Checked = (contact.status == 0) ? false : true;
 
-                    switch(contact.gender)
+                    switch (contact.gender)
                     {
                         case "Female":
                             RadCreateFemale.Checked = true;
@@ -727,7 +879,7 @@ namespace ContactManager
                     //HIER BUSINESS ADDRESS TxtCreateBusinessAddress.Text = contact.businessAdress;
                     TxtCreateBusnissPhone.Text = contact.phoneNumberBusiness;
 
-                   
+
                     // Fill out specific fields
                     Type type = contact.GetType();
 
@@ -790,6 +942,19 @@ namespace ContactManager
             else { MessageBox.Show("Please select a contact to delete."); }
         }
 
+        private void UpdateEmployeeNumber()
+        {
+            if (string.IsNullOrEmpty(selectedPerson))
+            {
+                // Handle no selected person
+                TxtCreateEmployeeNumber.Text = "No person selected";
+            }
+            else
+            {
+                TxtCreateEmployeeNumber.Text = selectedPerson;
+            }
+        }
+
         private void CmdSearchCancel_Click(object sender, EventArgs e)
         {
             Close();
@@ -804,5 +969,107 @@ namespace ContactManager
         {
 
         }
+
+        private void CmdCreatePersonSaveAndNew_Click(object sender, EventArgs e)
+        {
+            CmdCreatePerson_Click(sender, e); // This will create the person
+
+            // Now clear the fields for the next entry
+            // Clear text fields
+            TxtCreateFirstName.Text = "";
+            TxtCreateLastName.Text = "";
+            TxtCreateEmployeeNumber.Text = "";
+            TxtCreateTitle.Text = "";
+            TxtCreateAddress.Text = "";
+            TxtCreatePlz.Text = "";
+            TxtCreatePlaceOfResidence.Text = "";
+            TxtCreateOasiNr.Text = "";
+            TxtCreatePrivatePhone.Text = "";
+            TxtCreateBusnissPhone.Text = "";
+            TxtCreateEmailAddress.Text = "";
+            TxtCreateBusinessAddress.Text = "";
+            TxtCreateNote.Text = "";
+            TxtCreateRole.Text = "";
+            TxtCreateDepartement.Text = "";
+            // Clear the datetime fields
+            DatCreateBirthday.Value = DateTime.Now;
+            DatCreateDateOfJoining.Value = DateTime.Now;
+            DatCreateDateOfLeaving.Value = DateTime.Now;
+            // Clear the numerical fields
+            NumCadreLevel.Value = 0;
+            NumCreateCurrentAppYear.Value = 0;
+            NumCreateYearOfApp.Value = 0;
+            // Clear the comboboxes
+            CmbCreateSalutation.SelectedIndex = -1;
+            CmbCreateNationality.SelectedIndex = -1;
+            // Clear the radio buttons
+            RadCreateMale.Checked = false;
+            RadCreateFemale.Checked = false;
+            RadCreateOther.Checked = false;
+            RadCreateEmployee.Checked = false;
+            // Clear the checkbox
+            ChkCreateTrainee.Checked = false;
+            // Reset the switch state
+            SwtCreateActive.CheckState = CheckState.Unchecked;
+        }
+
+        private void CmdCreateDeletePerson_Click(object sender, EventArgs e)
+        {
+            if (RadCreateCustomer.Checked)
+            {
+                bool deletionSuccessful = SqliteDataAccess.DeleteCustomer(TxtCreateCustomerNumber.Text);
+                if (deletionSuccessful)
+                {
+                    // Deletion was successful. Show a success message.
+                    MessageBox.Show($"Customer {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Customer Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    // Deletion failed. Show an error message.
+                    MessageBox.Show("Failed to delete the Customer. Please check the Customer number and try again.", "Customer Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                // Close the current form
+                this.Close();
+            }
+            else if (RadCreateEmployee.Checked)
+            {
+                if (ChkCreateTrainee.Checked)
+                {
+                    bool deletionSuccessful = SqliteDataAccess.DeleteEmployee(TxtCreateEmployeeNumber.Text);
+                    if (deletionSuccessful)
+                    {
+                        // Deletion was successful. Show a success message.
+                        MessageBox.Show($"Trainee {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Trainee Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        // Deletion failed. Show an error message.
+                        MessageBox.Show("Failed to delete the Trainee. Please check the employee number and try again.", "Trainee Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Close the current form
+                    this.Close();
+                }
+                else
+                {
+                    bool deletionSuccessful = SqliteDataAccess.DeleteEmployee(TxtCreateEmployeeNumber.Text);
+                    if (deletionSuccessful)
+                    {
+                        // Deletion was successful. Show a success message.
+                        MessageBox.Show($"Employee {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Employee Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        // Deletion failed. Show an error message.
+                        MessageBox.Show("Failed to delete the employee. Please check the employee number and try again.", "Employee Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Close the current form
+                    this.Close();
+                }
+            }
+
+        }
     }
-    }
+}

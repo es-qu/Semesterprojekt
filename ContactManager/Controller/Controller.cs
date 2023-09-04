@@ -9,7 +9,7 @@ namespace ContactManager
 {
     internal class Controller
     {
-        public void CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
+        public Boolean CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
                                     string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
                                      string phoneBuiness, string EmailBusiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel, Form form)
         {
@@ -44,12 +44,12 @@ namespace ContactManager
             SqliteDataAccess.SaveEmployee(e);
 
             // Show confirmation message
-            MessageBox.Show($"Employee {e.firstName} {e.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
-            form.Close();
+            MessageBox.Show($"Employee {e.firstName} {e.lastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
 
         }
 
-        public void CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
+        public Boolean CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
                                     string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
                                      string phoneBuiness, string EmailBusiness, string email, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
                                     string TrainingStartDate, string TrainingEndDate, Form form)
@@ -85,11 +85,11 @@ namespace ContactManager
 
             SqliteDataAccess.SaveTrainee(t);
             // Show confirmation message
-            MessageBox.Show($"Employee {t.firstName} {t.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
-            form.Close();
+            MessageBox.Show($"Employee {t.firstName} {t.lastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
         }
 
-        public void CreateCustomer(string firstName, string lastName, string dateOfBirth, string CustomerNumber, int status, string gender, string Salutaion, string title,
+        public Boolean CreateCustomer(string firstName, string lastName, string dateOfBirth, string CustomerNumber, int status, string gender, string Salutaion, string title,
                                     string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
                                      string phoneBuiness, string EmailBusiness, string email, string note, string CompanyName, string CustomerType, string CompanyContact, Form form)
         {
@@ -122,10 +122,9 @@ namespace ContactManager
             SqliteDataAccess.SaveCustomer(c);
 
             // Show confirmation message
-            MessageBox.Show($"Customer {c.firstName} {c.lastName} has been created.", "Confirmation", MessageBoxButtons.OK);
-            form.Close();
+            MessageBox.Show($"Employee {c.firstName} {c.lastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return true;
         }
-
 
         /// <summary>
         /// Check if the filters are set.
