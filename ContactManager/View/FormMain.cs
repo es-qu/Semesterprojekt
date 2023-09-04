@@ -105,7 +105,7 @@ namespace ContactManager
             Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
             var dateMin = new DateTime(1900, 1, 1);
             var dateMax = new DateTime(2100, 1, 1);
-            
+
 
             // Handle the case when no radio button is selected for person type
             if (!RadCreateCustomer.Checked && !RadCreateEmployee.Checked)
@@ -216,9 +216,37 @@ namespace ContactManager
             //--------------------------------------
             if (RadCreateEmployee.Checked)
             {
-                MessageBox.Show("The first name can contain only letters");
-                return;
+                // Check if the degree of employment is not empty
+                if (NumCreateDegreeOfEmployment.Value < 1)
+                {
+                    MessageBox.Show("The degree of employment needs to be over zero");
+                    return;
+                }
+
+                // Check if the date of joining is changed
+                if (dateMax > DatCreateDateOfJoining.Value && DatCreateDateOfJoining.Value > dateMin)
+                {
+                    Debug.WriteLine("Date is correct");
+                }
+                else
+                {
+                    MessageBox.Show("Please set the date of joining");
+                    return;
+                }
+
+
+                // looks if Employee is a Trainee
+                if (ChkCreateTrainee.Checked)
+                {
+                    // Check if the years of apprenticeship is not empty
+                    if (NumCreateYearOfApp.Value < 1)
+                    {
+                        MessageBox.Show("The years of apprenticeship needs to be over zero");
+                        return;
+                    }
+                }
             }
+
             #endregion
 
             if (isEditMode == false)
