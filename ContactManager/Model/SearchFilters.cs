@@ -9,7 +9,7 @@
         // Fields
 
         // General informations
-        private bool inactive = false;
+        private bool searchInactive = false;
         private bool typeCustomer = true;
         private bool typeEmployee = true;
         private bool typeTrainee = true;
@@ -57,10 +57,10 @@
         // Properties
 
         // General informations
-        public bool Inactive
+        public bool SearchInactive
         {
-            get { return inactive; }
-            set { inactive = value; }
+            get { return searchInactive; }
+            set { searchInactive = value; }
         }
 
         public bool TypeCustomer

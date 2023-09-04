@@ -1,7 +1,6 @@
 ﻿using ContactManager.Model;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,83 +8,81 @@ namespace ContactManager
 {
     internal class Controller
     {
-        public Boolean CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
-                                    string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string email, string EmailBusiness, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel, Form form)
+        public bool CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string salutaion, string title,
+                                    string street, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
+                                     string phoneBuiness, string email, string businessEmail, string note, string role, string department, string dateOfJoining, string dateOfLeaving, string cadreLevel, Form form)
         {
             Employee e = new Employee
             {
-                status = status,
-                firstName = firstName,
-                lastName = lastName,
-                dateOfBirth = dateOfBirth,
+                Active = status,
+                FirstName = firstName,
+                LastName = lastName,
+                DateOfBirth = dateOfBirth,
                 EmployeeNumber = employeeNumber,
-                gender = gender,
-                Salutation = Salutaion,
-                title = title,
-                street = street,
-                postalCode = postalCode,
-                placeOfResidence = placeOfResidence,
-                nationality = nationality,
-                socialSecurityNumber = ahv,
-                phoneNumberPrivat = phonePrivate,
-                phoneNumberBusiness = phoneBuiness,
-                email = email,
-                EmailBusiness = EmailBusiness,
-                note = note,
-                Position = Position,
-                Department = Department,
-                NumCadreLevel = NumCadreLevel,
-                dateofjoining = dateofjoining,
-                dateofleaving = dateofleaving
-
+                Gender = gender,
+                Salutation = salutaion,
+                Title = title,
+                Address = street,
+                PostalCode = postalCode,
+                PlaceOfResidence = placeOfResidence,
+                Nationality = nationality,
+                OasiNumber = oasiNumber,
+                PrivatePhone = phonePrivate,
+                BusinessPhone = phoneBuiness,
+                EmailAddress = email,
+                BusinessAddress = businessEmail,
+                Note = note,
+                Role = role,
+                Department = department,
+                CadreLevel = cadreLevel,
+                DateOfJoining = dateOfJoining,
+                DateOfLeaving = dateOfLeaving
             };
 
             SqliteDataAccess.SaveEmployee(e);
 
             // Show confirmation message
-            MessageBox.Show($"Employee {e.firstName} {e.lastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Employee {e.FirstName} {e.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
-
         }
 
-        public Boolean CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
+        public bool CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
                                     string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string email, string EmailBusiness, string note, string Position, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
-                                    string TrainingStartDate, string TrainingEndDate, Form form)
+                                     string phoneBuiness, string email, string EmailBusiness, string note, string role, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
+                                    string currentApprenticeshipYear, string yearsOfApprenticeship, Form form)
         {
             Trainee t = new Trainee
             {
-                status = status,
-                firstName = firstName,
-                lastName = lastName,
-                dateOfBirth = dateOfBirth,
+                Active = status,
+                FirstName = firstName,
+                LastName = lastName,
+                DateOfBirth = dateOfBirth,
                 EmployeeNumber = employeeNumber,
-                gender = gender,
+                Gender = gender,
                 Salutation = Salutaion,
-                title = title,
-                street = street,
-                postalCode = postalCode,
-                placeOfResidence = placeOfResidence,
-                nationality = nationality,
-                socialSecurityNumber = ahv,
-                phoneNumberPrivat = phonePrivate,
-                phoneNumberBusiness = phoneBuiness,
-                email = email,
-                EmailBusiness = EmailBusiness,
-                note = note,
-                Position = Position,
+                Title = title,
+                Address = street,
+                PostalCode = postalCode,
+                PlaceOfResidence = placeOfResidence,
+                Nationality = nationality,
+                OasiNumber = ahv,
+                PrivatePhone = phonePrivate,
+                BusinessPhone = phoneBuiness,
+                EmailAddress = email,
+                BusinessAddress = EmailBusiness,
+                Note = note,
+                Role = role,
                 Department = Department,
-                NumCadreLevel = NumCadreLevel,
-                dateofjoining = dateofjoining,
-                dateofleaving = dateofleaving,
-                TrainingStartDate = TrainingStartDate,
-                TrainingEndDate = TrainingEndDate
+                CadreLevel = NumCadreLevel,
+                DateOfJoining = dateofjoining,
+                DateOfLeaving = dateofleaving,
+                CurrentApprenticeshipYear = currentApprenticeshipYear,
+                YearsOfApprenticeship = yearsOfApprenticeship
             };
 
             SqliteDataAccess.SaveTrainee(t);
             // Show confirmation message
-            MessageBox.Show($"Employee {t.firstName} {t.lastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Employee {t.FirstName} {t.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
 
@@ -95,24 +92,24 @@ namespace ContactManager
         {
             Customer c = new Customer
             {
-                status = status,
-                firstName = firstName,
-                lastName = lastName,
-                dateOfBirth = dateOfBirth,
+                Active = status,
+                FirstName = firstName,
+                LastName = lastName,
+                DateOfBirth = dateOfBirth,
                 CustomerNumber = customerNumber,
-                gender = gender,
+                Gender = gender,
                 Salutation = salutation,
-                title = title,
-                street = street,
-                postalCode = postalCode,
-                placeOfResidence = placeOfResidence,
-                nationality = nationality,
-                socialSecurityNumber = oasiNumber,
-                phoneNumberPrivat = phonePrivate,
-                phoneNumberBusiness = phoneBuiness,
-                email = email,
-                EmailBusiness = emailBusiness,
-                note = note,
+                Title = title,
+                Address = street,
+                PostalCode = postalCode,
+                PlaceOfResidence = placeOfResidence,
+                Nationality = nationality,
+                OasiNumber = oasiNumber,
+                PrivatePhone = phonePrivate,
+                BusinessPhone = phoneBuiness,
+                EmailAddress = email,
+                BusinessAddress = emailBusiness,
+                Note = note,
                 CompanyName = companyName,
                 CustomerType = customerType,
                 CompanyContact = companyContact
@@ -122,7 +119,7 @@ namespace ContactManager
             SqliteDataAccess.SaveCustomer(c);
 
             // Show confirmation message
-            MessageBox.Show($"Employee {c.firstName} {c.lastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Employee {c.FirstName} {c.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
 
@@ -133,7 +130,7 @@ namespace ContactManager
         /// <returns>True if no filter is set, else false</returns>
         public static bool FiltersAreClear(SearchFilters filters)
         {
-            bool clear = 
+            bool clear =
                 string.IsNullOrEmpty(filters.Number) &&
                 string.IsNullOrEmpty(filters.Title) &&
                 string.IsNullOrEmpty(filters.Gender) &&
@@ -185,7 +182,7 @@ namespace ContactManager
                 $"OR placeOfResidence LIKE '%{searchTerm}%' " +
                 $"OR dateOfBirth LIKE '%{searchTerm}%'";
 
-            string inactiveCondition = (filters.Inactive) ? "(status = 0 OR status = 1)" : "status = 1";
+            string inactiveCondition = (filters.SearchInactive) ? "(status = 0 OR status = 1)" : "status = 1";
 
             List<object> res = new List<object>();
 
@@ -276,7 +273,7 @@ namespace ContactManager
 
             // Search Inactive Checkbox
             List<string> inactive = new List<string>();
-            if (filters.Inactive) inactive.Add("(status = 0 OR status = 1)");
+            if (filters.SearchInactive) inactive.Add("(status = 0 OR status = 1)");
             else inactive.Add("status = 1");
             sqlConditions["inactive"] = inactive;
 

@@ -1,14 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ContactManager.Model
+﻿namespace ContactManager.Model
 {
     public class Trainee : Employee
     {
-        public string TrainingStartDate { get; set; }
-        public string TrainingEndDate { get; set; }
+        private string currentApprenticeshipYear = string.Empty;
+        private string yearsOfApprenticeship = string.Empty;
+
+
+        public Trainee():base() { }
+
+
+        public string CurrentApprenticeshipYear
+        {
+            get { return currentApprenticeshipYear; }
+            set { currentApprenticeshipYear = value; }
+        }
+
+        public string YearsOfApprenticeship
+        {
+            get { return yearsOfApprenticeship; }
+            set { yearsOfApprenticeship = value; }
+        }
     }
 }

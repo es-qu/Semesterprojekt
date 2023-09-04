@@ -75,7 +75,7 @@ namespace ContactManager
         public void storeSearchAdvancedFilters()
         {
             // Storing checkbox states
-            parentFormMain.filters.Inactive = ChkSearchAdvancedInactive.Checked;
+            parentFormMain.filters.SearchInactive = ChkSearchAdvancedInactive.Checked;
 
             parentFormMain.filters.TypeCustomer = ChkSearchAdvancedTypeCustomer.Checked;
             parentFormMain.filters.TypeEmployee = ChkSearchAdvancedTypeEmployee.Checked;
@@ -123,7 +123,7 @@ namespace ContactManager
         public void syncAdvancedGUI()
         {
             // Syncing checkbox states
-            ChkSearchAdvancedInactive.Checked = parentFormMain.filters.Inactive;
+            ChkSearchAdvancedInactive.Checked = parentFormMain.filters.SearchInactive;
 
             ChkSearchAdvancedTypeCustomer.Checked = parentFormMain.filters.TypeCustomer;
             ChkSearchAdvancedTypeEmployee.Checked = parentFormMain.filters.TypeEmployee;

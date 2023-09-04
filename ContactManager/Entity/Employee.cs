@@ -1,18 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ContactManager.Model
+﻿namespace ContactManager.Model
 {
     public class Employee : Person
     {
-        public string Position { get; set; }
-        public string Department { get; set; }
-        public string EmployeeNumber { get; set; }
-        public string dateofjoining { get; set; }
-        public string dateofleaving { get; set; }
-        public string NumCadreLevel { get; set; }
+        private string department = string.Empty;
+        private string role = string.Empty;
+        private string cadreLevel = string.Empty;
+        private string degreeOfEmployment = string.Empty;
+        private string dateOfJoining = string.Empty;
+        private string dateOfLeaving = string.Empty;
+        private string employeeNumber = string.Empty;
+
+
+        public Employee():base() { }
+
+
+        public string Department
+        {
+            get { return department; }
+            set { department = value; }
+        }
+
+        public string Role
+        {
+            get { return role; }
+            set { role = value; }
+        }
+
+        public string CadreLevel
+        {
+            get { return cadreLevel; }
+            set { cadreLevel = value; }
+        }
+
+        public string DegreeOfEmployment
+        {
+            get { return degreeOfEmployment; }
+            set { degreeOfEmployment = value; }
+        }
+
+        public string DateOfJoining
+        {
+            get { return dateOfJoining; }
+            set { dateOfJoining = value; }
+        }
+
+        public string DateOfLeaving
+        {
+            get { return dateOfLeaving; }
+            set { dateOfLeaving = value; }
+        }
+
+        public string EmployeeNumber
+        {
+            get { return employeeNumber; }
+            set { employeeNumber = value; }
+        }
     }
 }

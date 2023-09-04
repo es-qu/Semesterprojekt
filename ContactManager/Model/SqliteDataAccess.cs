@@ -13,16 +13,6 @@ namespace ContactManager
 {
     internal class SqliteDataAccess
     {
-        //public static List<Person> LoadPeople(string SearchText)
-        //{
-        //    using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-        //    {
-        //        var output = cnn.Query<Person>("Select * from Person where firstName like @Name or lastName like @Name",
-        //        new { Name = "%" + SearchText + "%" });
-        //        return output.ToList();
-        //    }
-        //}
-
         public static void SaveCustomer(Customer customer)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -32,24 +22,23 @@ namespace ContactManager
                     " VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
                     new
                     {
-
-                        customer.status,
-                        customer.gender,
+                        customer.Active,
+                        customer.Gender,
                         customer.Salutation,
-                        customer.title,
-                        customer.firstName,
-                        customer.lastName,
-                        customer.street,
-                        customer.postalCode,
-                        customer.placeOfResidence,
-                        customer.nationality,
-                        customer.socialSecurityNumber,
-                        customer.dateOfBirth,
-                        customer.phoneNumberPrivat,
-                        customer.email,
-                        customer.phoneNumberBusiness,
-                        customer.EmailBusiness,
-                        customer.note
+                        customer.Title,
+                        customer.FirstName,
+                        customer.LastName,
+                        customer.Address,
+                        customer.PostalCode,
+                        customer.PlaceOfResidence,
+                        customer.Nationality,
+                        customer.OasiNumber,
+                        customer.DateOfBirth,
+                        customer.PrivatePhone,
+                        customer.EmailAddress,
+                        customer.BusinessPhone,
+                        customer.BusinessAddress,
+                        customer.Note
                     });
 
                 int lastId = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
@@ -86,23 +75,23 @@ namespace ContactManager
                    " VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
                    new
                    {
-                       trainee.status,
-                       trainee.gender,
+                       trainee.Active,
+                       trainee.Gender,
                        trainee.Salutation,
-                       trainee.title,
-                       trainee.firstName,
-                       trainee.lastName,
-                       trainee.street,
-                       trainee.postalCode,
-                       trainee.placeOfResidence,
-                       trainee.nationality,
-                       trainee.socialSecurityNumber,
-                       trainee.dateOfBirth,
-                       trainee.phoneNumberPrivat,
-                       trainee.EmailBusiness,
-                       trainee.phoneNumberBusiness,
-                       trainee.email,
-                       trainee.note
+                       trainee.Title,
+                       trainee.FirstName,
+                       trainee.LastName,
+                       trainee.Address,
+                       trainee.PostalCode,
+                       trainee.PlaceOfResidence,
+                       trainee.Nationality,
+                       trainee.OasiNumber,
+                       trainee.DateOfBirth,
+                       trainee.PrivatePhone,
+                       trainee.BusinessAddress,
+                       trainee.BusinessPhone,
+                       trainee.EmailAddress,
+                       trainee.Note
                    });
                     if (rowsAffected > 0)
                     {
@@ -112,20 +101,20 @@ namespace ContactManager
                             new
                             {
                                 Id = lastId,
-                                trainee.Position,
+                                trainee.Role,
                                 trainee.Department,
                                 trainee.EmployeeNumber,
-                                trainee.dateofjoining,
-                                trainee.dateofleaving,
-                                trainee.NumCadreLevel
+                                trainee.DateOfJoining,
+                                trainee.DateOfLeaving,
+                                trainee.CadreLevel
                             });
                         cnn.Execute(
                             "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
                             new
                             {
                                 Id = lastId,
-                                trainee.TrainingStartDate,
-                                trainee.TrainingEndDate
+                                trainee.CurrentApprenticeshipYear,
+                                trainee.YearsOfApprenticeship
                             });
                     }
 
@@ -138,8 +127,8 @@ namespace ContactManager
                         new
                         {
                             Id = TraineeId,
-                            trainee.TrainingStartDate,
-                            trainee.TrainingEndDate
+                            trainee.CurrentApprenticeshipYear,
+                            trainee.YearsOfApprenticeship
                         });
                 }
             }
@@ -156,23 +145,23 @@ namespace ContactManager
                 new
                 {
 
-                    employee.status,
-                    employee.gender,
+                    employee.Active,
+                    employee.Gender,
                     employee.Salutation,
-                    employee.title,
-                    employee.firstName,
-                    employee.lastName,
-                    employee.street,
-                    employee.postalCode,
-                    employee.placeOfResidence,
-                    employee.nationality,
-                    employee.socialSecurityNumber,
-                    employee.dateOfBirth,
-                    employee.phoneNumberPrivat,
-                    employee.email,
-                    employee.phoneNumberBusiness,
-                    employee.EmailBusiness,
-                    employee.note
+                    employee.Title,
+                    employee.FirstName,
+                    employee.LastName,
+                    employee.Address,
+                    employee.PostalCode,
+                    employee.PlaceOfResidence,
+                    employee.Nationality,
+                    employee.OasiNumber,
+                    employee.DateOfBirth,
+                    employee.PrivatePhone,
+                    employee.EmailAddress,
+                    employee.BusinessPhone,
+                    employee.BusinessAddress,
+                    employee.Note
                 });
 
                 int lastId_e = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
@@ -180,12 +169,12 @@ namespace ContactManager
                 new
                 {
                     Id = lastId_e,
-                    employee.Position,
+                    employee.Role,
                     employee.Department,
                     employee.EmployeeNumber,
-                    employee.dateofjoining,
-                    employee.dateofleaving,
-                    employee.NumCadreLevel
+                    employee.DateOfJoining,
+                    employee.DateOfLeaving,
+                    employee.CadreLevel
                 });
             }
         }

@@ -1,31 +1,129 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace ContactManager
+﻿namespace ContactManager
 {
     public class Person
     {
-        public int status { get; set; }
-        public string gender { get; set; }
-        public string Salutation { get; set; }
-        public string title { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string street { get; set; }
-        public string postalCode { get; set; }
-        public string placeOfResidence { get; set; }
-        public string nationality { get; set; }
-        public string socialSecurityNumber { get; set; }
-        public string dateOfBirth { get; set; }
-        public string phoneNumberPrivat { get; set; }
-        public string EmailBusiness { get; set; }
-        public string phoneNumberBusiness { get; set; }
-        public string email { get; set; }
-        public string note { get; set; }
+        private int active = 1;
+        private string title = string.Empty;
+        private string gender = string.Empty;
+        private string salutation = string.Empty;
+        private string firstName = string.Empty;
+        private string lastName = string.Empty;
+        private string address = string.Empty;
+        private string postalCode = string.Empty;
+        private string placeOfResidence = string.Empty;
+        private string nationality = string.Empty;
+        private string oasiNumber = string.Empty;
+        private string dateOfBirth = string.Empty;
+        private string emailAddress = string.Empty;
+        private string privatePhone = string.Empty;
+        private string businessPhone = string.Empty;
+        private string businessAddress = string.Empty;
+        private string note = string.Empty;
+
+
+        public Person() { }
+
+
+        public int Active
+        {
+            get { return active; }
+            set { active = value; }
+        }
+
+        public string Title
+        {
+            get { return title; }
+            set { title = value; }
+        }
+
+        public string Gender
+        {
+            get { return gender; }
+            set { gender = value; }
+        }
+
+        public string Salutation
+        {
+            get { return salutation; }
+            set { salutation = value; }
+        }
+
+        public string FirstName
+        {
+            get { return firstName; }
+            set { firstName = value; }
+        }
+
+        public string LastName
+        {
+            get { return lastName; }
+            set { lastName = value; }
+        }
+
+        public string Address
+        {
+            get { return address; }
+            set { address = value; }
+        }
+
+        public string PostalCode
+        {
+            get { return postalCode; }
+            set { postalCode = value; }
+        }
+
+        public string PlaceOfResidence
+        {
+            get { return placeOfResidence; }
+            set { placeOfResidence = value; }
+        }
+
+        public string Nationality
+        {
+            get { return nationality; }
+            set { nationality = value; }
+        }
+
+        public string OasiNumber
+        {
+            get { return oasiNumber; }
+            set { oasiNumber = value; }
+        }
+
+        public string DateOfBirth
+        {
+            get { return dateOfBirth; }
+            set { dateOfBirth = value; }
+        }
+
+        public string EmailAddress
+        {
+            get { return emailAddress; }
+            set { emailAddress = value; }
+        }
+
+        public string PrivatePhone
+        {
+            get { return privatePhone; }
+            set { privatePhone = value; }
+        }
+
+        public string BusinessPhone
+        {
+            get { return businessPhone; }
+            set { businessPhone = value; }
+        }
+
+        public string BusinessAddress
+        {
+            get { return businessAddress; }
+            set { businessAddress = value; }
+        }
+
+        public string Note
+        {
+            get { return note; }
+            set { note = value; }
+        }
     }
 }

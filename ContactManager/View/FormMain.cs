@@ -729,7 +729,7 @@ namespace ContactManager
                     {
                         Person res = (Person)searchResults[e.RowIndex];
 
-                        e.Value = (res.status == 0) ? "Inactive" : "Active";
+                        e.Value = (res.Active == 0) ? "Inactive" : "Active";
                     }
                 }
             }
@@ -759,23 +759,22 @@ namespace ContactManager
                         CmdSearchNoteClear.Enabled = true;
 
                         var clickedPerson = (Person)searchResults[currentRow.Index];
-                        //selectedPersonId = clickedPerson.;
-                        LblSearchPreviewStatusOutput.Text = (clickedPerson.status != 0) ? "Active" : "Inactive";
-                        LblSearchPreviewTitleOutput.Text = clickedPerson.title;
-                        LblSearchPreviewGenderOutput.Text = clickedPerson.gender;
+                        LblSearchPreviewStatusOutput.Text = (clickedPerson.Active != 0) ? "Active" : "Inactive";
+                        LblSearchPreviewTitleOutput.Text = clickedPerson.Title;
+                        LblSearchPreviewGenderOutput.Text = clickedPerson.Gender;
                         LblSearchPreviewSalutationOutput.Text = clickedPerson.Salutation;
-                        LblSearchPreviewFirstNameOutput.Text = clickedPerson.firstName;
-                        LblSearchPreviewLastNameOutput.Text = clickedPerson.lastName;
-                        LblSearchPreviewAddressOutput.Text = clickedPerson.street;
-                        LblSearchPreviewPostalCodeOutput.Text = clickedPerson.postalCode;
-                        LblSearchPreviewPlaceOfResidenceOutput.Text = clickedPerson.placeOfResidence;
-                        LblSearchPreviewNationalityOutput.Text = clickedPerson.nationality;
-                        LblSearchPreviewOasiNumberOutput.Text = clickedPerson.socialSecurityNumber;
-                        LblSearchPreviewDateOfBirthOutput.Text = clickedPerson.dateOfBirth;
-                        LblSearchPreviewEmailAddressOutput.Text = clickedPerson.email;
-                        LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.phoneNumberPrivat;
-                        LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.phoneNumberBusiness;
-                        LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.EmailBusiness;
+                        LblSearchPreviewFirstNameOutput.Text = clickedPerson.FirstName;
+                        LblSearchPreviewLastNameOutput.Text = clickedPerson.LastName;
+                        LblSearchPreviewAddressOutput.Text = clickedPerson.Address;
+                        LblSearchPreviewPostalCodeOutput.Text = clickedPerson.PostalCode;
+                        LblSearchPreviewPlaceOfResidenceOutput.Text = clickedPerson.PlaceOfResidence;
+                        LblSearchPreviewNationalityOutput.Text = clickedPerson.Nationality;
+                        LblSearchPreviewOasiNumberOutput.Text = clickedPerson.OasiNumber;
+                        LblSearchPreviewDateOfBirthOutput.Text = clickedPerson.DateOfBirth;
+                        LblSearchPreviewEmailAddressOutput.Text = clickedPerson.EmailAddress;
+                        LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.PrivatePhone;
+                        LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.BusinessPhone;
+                        LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.BusinessAddress;
 
                         // Display type specific informations
 
@@ -823,9 +822,8 @@ namespace ContactManager
                                 Trainee trainee = (Trainee)searchResults[currentRow.Index];
                                 LblSearchPreviewTypeOutput.Text = "Trainee";
 
-                                // ------------------------------------- Change class trainee
-                                LblSearchPreviewCurrentAppYearOutput.Text = "-";
-                                LblSearchPreviewYearsOfAppOutput.Text = "-";
+                                LblSearchPreviewCurrentAppYearOutput.Text = trainee.CurrentApprenticeshipYear;
+                                LblSearchPreviewYearsOfAppOutput.Text = trainee.YearsOfApprenticeship;
 
                                 PnlSearchPreviewTrainee.Visible = true;
                             }
@@ -838,13 +836,12 @@ namespace ContactManager
 
                             selectedPerson = employee.EmployeeNumber;
 
-                           // ------------------------------------------ Change class employee
-                           LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
+                            LblSearchPreviewDegreeOfEmploymentOutput.Text = employee.DegreeOfEmployment;
                             LblSearchPreviewDepartementOutput.Text = employee.Department;
-                            LblSearchPreviewRoleOutput.Text = "-";
-                            LblSearchPreviewCadreLevelOutput.Text = employee.NumCadreLevel;
-                            LblSearchPreviewDateOfJoiningOutput.Text = employee.dateofjoining;
-                            LblSearchPreviewDateOfLeavingOutput.Text = employee.dateofleaving;
+                            LblSearchPreviewRoleOutput.Text = employee.Role;
+                            LblSearchPreviewCadreLevelOutput.Text = employee.CadreLevel;
+                            LblSearchPreviewDateOfJoiningOutput.Text = employee.DateOfJoining;
+                            LblSearchPreviewDateOfLeavingOutput.Text = employee.DateOfLeaving;
 
                             PnlSearchPreviewEmployee.Visible = true;
                         }
@@ -945,7 +942,7 @@ namespace ContactManager
         public void syncSearchGUI()
         {
             // Check boxes
-            ChkSearchInactive.Checked = filters.Inactive;
+            ChkSearchInactive.Checked = filters.SearchInactive;
 
             ChkSearchTypeCustomer.Checked = filters.TypeCustomer;
             ChkSearchTypeEmployee.Checked = filters.TypeEmployee;
@@ -966,7 +963,7 @@ namespace ContactManager
         public void storeSearchFilters()
         {
             // Check boxes
-            filters.Inactive = ChkSearchInactive.Checked;
+            filters.SearchInactive = ChkSearchInactive.Checked;
 
             filters.TypeCustomer = ChkSearchTypeCustomer.Checked;
             filters.TypeEmployee = ChkSearchTypeEmployee.Checked;
@@ -1004,7 +1001,7 @@ namespace ContactManager
                 // Visability Delete Button
                 CmdCreateDeletePerson.Visible = true;
 
-                // Edit             
+                // Edit
 
                 DataGridViewRow currentRow = DataGridViewSearchResult.Rows[DataGridViewSearchResult.SelectedCells[0].RowIndex];
 
@@ -1013,9 +1010,9 @@ namespace ContactManager
                     Person contact = (Person)searchResults[currentRow.Index];
 
                     // Fill out generic fields
-                    SwtCreateActive.Checked = (contact.status == 0) ? false : true;
+                    SwtCreateActive.Checked = (contact.Active == 0) ? false : true;
                     
-                    switch (contact.gender)
+                    switch (contact.Gender)
                     {
                         case "Female":
                             RadCreateFemale.Checked = true;
@@ -1041,24 +1038,24 @@ namespace ContactManager
                     CmbCreateSalutation.Text = contact.Salutation;
                     ******************/
 
-                    TxtCreateTitle.Text = contact.title;
-                    TxtCreateFirstName.Text = contact.firstName;
-                    TxtCreateLastName.Text = contact.lastName;
-                    TxtCreateAddress.Text = contact.street;
-                    TxtCreatePlz.Text = contact.postalCode;
-                    TxtCreatePlaceOfResidence.Text = contact.placeOfResidence;
+                    TxtCreateTitle.Text = contact.Title;
+                    TxtCreateFirstName.Text = contact.FirstName;
+                    TxtCreateLastName.Text = contact.LastName;
+                    TxtCreateAddress.Text = contact.Address;
+                    TxtCreatePlz.Text = contact.PostalCode;
+                    TxtCreatePlaceOfResidence.Text = contact.PlaceOfResidence;
 
                     /***************** Funktioniert das mit .Text wirklich? --> Testergebnis: erst nach hover wird aktualisiert*******
                     CmbCreateNationality.Text = contact.nationality;
                     *****/
 
-                    TxtCreateOasiNr.Text = contact.socialSecurityNumber;
-                    DatCreateBirthday.Text = contact.dateOfBirth;
-                    TxtCreatePrivatePhone.Text = contact.phoneNumberPrivat;
-                    TxtCreateEmailAddress.Text = contact.email;
-                    TxtCreateBusinessPhone.Text = contact.phoneNumberBusiness;
-                    TxtCreateBusinessAddress.Text = contact.EmailBusiness;
-                    TxtCreateBusinessPhone.Text = contact.phoneNumberBusiness;
+                    TxtCreateOasiNr.Text = contact.OasiNumber;
+                    DatCreateBirthday.Text = contact.DateOfBirth;
+                    TxtCreatePrivatePhone.Text = contact.PrivatePhone;
+                    TxtCreateEmailAddress.Text = contact.EmailAddress;
+                    TxtCreateBusinessPhone.Text = contact.BusinessPhone;
+                    TxtCreateBusinessAddress.Text = contact.BusinessAddress;
+                    TxtCreateBusinessPhone.Text = contact.BusinessPhone;
 
 
                     // Fill out specific fields
