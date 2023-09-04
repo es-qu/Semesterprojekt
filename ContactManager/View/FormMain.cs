@@ -219,6 +219,8 @@ namespace ContactManager
                 MessageBox.Show("The first name can contain only letters");
                 return;
             }
+            #endregion
+
             if (isEditMode == false)
             {
                 if (RadCreateEmployee.Checked)
@@ -240,7 +242,7 @@ namespace ContactManager
                     CmbCreateNationality.SelectedItem?.ToString(),
                     TxtCreateOasiNr.Text,
                     TxtCreatePrivatePhone.Text,
-                    TxtCreateBusnissPhone.Text,
+                    TxtCreateBusinessPhone.Text,
                     TxtCreateEmailAddress.Text,
                     TxtCreateBusinessAddress.Text,
                     TxtCreateNote.Text,
@@ -275,7 +277,7 @@ namespace ContactManager
                        CmbCreateNationality.SelectedItem?.ToString(),
                        TxtCreateOasiNr.Text,
                        TxtCreatePrivatePhone.Text,
-                       TxtCreateBusnissPhone.Text,
+                       TxtCreateBusinessPhone.Text,
                        TxtCreateEmailAddress.Text,
                        TxtCreateBusinessAddress.Text,
                        TxtCreateNote.Text,
@@ -313,7 +315,7 @@ namespace ContactManager
                     CmbCreateNationality.SelectedItem?.ToString(),
                     TxtCreateOasiNr.Text,
                     TxtCreatePrivatePhone.Text,
-                    TxtCreateBusnissPhone.Text,
+                    TxtCreateBusinessPhone.Text,
                     TxtCreateEmailAddress.Text,
                     TxtCreateBusinessAddress.Text,
                     TxtCreateNote.Text,
@@ -356,7 +358,7 @@ namespace ContactManager
                             CmbCreateNationality.SelectedItem?.ToString(),
                             TxtCreateOasiNr.Text,
                             TxtCreatePrivatePhone.Text,
-                            TxtCreateBusnissPhone.Text,
+                            TxtCreateBusinessPhone.Text,
                             TxtCreateEmailAddress.Text,
                             TxtCreateBusinessAddress.Text,
                             TxtCreateNote.Text,
@@ -391,7 +393,7 @@ namespace ContactManager
                                CmbCreateNationality.SelectedItem?.ToString(),
                                TxtCreateOasiNr.Text,
                                TxtCreatePrivatePhone.Text,
-                               TxtCreateBusnissPhone.Text,
+                               TxtCreateBusinessPhone.Text,
                                TxtCreateEmailAddress.Text,
                                TxtCreateBusinessAddress.Text,
                                TxtCreateNote.Text,
@@ -434,7 +436,7 @@ namespace ContactManager
                         CmbCreateNationality.SelectedItem?.ToString(),
                         TxtCreateOasiNr.Text,
                         TxtCreatePrivatePhone.Text,
-                        TxtCreateBusnissPhone.Text,
+                        TxtCreateBusinessPhone.Text,
                         TxtCreateEmailAddress.Text,
                         TxtCreateBusinessAddress.Text,
                         TxtCreateNote.Text,
@@ -1127,7 +1129,7 @@ namespace ContactManager
             TxtCreatePlaceOfResidence.Text = "";
             TxtCreateOasiNr.Text = "";
             TxtCreatePrivatePhone.Text = "";
-            TxtCreateBusnissPhone.Text = "";
+            TxtCreateBusinessPhone.Text = "";
             TxtCreateEmailAddress.Text = "";
             TxtCreateBusinessAddress.Text = "";
             TxtCreateNote.Text = "";

@@ -89,9 +89,9 @@ namespace ContactManager
             return true;
         }
 
-        public Boolean CreateCustomer(string firstName, string lastName, string dateOfBirth, string CustomerNumber, int status, string gender, string Salutaion, string title,
-                                    string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string EmailBusiness, string email, string note, string CompanyName, string CustomerType, string CompanyContact, Form form)
+        public Boolean CreateCustomer(string firstName, string lastName, string dateOfBirth, string customerNumber, int status, string gender, string salutation, string title,
+                                    string street, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
+                                     string phoneBuiness, string emailBusiness, string email, string note, string companyName, string customerType, string companyContact, Form form)
         {
             Customer c = new Customer
             {
@@ -99,23 +99,23 @@ namespace ContactManager
                 firstName = firstName,
                 lastName = lastName,
                 dateOfBirth = dateOfBirth,
-                CustomerNumber = CustomerNumber,
+                CustomerNumber = customerNumber,
                 gender = gender,
-                Salutation = Salutation,
+                Salutation = salutation,
                 title = title,
                 street = street,
                 postalCode = postalCode,
                 placeOfResidence = placeOfResidence,
                 nationality = nationality,
-                socialSecurityNumber = oasiNr,
+                socialSecurityNumber = oasiNumber,
                 phoneNumberPrivat = phonePrivate,
                 phoneNumberBusiness = phoneBuiness,
                 email = email,
-                EmailBusiness = EmailBusiness,
+                EmailBusiness = emailBusiness,
                 note = note,
-                CompanyName = CompanyName,
-                CustomerType = CustomerType,
-                CompanyContact = CompanyContact
+                CompanyName = companyName,
+                CustomerType = customerType,
+                CompanyContact = companyContact
 
             };
 
