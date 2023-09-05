@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ContactManager
@@ -506,7 +505,7 @@ namespace ContactManager
 
                     // Get existing employee number
                     TxtCreateEmployeeNumber.Text = selectedPerson;
-                   
+
                 }
             }
             else
@@ -519,7 +518,7 @@ namespace ContactManager
         private void RadCreateEmployee_CheckedChanged(object sender, EventArgs e)
         {
             LblCreateTypeSelection.Visible = false;
-           
+
 
             if (RadCreateEmployee.Checked == true)
             {
@@ -536,7 +535,7 @@ namespace ContactManager
             {
                 PnlCreateInfoEmployee.Visible = false;
                 ChkCreateTrainee.Visible = false;
-                
+
             }
 
 
@@ -992,9 +991,9 @@ namespace ContactManager
         {
             isEditMode = true;
             UpdateEmployeeNumber();
-            
+
             TCtrlMain.SelectedTab = TabCreateEdit;
-            
+
         }
 
         private void TCtrlMain_SelectedIndexChanged(object sender, EventArgs e)
@@ -1015,7 +1014,7 @@ namespace ContactManager
 
                     // Fill out generic fields
                     SwtCreateActive.Checked = (contact.Active == 0) ? false : true;
-                    
+
                     switch (contact.Gender)
                     {
                         case "Female":
@@ -1117,11 +1116,34 @@ namespace ContactManager
             {
                 if (DataGridViewSearchResult.SelectedCells.Count == 1)
                 {
-                    MessageBox.Show("del");
+                    bool deletionSuccessful = false;
+                    var selectedContact = searchResults[DataGridViewSearchResult.SelectedCells[0].RowIndex];
+
+                    if (selectedContact.GetType() == typeof(Customer))
+                    {
+                        deletionSuccessful = SqliteDataAccess.DeleteCustomer(((Customer)selectedContact).CustomerNumber);
+                    }
+                    else if (selectedContact.GetType() == typeof(Employee) || selectedContact.GetType() == typeof(Trainee))
+                    {
+                        deletionSuccessful = SqliteDataAccess.DeleteEmployee(((Employee)selectedContact).EmployeeNumber);
+                    }
+
+                    if (deletionSuccessful)
+                    {
+                        // Deletion was successful. Show a success message.
+                        MessageBox.Show($"Contact {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Customer Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        // Deletion failed. Show an error message.
+                        MessageBox.Show("Failed to delete the contact. Please check try again.", "Contact Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    CmdSearchExec_Click(sender, e);
                 }
-                else { MessageBox.Show("Please select a contact to delete."); }
+                else MessageBox.Show("Please select a contact to delete.");
             }
-            else { MessageBox.Show("Please select a contact to delete."); }
+            else MessageBox.Show("Please select a contact to delete.");
         }
 
         private void UpdateEmployeeNumber()
@@ -1143,7 +1165,7 @@ namespace ContactManager
                     TxtCreateCustomerNumber.Text = selectedPerson;
                     RadCreateEmployee.Enabled = false;
                 }
-                
+
             }
         }
 
