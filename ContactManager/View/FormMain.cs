@@ -279,6 +279,7 @@ namespace ContactManager
                     DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                     DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                     NumCadreLevel.Value.ToString(),
+                    NumCreateDegreeOfEmployment.Value.ToString(),
                     NumCreateCurrentAppYear.Value.ToString(),
                     NumCreateYearOfApp.Value.ToString(),
                     this
@@ -314,6 +315,7 @@ namespace ContactManager
                        DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                        DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                        NumCadreLevel.Value.ToString(),
+                       NumCreateDegreeOfEmployment.Value.ToString(),
                        this
 
                         );
@@ -395,6 +397,7 @@ namespace ContactManager
                             DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                             DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                             NumCadreLevel.Value.ToString(),
+                            NumCreateDegreeOfEmployment.Value.ToString(),
                             NumCreateCurrentAppYear.Value.ToString(),
                             NumCreateYearOfApp.Value.ToString(),
                             this
@@ -430,6 +433,7 @@ namespace ContactManager
                                DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                                DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                                NumCadreLevel.Value.ToString(),
+                               NumCreateDegreeOfEmployment.Value.ToString(),
                                this
 
                                 );

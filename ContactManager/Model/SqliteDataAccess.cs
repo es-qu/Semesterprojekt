@@ -17,9 +17,8 @@ namespace ContactManager
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-
-                cnn.Execute("INSERT INTO Person (status , gender, Salutation, title, firstName, lastName, street, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note)  " +
-                    " VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
+                cnn.Execute("INSERT INTO Person (Active , Gender, Salutation, Title, FirstName, LastName, Address, PostalCode,PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, Note)  " +
+                    " VALUES (@Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @Note)",
                     new
                     {
                         customer.Active,
@@ -71,8 +70,8 @@ namespace ContactManager
                 if (TraineeId == 0)
                 {
                     int rowsAffected = cnn.Execute(
-                   "INSERT INTO Person (status, gender, Salutation, title, firstName, lastName, street, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note)  " +
-                   " VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
+                   "INSERT INTO Person (Active, Gender, Salutation, Title, FirstName, LastName, Address, PostalCode,PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, Note)  " +
+                   " VALUES (@Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @Note)",
                    new
                    {
                        trainee.Active,
@@ -97,19 +96,20 @@ namespace ContactManager
                     {
                         int lastId = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
                         cnn.Execute(
-                            "INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
+                            "INSERT INTO Employee (ID, Role, Department, DegreeOfEmployment, EmployeeNumber,DateOfJoining,DateOfLeaving,CadreLevel) VALUES (@Id, @Role, @Department, @DegreeOfEmployment, @EmployeeNumber,@DateOfJoining,@DateOfLeaving,@CadreLevel)",
                             new
                             {
                                 Id = lastId,
                                 trainee.Role,
                                 trainee.Department,
+                                trainee.DegreeOfEmployment,
                                 trainee.EmployeeNumber,
                                 trainee.DateOfJoining,
                                 trainee.DateOfLeaving,
                                 trainee.CadreLevel
                             });
                         cnn.Execute(
-                            "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
+                            "INSERT INTO Trainee (ID, CurrentApprenticeshipYear, YearsOfApprenticeship) VALUES (@Id, @CurrentApprenticeshipYear, @YearsOfApprenticeship)",
                             new
                             {
                                 Id = lastId,
@@ -123,7 +123,7 @@ namespace ContactManager
                 {
                     // Only insert into Trainee table...
                     cnn.Execute(
-                        "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
+                        "INSERT INTO Trainee (ID, CurrentApprenticeshipYear, YearsOfApprenticeship) VALUES (@Id, @CurrentApprenticeshipYear, @YearsOfApprenticeship)",
                         new
                         {
                             Id = TraineeId,
@@ -140,8 +140,8 @@ namespace ContactManager
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("INSERT INTO Person (status , gender, Salutation, title, firstName, lastName, street, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note)  " +
-               " VALUES ( @status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
+                cnn.Execute("INSERT INTO Person (Active , Gender, Salutation, Title, FirstName, LastName, Address, PostalCode,PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, Note)  " +
+               " VALUES ( @Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @Note)",
                 new
                 {
 
@@ -165,12 +165,13 @@ namespace ContactManager
                 });
 
                 int lastId_e = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
-                cnn.Execute("INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
+                cnn.Execute("INSERT INTO Employee (ID, Role, Department, DegreeOfEmployment, EmployeeNumber,DateOfJoining,DateOfLeaving,CadreLevel) VALUES (@Id, @Role, @Department, @DegreeOfEmployment, @EmployeeNumber,@DateOfJoining,@DateOfLeaving,@CadreLevel)",
                 new
                 {
                     Id = lastId_e,
                     employee.Role,
                     employee.Department,
+                    employee.DegreeOfEmployment,
                     employee.EmployeeNumber,
                     employee.DateOfJoining,
                     employee.DateOfLeaving,

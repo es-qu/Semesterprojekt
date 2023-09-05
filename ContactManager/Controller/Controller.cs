@@ -8,21 +8,21 @@ namespace ContactManager
 {
     internal class Controller
     {
-        public bool CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string salutaion, string title,
-                                    string street, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
-                                     string phoneBuiness, string email, string businessEmail, string note, string role, string department, string dateOfJoining, string dateOfLeaving, string cadreLevel, Form form)
+        public bool CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int isActive, string gender, string salutation, string title,
+                                    string address, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
+                                     string phoneBuiness, string email, string businessAddress, string note, string role, string department, string dateOfJoining, string dateOfLeaving, string cadreLevel, string degreeOfEmployment, Form form)
         {
             Employee e = new Employee
             {
-                Active = status,
+                Active = isActive,
                 FirstName = firstName,
                 LastName = lastName,
                 DateOfBirth = dateOfBirth,
                 EmployeeNumber = employeeNumber,
                 Gender = gender,
-                Salutation = salutaion,
+                Salutation = salutation,
                 Title = title,
-                Address = street,
+                Address = address,
                 PostalCode = postalCode,
                 PlaceOfResidence = placeOfResidence,
                 Nationality = nationality,
@@ -30,11 +30,12 @@ namespace ContactManager
                 PrivatePhone = phonePrivate,
                 BusinessPhone = phoneBuiness,
                 EmailAddress = email,
-                BusinessAddress = businessEmail,
+                BusinessAddress = businessAddress,
                 Note = note,
                 Role = role,
                 Department = department,
                 CadreLevel = cadreLevel,
+                DegreeOfEmployment = degreeOfEmployment,
                 DateOfJoining = dateOfJoining,
                 DateOfLeaving = dateOfLeaving
             };
@@ -46,36 +47,37 @@ namespace ContactManager
             return true;
         }
 
-        public bool CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int status, string gender, string Salutaion, string title,
-                                    string street, string postalCode, string placeOfResidence, string nationality, string ahv, string phonePrivate,
-                                     string phoneBuiness, string email, string EmailBusiness, string note, string role, string Department, string dateofjoining, string dateofleaving, string NumCadreLevel,
+        public bool CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int isActive, string gender, string salutaion, string title,
+                                    string address, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
+                                     string phoneBuiness, string email, string businessAddress, string note, string role, string department, string dateOfJoining, string dateOfLeaving, string cadreLevel, string degreeOfEmployment,
                                     string currentApprenticeshipYear, string yearsOfApprenticeship, Form form)
         {
             Trainee t = new Trainee
             {
-                Active = status,
+                Active = isActive,
                 FirstName = firstName,
                 LastName = lastName,
                 DateOfBirth = dateOfBirth,
                 EmployeeNumber = employeeNumber,
                 Gender = gender,
-                Salutation = Salutaion,
+                Salutation = salutaion,
                 Title = title,
-                Address = street,
+                Address = address,
                 PostalCode = postalCode,
                 PlaceOfResidence = placeOfResidence,
                 Nationality = nationality,
-                OasiNumber = ahv,
+                OasiNumber = oasiNumber,
                 PrivatePhone = phonePrivate,
                 BusinessPhone = phoneBuiness,
                 EmailAddress = email,
-                BusinessAddress = EmailBusiness,
+                BusinessAddress = businessAddress,
                 Note = note,
                 Role = role,
-                Department = Department,
-                CadreLevel = NumCadreLevel,
-                DateOfJoining = dateofjoining,
-                DateOfLeaving = dateofleaving,
+                Department = department,
+                CadreLevel = cadreLevel,
+                DegreeOfEmployment = degreeOfEmployment,
+                DateOfJoining = dateOfJoining,
+                DateOfLeaving = dateOfLeaving,
                 CurrentApprenticeshipYear = currentApprenticeshipYear,
                 YearsOfApprenticeship = yearsOfApprenticeship
             };
@@ -86,13 +88,13 @@ namespace ContactManager
             return true;
         }
 
-        public Boolean CreateCustomer(string firstName, string lastName, string dateOfBirth, string customerNumber, int status, string gender, string salutation, string title,
-                                    string street, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
+        public Boolean CreateCustomer(string firstName, string lastName, string dateOfBirth, string customerNumber, int isActive, string gender, string salutation, string title,
+                                    string address, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
                                      string phoneBuiness, string emailBusiness, string email, string note, string companyName, string customerType, string companyContact, Form form)
         {
             Customer c = new Customer
             {
-                Active = status,
+                Active = isActive,
                 FirstName = firstName,
                 LastName = lastName,
                 DateOfBirth = dateOfBirth,
@@ -100,7 +102,7 @@ namespace ContactManager
                 Gender = gender,
                 Salutation = salutation,
                 Title = title,
-                Address = street,
+                Address = address,
                 PostalCode = postalCode,
                 PlaceOfResidence = placeOfResidence,
                 Nationality = nationality,
@@ -137,12 +139,12 @@ namespace ContactManager
                 string.IsNullOrEmpty(filters.Salutation) &&
                 string.IsNullOrEmpty(filters.FirstName) &&
                 string.IsNullOrEmpty(filters.LastName) &&
-                string.IsNullOrEmpty(filters.DateOfBirth) &&
                 string.IsNullOrEmpty(filters.Address) &&
                 string.IsNullOrEmpty(filters.PostalCode) &&
                 string.IsNullOrEmpty(filters.PlaceOfResidence) &&
                 string.IsNullOrEmpty(filters.Nationality) &&
                 string.IsNullOrEmpty(filters.OasiNumber) &&
+                string.IsNullOrEmpty(filters.DateOfBirth) &&
                 string.IsNullOrEmpty(filters.EmailAddress) &&
                 string.IsNullOrEmpty(filters.PrivatePhone) &&
                 string.IsNullOrEmpty(filters.BusinessPhone) &&
@@ -152,15 +154,15 @@ namespace ContactManager
                 string.IsNullOrEmpty(filters.CompanyName) &&
                 string.IsNullOrEmpty(filters.CompanyContact) &&
 
-                string.IsNullOrEmpty(filters.CurrentApprenticeshipYear) &&
-                string.IsNullOrEmpty(filters.YearsOfApprenticeship) &&
-
                 string.IsNullOrEmpty(filters.Departement) &&
                 string.IsNullOrEmpty(filters.Role) &&
                 string.IsNullOrEmpty(filters.CadreLevel) &&
                 string.IsNullOrEmpty(filters.DegreeOfEmployment) &&
                 string.IsNullOrEmpty(filters.DateOfJoining) &&
-                string.IsNullOrEmpty(filters.DateOfLeaving);
+                string.IsNullOrEmpty(filters.DateOfLeaving) &&
+
+                string.IsNullOrEmpty(filters.CurrentApprenticeshipYear) &&
+                string.IsNullOrEmpty(filters.YearsOfApprenticeship);
 
             return clear;
         }
@@ -176,13 +178,13 @@ namespace ContactManager
             List<Type> types = getTypes(filters);
 
             string filterCondition =
-                $"firstName LIKE '%{searchTerm}%' " +
-                $"OR lastName LIKE '%{searchTerm}%' " +
-                $"OR street LIKE '%{searchTerm}%' " +
-                $"OR placeOfResidence LIKE '%{searchTerm}%' " +
-                $"OR dateOfBirth LIKE '%{searchTerm}%'";
+                $"FirstName LIKE '%{searchTerm}%' " +
+                $"OR LastName LIKE '%{searchTerm}%' " +
+                $"OR Address LIKE '%{searchTerm}%' " +
+                $"OR PlaceOfResidence LIKE '%{searchTerm}%' " +
+                $"OR DateOfBirth LIKE '%{searchTerm}%'";
 
-            string inactiveCondition = (filters.SearchInactive) ? "(status = 0 OR status = 1)" : "status = 1";
+            string inactiveCondition = (filters.SearchInactive) ? "(Active = 0 OR Active = 1)" : "Active = 1";
 
             List<object> res = new List<object>();
 
@@ -229,52 +231,52 @@ namespace ContactManager
 
             // General Information
             List<string> generic = new List<string>();
-            if (!string.IsNullOrEmpty(filters.Title)) generic.Add($"title LIKE '%{filters.Title}%'");
-            if (!string.IsNullOrEmpty(filters.Gender)) generic.Add($"gender LIKE '{filters.Gender}%'");
+            if (!string.IsNullOrEmpty(filters.Title)) generic.Add($"Title LIKE '%{filters.Title}%'");
+            if (!string.IsNullOrEmpty(filters.Gender)) generic.Add($"Gender LIKE '{filters.Gender}%'");
             if (!string.IsNullOrEmpty(filters.Salutation)) generic.Add($"Salutation LIKE '%{filters.Salutation}%'");
-            if (!string.IsNullOrEmpty(filters.FirstName)) generic.Add($"firstName LIKE '%{filters.FirstName}%'");
-            if (!string.IsNullOrEmpty(filters.LastName)) generic.Add($"lastName LIKE '%{filters.LastName}%'");
-            if (!string.IsNullOrEmpty(filters.Address)) generic.Add($"street LIKE '%{filters.Address}%'");
-            if (!string.IsNullOrEmpty(filters.PostalCode)) generic.Add($"postalCode LIKE '%{filters.PostalCode}%'");
-            if (!string.IsNullOrEmpty(filters.DateOfBirth)) generic.Add($"dateOfBirth LIKE '%{filters.DateOfBirth}%'");
-            if (!string.IsNullOrEmpty(filters.PlaceOfResidence)) generic.Add($"placeOfResidence LIKE '%{filters.PlaceOfResidence}%'");
-            if (!string.IsNullOrEmpty(filters.Nationality)) generic.Add($"nationality LIKE '%{filters.Nationality}%'");
-            if (!string.IsNullOrEmpty(filters.OasiNumber)) generic.Add($"oasiNumber LIKE '%{filters.OasiNumber}%'");
-            if (!string.IsNullOrEmpty(filters.EmailAddress)) generic.Add($"emailAddress LIKE '%{filters.EmailAddress}%'");
-            if (!string.IsNullOrEmpty(filters.PrivatePhone)) generic.Add($"privatePhone LIKE '%{filters.PrivatePhone}%'");
-            if (!string.IsNullOrEmpty(filters.BusinessPhone)) generic.Add($"businessPhone LIKE '%{filters.BusinessPhone}%'");
-            if (!string.IsNullOrEmpty(filters.BusinessAddress)) generic.Add($"businessAddress LIKE '%{filters.BusinessAddress}%'");
+            if (!string.IsNullOrEmpty(filters.FirstName)) generic.Add($"FirstName LIKE '%{filters.FirstName}%'");
+            if (!string.IsNullOrEmpty(filters.LastName)) generic.Add($"LastName LIKE '%{filters.LastName}%'");
+            if (!string.IsNullOrEmpty(filters.Address)) generic.Add($"Address LIKE '%{filters.Address}%'");
+            if (!string.IsNullOrEmpty(filters.PostalCode)) generic.Add($"PostalCode LIKE '%{filters.PostalCode}%'");
+            if (!string.IsNullOrEmpty(filters.DateOfBirth)) generic.Add($"DateOfBirth LIKE '%{filters.DateOfBirth}%'");
+            if (!string.IsNullOrEmpty(filters.PlaceOfResidence)) generic.Add($"PlaceOfResidence LIKE '%{filters.PlaceOfResidence}%'");
+            if (!string.IsNullOrEmpty(filters.Nationality)) generic.Add($"Nationality LIKE '%{filters.Nationality}%'");
+            if (!string.IsNullOrEmpty(filters.OasiNumber)) generic.Add($"OasiNumber LIKE '%{filters.OasiNumber}%'");
+            if (!string.IsNullOrEmpty(filters.EmailAddress)) generic.Add($"EmailAddress LIKE '%{filters.EmailAddress}%'");
+            if (!string.IsNullOrEmpty(filters.PrivatePhone)) generic.Add($"PrivatePhone LIKE '%{filters.PrivatePhone}%'");
+            if (!string.IsNullOrEmpty(filters.BusinessPhone)) generic.Add($"BusinessPhone LIKE '%{filters.BusinessPhone}%'");
+            if (!string.IsNullOrEmpty(filters.BusinessAddress)) generic.Add($"BusinessAddress LIKE '%{filters.BusinessAddress}%'");
             sqlConditions["generic"] = generic;
 
             // Customer Information
             List<string> customer = new List<string>();
             if (!string.IsNullOrEmpty(filters.Number)) customer.Add($"CustomerNumber LIKE '%{filters.Number}%'");
-            if (!string.IsNullOrEmpty(filters.CustomerType)) customer.Add($"customerType LIKE '%{filters.CustomerType}%'");
-            if (!string.IsNullOrEmpty(filters.CompanyName)) customer.Add($"companyName LIKE '%{filters.CompanyName}%'");
-            if (!string.IsNullOrEmpty(filters.CompanyContact)) customer.Add($"companyContact LIKE '%{filters.CompanyContact}%'");
+            if (!string.IsNullOrEmpty(filters.CustomerType)) customer.Add($"CustomerType LIKE '%{filters.CustomerType}%'");
+            if (!string.IsNullOrEmpty(filters.CompanyName)) customer.Add($"CompanyName LIKE '%{filters.CompanyName}%'");
+            if (!string.IsNullOrEmpty(filters.CompanyContact)) customer.Add($"CompanyContact LIKE '%{filters.CompanyContact}%'");
             sqlConditions["customer"] = customer;
 
             // Employee Information
             List<string> employee = new List<string>();
             if (!string.IsNullOrEmpty(filters.Number)) employee.Add($"EmployeeNumber LIKE '%{filters.Number}%'");
-            if (!string.IsNullOrEmpty(filters.Departement)) employee.Add($"departement LIKE '%{filters.Departement}%'");
-            if (!string.IsNullOrEmpty(filters.Role)) employee.Add($"role LIKE '%{filters.Role}%'");
-            if (!string.IsNullOrEmpty(filters.CadreLevel)) employee.Add($"cadreLevel LIKE '%{filters.CadreLevel}%'");
-            if (!string.IsNullOrEmpty(filters.DegreeOfEmployment)) employee.Add($"degreeOfEmployment LIKE '%{filters.DegreeOfEmployment}%'");
-            if (!string.IsNullOrEmpty(filters.DateOfJoining)) employee.Add($"dateOfJoining LIKE '%{filters.DateOfJoining}%'");
-            if (!string.IsNullOrEmpty(filters.DateOfLeaving)) employee.Add($"dateOfLeaving LIKE '%{filters.DateOfLeaving}%'");
+            if (!string.IsNullOrEmpty(filters.Departement)) employee.Add($"Departement LIKE '%{filters.Departement}%'");
+            if (!string.IsNullOrEmpty(filters.Role)) employee.Add($"Role LIKE '%{filters.Role}%'");
+            if (!string.IsNullOrEmpty(filters.CadreLevel)) employee.Add($"CadreLevel LIKE '%{filters.CadreLevel}%'");
+            if (!string.IsNullOrEmpty(filters.DegreeOfEmployment)) employee.Add($"DegreeOfEmployment LIKE '%{filters.DegreeOfEmployment}%'");
+            if (!string.IsNullOrEmpty(filters.DateOfJoining)) employee.Add($"DateOfJoining LIKE '%{filters.DateOfJoining}%'");
+            if (!string.IsNullOrEmpty(filters.DateOfLeaving)) employee.Add($"DateOfLeaving LIKE '%{filters.DateOfLeaving}%'");
             sqlConditions["employee"] = employee;
 
             // Trainee Information
             List<string> trainee = new List<string>();
-            if (!string.IsNullOrEmpty(filters.CurrentApprenticeshipYear)) trainee.Add($"currentApprenticeshipYear LIKE '%{filters.CurrentApprenticeshipYear}%'");
-            if (!string.IsNullOrEmpty(filters.YearsOfApprenticeship)) trainee.Add($"yearsOfApprenticeship LIKE '%{filters.YearsOfApprenticeship}%'");
+            if (!string.IsNullOrEmpty(filters.CurrentApprenticeshipYear)) trainee.Add($"CurrentApprenticeshipYear LIKE '%{filters.CurrentApprenticeshipYear}%'");
+            if (!string.IsNullOrEmpty(filters.YearsOfApprenticeship)) trainee.Add($"YearsOfApprenticeship LIKE '%{filters.YearsOfApprenticeship}%'");
             sqlConditions["trainee"] = trainee;
 
             // Search Inactive Checkbox
             List<string> inactive = new List<string>();
-            if (filters.SearchInactive) inactive.Add("(status = 0 OR status = 1)");
-            else inactive.Add("status = 1");
+            if (filters.SearchInactive) inactive.Add("(Active = 0 OR Active = 1)");
+            else inactive.Add("Active = 1");
             sqlConditions["inactive"] = inactive;
 
             return sqlConditions;
