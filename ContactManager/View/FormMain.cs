@@ -76,6 +76,7 @@ namespace ContactManager
 
             // Reset CheckState
             ChkCreateTrainee.Checked = false;
+            isEditMode = false;
 
             // Clear ComboBoxes
             CmbCreateSalutation.SelectedItem = null;
@@ -110,11 +111,13 @@ namespace ContactManager
             // Reset Numeric Indicator
             NumCadreLevel.Value = 0;
             NumCreateDegreeOfEmployment.Value = 0;
+
             // Reset RadioButton
             RadCreateFemale.Checked = false;
             RadCreateMale.Checked = false;
             RadCreateOther.Checked = false;
             RadCreateCustomer.Checked = false;
+            RadCreateCustomer.Enabled = true;
             RadCreateEmployee.Checked = false;
 
         }
