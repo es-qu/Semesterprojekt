@@ -34,6 +34,10 @@ namespace ContactManager
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -220,14 +224,16 @@ namespace ContactManager
             this.LblRole = new MaterialSkin.Controls.MaterialLabel();
             this.TxtCreateRole = new MaterialSkin.Controls.MaterialTextBox();
             this.TabImport = new System.Windows.Forms.TabPage();
-            this.OpenFileDialogImportContacts = new System.Windows.Forms.OpenFileDialog();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.LblImportPreviewEmpty = new System.Windows.Forms.Label();
             this.CmdImportCancel = new MaterialSkin.Controls.MaterialButton();
             this.CmdImportConfirm = new MaterialSkin.Controls.MaterialButton();
-            this.DataGridViewImportPreview = new System.Windows.Forms.DataGridView();
+            this.DataGridViewImportGeneric = new System.Windows.Forms.DataGridView();
             this.CmdImportOpenFile = new MaterialSkin.Controls.MaterialButton();
-            this.LblImportPreviewEmpty = new System.Windows.Forms.Label();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.OpenFileDialogImportContacts = new System.Windows.Forms.OpenFileDialog();
+            this.DataGridViewImportSpecific = new System.Windows.Forms.DataGridView();
+            this.LblImportType = new MaterialSkin.Controls.MaterialLabel();
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchResult)).BeginInit();
@@ -249,7 +255,8 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.NumCadreLevel)).BeginInit();
             this.TabImport.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportPreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportGeneric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportSpecific)).BeginInit();
             this.SuspendLayout();
             // 
             // TCtrlMain
@@ -2851,22 +2858,44 @@ namespace ContactManager
             this.TabImport.Text = "Import";
             this.TabImport.UseVisualStyleBackColor = true;
             // 
-            // OpenFileDialogImportContacts
-            // 
-            this.OpenFileDialogImportContacts.FileName = "openFileDialog1";
-            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.LblImportType);
+            this.panel1.Controls.Add(this.DataGridViewImportSpecific);
             this.panel1.Controls.Add(this.materialLabel2);
             this.panel1.Controls.Add(this.LblImportPreviewEmpty);
             this.panel1.Controls.Add(this.CmdImportCancel);
             this.panel1.Controls.Add(this.CmdImportConfirm);
-            this.panel1.Controls.Add(this.DataGridViewImportPreview);
+            this.panel1.Controls.Add(this.DataGridViewImportGeneric);
             this.panel1.Controls.Add(this.CmdImportOpenFile);
             this.panel1.Location = new System.Drawing.Point(4, 4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1900, 922);
             this.panel1.TabIndex = 0;
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.Location = new System.Drawing.Point(3, 81);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(60, 19);
+            this.materialLabel2.TabIndex = 136;
+            this.materialLabel2.Text = "Preview:";
+            // 
+            // LblImportPreviewEmpty
+            // 
+            this.LblImportPreviewEmpty.AutoSize = true;
+            this.LblImportPreviewEmpty.BackColor = System.Drawing.Color.DimGray;
+            this.LblImportPreviewEmpty.ForeColor = System.Drawing.Color.White;
+            this.LblImportPreviewEmpty.Location = new System.Drawing.Point(830, 357);
+            this.LblImportPreviewEmpty.Name = "LblImportPreviewEmpty";
+            this.LblImportPreviewEmpty.Size = new System.Drawing.Size(242, 40);
+            this.LblImportPreviewEmpty.TabIndex = 135;
+            this.LblImportPreviewEmpty.Text = "Nothing To Import";
+            this.LblImportPreviewEmpty.Visible = false;
             // 
             // CmdImportCancel
             // 
@@ -2885,6 +2914,7 @@ namespace ContactManager
             this.CmdImportCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdImportCancel.UseAccentColor = false;
             this.CmdImportCancel.UseVisualStyleBackColor = true;
+            this.CmdImportCancel.Click += new System.EventHandler(this.CmdImportCancel_Click);
             // 
             // CmdImportConfirm
             // 
@@ -2904,54 +2934,56 @@ namespace ContactManager
             this.CmdImportConfirm.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdImportConfirm.UseAccentColor = false;
             this.CmdImportConfirm.UseVisualStyleBackColor = true;
+            this.CmdImportConfirm.Click += new System.EventHandler(this.CmdImportConfirm_Click);
             // 
-            // DataGridViewImportPreview
+            // DataGridViewImportGeneric
             // 
-            this.DataGridViewImportPreview.AllowUserToAddRows = false;
-            this.DataGridViewImportPreview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridViewImportPreview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.DataGridViewImportPreview.BackgroundColor = System.Drawing.Color.DimGray;
-            this.DataGridViewImportPreview.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewImportPreview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.DataGridViewImportPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewImportPreview.DefaultCellStyle = dataGridViewCellStyle6;
-            this.DataGridViewImportPreview.GridColor = System.Drawing.Color.Gray;
-            this.DataGridViewImportPreview.Location = new System.Drawing.Point(4, 116);
-            this.DataGridViewImportPreview.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DataGridViewImportPreview.MultiSelect = false;
-            this.DataGridViewImportPreview.Name = "DataGridViewImportPreview";
-            this.DataGridViewImportPreview.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewImportPreview.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.DataGridViewImportPreview.RowHeadersVisible = false;
-            this.DataGridViewImportPreview.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGridViewImportPreview.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.DataGridViewImportPreview.Size = new System.Drawing.Size(1892, 566);
-            this.DataGridViewImportPreview.TabIndex = 132;
+            this.DataGridViewImportGeneric.AllowUserToAddRows = false;
+            this.DataGridViewImportGeneric.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewImportGeneric.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.DataGridViewImportGeneric.BackgroundColor = System.Drawing.Color.DimGray;
+            this.DataGridViewImportGeneric.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewImportGeneric.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.DataGridViewImportGeneric.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewImportGeneric.DefaultCellStyle = dataGridViewCellStyle10;
+            this.DataGridViewImportGeneric.GridColor = System.Drawing.Color.Gray;
+            this.DataGridViewImportGeneric.Location = new System.Drawing.Point(4, 116);
+            this.DataGridViewImportGeneric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DataGridViewImportGeneric.MultiSelect = false;
+            this.DataGridViewImportGeneric.Name = "DataGridViewImportGeneric";
+            this.DataGridViewImportGeneric.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewImportGeneric.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.DataGridViewImportGeneric.RowHeadersVisible = false;
+            this.DataGridViewImportGeneric.RowHeadersWidth = 51;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewImportGeneric.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.DataGridViewImportGeneric.Size = new System.Drawing.Size(1892, 462);
+            this.DataGridViewImportGeneric.TabIndex = 132;
+            this.DataGridViewImportGeneric.SelectionChanged += new System.EventHandler(this.DataGridViewImportGeneric_SelectionChanged);
             // 
             // CmdImportOpenFile
             // 
@@ -2970,29 +3002,72 @@ namespace ContactManager
             this.CmdImportOpenFile.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdImportOpenFile.UseAccentColor = false;
             this.CmdImportOpenFile.UseVisualStyleBackColor = true;
+            this.CmdImportOpenFile.Click += new System.EventHandler(this.CmdImportOpenFile_Click);
             // 
-            // LblImportPreviewEmpty
+            // OpenFileDialogImportContacts
             // 
-            this.LblImportPreviewEmpty.AutoSize = true;
-            this.LblImportPreviewEmpty.BackColor = System.Drawing.Color.DimGray;
-            this.LblImportPreviewEmpty.ForeColor = System.Drawing.Color.White;
-            this.LblImportPreviewEmpty.Location = new System.Drawing.Point(830, 357);
-            this.LblImportPreviewEmpty.Name = "LblImportPreviewEmpty";
-            this.LblImportPreviewEmpty.Size = new System.Drawing.Size(242, 40);
-            this.LblImportPreviewEmpty.TabIndex = 135;
-            this.LblImportPreviewEmpty.Text = "Nothing To Import";
+            this.OpenFileDialogImportContacts.Filter = "CSV Files (*.csv) | *.csv";
+            this.OpenFileDialogImportContacts.InitialDirectory = "$PWD\\..\\..\\ExampleFiles\\";
             // 
-            // materialLabel2
+            // DataGridViewImportSpecific
             // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(3, 81);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(60, 19);
-            this.materialLabel2.TabIndex = 136;
-            this.materialLabel2.Text = "Preview:";
+            this.DataGridViewImportSpecific.AllowUserToAddRows = false;
+            this.DataGridViewImportSpecific.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewImportSpecific.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.DataGridViewImportSpecific.BackgroundColor = System.Drawing.Color.DimGray;
+            this.DataGridViewImportSpecific.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewImportSpecific.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGridViewImportSpecific.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewImportSpecific.DefaultCellStyle = dataGridViewCellStyle6;
+            this.DataGridViewImportSpecific.GridColor = System.Drawing.Color.Gray;
+            this.DataGridViewImportSpecific.Location = new System.Drawing.Point(4, 638);
+            this.DataGridViewImportSpecific.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DataGridViewImportSpecific.MultiSelect = false;
+            this.DataGridViewImportSpecific.Name = "DataGridViewImportSpecific";
+            this.DataGridViewImportSpecific.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewImportSpecific.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.DataGridViewImportSpecific.RowHeadersVisible = false;
+            this.DataGridViewImportSpecific.RowHeadersWidth = 51;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewImportSpecific.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.DataGridViewImportSpecific.Size = new System.Drawing.Size(1892, 160);
+            this.DataGridViewImportSpecific.TabIndex = 137;
+            // 
+            // LblImportType
+            // 
+            this.LblImportType.AutoSize = true;
+            this.LblImportType.Depth = 0;
+            this.LblImportType.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblImportType.Location = new System.Drawing.Point(3, 599);
+            this.LblImportType.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblImportType.Name = "LblImportType";
+            this.LblImportType.Size = new System.Drawing.Size(5, 19);
+            this.LblImportType.TabIndex = 138;
+            this.LblImportType.Text = "-";
             // 
             // FormMain
             // 
@@ -3044,7 +3119,8 @@ namespace ContactManager
             this.TabImport.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportPreview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportGeneric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportSpecific)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3240,9 +3316,11 @@ namespace ContactManager
         private System.Windows.Forms.Panel panel1;
         private MaterialSkin.Controls.MaterialButton CmdImportCancel;
         private MaterialSkin.Controls.MaterialButton CmdImportConfirm;
-        private System.Windows.Forms.DataGridView DataGridViewImportPreview;
+        private System.Windows.Forms.DataGridView DataGridViewImportGeneric;
         private MaterialSkin.Controls.MaterialButton CmdImportOpenFile;
         private System.Windows.Forms.Label LblImportPreviewEmpty;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private System.Windows.Forms.DataGridView DataGridViewImportSpecific;
+        private MaterialSkin.Controls.MaterialLabel LblImportType;
     }
 }

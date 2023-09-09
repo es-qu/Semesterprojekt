@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ContactManager
@@ -17,6 +19,7 @@ namespace ContactManager
         public SearchFilters filters = new SearchFilters();
 
         List<object> searchResults;
+        List<object> importContent;
 
         public enum Tab
         {
@@ -42,7 +45,9 @@ namespace ContactManager
 
 
         }
+
         public string selectedPerson;
+
         public FormMain(int selectedTab) : this()
         {
             Tab tab = (Tab)selectedTab;
@@ -96,6 +101,7 @@ namespace ContactManager
         }
 
         public int checkState;
+
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
 
@@ -1294,17 +1300,332 @@ namespace ContactManager
 
         private void CmdImportOpenFile_Click(object sender, EventArgs e)
         {
-            //
+            //Open dialog
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            using (OpenFileDialogImportContacts)
+            {
+                CmdImportConfirm.Enabled = false;
+
+                if (OpenFileDialogImportContacts.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = OpenFileDialogImportContacts.FileName;
+
+                    //Read the contents of the file into a stream
+                    var fileStream = OpenFileDialogImportContacts.OpenFile();
+
+                    using (StreamReader reader = new StreamReader(fileStream))
+                    {
+                        fileContent = reader.ReadToEnd();
+
+                        // importContent contains all types of contacts
+                        importContent = new List<object>() { };
+                        importContent.AddRange(ParseCsvWithReflection(fileContent));
+
+                        if (importContent.Count > 0)
+                        {
+                            LblImportPreviewEmpty.Visible = false;
+                            CmdImportConfirm.Enabled = true;
+
+                            // Generic data as List of type Person
+                            List<Person> importContentAsPersons = new List<Person>();
+
+                            foreach (Person person in importContent)
+                            {
+                                importContentAsPersons.Add(person);
+                            }
+
+                            DataGridViewImportGeneric.DataSource = importContentAsPersons;
+
+                            DataGridViewImportGeneric.CurrentCell = DataGridViewImportGeneric.FirstDisplayedCell;
+                            int currentSelectedCol = DataGridViewImportGeneric.CurrentCell.ColumnIndex;
+                        }
+                        else
+                        {
+                            LblImportPreviewEmpty.BackColor = Color.DimGray;
+                            LblImportPreviewEmpty.Visible = true;
+                        }
+                    }
+                }
+            }
         }
 
         private void CmdImportConfirm_Click(object sender, EventArgs e)
         {
-            //
+            Controller controller = new Controller();
+            bool success = true;
+
+            foreach (var item in importContent)
+            {
+                Type type = item.GetType();
+                if (type == typeof(Customer))
+                {
+                    Customer customer = (Customer)item;
+                    success &= controller.CreateCustomer(
+                        customer.FirstName, customer.LastName, customer.DateOfBirth, customer.CustomerNumber,
+                        customer.Active, customer.Gender, customer.Salutation, customer.Title,
+                        customer.Address, customer.PostalCode, customer.PlaceOfResidence, customer.Nationality,
+                        customer.OasiNumber, customer.PrivatePhone, customer.BusinessPhone,
+                        customer.BusinessAddress, customer.EmailAddress, customer.Note,
+                        customer.CompanyName, customer.CustomerType, customer.CompanyContact, this
+                    );
+                }
+                else if (type == typeof(Employee))
+                {
+                    Employee employee = (Employee)item;
+                    //bool success = controller.CreateEmployee();
+                }
+                else if (type == typeof(Trainee))
+                {
+                    Trainee trainee = (Trainee)item;
+                    //bool success = controller.CreateTrainee();
+                }
+            }
+
+            if (success)
+            {
+                MessageBoxIcon icon = MessageBoxIcon.Information;
+                MessageBox.Show(this, "Imported contacts successfully.", "Success", MessageBoxButtons.OK, icon);
+            } else
+            {
+                MessageBoxIcon icon = MessageBoxIcon.Error;
+                MessageBox.Show(this, "An error occurred while importing contacts.", "Error", MessageBoxButtons.OK, icon);
+            }
         }
 
         private void CmdImportCancel_Click(object sender, EventArgs e)
         {
-            //
+            Close();
+        }
+
+        public List<Person> ParseCsvWithReflection(string csvContent)
+        {
+            var lines = csvContent.Split('\n');
+            var people = new List<Person>();
+            var headers = lines[0].Split(',').Select(h => h.Trim()).ToArray();
+
+            for (int i = 1; i < lines.Length; i++) // Starting from 1 to skip the header
+            {
+                var line = lines[i].Trim();
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    var columns = line.Split(',');
+
+                    // Determine the type based on specific fields in the CSV for each row
+                    // Customer specific
+                    int companyNameIndex = Array.IndexOf(headers, "CompanyName");
+                    int customerTypeIndex = Array.IndexOf(headers, "CustomerType");
+                    int companyContactIndex = Array.IndexOf(headers, "CompanyContact");
+                    int customerNumberIndex = Array.IndexOf(headers, "CustomerNumber");
+                    // Employee or Trainee
+                    int departmentIndex = Array.IndexOf(headers, "Department");
+                    int roleIndex = Array.IndexOf(headers, "Role");
+                    int cadreLevelIndex = Array.IndexOf(headers, "CadreLevel");
+                    int degreeOfEmploymentIndex = Array.IndexOf(headers, "DegreeOfEmployment");
+                    int dateOfJoiningIndex = Array.IndexOf(headers, "DateOfJoining");
+                    int dateOfLeavingIndex = Array.IndexOf(headers, "DateOfLeaving");
+                    int employeeNumberIndex = Array.IndexOf(headers, "EmployeeNumber");
+                    // Trainee
+                    int currentApprenticeshipYearIndex = Array.IndexOf(headers, "CurrentApprenticeshipYear");
+                    int yearsOfApprenticeshipIndex = Array.IndexOf(headers, "YearsOfApprenticeship");
+
+                    Person person;
+                    if ((companyNameIndex != -1 && !string.IsNullOrWhiteSpace(columns[companyNameIndex])) ||
+                    (customerTypeIndex != -1 && !string.IsNullOrWhiteSpace(columns[customerTypeIndex])) ||
+                    (companyContactIndex != -1 && !string.IsNullOrWhiteSpace(columns[companyContactIndex])) ||
+                    (customerNumberIndex != -1 && !string.IsNullOrWhiteSpace(columns[customerNumberIndex])))
+                    {
+                        person = new Customer();
+                    }
+                    else if ((departmentIndex != -1 && !string.IsNullOrWhiteSpace(columns[departmentIndex])) ||
+                    (roleIndex != -1 && !string.IsNullOrWhiteSpace(columns[roleIndex])) ||
+                    (cadreLevelIndex != -1 && !string.IsNullOrWhiteSpace(columns[cadreLevelIndex])) ||
+                    (degreeOfEmploymentIndex != -1 && !string.IsNullOrWhiteSpace(columns[degreeOfEmploymentIndex])) ||
+                    (dateOfJoiningIndex != -1 && !string.IsNullOrWhiteSpace(columns[dateOfJoiningIndex])) ||
+                    (dateOfLeavingIndex != -1 && !string.IsNullOrWhiteSpace(columns[dateOfLeavingIndex])) ||
+                    (employeeNumberIndex != -1 && !string.IsNullOrWhiteSpace(columns[employeeNumberIndex])))
+                    {
+                        if ((currentApprenticeshipYearIndex != -1 && !string.IsNullOrWhiteSpace(columns[currentApprenticeshipYearIndex])) ||
+                        (yearsOfApprenticeshipIndex != -1 && !string.IsNullOrWhiteSpace(columns[yearsOfApprenticeshipIndex])))
+                        {
+                            person = new Trainee();
+                        }
+                        else
+                        {
+                            person = new Employee();
+                        }
+                    }
+                    else
+                    {
+                        person = new Customer();  // Defaulting to Customer
+                    }
+
+
+                    // Reflect on the determined type
+                    var type = person.GetType();
+
+                    for (int j = 0; j < headers.Length; j++)
+                    {
+                        var prop = type.GetProperty(headers[j]);
+                        if (prop != null && j < columns.Length)
+                        {
+                            Type propType = prop.PropertyType;
+
+                            if (propType == typeof(Int32))
+                            {
+                                prop.SetValue(person, Convert.ToInt32(columns[j].Trim()));
+                            }
+                            else
+                            {
+                                prop.SetValue(person, columns[j].Trim());
+                            }
+                        }
+                    }
+
+                    people.Add(person);
+                }
+            }
+
+            return people;
+        }
+
+        private void DataGridViewImportGeneric_SelectionChanged(object sender, EventArgs e)
+        {
+            if (DataGridViewImportGeneric.SelectedCells.Count > 0)
+            {
+                object selectedContact = importContent[DataGridViewImportGeneric.SelectedCells[0].RowIndex];
+
+                if (selectedContact != null)
+                {
+                    Type type = selectedContact.GetType();
+                    LblImportType.Text = $"{type.Name} Informations: ";
+
+                    DataGridViewImportSpecific.CurrentCell = null;
+                    DataGridViewImportSpecific.AutoGenerateColumns = false;
+                    DataGridViewImportSpecific.Columns.Clear();
+                    DataGridViewImportSpecific.DataSource = null;
+
+                    if (type == typeof(Customer))
+                    {
+                        DataGridViewImportSpecific.DataSource = new List<Customer>() { (Customer)selectedContact };
+
+                        DataGridViewTextBoxColumn companyNameColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "companyNameColumn",
+                            HeaderText = "Company Name",
+                            DataPropertyName = "companyName"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(companyNameColumn);
+
+                        DataGridViewTextBoxColumn customerTypeColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "customerTypeColumn",
+                            HeaderText = "Customer Type",
+                            DataPropertyName = "customerType"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(customerTypeColumn);
+
+                        DataGridViewTextBoxColumn companyContactColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "companyContactColumn",
+                            HeaderText = "Company Contact",
+                            DataPropertyName = "companyContact"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(companyContactColumn);
+
+                        DataGridViewTextBoxColumn customerNumberColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "customerNumberColumn",
+                            HeaderText = "Customer Number",
+                            DataPropertyName = "customerNumber"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(customerNumberColumn);
+                    }
+                    else if (type == typeof(Employee) || type == typeof(Trainee))
+                    {
+                        DataGridViewImportSpecific.DataSource = new List<Employee>() { (Employee)selectedContact };
+
+                        DataGridViewTextBoxColumn departmentColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "departmentColumn",
+                            HeaderText = "Department",
+                            DataPropertyName = "department"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(departmentColumn);
+
+                        DataGridViewTextBoxColumn roleColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "roleColumn",
+                            HeaderText = "Role",
+                            DataPropertyName = "role"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(roleColumn);
+
+                        DataGridViewTextBoxColumn cadreLevelColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "cadreLevelColumn",
+                            HeaderText = "Cadre Level",
+                            DataPropertyName = "cadreLevel"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(cadreLevelColumn);
+
+                        DataGridViewTextBoxColumn degreeOfEmploymentColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "degreeOfEmploymentColumn",
+                            HeaderText = "Degree Of Employment",
+                            DataPropertyName = "degreeOfEmployment"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(degreeOfEmploymentColumn);
+
+                        DataGridViewTextBoxColumn dateOfJoiningColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "dateOfJoiningColumn",
+                            HeaderText = "Date Of Joining",
+                            DataPropertyName = "dateOfJoining"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(dateOfJoiningColumn);
+
+                        DataGridViewTextBoxColumn dateOfLeavingColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "dateOfLeavingColumn",
+                            HeaderText = "Date Of Leaving",
+                            DataPropertyName = "dateOfLeaving"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(dateOfLeavingColumn);
+
+                        DataGridViewTextBoxColumn employeeNumberColumn = new DataGridViewTextBoxColumn
+                        {
+                            Name = "employeeNumberColumn",
+                            HeaderText = "Employee Number",
+                            DataPropertyName = "employeeNumber"
+                        };
+                        DataGridViewImportSpecific.Columns.Add(employeeNumberColumn);
+
+                        if (type == typeof(Trainee))
+                        {
+                            DataGridViewImportSpecific.DataSource = new List<Trainee>() { (Trainee)selectedContact };
+
+                            DataGridViewTextBoxColumn currentApprenticeshipYearColumn = new DataGridViewTextBoxColumn
+                            {
+                                Name = "currentApprenticeshipYearColumn",
+                                HeaderText = "Current Apprenticeship Year",
+                                DataPropertyName = "currentApprenticeshipYear"
+                            };
+                            DataGridViewImportSpecific.Columns.Add(currentApprenticeshipYearColumn);
+
+                            DataGridViewTextBoxColumn yearsOfApprenticeshipColumn = new DataGridViewTextBoxColumn
+                            {
+                                Name = "yearsOfApprenticeshipColumn",
+                                HeaderText = "Years Of Apprenticeship",
+                                DataPropertyName = "yearsOfApprenticeship"
+                            };
+                            DataGridViewImportSpecific.Columns.Add(yearsOfApprenticeshipColumn);
+                        }
+                    }
+                }
+            }
         }
     }
 }
