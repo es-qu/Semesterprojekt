@@ -21,7 +21,8 @@ namespace ContactManager
         public enum Tab
         {
             Create,
-            Search
+            Search,
+            Import
         }
 
         public FormMain()
@@ -55,7 +56,12 @@ namespace ContactManager
                     TCtrlMain.SelectedTab = TabSearch;
                     break;
 
+                case Tab.Import:
+                    TCtrlMain.SelectedTab = TabImport;
+                    break;
+
                 default:
+                    TCtrlMain.SelectedTab = TabSearch;
                     break;
             }
         }
@@ -1284,6 +1290,21 @@ namespace ContactManager
                 }
             }
 
+        }
+
+        private void CmdImportOpenFile_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void CmdImportConfirm_Click(object sender, EventArgs e)
+        {
+            //
+        }
+
+        private void CmdImportCancel_Click(object sender, EventArgs e)
+        {
+            //
         }
     }
 }

@@ -41,10 +41,14 @@ namespace ContactManager
             OpenMainForm(1);
         }
 
+        private void CmdImport_Click(object sender, EventArgs e)
+        {
+            OpenMainForm(2);
+        }
+
         private void OpenMainForm(int tab = 1)
         {
             Form main = new FormMain(tab);
-            //main.ShowDialog();
             main.Show();
         }
 
@@ -58,6 +62,10 @@ namespace ContactManager
 
                 case Keys.S:
                     OpenMainForm(1);
+                    break;
+
+                case Keys.I: 
+                    OpenMainForm(2); 
                     break;
 
                 case Keys.Q:

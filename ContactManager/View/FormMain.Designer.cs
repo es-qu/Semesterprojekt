@@ -34,6 +34,10 @@ namespace ContactManager
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TCtrlMain = new MaterialSkin.Controls.MaterialTabControl();
             this.TabSearch = new System.Windows.Forms.TabPage();
             this.CmdSearchClear = new MaterialSkin.Controls.MaterialButton();
@@ -63,6 +67,20 @@ namespace ContactManager
             this.DataGridViewSearchResult = new System.Windows.Forms.DataGridView();
             this.TxtSearch = new System.Windows.Forms.TextBox();
             this.PnlSearchPreview = new System.Windows.Forms.Panel();
+            this.PnlSearchPreviewEmployee = new System.Windows.Forms.Panel();
+            this.LblSearchPreviewDateOfLeaving = new System.Windows.Forms.Label();
+            this.LblSearchPreviewDateOfJoining = new System.Windows.Forms.Label();
+            this.LblSearchPreviewCadreLevel = new System.Windows.Forms.Label();
+            this.LblSearchPreviewEmployee = new System.Windows.Forms.Label();
+            this.LblSearchPreviewRole = new System.Windows.Forms.Label();
+            this.LblSearchPreviewDegreeOfEmployment = new System.Windows.Forms.Label();
+            this.LblSearchPreviewDepartement = new System.Windows.Forms.Label();
+            this.LblSearchPreviewDateOfLeavingOutput = new System.Windows.Forms.Label();
+            this.LblSearchPreviewDateOfJoiningOutput = new System.Windows.Forms.Label();
+            this.LblSearchPreviewCadreLevelOutput = new System.Windows.Forms.Label();
+            this.LblSearchPreviewRoleOutput = new System.Windows.Forms.Label();
+            this.LblSearchPreviewDepartementOutput = new System.Windows.Forms.Label();
+            this.LblSearchPreviewDegreeOfEmploymentOutput = new System.Windows.Forms.Label();
             this.CmdSearchCancel = new MaterialSkin.Controls.MaterialButton();
             this.LblSearchPreviewNumberOutput = new System.Windows.Forms.Label();
             this.LblSearchPreviewTypeOutput = new System.Windows.Forms.Label();
@@ -91,20 +109,6 @@ namespace ContactManager
             this.label14 = new System.Windows.Forms.Label();
             this.LblSearchPreviewCurrentAppYear = new System.Windows.Forms.Label();
             this.LblSearchPreviewYearsOfApp = new System.Windows.Forms.Label();
-            this.PnlSearchPreviewEmployee = new System.Windows.Forms.Panel();
-            this.LblSearchPreviewDateOfLeaving = new System.Windows.Forms.Label();
-            this.LblSearchPreviewDateOfJoining = new System.Windows.Forms.Label();
-            this.LblSearchPreviewCadreLevel = new System.Windows.Forms.Label();
-            this.LblSearchPreviewEmployee = new System.Windows.Forms.Label();
-            this.LblSearchPreviewRole = new System.Windows.Forms.Label();
-            this.LblSearchPreviewDegreeOfEmployment = new System.Windows.Forms.Label();
-            this.LblSearchPreviewDepartement = new System.Windows.Forms.Label();
-            this.LblSearchPreviewDateOfLeavingOutput = new System.Windows.Forms.Label();
-            this.LblSearchPreviewDateOfJoiningOutput = new System.Windows.Forms.Label();
-            this.LblSearchPreviewCadreLevelOutput = new System.Windows.Forms.Label();
-            this.LblSearchPreviewRoleOutput = new System.Windows.Forms.Label();
-            this.LblSearchPreviewDepartementOutput = new System.Windows.Forms.Label();
-            this.LblSearchPreviewDegreeOfEmploymentOutput = new System.Windows.Forms.Label();
             this.PnlSearchPreviewGeneral = new System.Windows.Forms.Panel();
             this.LblSearchPreviewSalutationOutput = new System.Windows.Forms.Label();
             this.LblSearchPreviewSalutation = new System.Windows.Forms.Label();
@@ -215,13 +219,22 @@ namespace ContactManager
             this.LblCadreLevel = new MaterialSkin.Controls.MaterialLabel();
             this.LblRole = new MaterialSkin.Controls.MaterialLabel();
             this.TxtCreateRole = new MaterialSkin.Controls.MaterialTextBox();
+            this.TabImport = new System.Windows.Forms.TabPage();
+            this.OpenFileDialogImportContacts = new System.Windows.Forms.OpenFileDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.CmdImportCancel = new MaterialSkin.Controls.MaterialButton();
+            this.CmdImportConfirm = new MaterialSkin.Controls.MaterialButton();
+            this.DataGridViewImportPreview = new System.Windows.Forms.DataGridView();
+            this.CmdImportOpenFile = new MaterialSkin.Controls.MaterialButton();
+            this.LblImportPreviewEmpty = new System.Windows.Forms.Label();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchResult)).BeginInit();
             this.PnlSearchPreview.SuspendLayout();
+            this.PnlSearchPreviewEmployee.SuspendLayout();
             this.PnlSearchPreviewCustomer.SuspendLayout();
             this.PnlSearchPreviewTrainee.SuspendLayout();
-            this.PnlSearchPreviewEmployee.SuspendLayout();
             this.PnlSearchPreviewGeneral.SuspendLayout();
             this.TabCreateEdit.SuspendLayout();
             this.TabCreate.SuspendLayout();
@@ -234,12 +247,16 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.NumCreateYearOfApp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumCreateCurrentAppYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumCadreLevel)).BeginInit();
+            this.TabImport.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportPreview)).BeginInit();
             this.SuspendLayout();
             // 
             // TCtrlMain
             // 
             this.TCtrlMain.Controls.Add(this.TabSearch);
             this.TCtrlMain.Controls.Add(this.TabCreateEdit);
+            this.TCtrlMain.Controls.Add(this.TabImport);
             this.TCtrlMain.Depth = 0;
             this.TCtrlMain.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TCtrlMain.Location = new System.Drawing.Point(6, 98);
@@ -757,6 +774,159 @@ namespace ContactManager
             this.PnlSearchPreview.Size = new System.Drawing.Size(980, 915);
             this.PnlSearchPreview.TabIndex = 107;
             // 
+            // PnlSearchPreviewEmployee
+            // 
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDateOfLeaving);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDateOfJoining);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewCadreLevel);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewEmployee);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewRole);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDegreeOfEmployment);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDepartement);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDateOfLeavingOutput);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDateOfJoiningOutput);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewCadreLevelOutput);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewRoleOutput);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDepartementOutput);
+            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDegreeOfEmploymentOutput);
+            this.PnlSearchPreviewEmployee.Location = new System.Drawing.Point(500, 26);
+            this.PnlSearchPreviewEmployee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PnlSearchPreviewEmployee.Name = "PnlSearchPreviewEmployee";
+            this.PnlSearchPreviewEmployee.Size = new System.Drawing.Size(476, 262);
+            this.PnlSearchPreviewEmployee.TabIndex = 125;
+            this.PnlSearchPreviewEmployee.Visible = false;
+            // 
+            // LblSearchPreviewDateOfLeaving
+            // 
+            this.LblSearchPreviewDateOfLeaving.AutoSize = true;
+            this.LblSearchPreviewDateOfLeaving.Location = new System.Drawing.Point(18, 212);
+            this.LblSearchPreviewDateOfLeaving.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDateOfLeaving.Name = "LblSearchPreviewDateOfLeaving";
+            this.LblSearchPreviewDateOfLeaving.Size = new System.Drawing.Size(117, 19);
+            this.LblSearchPreviewDateOfLeaving.TabIndex = 126;
+            this.LblSearchPreviewDateOfLeaving.Text = "Date of leaving";
+            // 
+            // LblSearchPreviewDateOfJoining
+            // 
+            this.LblSearchPreviewDateOfJoining.AutoSize = true;
+            this.LblSearchPreviewDateOfJoining.Location = new System.Drawing.Point(18, 185);
+            this.LblSearchPreviewDateOfJoining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDateOfJoining.Name = "LblSearchPreviewDateOfJoining";
+            this.LblSearchPreviewDateOfJoining.Size = new System.Drawing.Size(114, 19);
+            this.LblSearchPreviewDateOfJoining.TabIndex = 125;
+            this.LblSearchPreviewDateOfJoining.Text = "Date of joining";
+            // 
+            // LblSearchPreviewCadreLevel
+            // 
+            this.LblSearchPreviewCadreLevel.AutoSize = true;
+            this.LblSearchPreviewCadreLevel.Location = new System.Drawing.Point(18, 129);
+            this.LblSearchPreviewCadreLevel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewCadreLevel.Name = "LblSearchPreviewCadreLevel";
+            this.LblSearchPreviewCadreLevel.Size = new System.Drawing.Size(131, 19);
+            this.LblSearchPreviewCadreLevel.TabIndex = 124;
+            this.LblSearchPreviewCadreLevel.Text = "Cadre level (0-5)";
+            // 
+            // LblSearchPreviewEmployee
+            // 
+            this.LblSearchPreviewEmployee.AutoSize = true;
+            this.LblSearchPreviewEmployee.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblSearchPreviewEmployee.Location = new System.Drawing.Point(18, 14);
+            this.LblSearchPreviewEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewEmployee.Name = "LblSearchPreviewEmployee";
+            this.LblSearchPreviewEmployee.Size = new System.Drawing.Size(179, 19);
+            this.LblSearchPreviewEmployee.TabIndex = 1;
+            this.LblSearchPreviewEmployee.Text = "Employee information";
+            // 
+            // LblSearchPreviewRole
+            // 
+            this.LblSearchPreviewRole.AutoSize = true;
+            this.LblSearchPreviewRole.Location = new System.Drawing.Point(18, 102);
+            this.LblSearchPreviewRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewRole.Name = "LblSearchPreviewRole";
+            this.LblSearchPreviewRole.Size = new System.Drawing.Size(114, 19);
+            this.LblSearchPreviewRole.TabIndex = 123;
+            this.LblSearchPreviewRole.Text = "Role (Job title)";
+            // 
+            // LblSearchPreviewDegreeOfEmployment
+            // 
+            this.LblSearchPreviewDegreeOfEmployment.AutoSize = true;
+            this.LblSearchPreviewDegreeOfEmployment.Location = new System.Drawing.Point(18, 46);
+            this.LblSearchPreviewDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDegreeOfEmployment.Name = "LblSearchPreviewDegreeOfEmployment";
+            this.LblSearchPreviewDegreeOfEmployment.Size = new System.Drawing.Size(187, 19);
+            this.LblSearchPreviewDegreeOfEmployment.TabIndex = 121;
+            this.LblSearchPreviewDegreeOfEmployment.Text = "Deg. of employment (%)";
+            // 
+            // LblSearchPreviewDepartement
+            // 
+            this.LblSearchPreviewDepartement.AutoSize = true;
+            this.LblSearchPreviewDepartement.Location = new System.Drawing.Point(18, 74);
+            this.LblSearchPreviewDepartement.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDepartement.Name = "LblSearchPreviewDepartement";
+            this.LblSearchPreviewDepartement.Size = new System.Drawing.Size(102, 19);
+            this.LblSearchPreviewDepartement.TabIndex = 122;
+            this.LblSearchPreviewDepartement.Text = "Departement";
+            // 
+            // LblSearchPreviewDateOfLeavingOutput
+            // 
+            this.LblSearchPreviewDateOfLeavingOutput.AutoSize = true;
+            this.LblSearchPreviewDateOfLeavingOutput.Location = new System.Drawing.Point(250, 214);
+            this.LblSearchPreviewDateOfLeavingOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDateOfLeavingOutput.Name = "LblSearchPreviewDateOfLeavingOutput";
+            this.LblSearchPreviewDateOfLeavingOutput.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchPreviewDateOfLeavingOutput.TabIndex = 132;
+            this.LblSearchPreviewDateOfLeavingOutput.Text = "-";
+            // 
+            // LblSearchPreviewDateOfJoiningOutput
+            // 
+            this.LblSearchPreviewDateOfJoiningOutput.AutoSize = true;
+            this.LblSearchPreviewDateOfJoiningOutput.Location = new System.Drawing.Point(250, 185);
+            this.LblSearchPreviewDateOfJoiningOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDateOfJoiningOutput.Name = "LblSearchPreviewDateOfJoiningOutput";
+            this.LblSearchPreviewDateOfJoiningOutput.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchPreviewDateOfJoiningOutput.TabIndex = 131;
+            this.LblSearchPreviewDateOfJoiningOutput.Text = "-";
+            // 
+            // LblSearchPreviewCadreLevelOutput
+            // 
+            this.LblSearchPreviewCadreLevelOutput.AutoSize = true;
+            this.LblSearchPreviewCadreLevelOutput.Location = new System.Drawing.Point(250, 129);
+            this.LblSearchPreviewCadreLevelOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewCadreLevelOutput.Name = "LblSearchPreviewCadreLevelOutput";
+            this.LblSearchPreviewCadreLevelOutput.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchPreviewCadreLevelOutput.TabIndex = 130;
+            this.LblSearchPreviewCadreLevelOutput.Text = "-";
+            // 
+            // LblSearchPreviewRoleOutput
+            // 
+            this.LblSearchPreviewRoleOutput.AutoSize = true;
+            this.LblSearchPreviewRoleOutput.Location = new System.Drawing.Point(250, 102);
+            this.LblSearchPreviewRoleOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewRoleOutput.Name = "LblSearchPreviewRoleOutput";
+            this.LblSearchPreviewRoleOutput.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchPreviewRoleOutput.TabIndex = 129;
+            this.LblSearchPreviewRoleOutput.Text = "-";
+            // 
+            // LblSearchPreviewDepartementOutput
+            // 
+            this.LblSearchPreviewDepartementOutput.AutoSize = true;
+            this.LblSearchPreviewDepartementOutput.Location = new System.Drawing.Point(250, 74);
+            this.LblSearchPreviewDepartementOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDepartementOutput.Name = "LblSearchPreviewDepartementOutput";
+            this.LblSearchPreviewDepartementOutput.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchPreviewDepartementOutput.TabIndex = 128;
+            this.LblSearchPreviewDepartementOutput.Text = "-";
+            // 
+            // LblSearchPreviewDegreeOfEmploymentOutput
+            // 
+            this.LblSearchPreviewDegreeOfEmploymentOutput.AutoSize = true;
+            this.LblSearchPreviewDegreeOfEmploymentOutput.Location = new System.Drawing.Point(250, 46);
+            this.LblSearchPreviewDegreeOfEmploymentOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDegreeOfEmploymentOutput.Name = "LblSearchPreviewDegreeOfEmploymentOutput";
+            this.LblSearchPreviewDegreeOfEmploymentOutput.Size = new System.Drawing.Size(15, 19);
+            this.LblSearchPreviewDegreeOfEmploymentOutput.TabIndex = 127;
+            this.LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
+            // 
             // CmdSearchCancel
             // 
             this.CmdSearchCancel.AutoSize = false;
@@ -1118,159 +1288,6 @@ namespace ContactManager
             this.LblSearchPreviewYearsOfApp.Size = new System.Drawing.Size(181, 19);
             this.LblSearchPreviewYearsOfApp.TabIndex = 122;
             this.LblSearchPreviewYearsOfApp.Text = "Years of apprenticeship";
-            // 
-            // PnlSearchPreviewEmployee
-            // 
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDateOfLeaving);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDateOfJoining);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewCadreLevel);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewEmployee);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewRole);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDegreeOfEmployment);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDepartement);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDateOfLeavingOutput);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDateOfJoiningOutput);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewCadreLevelOutput);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewRoleOutput);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDepartementOutput);
-            this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDegreeOfEmploymentOutput);
-            this.PnlSearchPreviewEmployee.Location = new System.Drawing.Point(500, 26);
-            this.PnlSearchPreviewEmployee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.PnlSearchPreviewEmployee.Name = "PnlSearchPreviewEmployee";
-            this.PnlSearchPreviewEmployee.Size = new System.Drawing.Size(476, 262);
-            this.PnlSearchPreviewEmployee.TabIndex = 125;
-            this.PnlSearchPreviewEmployee.Visible = false;
-            // 
-            // LblSearchPreviewDateOfLeaving
-            // 
-            this.LblSearchPreviewDateOfLeaving.AutoSize = true;
-            this.LblSearchPreviewDateOfLeaving.Location = new System.Drawing.Point(18, 212);
-            this.LblSearchPreviewDateOfLeaving.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewDateOfLeaving.Name = "LblSearchPreviewDateOfLeaving";
-            this.LblSearchPreviewDateOfLeaving.Size = new System.Drawing.Size(117, 19);
-            this.LblSearchPreviewDateOfLeaving.TabIndex = 126;
-            this.LblSearchPreviewDateOfLeaving.Text = "Date of leaving";
-            // 
-            // LblSearchPreviewDateOfJoining
-            // 
-            this.LblSearchPreviewDateOfJoining.AutoSize = true;
-            this.LblSearchPreviewDateOfJoining.Location = new System.Drawing.Point(18, 185);
-            this.LblSearchPreviewDateOfJoining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewDateOfJoining.Name = "LblSearchPreviewDateOfJoining";
-            this.LblSearchPreviewDateOfJoining.Size = new System.Drawing.Size(114, 19);
-            this.LblSearchPreviewDateOfJoining.TabIndex = 125;
-            this.LblSearchPreviewDateOfJoining.Text = "Date of joining";
-            // 
-            // LblSearchPreviewCadreLevel
-            // 
-            this.LblSearchPreviewCadreLevel.AutoSize = true;
-            this.LblSearchPreviewCadreLevel.Location = new System.Drawing.Point(18, 129);
-            this.LblSearchPreviewCadreLevel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewCadreLevel.Name = "LblSearchPreviewCadreLevel";
-            this.LblSearchPreviewCadreLevel.Size = new System.Drawing.Size(131, 19);
-            this.LblSearchPreviewCadreLevel.TabIndex = 124;
-            this.LblSearchPreviewCadreLevel.Text = "Cadre level (0-5)";
-            // 
-            // LblSearchPreviewEmployee
-            // 
-            this.LblSearchPreviewEmployee.AutoSize = true;
-            this.LblSearchPreviewEmployee.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblSearchPreviewEmployee.Location = new System.Drawing.Point(18, 14);
-            this.LblSearchPreviewEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewEmployee.Name = "LblSearchPreviewEmployee";
-            this.LblSearchPreviewEmployee.Size = new System.Drawing.Size(179, 19);
-            this.LblSearchPreviewEmployee.TabIndex = 1;
-            this.LblSearchPreviewEmployee.Text = "Employee information";
-            // 
-            // LblSearchPreviewRole
-            // 
-            this.LblSearchPreviewRole.AutoSize = true;
-            this.LblSearchPreviewRole.Location = new System.Drawing.Point(18, 102);
-            this.LblSearchPreviewRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewRole.Name = "LblSearchPreviewRole";
-            this.LblSearchPreviewRole.Size = new System.Drawing.Size(114, 19);
-            this.LblSearchPreviewRole.TabIndex = 123;
-            this.LblSearchPreviewRole.Text = "Role (Job title)";
-            // 
-            // LblSearchPreviewDegreeOfEmployment
-            // 
-            this.LblSearchPreviewDegreeOfEmployment.AutoSize = true;
-            this.LblSearchPreviewDegreeOfEmployment.Location = new System.Drawing.Point(18, 46);
-            this.LblSearchPreviewDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewDegreeOfEmployment.Name = "LblSearchPreviewDegreeOfEmployment";
-            this.LblSearchPreviewDegreeOfEmployment.Size = new System.Drawing.Size(187, 19);
-            this.LblSearchPreviewDegreeOfEmployment.TabIndex = 121;
-            this.LblSearchPreviewDegreeOfEmployment.Text = "Deg. of employment (%)";
-            // 
-            // LblSearchPreviewDepartement
-            // 
-            this.LblSearchPreviewDepartement.AutoSize = true;
-            this.LblSearchPreviewDepartement.Location = new System.Drawing.Point(18, 74);
-            this.LblSearchPreviewDepartement.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewDepartement.Name = "LblSearchPreviewDepartement";
-            this.LblSearchPreviewDepartement.Size = new System.Drawing.Size(102, 19);
-            this.LblSearchPreviewDepartement.TabIndex = 122;
-            this.LblSearchPreviewDepartement.Text = "Departement";
-            // 
-            // LblSearchPreviewDateOfLeavingOutput
-            // 
-            this.LblSearchPreviewDateOfLeavingOutput.AutoSize = true;
-            this.LblSearchPreviewDateOfLeavingOutput.Location = new System.Drawing.Point(250, 214);
-            this.LblSearchPreviewDateOfLeavingOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewDateOfLeavingOutput.Name = "LblSearchPreviewDateOfLeavingOutput";
-            this.LblSearchPreviewDateOfLeavingOutput.Size = new System.Drawing.Size(15, 19);
-            this.LblSearchPreviewDateOfLeavingOutput.TabIndex = 132;
-            this.LblSearchPreviewDateOfLeavingOutput.Text = "-";
-            // 
-            // LblSearchPreviewDateOfJoiningOutput
-            // 
-            this.LblSearchPreviewDateOfJoiningOutput.AutoSize = true;
-            this.LblSearchPreviewDateOfJoiningOutput.Location = new System.Drawing.Point(250, 185);
-            this.LblSearchPreviewDateOfJoiningOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewDateOfJoiningOutput.Name = "LblSearchPreviewDateOfJoiningOutput";
-            this.LblSearchPreviewDateOfJoiningOutput.Size = new System.Drawing.Size(15, 19);
-            this.LblSearchPreviewDateOfJoiningOutput.TabIndex = 131;
-            this.LblSearchPreviewDateOfJoiningOutput.Text = "-";
-            // 
-            // LblSearchPreviewCadreLevelOutput
-            // 
-            this.LblSearchPreviewCadreLevelOutput.AutoSize = true;
-            this.LblSearchPreviewCadreLevelOutput.Location = new System.Drawing.Point(250, 129);
-            this.LblSearchPreviewCadreLevelOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewCadreLevelOutput.Name = "LblSearchPreviewCadreLevelOutput";
-            this.LblSearchPreviewCadreLevelOutput.Size = new System.Drawing.Size(15, 19);
-            this.LblSearchPreviewCadreLevelOutput.TabIndex = 130;
-            this.LblSearchPreviewCadreLevelOutput.Text = "-";
-            // 
-            // LblSearchPreviewRoleOutput
-            // 
-            this.LblSearchPreviewRoleOutput.AutoSize = true;
-            this.LblSearchPreviewRoleOutput.Location = new System.Drawing.Point(250, 102);
-            this.LblSearchPreviewRoleOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewRoleOutput.Name = "LblSearchPreviewRoleOutput";
-            this.LblSearchPreviewRoleOutput.Size = new System.Drawing.Size(15, 19);
-            this.LblSearchPreviewRoleOutput.TabIndex = 129;
-            this.LblSearchPreviewRoleOutput.Text = "-";
-            // 
-            // LblSearchPreviewDepartementOutput
-            // 
-            this.LblSearchPreviewDepartementOutput.AutoSize = true;
-            this.LblSearchPreviewDepartementOutput.Location = new System.Drawing.Point(250, 74);
-            this.LblSearchPreviewDepartementOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewDepartementOutput.Name = "LblSearchPreviewDepartementOutput";
-            this.LblSearchPreviewDepartementOutput.Size = new System.Drawing.Size(15, 19);
-            this.LblSearchPreviewDepartementOutput.TabIndex = 128;
-            this.LblSearchPreviewDepartementOutput.Text = "-";
-            // 
-            // LblSearchPreviewDegreeOfEmploymentOutput
-            // 
-            this.LblSearchPreviewDegreeOfEmploymentOutput.AutoSize = true;
-            this.LblSearchPreviewDegreeOfEmploymentOutput.Location = new System.Drawing.Point(250, 46);
-            this.LblSearchPreviewDegreeOfEmploymentOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblSearchPreviewDegreeOfEmploymentOutput.Name = "LblSearchPreviewDegreeOfEmploymentOutput";
-            this.LblSearchPreviewDegreeOfEmploymentOutput.Size = new System.Drawing.Size(15, 19);
-            this.LblSearchPreviewDegreeOfEmploymentOutput.TabIndex = 127;
-            this.LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
             // 
             // PnlSearchPreviewGeneral
             // 
@@ -1651,10 +1668,10 @@ namespace ContactManager
             this.TabCreate.Depth = 0;
             this.TabCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TabCreate.Location = new System.Drawing.Point(0, 0);
-            this.TabCreate.Margin = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.TabCreate.Margin = new System.Windows.Forms.Padding(14);
             this.TabCreate.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabCreate.Name = "TabCreate";
-            this.TabCreate.Padding = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.TabCreate.Padding = new System.Windows.Forms.Padding(14);
             this.TabCreate.Size = new System.Drawing.Size(1922, 923);
             this.TabCreate.TabIndex = 59;
             // 
@@ -2824,6 +2841,159 @@ namespace ContactManager
             this.TxtCreateRole.TabIndex = 25;
             this.TxtCreateRole.Text = "";
             // 
+            // TabImport
+            // 
+            this.TabImport.Controls.Add(this.panel1);
+            this.TabImport.Location = new System.Drawing.Point(4, 49);
+            this.TabImport.Name = "TabImport";
+            this.TabImport.Size = new System.Drawing.Size(1904, 929);
+            this.TabImport.TabIndex = 2;
+            this.TabImport.Text = "Import";
+            this.TabImport.UseVisualStyleBackColor = true;
+            // 
+            // OpenFileDialogImportContacts
+            // 
+            this.OpenFileDialogImportContacts.FileName = "openFileDialog1";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.materialLabel2);
+            this.panel1.Controls.Add(this.LblImportPreviewEmpty);
+            this.panel1.Controls.Add(this.CmdImportCancel);
+            this.panel1.Controls.Add(this.CmdImportConfirm);
+            this.panel1.Controls.Add(this.DataGridViewImportPreview);
+            this.panel1.Controls.Add(this.CmdImportOpenFile);
+            this.panel1.Location = new System.Drawing.Point(4, 4);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1900, 922);
+            this.panel1.TabIndex = 0;
+            // 
+            // CmdImportCancel
+            // 
+            this.CmdImportCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdImportCancel.Depth = 0;
+            this.CmdImportCancel.DrawShadows = true;
+            this.CmdImportCancel.HighEmphasis = true;
+            this.CmdImportCancel.Icon = null;
+            this.CmdImportCancel.Location = new System.Drawing.Point(1779, 6);
+            this.CmdImportCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdImportCancel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdImportCancel.Name = "CmdImportCancel";
+            this.CmdImportCancel.Size = new System.Drawing.Size(77, 36);
+            this.CmdImportCancel.TabIndex = 134;
+            this.CmdImportCancel.Text = "Cancel";
+            this.CmdImportCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdImportCancel.UseAccentColor = false;
+            this.CmdImportCancel.UseVisualStyleBackColor = true;
+            // 
+            // CmdImportConfirm
+            // 
+            this.CmdImportConfirm.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdImportConfirm.Depth = 0;
+            this.CmdImportConfirm.DrawShadows = true;
+            this.CmdImportConfirm.Enabled = false;
+            this.CmdImportConfirm.HighEmphasis = true;
+            this.CmdImportConfirm.Icon = null;
+            this.CmdImportConfirm.Location = new System.Drawing.Point(1642, 6);
+            this.CmdImportConfirm.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdImportConfirm.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdImportConfirm.Name = "CmdImportConfirm";
+            this.CmdImportConfirm.Size = new System.Drawing.Size(86, 36);
+            this.CmdImportConfirm.TabIndex = 133;
+            this.CmdImportConfirm.Text = "Confirm";
+            this.CmdImportConfirm.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdImportConfirm.UseAccentColor = false;
+            this.CmdImportConfirm.UseVisualStyleBackColor = true;
+            // 
+            // DataGridViewImportPreview
+            // 
+            this.DataGridViewImportPreview.AllowUserToAddRows = false;
+            this.DataGridViewImportPreview.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewImportPreview.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.DataGridViewImportPreview.BackgroundColor = System.Drawing.Color.DimGray;
+            this.DataGridViewImportPreview.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewImportPreview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGridViewImportPreview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewImportPreview.DefaultCellStyle = dataGridViewCellStyle6;
+            this.DataGridViewImportPreview.GridColor = System.Drawing.Color.Gray;
+            this.DataGridViewImportPreview.Location = new System.Drawing.Point(4, 116);
+            this.DataGridViewImportPreview.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DataGridViewImportPreview.MultiSelect = false;
+            this.DataGridViewImportPreview.Name = "DataGridViewImportPreview";
+            this.DataGridViewImportPreview.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewImportPreview.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.DataGridViewImportPreview.RowHeadersVisible = false;
+            this.DataGridViewImportPreview.RowHeadersWidth = 51;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewImportPreview.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.DataGridViewImportPreview.Size = new System.Drawing.Size(1892, 566);
+            this.DataGridViewImportPreview.TabIndex = 132;
+            // 
+            // CmdImportOpenFile
+            // 
+            this.CmdImportOpenFile.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdImportOpenFile.Depth = 0;
+            this.CmdImportOpenFile.DrawShadows = true;
+            this.CmdImportOpenFile.HighEmphasis = true;
+            this.CmdImportOpenFile.Icon = null;
+            this.CmdImportOpenFile.Location = new System.Drawing.Point(4, 6);
+            this.CmdImportOpenFile.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdImportOpenFile.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdImportOpenFile.Name = "CmdImportOpenFile";
+            this.CmdImportOpenFile.Size = new System.Drawing.Size(92, 36);
+            this.CmdImportOpenFile.TabIndex = 131;
+            this.CmdImportOpenFile.Text = "Open File";
+            this.CmdImportOpenFile.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdImportOpenFile.UseAccentColor = false;
+            this.CmdImportOpenFile.UseVisualStyleBackColor = true;
+            // 
+            // LblImportPreviewEmpty
+            // 
+            this.LblImportPreviewEmpty.AutoSize = true;
+            this.LblImportPreviewEmpty.BackColor = System.Drawing.Color.DimGray;
+            this.LblImportPreviewEmpty.ForeColor = System.Drawing.Color.White;
+            this.LblImportPreviewEmpty.Location = new System.Drawing.Point(830, 357);
+            this.LblImportPreviewEmpty.Name = "LblImportPreviewEmpty";
+            this.LblImportPreviewEmpty.Size = new System.Drawing.Size(242, 40);
+            this.LblImportPreviewEmpty.TabIndex = 135;
+            this.LblImportPreviewEmpty.Text = "Nothing To Import";
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.materialLabel2.Location = new System.Drawing.Point(3, 81);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(60, 19);
+            this.materialLabel2.TabIndex = 136;
+            this.materialLabel2.Text = "Preview:";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -2846,12 +3016,12 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchResult)).EndInit();
             this.PnlSearchPreview.ResumeLayout(false);
             this.PnlSearchPreview.PerformLayout();
+            this.PnlSearchPreviewEmployee.ResumeLayout(false);
+            this.PnlSearchPreviewEmployee.PerformLayout();
             this.PnlSearchPreviewCustomer.ResumeLayout(false);
             this.PnlSearchPreviewCustomer.PerformLayout();
             this.PnlSearchPreviewTrainee.ResumeLayout(false);
             this.PnlSearchPreviewTrainee.PerformLayout();
-            this.PnlSearchPreviewEmployee.ResumeLayout(false);
-            this.PnlSearchPreviewEmployee.PerformLayout();
             this.PnlSearchPreviewGeneral.ResumeLayout(false);
             this.PnlSearchPreviewGeneral.PerformLayout();
             this.TabCreateEdit.ResumeLayout(false);
@@ -2871,6 +3041,10 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.NumCreateYearOfApp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumCreateCurrentAppYear)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumCadreLevel)).EndInit();
+            this.TabImport.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportPreview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3061,5 +3235,14 @@ namespace ContactManager
         private System.Windows.Forms.Label LblSearchPreviewGenderOutput;
         private System.Windows.Forms.Label LblSearchPreviewGender;
         private System.Windows.Forms.GroupBox GrpCreateGender;
+        private System.Windows.Forms.TabPage TabImport;
+        private System.Windows.Forms.OpenFileDialog OpenFileDialogImportContacts;
+        private System.Windows.Forms.Panel panel1;
+        private MaterialSkin.Controls.MaterialButton CmdImportCancel;
+        private MaterialSkin.Controls.MaterialButton CmdImportConfirm;
+        private System.Windows.Forms.DataGridView DataGridViewImportPreview;
+        private MaterialSkin.Controls.MaterialButton CmdImportOpenFile;
+        private System.Windows.Forms.Label LblImportPreviewEmpty;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
     }
 }
