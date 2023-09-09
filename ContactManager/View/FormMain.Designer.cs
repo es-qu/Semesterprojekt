@@ -1630,6 +1630,7 @@ namespace ContactManager
             this.CmdCreateNoteClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdCreateNoteClear.UseAccentColor = false;
             this.CmdCreateNoteClear.UseVisualStyleBackColor = true;
+            this.CmdCreateNoteClear.Click += new System.EventHandler(this.CmdCreateNoteClear_Click);
             // 
             // TxtCreateNote
             // 
