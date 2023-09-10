@@ -391,12 +391,176 @@ namespace ContactManager
 
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
-            CreateAndSavePerson(LogAndCloseIfSuccessful);
+            if (CheckMandatroyFields())
+            {
+                CreateAndSavePerson(LogAndCloseIfSuccessful);
+            }
         }
 
         private void CmdCreatePersonSaveAndNew_Click(object sender, EventArgs e)
         {
-            CreateAndSavePerson(LogAndClearIfSuccessful);
+            if (CheckMandatroyFields())
+            {
+                CreateAndSavePerson(LogAndClearIfSuccessful);
+            }
+        }
+
+        private bool CheckMandatroyFields()
+        {
+            // Variables for If-Statements
+            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
+            Regex regexEmailValidation = new Regex("^[^@\\s]+@[^@\\s]+\\.(\\w{1,2}\\D)$");
+            var dateMin = new DateTime(1900, 1, 1);
+            var dateMax = new DateTime(2100, 1, 1);
+
+
+            // Handle the case when no radio button is selected for person type
+            if (!RadCreateCustomer.Checked && !RadCreateEmployee.Checked)
+            {
+                MessageBox.Show("Please select a type");
+                return false;
+            }
+
+            // Handle the case when no radio button is selected for gender
+            if (!RadCreateMale.Checked && !RadCreateFemale.Checked && !RadCreateOther.Checked)
+            {
+                MessageBox.Show("Please select a gender");
+                return false;
+            }
+
+            // Check if the first name contains only letters and is not empty
+            if (TxtCreateFirstName.Text == "")
+            {
+                MessageBox.Show("The first name can not be empty");
+                return false;
+            }
+            else if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+            {
+                MessageBox.Show("The first name can only contain letters");
+                return false;
+            }
+
+            // Check if the last name contains only letters and is not empty
+            if (TxtCreateLastName.Text == "")
+            {
+                MessageBox.Show("The last name can not be empty");
+                return false;
+            }
+            else if (!regexLetters.IsMatch(TxtCreateLastName.Text))
+            {
+                MessageBox.Show("The last name can only contain letters");
+                return false;
+            }
+
+            // Check if the address is not empty
+            if (TxtCreateAddress.Text == "")
+            {
+                MessageBox.Show("The address can not be empty");
+                return false;
+            }
+
+            // Check if the postal code is not empty
+            if (TxtCreatePlz.Text == "")
+            {
+                MessageBox.Show("The postal code can not be empty");
+                return false;
+            }
+
+            // Check if the Place of residence is not empty
+            if (TxtCreatePlaceOfResidence.Text == "")
+            {
+                MessageBox.Show("The place of residence can not be empty");
+                return false;
+            }
+
+            // Check if the Birthday is changed
+            if (dateMax > DatCreateBirthday.Value && DatCreateBirthday.Value > dateMin)
+            {
+                Debug.WriteLine("Date is correct");
+            }
+            else
+            {
+                MessageBox.Show("Please set the date of birth");
+                return false;
+            }
+
+            // Check if the Email is not empty
+            if (TxtCreateEmailAddress.Text == "")
+            {
+                MessageBox.Show("The email address can not be empty");
+                return false;
+            }
+            else if (!regexEmailValidation.IsMatch(TxtCreateEmailAddress.Text))
+            {
+                MessageBox.Show("The email address needs to be valid");
+                return false;
+            }
+
+
+            //--------------------------------------
+            //              Customer
+            //--------------------------------------
+            if (RadCreateCustomer.Checked)
+            {
+                // Check if the customer Type has changed
+                if (CmbCreateCustomerType.Text == "-")
+                {
+                    MessageBox.Show("Please select the customer type (A-E)");
+                    return false;
+                }
+
+                // Check if the Company Name is not empty
+                if (TxtCreateCompanyName.Text == "")
+                {
+                    MessageBox.Show("The company name can not be empty");
+                    return false;
+                }
+
+                // Check if the Company contact is not empty
+                if (TxtCreateCompanyContact.Text == "")
+                {
+                    MessageBox.Show("The company contact can not be empty");
+                    return false;
+                }
+            }
+            //--------------------------------------
+            //              Employee
+            //--------------------------------------
+            if (RadCreateEmployee.Checked)
+            {
+                // Check if the degree of employment is not empty
+                if (NumCreateDegreeOfEmployment.Value < 1)
+                {
+                    MessageBox.Show("The degree of employment needs to be over zero");
+                    return false;
+                }
+
+                // Check if the date of joining is changed
+                if (dateMax > DatCreateDateOfJoining.Value && DatCreateDateOfJoining.Value > dateMin)
+                {
+                    Debug.WriteLine("Date is correct");
+                }
+                else
+                {
+                    MessageBox.Show("Please set the date of joining");
+                    return false;
+                }
+
+
+                // looks if Employee is a Trainee
+                if (ChkCreateTrainee.Checked)
+                {
+                    // Check if the years of apprenticeship is not empty
+                    if (NumCreateYearOfApp.Value < 1)
+                    {
+                        MessageBox.Show("The years of apprenticeship needs to be over zero");
+                        return false;
+                    }
+                }
+            }
+
+            //Everthing Mandatory is filled out
+            return true;
         }
 
         // Falg for Customer and employee
