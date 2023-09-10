@@ -121,9 +121,9 @@ namespace ContactManager
             TxtCreateBusinessAddress.Clear();
 
             // Reset DateTimePickers
-            DatCreateBirthday.Value = DateTime.Now;
+            DatCreateBirthday.Value = DateTime.Now.AddYears(-20);
             DatCreateDateOfJoining.Value = DateTime.Now;
-            DatCreateDateOfLeaving.Value = DateTime.Now;
+            DatCreateDateOfLeaving.Value = new DateTime(9998, 12, 31);
 
             // Reset Numeric Indicator
             NumCadreLevel.Value = 0;
@@ -327,7 +327,7 @@ namespace ContactManager
         private void DeleteAndRecreate(string identifier, Func<string, bool> deleteFunc, Func<bool> createFunc, Action<bool, string, string> logAction)
         {
             bool deletionSuccessful = deleteFunc(identifier);
-            string deletionEvent = deletionSuccessful ? "DeletionSuccess" : "DeletionFailure";
+            string deletionEvent = deletionSuccessful ? "UpdateSuccess" : "UpdateFailure";
             logAction(deletionSuccessful, deletionEvent, deletionEvent);
 
             if (deletionSuccessful)

@@ -166,6 +166,8 @@ namespace ContactManager
                 (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
                 VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
                 cnn.Execute(sqlQuery, log);
+                string sqlQuery1 = "SELECT * FROM LogTable WHERE EmployeeNumber = @EmployeeNumber";
+                var logs = cnn.Query<LogTable>(sqlQuery1, new { EmployeeNumber = log.EmployeeNumber });
             }
         }
 
