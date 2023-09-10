@@ -10,7 +10,7 @@ namespace ContactManager
 {
     internal class Controller
     {
-        public Boolean CreateEmployee(Employee employee, Form form, bool isUpdate = false)
+        public Boolean CreateEmployee(Employee employee, Form form, bool isUpdate = false, bool showSuccessMessage = true)
         {
             Employee e = new Employee
             {
@@ -42,14 +42,18 @@ namespace ContactManager
 
             SqliteDataAccess.SaveEmployee(e);
 
-            string message = isUpdate
-        ? $"Employee {e.FirstName} {e.LastName} has been updated."
-        : $"Employee {e.FirstName} {e.LastName} has been created.";
-            MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (showSuccessMessage)
+            {
+                string message = isUpdate
+                ? $"Employee {e.FirstName} {e.LastName} has been updated."
+                : $"Employee {e.FirstName} {e.LastName} has been created.";
+                MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
             return true;
         }
 
-        public Boolean CreateTrainee(Trainee trainee, Form form, bool isUpdate = false)
+        public Boolean CreateTrainee(Trainee trainee, Form form, bool isUpdate = false, bool showSuccessMessage = true)
         {
             Trainee t = new Trainee
             {
@@ -83,18 +87,21 @@ namespace ContactManager
 
 
             SqliteDataAccess.SaveTrainee(t);
-            // Show confirmation message
-            string message = isUpdate
-        ? $"Trainee {t.FirstName} {t.LastName} has been updated."
-        : $"Trainee {t.FirstName} {t.LastName} has been created.";
-            MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (showSuccessMessage)
+            {
+                // Show confirmation message
+                string message = isUpdate
+                ? $"Trainee {t.FirstName} {t.LastName} has been updated."
+                : $"Trainee {t.FirstName} {t.LastName} has been created.";
+                MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             return true;
         }
 
 
 
 
-        public Boolean CreateCustomer(Customer customer, Form form, bool isUpdate = false)
+        public Boolean CreateCustomer(Customer customer, Form form, bool isUpdate = false, bool showSuccessMessage = true)
         {
             Customer c = new Customer
             {
@@ -123,11 +130,14 @@ namespace ContactManager
 
             SqliteDataAccess.SaveCustomer(c);
 
-            // Show confirmation message
-            string message = isUpdate
-         ? $"Customer {c.FirstName} {c.LastName} has been updated."
-         : $"Customer {c.FirstName} {c.LastName} has been created.";
-            MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (showSuccessMessage)
+            {
+                // Show confirmation message
+                string message = isUpdate
+             ? $"Customer {c.FirstName} {c.LastName} has been updated."
+             : $"Customer {c.FirstName} {c.LastName} has been created.";
+                MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             return true;
         }
 

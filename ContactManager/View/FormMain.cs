@@ -177,7 +177,7 @@ namespace ContactManager
                     OasiNumber = TxtCreateOasiNr.Text,
                     DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                     PrivatePhone = TxtCreatePrivatePhone.Text,
-                    BusinessAddress = TxtCreateEmailAddress.Text,
+                    BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
                     Note = TxtCreateNote.Text,
@@ -204,7 +204,7 @@ namespace ContactManager
                     OasiNumber = TxtCreateOasiNr.Text,
                     DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                     PrivatePhone = TxtCreatePrivatePhone.Text,
-                    BusinessAddress = TxtCreateEmailAddress.Text,
+                    BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
                     Note = TxtCreateNote.Text,
@@ -233,7 +233,7 @@ namespace ContactManager
                         OasiNumber = TxtCreateOasiNr.Text,
                         DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                         PrivatePhone = TxtCreatePrivatePhone.Text,
-                        BusinessAddress = TxtCreateEmailAddress.Text,
+                        BusinessAddress = TxtCreateBusinessAddress.Text,
                         BusinessPhone = TxtCreateBusinessPhone.Text,
                         EmailAddress = TxtCreateEmailAddress.Text,
                         Note = TxtCreateNote.Text,
@@ -243,9 +243,8 @@ namespace ContactManager
                         DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                         DateOfLeaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                         CadreLevel = NumCadreLevel.Value.ToString(),
-                        CurrentApprenticeshipYear = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                        YearsOfApprenticeship = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-
+                        CurrentApprenticeshipYear = NumCreateCurrentAppYear.Value.ToString(),
+                        YearsOfApprenticeship = NumCreateYearOfApp.Value.ToString()
                     };
                 }
                 else
@@ -280,7 +279,7 @@ namespace ContactManager
                 OasiNumber = TxtCreateOasiNr.Text,
                 DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                 PrivatePhone = TxtCreatePrivatePhone.Text,
-                BusinessAddress = TxtCreateEmailAddress.Text,
+                BusinessAddress = TxtCreateBusinessAddress.Text,
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,
                 Note = TxtCreateNote.Text,
@@ -1224,45 +1223,21 @@ namespace ContactManager
                 if (type == typeof(Customer))
                 {
                     Customer customer = (Customer)item;
-                    success &= controller.CreateCustomer(
-                        customer.FirstName, customer.LastName, customer.DateOfBirth, customer.CustomerNumber,
-                        customer.Active, customer.Gender, customer.Salutation, customer.Title,
-                        customer.Address, customer.PostalCode, customer.PlaceOfResidence, customer.Nationality,
-                        customer.OasiNumber, customer.PrivatePhone, customer.BusinessPhone,
-                        customer.BusinessAddress, customer.EmailAddress, customer.Note,
-                        customer.CompanyName, customer.CustomerType, customer.CompanyContact, this, false
-                    );
+                    success &= controller.CreateCustomer(customer, this, false, false);
 
                     ProgrBarImport.Value += step;
                 }
                 else if (type == typeof(Employee))
                 {
                     Employee employee = (Employee)item;
-                    success &= controller.CreateEmployee(
-                        employee.FirstName, employee.LastName, employee.DateOfBirth, employee.EmployeeNumber,
-                        employee.Active, employee.Gender, employee.Salutation, employee.Title,
-                        employee.Address, employee.PostalCode, employee.PlaceOfResidence, employee.Nationality,
-                        employee.OasiNumber, employee.PrivatePhone, employee.BusinessPhone,
-                        employee.EmailAddress, employee.BusinessAddress, employee.Note,
-                        employee.Role, employee.Department, employee.DateOfJoining, employee.DateOfLeaving,
-                        employee.CadreLevel, employee.DegreeOfEmployment, this, false
-                    );
+                    success &= controller.CreateEmployee(employee, this, false, false);
 
                     ProgrBarImport.Value += step;
                 }
                 else if (type == typeof(Trainee))
                 {
                     Trainee trainee = (Trainee)item;
-                    success &= controller.CreateTrainee(
-                        trainee.FirstName, trainee.LastName, trainee.DateOfBirth, trainee.EmployeeNumber, 
-                        trainee.Active, trainee.Gender, trainee.Salutation, trainee.Title, 
-                        trainee.Address, trainee.PostalCode, trainee.PlaceOfResidence, trainee.Nationality, 
-                        trainee.OasiNumber, trainee.PrivatePhone, trainee.BusinessPhone, 
-                        trainee.EmailAddress, trainee.BusinessAddress, trainee.Note, 
-                        trainee.Role, trainee.Department, trainee.DateOfJoining, trainee.DateOfLeaving, 
-                        trainee.CadreLevel, trainee.DegreeOfEmployment, 
-                        trainee.CurrentApprenticeshipYear, trainee.YearsOfApprenticeship, this, false
-                    );
+                    success &= controller.CreateTrainee(trainee, this, false, false);
 
                     ProgrBarImport.Value += step;
                 }

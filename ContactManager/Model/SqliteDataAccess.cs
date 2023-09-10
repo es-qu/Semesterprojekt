@@ -14,20 +14,10 @@ namespace ContactManager
 {
     internal class SqliteDataAccess
     {
-        //public static List<Person> LoadPeople(string SearchText)
-        //{
-        //    using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-        //    {
-        //        var output = cnn.Query<Person>("Select * from Person where firstName like @Name or lastName like @Name",
-        //        new { Name = "%" + SearchText + "%" });
-        //        return output.ToList();
-        //    }
-        //}
-
         public static int InsertPerson(IDbConnection cnn, Person person)
         {
-            string sqlQuery = "INSERT INTO Person (status, gender, Salutation, title, firstName, lastName, street, postalCode, placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note) " +
-                              "VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)";
+            string sqlQuery = "INSERT INTO Person (Active, Gender, Salutation, Title, FirstName, LastName, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, Note) " +
+                              "VALUES (@Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @Note)";
             cnn.Execute(sqlQuery, person);
             return cnn.Query<int>("SELECT last_insert_rowid()").Single(); 
         }
@@ -172,7 +162,7 @@ namespace ContactManager
             {
                 var sqlQuery = @"INSERT INTO LogTable 
         (EventType, FirstName, LastName, Birthday, EmployeeNumber, CustomerNumber, IsPersonActive, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,CurrentAppYear, YearOfApp,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
-        VALUES (@EventType, @firstName, @lastName, @dateOfBirth, @EmployeeNumber, @CustomerNumber, @status, @gender, @Salutation, @title, @street, @postalCode, @placeOfResidence, @nationality, @socialSecurityNumber, @phoneNumberPrivat, @phoneNumberBusiness, @email, @EmailBusiness, @note, @Position, @Department, @dateofjoining, @dateofleaving, @NumCadreLevel,@TrainingStartDate, @TrainingEndDate,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
+        VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Position, @Department, @dateofjoining, @dateofleaving, @NumCadreLevel,@TrainingStartDate, @TrainingEndDate,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
                 cnn.Execute(sqlQuery, log);
             }
         }
