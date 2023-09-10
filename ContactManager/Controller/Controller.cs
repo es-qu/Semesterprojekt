@@ -14,37 +14,37 @@ namespace ContactManager
         {
             Employee e = new Employee
             {
-                firstName = employee.firstName,
-                lastName = employee.lastName,
-                gender = employee.gender,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Gender = employee.Gender,
                 Salutation = employee.Salutation,
-                title = employee.title,
-                street = employee.street,
-                postalCode = employee.postalCode,
-                placeOfResidence = employee.placeOfResidence,
-                nationality = employee.nationality,
-                socialSecurityNumber = employee.socialSecurityNumber,
-                dateOfBirth = employee.dateOfBirth,
-                phoneNumberPrivat = employee.phoneNumberPrivat,
-                phoneNumberBusiness = employee.phoneNumberBusiness,
-                email = employee.email,
-                EmailBusiness = employee.EmailBusiness,
-                note = employee.note,
+                Title = employee.Title,
+                Address = employee.Address,
+                PostalCode = employee.PostalCode,
+                PlaceOfResidence = employee.PlaceOfResidence,
+                Nationality = employee.Nationality,
+                OasiNumber = employee.OasiNumber,
+                DateOfBirth = employee.DateOfBirth,
+                PrivatePhone = employee.PrivatePhone,
+               BusinessPhone = employee.BusinessPhone,
+                EmailAddress = employee.EmailAddress,
+                BusinessAddress = employee.BusinessAddress,
+                Note = employee.Note,
                 EmployeeNumber = employee.EmployeeNumber,
-                Position = employee.Position,
+                Role = employee.Role,
                 Department = employee.Department,
-                status = employee.status,
-                dateofjoining = employee.dateofjoining,
-                dateofleaving = employee.dateofleaving,
-                NumCadreLevel = employee.NumCadreLevel,
+                Active = employee.Active,
+                DateOfJoining = employee.DateOfJoining,
+                DateOfLeaving = employee.DateOfLeaving,
+                CadreLevel = employee.CadreLevel,
 
             };
 
             SqliteDataAccess.SaveEmployee(e);
 
             string message = isUpdate
-        ? $"Employee {e.firstName} {e.lastName} has been updated."
-        : $"Employee {e.firstName} {e.lastName} has been created.";
+        ? $"Employee {e.FirstName} {e.LastName} has been updated."
+        : $"Employee {e.FirstName} {e.LastName} has been created.";
             MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
@@ -53,31 +53,31 @@ namespace ContactManager
         {
             Trainee t = new Trainee
             {
-                firstName = trainee.firstName,
-                lastName = trainee.lastName,
-                gender = trainee.gender,
+                FirstName = trainee.FirstName,
+                LastName = trainee.LastName,
+                Gender = trainee.Gender,
                 Salutation = trainee.Salutation,
-                title = trainee.title,
-                street = trainee.street,
-                postalCode = trainee.postalCode,
-                placeOfResidence = trainee.placeOfResidence,
-                nationality = trainee.nationality,
-                socialSecurityNumber =   trainee.socialSecurityNumber,
-                dateOfBirth = trainee.dateOfBirth,
-                phoneNumberPrivat =  trainee.phoneNumberPrivat,
-                phoneNumberBusiness = trainee.phoneNumberBusiness,
-                email = trainee.email,
-                EmailBusiness = trainee.EmailBusiness,
-                note = trainee.note,
+                Title = trainee.Title,
+                Address = trainee.Address,
+                PostalCode = trainee.PostalCode,
+                PlaceOfResidence = trainee.PlaceOfResidence,
+                Nationality = trainee.Nationality,
+                OasiNumber = trainee.OasiNumber,
+                DateOfBirth = trainee.DateOfBirth,
+                PrivatePhone = trainee.PrivatePhone,
+                BusinessPhone = trainee.BusinessPhone,
+                EmailAddress = trainee.EmailAddress,
+                BusinessAddress = trainee.BusinessAddress,
+                Note = trainee.Note,
                 EmployeeNumber = trainee.EmployeeNumber,
-                Position = trainee.Position,
+                Role = trainee.Role,
                 Department = trainee.Department,
-                status = trainee.status,
-                dateofjoining = trainee.dateofjoining,
-                dateofleaving = trainee.dateofleaving,
-                NumCadreLevel = trainee.NumCadreLevel,
-                TrainingStartDate = trainee.TrainingStartDate,
-                TrainingEndDate = trainee.TrainingEndDate
+                Active = trainee.Active,
+                DateOfJoining = trainee.DateOfJoining,
+                DateOfLeaving = trainee.DateOfLeaving,
+                CadreLevel = trainee.CadreLevel,
+                CurrentApprenticeshipYear = trainee.CurrentApprenticeshipYear,
+                YearsOfApprenticeship = trainee.YearsOfApprenticeship
 
             };
 
@@ -85,8 +85,8 @@ namespace ContactManager
             SqliteDataAccess.SaveTrainee(t);
             // Show confirmation message
             string message = isUpdate
-        ? $"Trainee {t.firstName} {t.lastName} has been updated."
-        : $"Trainee {t.firstName} {t.lastName} has been created.";
+        ? $"Trainee {t.FirstName} {t.LastName} has been updated."
+        : $"Trainee {t.FirstName} {t.LastName} has been created.";
             MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
@@ -98,23 +98,22 @@ namespace ContactManager
         {
             Customer c = new Customer
             {
-                status = customer.status,
-                firstName = customer.firstName,
-                lastName = customer.lastName,
-                gender = customer.gender,
+                FirstName = customer.FirstName,
+                LastName = customer.LastName,
+                Gender = customer.Gender,
                 Salutation = customer.Salutation,
-                title = customer.title,
-                street = customer.street,
-                postalCode = customer.postalCode,
-                placeOfResidence = customer.placeOfResidence,
-                nationality = customer.nationality,
-                socialSecurityNumber = customer.socialSecurityNumber,
-                dateOfBirth = customer.dateOfBirth,
-                phoneNumberPrivat = customer.phoneNumberPrivat,
-                phoneNumberBusiness = customer.phoneNumberBusiness,
-                email = customer.email,
-                EmailBusiness = customer.EmailBusiness,
-                note = customer.note,
+                Title = customer.Title,
+                Address = customer.Address,
+                PostalCode = customer.PostalCode,
+                PlaceOfResidence = customer.PlaceOfResidence,
+                Nationality = customer.Nationality,
+                OasiNumber = customer.OasiNumber,
+                DateOfBirth = customer.DateOfBirth,
+                PrivatePhone = customer.PrivatePhone,
+                BusinessPhone = customer.BusinessPhone,
+                EmailAddress = customer.EmailAddress,
+                BusinessAddress = customer.BusinessAddress,
+                Note = customer.Note,
                 CustomerNumber = customer.CustomerNumber,
                 CompanyName = customer.CompanyName,
                 CustomerType = customer.CustomerType,
@@ -126,8 +125,8 @@ namespace ContactManager
 
             // Show confirmation message
             string message = isUpdate
-         ? $"Customer {c.firstName} {c.lastName} has been updated."
-         : $"Customer {c.firstName} {c.lastName} has been created.";
+         ? $"Customer {c.FirstName} {c.LastName} has been updated."
+         : $"Customer {c.FirstName} {c.LastName} has been created.";
             MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }

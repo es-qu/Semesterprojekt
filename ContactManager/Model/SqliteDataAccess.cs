@@ -86,36 +86,36 @@ namespace ContactManager
                             int lastId = InsertPerson(cnn, trainee);
 
                             cnn.Execute(
-                                "INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
+                                "INSERT INTO Employee (ID, Role, Department, EmployeeNumber,dateofjoining,dateofleaving,CadreLevel) VALUES (@Id, @Role, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@CadreLevel)",
                                 new
                                 {
                                     Id = lastId,
-                                    trainee.Position,
+                                    trainee.Role,
                                     trainee.Department,
                                     trainee.EmployeeNumber,
-                                    trainee.dateofjoining,
-                                    trainee.dateofleaving,
-                                    trainee.NumCadreLevel
+                                    trainee.DateOfJoining,
+                                    trainee.DateOfLeaving,
+                                    trainee.CadreLevel
                                 });
                             cnn.Execute(
-                                "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
+                                "INSERT INTO Trainee (ID, YearsOfApprenticeship, CurrentApprenticeshipYear) VALUES (@Id, @YearsOfApprenticeship, @CurrentApprenticeshipYear)",
                                 new
                                 {
                                     Id = lastId,
-                                    trainee.TrainingStartDate,
-                                    trainee.TrainingEndDate
+                                    trainee.YearsOfApprenticeship,
+                                    trainee.CurrentApprenticeshipYear
                                 });
                         }
                         else
                         {
                             // Only insert into Trainee table...
                             cnn.Execute(
-                                "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
+                                "INSERT INTO Trainee (ID, YearsOfApprenticeship, CurrentApprenticeshipYear) VALUES (@Id, @YearsOfApprenticeship, @CurrentApprenticeshipYear)",
                                 new
                                 {
                                     Id = TraineeId,
-                                    trainee.TrainingStartDate,
-                                    trainee.TrainingEndDate
+                                    trainee.YearsOfApprenticeship,
+                                    trainee.CurrentApprenticeshipYear
                                 });
                         }
 
@@ -142,16 +142,16 @@ namespace ContactManager
                     try
                     {
                         int lastId_e = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
-                        cnn.Execute("INSERT INTO Employee (ID, Position, Department, EmployeeNumber, dateofjoining, dateofleaving, NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber, @dateofjoining, @dateofleaving, @NumCadreLevel)",
+                        cnn.Execute("INSERT INTO Employee (ID, Role, Department, EmployeeNumber, Dateofjoining, Dateofleaving, CadreLevel) VALUES (@Id, @Role, @Department, @EmployeeNumber, @DateOfJoining, @DateOfLeaving, @CadreLevel)",
                             new
                             {
                                 Id = lastId_e + 1,
-                                employee.Position,
+                                employee.Role,
                                 employee.Department,
                                 employee.EmployeeNumber,
-                                employee.dateofjoining,
-                                employee.dateofleaving,
-                                employee.NumCadreLevel
+                                employee.DateOfJoining,
+                                employee.DateOfLeaving,
+                                employee.CadreLevel
                             });
 
                         transaction.Commit();

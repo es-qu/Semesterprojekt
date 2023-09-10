@@ -152,7 +152,6 @@ namespace ContactManager
             }
         }
 
-        public int checkState;
 
         public Person CreatePersonFromForm()
         {
@@ -165,23 +164,23 @@ namespace ContactManager
             {
                 return new Customer
                 {
-                    status = (int)SwtCreateActive.CheckState,
-                    gender = gender,
+                    Active = (int)SwtCreateActive.CheckState,
+                    Gender = gender,
                     Salutation = CmbCreateSalutation.SelectedItem?.ToString(),
-                    title = TxtCreateTitle.Text,
-                    firstName = TxtCreateFirstName.Text,
-                    lastName = TxtCreateLastName.Text,
-                    street = TxtCreateAddress.Text,
-                    postalCode = TxtCreatePlz.Text,
-                    placeOfResidence = TxtCreatePlaceOfResidence.Text,
-                    nationality = CmbCreateNationality.SelectedItem?.ToString(),
-                    socialSecurityNumber = TxtCreateOasiNr.Text,
-                    dateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                    phoneNumberPrivat = TxtCreatePrivatePhone.Text,
-                    EmailBusiness = TxtCreateEmailAddress.Text,
-                    phoneNumberBusiness = TxtCreateBusinessPhone.Text,
-                    email = TxtCreateEmailAddress.Text,
-                    note = TxtCreateNote.Text,
+                    Title = TxtCreateTitle.Text,
+                    FirstName = TxtCreateFirstName.Text,
+                    LastName = TxtCreateLastName.Text,
+                    Address = TxtCreateAddress.Text,
+                    PostalCode = TxtCreatePlz.Text,
+                    PlaceOfResidence = TxtCreatePlaceOfResidence.Text,
+                    Nationality = CmbCreateNationality.SelectedItem?.ToString(),
+                    OasiNumber = TxtCreateOasiNr.Text,
+                    DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                    PrivatePhone = TxtCreatePrivatePhone.Text,
+                    BusinessAddress = TxtCreateEmailAddress.Text,
+                    BusinessPhone = TxtCreateBusinessPhone.Text,
+                    EmailAddress = TxtCreateEmailAddress.Text,
+                    Note = TxtCreateNote.Text,
                     CompanyName = TxtCreateCompanyName.Text,
                     CustomerType = CmbCreateCustomerType.Text,
                     CompanyContact = TxtCreateCompanyContact.Text,
@@ -192,60 +191,60 @@ namespace ContactManager
             {
                 var employee = new Employee
                 {
-                    status = (int)SwtCreateActive.CheckState,
-                    gender = gender,
+                    Active = (int)SwtCreateActive.CheckState,
+                    Gender = gender,
                     Salutation = CmbCreateSalutation.SelectedItem?.ToString(),
-                    title = TxtCreateTitle.Text,
-                    firstName = TxtCreateFirstName.Text,
-                    lastName = TxtCreateLastName.Text,
-                    street = TxtCreateAddress.Text,
-                    postalCode = TxtCreatePlz.Text,
-                    placeOfResidence = TxtCreatePlaceOfResidence.Text,
-                    nationality = CmbCreateNationality.SelectedItem?.ToString(),
-                    socialSecurityNumber = TxtCreateOasiNr.Text,
-                    dateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                    phoneNumberPrivat = TxtCreatePrivatePhone.Text,
-                    EmailBusiness = TxtCreateEmailAddress.Text,
-                    phoneNumberBusiness = TxtCreateBusinessPhone.Text,
-                    email = TxtCreateEmailAddress.Text,
-                    note = TxtCreateNote.Text,
-                    Position = TxtCreateRole.Text,
+                    Title = TxtCreateTitle.Text,
+                    FirstName = TxtCreateFirstName.Text,
+                    LastName = TxtCreateLastName.Text,
+                    Address = TxtCreateAddress.Text,
+                    PostalCode = TxtCreatePlz.Text,
+                    PlaceOfResidence = TxtCreatePlaceOfResidence.Text,
+                    Nationality = CmbCreateNationality.SelectedItem?.ToString(),
+                    OasiNumber = TxtCreateOasiNr.Text,
+                    DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                    PrivatePhone = TxtCreatePrivatePhone.Text,
+                    BusinessAddress = TxtCreateEmailAddress.Text,
+                    BusinessPhone = TxtCreateBusinessPhone.Text,
+                    EmailAddress = TxtCreateEmailAddress.Text,
+                    Note = TxtCreateNote.Text,
+                    Role = TxtCreateRole.Text,
                     Department = TxtCreateDepartement.Text,
                     EmployeeNumber = TxtCreateEmployeeNumber.Text,
-                    dateofjoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                    dateofleaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                    NumCadreLevel = NumCadreLevel.Value.ToString()
+                    DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                    DateOfLeaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                    CadreLevel = NumCadreLevel.Value.ToString()
                 };
 
                 if (ChkCreateTrainee.Checked)
                 {
                     return new Trainee
                     {
-                        status = (int)SwtCreateActive.CheckState,
-                        gender = gender,
+                        Active = (int)SwtCreateActive.CheckState,
+                        Gender = gender,
                         Salutation = CmbCreateSalutation.SelectedItem?.ToString(),
-                        title = TxtCreateTitle.Text,
-                        firstName = TxtCreateFirstName.Text,
-                        lastName = TxtCreateLastName.Text,
-                        street = TxtCreateAddress.Text,
-                        postalCode = TxtCreatePlz.Text,
-                        placeOfResidence = TxtCreatePlaceOfResidence.Text,
-                        nationality = CmbCreateNationality.SelectedItem?.ToString(),
-                        socialSecurityNumber = TxtCreateOasiNr.Text,
-                        dateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                        phoneNumberPrivat = TxtCreatePrivatePhone.Text,
-                        EmailBusiness = TxtCreateEmailAddress.Text,
-                        phoneNumberBusiness = TxtCreateBusinessPhone.Text,
-                        email = TxtCreateEmailAddress.Text,
-                        note = TxtCreateNote.Text,
-                        Position = TxtCreateRole.Text,
+                        Title = TxtCreateTitle.Text,
+                        FirstName = TxtCreateFirstName.Text,
+                        LastName = TxtCreateLastName.Text,
+                        Address = TxtCreateAddress.Text,
+                        PostalCode = TxtCreatePlz.Text,
+                        PlaceOfResidence = TxtCreatePlaceOfResidence.Text,
+                        Nationality = CmbCreateNationality.SelectedItem?.ToString(),
+                        OasiNumber = TxtCreateOasiNr.Text,
+                        DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                        PrivatePhone = TxtCreatePrivatePhone.Text,
+                        BusinessAddress = TxtCreateEmailAddress.Text,
+                        BusinessPhone = TxtCreateBusinessPhone.Text,
+                        EmailAddress = TxtCreateEmailAddress.Text,
+                        Note = TxtCreateNote.Text,
+                        Role = TxtCreateRole.Text,
                         Department = TxtCreateDepartement.Text,
                         EmployeeNumber = TxtCreateEmployeeNumber.Text,
-                        dateofjoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                        dateofleaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                        NumCadreLevel = NumCadreLevel.Value.ToString(),
-                        TrainingStartDate = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                        TrainingEndDate = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                        DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                        DateOfLeaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                        CadreLevel = NumCadreLevel.Value.ToString(),
+                        CurrentApprenticeshipYear = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                        YearsOfApprenticeship = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
 
                     };
                 }
@@ -268,23 +267,23 @@ namespace ContactManager
             LogTable logInfo = new LogTable
             {
                 EventType = eventType,
-                status = (int)SwtCreateActive.CheckState,
-                gender = gender,
+                Active = (int)SwtCreateActive.CheckState,
+                Gender = gender,
                 Salutation = CmbCreateSalutation.SelectedItem?.ToString(),
-                title = TxtCreateTitle.Text,
-                firstName = TxtCreateFirstName.Text,
-                lastName = TxtCreateLastName.Text,
-                street = TxtCreateAddress.Text,
-                postalCode = TxtCreatePlz.Text,
-                placeOfResidence = TxtCreatePlaceOfResidence.Text,
-                nationality = CmbCreateNationality.SelectedItem?.ToString(),
-                socialSecurityNumber = TxtCreateOasiNr.Text,
-                dateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                phoneNumberPrivat = TxtCreatePrivatePhone.Text,
-                EmailBusiness = TxtCreateEmailAddress.Text,
-                phoneNumberBusiness = TxtCreateBusinessPhone.Text,
-                email = TxtCreateEmailAddress.Text,
-                note = TxtCreateNote.Text,
+                Title = TxtCreateTitle.Text,
+                FirstName = TxtCreateFirstName.Text,
+                LastName = TxtCreateLastName.Text,
+                Address = TxtCreateAddress.Text,
+                PostalCode = TxtCreatePlz.Text,
+                PlaceOfResidence = TxtCreatePlaceOfResidence.Text,
+                Nationality = CmbCreateNationality.SelectedItem?.ToString(),
+                OasiNumber = TxtCreateOasiNr.Text,
+                DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                PrivatePhone = TxtCreatePrivatePhone.Text,
+                BusinessAddress = TxtCreateEmailAddress.Text,
+                BusinessPhone = TxtCreateBusinessPhone.Text,
+                EmailAddress = TxtCreateEmailAddress.Text,
+                Note = TxtCreateNote.Text,
                 Position = TxtCreateRole.Text,
                 Department = TxtCreateDepartement.Text,
                 dateofjoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
@@ -1519,6 +1518,11 @@ namespace ContactManager
                     }
                 }
             }
+        }
+
+        private void CmdCreateNoteClear_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

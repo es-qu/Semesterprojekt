@@ -44,12 +44,6 @@ namespace ContactManager
 
         private void CmdImport_Click(object sender, EventArgs e)
         {
-            Form formImport = new FormImport();
-            formImport.Show();
-        }
-
-        private void CmdImport_Click(object sender, EventArgs e)
-        {
             OpenMainForm(2);
         }
 
