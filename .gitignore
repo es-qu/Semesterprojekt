@@ -17,11 +17,6 @@
 mono_crash.*
 
 
-# Don't ignore this specific dll and folder because it might throw an error (custom statements)
-#![Dd]ebug/SQLite.Interop.dll
-#![Dd]ebug/Model/
-#![Dd]ebug/Model/*
-
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
