@@ -267,6 +267,7 @@ namespace ContactManager
                 RadCreateOther.Checked ? "Other" : null;
             LogTable logInfo = new LogTable
             {
+                EventType = eventType,
                 status = (int)SwtCreateActive.CheckState,
                 gender = gender,
                 Salutation = CmbCreateSalutation.SelectedItem?.ToString(),
@@ -283,6 +284,7 @@ namespace ContactManager
                 EmailBusiness = TxtCreateEmailAddress.Text,
                 phoneNumberBusiness = TxtCreateBusinessPhone.Text,
                 email = TxtCreateEmailAddress.Text,
+                note = TxtCreateNote.Text,
                 Position = TxtCreateRole.Text,
                 Department = TxtCreateDepartement.Text,
                 dateofjoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
@@ -292,7 +294,9 @@ namespace ContactManager
                 CustomerType = CmbCreateCustomerType.Text,
                 CompanyContact = TxtCreateCompanyContact.Text,
                 TrainingStartDate = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                TrainingEndDate = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd")
+                TrainingEndDate = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                CustomerNumber  = TxtCreateCustomerNumber.Text,
+                EmployeeNumber = TxtCreateEmployeeNumber.Text
             };
 
             return logInfo;
