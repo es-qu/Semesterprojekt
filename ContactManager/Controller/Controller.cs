@@ -10,7 +10,7 @@ namespace ContactManager
     {
         public bool CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int isActive, string gender, string salutation, string title,
                                     string address, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
-                                     string phoneBuiness, string email, string businessAddress, string note, string role, string department, string dateOfJoining, string dateOfLeaving, string cadreLevel, string degreeOfEmployment, Form form)
+                                     string phoneBuiness, string email, string businessAddress, string note, string role, string department, string dateOfJoining, string dateOfLeaving, string cadreLevel, string degreeOfEmployment, Form form, bool showSuccessMessage)
         {
             Employee e = new Employee
             {
@@ -43,14 +43,17 @@ namespace ContactManager
             SqliteDataAccess.SaveEmployee(e);
 
             // Show confirmation message
-            MessageBox.Show($"Employee {e.FirstName} {e.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (showSuccessMessage)
+            {
+                MessageBox.Show($"Employee {e.FirstName} {e.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             return true;
         }
 
         public bool CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int isActive, string gender, string salutaion, string title,
                                     string address, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
                                      string phoneBuiness, string email, string businessAddress, string note, string role, string department, string dateOfJoining, string dateOfLeaving, string cadreLevel, string degreeOfEmployment,
-                                    string currentApprenticeshipYear, string yearsOfApprenticeship, Form form)
+                                    string currentApprenticeshipYear, string yearsOfApprenticeship, Form form, bool showSuccessMessage)
         {
             Trainee t = new Trainee
             {
@@ -84,13 +87,16 @@ namespace ContactManager
 
             SqliteDataAccess.SaveTrainee(t);
             // Show confirmation message
-            MessageBox.Show($"Employee {t.FirstName} {t.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (showSuccessMessage)
+            {
+                MessageBox.Show($"Trainee {t.FirstName} {t.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             return true;
         }
 
         public Boolean CreateCustomer(string firstName, string lastName, string dateOfBirth, string customerNumber, int isActive, string gender, string salutation, string title,
                                     string address, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
-                                     string phoneBuiness, string emailBusiness, string email, string note, string companyName, string customerType, string companyContact, Form form)
+                                     string phoneBuiness, string emailBusiness, string email, string note, string companyName, string customerType, string companyContact, Form form, bool showSuccessMessage)
         {
             Customer c = new Customer
             {
@@ -121,7 +127,10 @@ namespace ContactManager
             SqliteDataAccess.SaveCustomer(c);
 
             // Show confirmation message
-            MessageBox.Show($"Employee {c.FirstName} {c.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(showSuccessMessage)
+            {
+                MessageBox.Show($"Customer {c.FirstName} {c.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             return true;
         }
 

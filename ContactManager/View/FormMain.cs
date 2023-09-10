@@ -293,7 +293,7 @@ namespace ContactManager
                     NumCreateDegreeOfEmployment.Value.ToString(),
                     NumCreateCurrentAppYear.Value.ToString(),
                     NumCreateYearOfApp.Value.ToString(),
-                    this
+                    this, true
                     );
                         if (success)
                         {
@@ -327,7 +327,7 @@ namespace ContactManager
                        DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                        NumCadreLevel.Value.ToString(),
                        NumCreateDegreeOfEmployment.Value.ToString(),
-                       this
+                       this, true
 
                         );
                         if (success)
@@ -363,7 +363,7 @@ namespace ContactManager
                     TxtCreateCompanyName.Text,
                     CmbCreateCustomerType.SelectedItem.ToString(),
                     TxtCreateCompanyContact.Text,
-                    this
+                    this, true
                     );
                     if (success)
                     {
@@ -411,7 +411,7 @@ namespace ContactManager
                             NumCreateDegreeOfEmployment.Value.ToString(),
                             NumCreateCurrentAppYear.Value.ToString(),
                             NumCreateYearOfApp.Value.ToString(),
-                            this
+                            this, true
                             );
                                 if (success)
                                 {
@@ -445,7 +445,7 @@ namespace ContactManager
                                DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                                NumCadreLevel.Value.ToString(),
                                NumCreateDegreeOfEmployment.Value.ToString(),
-                               this
+                               this, true
 
                                 );
                                 if (success)
@@ -486,7 +486,7 @@ namespace ContactManager
                         TxtCreateCompanyName.Text,
                         CmbCreateCustomerType.SelectedItem.ToString(),
                         TxtCreateCompanyContact.Text,
-                        this
+                        this, true
                         );
                         if (success)
                         {
@@ -1369,29 +1369,48 @@ namespace ContactManager
                         customer.Address, customer.PostalCode, customer.PlaceOfResidence, customer.Nationality,
                         customer.OasiNumber, customer.PrivatePhone, customer.BusinessPhone,
                         customer.BusinessAddress, customer.EmailAddress, customer.Note,
-                        customer.CompanyName, customer.CustomerType, customer.CompanyContact, this
+                        customer.CompanyName, customer.CustomerType, customer.CompanyContact, this, false
                     );
                 }
                 else if (type == typeof(Employee))
                 {
                     Employee employee = (Employee)item;
-                    //bool success = controller.CreateEmployee();
+                    success &= controller.CreateEmployee(
+                        employee.FirstName, employee.LastName, employee.DateOfBirth, employee.EmployeeNumber,
+                        employee.Active, employee.Gender, employee.Salutation, employee.Title,
+                        employee.Address, employee.PostalCode, employee.PlaceOfResidence, employee.Nationality,
+                        employee.OasiNumber, employee.PrivatePhone, employee.BusinessPhone,
+                        employee.EmailAddress, employee.BusinessAddress, employee.Note,
+                        employee.Role, employee.Department, employee.DateOfJoining, employee.DateOfLeaving,
+                        employee.CadreLevel, employee.DegreeOfEmployment, this, false
+                    );
                 }
                 else if (type == typeof(Trainee))
                 {
                     Trainee trainee = (Trainee)item;
-                    //bool success = controller.CreateTrainee();
+                    success &= controller.CreateTrainee(
+                        trainee.FirstName, trainee.LastName, trainee.DateOfBirth, trainee.EmployeeNumber, 
+                        trainee.Active, trainee.Gender, trainee.Salutation, trainee.Title, 
+                        trainee.Address, trainee.PostalCode, trainee.PlaceOfResidence, trainee.Nationality, 
+                        trainee.OasiNumber, trainee.PrivatePhone, trainee.BusinessPhone, 
+                        trainee.EmailAddress, trainee.BusinessAddress, trainee.Note, 
+                        trainee.Role, trainee.Department, trainee.DateOfJoining, trainee.DateOfLeaving, 
+                        trainee.CadreLevel, trainee.DegreeOfEmployment, 
+                        trainee.CurrentApprenticeshipYear, trainee.YearsOfApprenticeship, this, false
+                    );
                 }
             }
 
             if (success)
             {
-                MessageBoxIcon icon = MessageBoxIcon.Information;
-                MessageBox.Show(this, "Imported contacts successfully.", "Success", MessageBoxButtons.OK, icon);
+                MessageBox.Show(this, "Imported contacts successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                CmdImportConfirm.Enabled = false;
+                DataGridViewImportGeneric.DataSource = null;
+                DataGridViewImportSpecific.DataSource = null;
             } else
             {
-                MessageBoxIcon icon = MessageBoxIcon.Error;
-                MessageBox.Show(this, "An error occurred while importing contacts.", "Error", MessageBoxButtons.OK, icon);
+                MessageBox.Show(this, "An error occurred while importing contacts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
