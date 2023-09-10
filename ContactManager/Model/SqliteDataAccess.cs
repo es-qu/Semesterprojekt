@@ -19,7 +19,7 @@ namespace ContactManager
             string sqlQuery = "INSERT INTO Person (Active, Gender, Salutation, Title, FirstName, LastName, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, Note) " +
                               "VALUES (@Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @Note)";
             cnn.Execute(sqlQuery, person);
-            return cnn.Query<int>("SELECT last_insert_rowid()").Single(); 
+            return cnn.Query<int>("SELECT last_insert_rowid()").Single();
         }
 
         public static void SaveCustomer(Customer customer)
@@ -132,14 +132,15 @@ namespace ContactManager
                 {
                     try
                     {
-                        int lastId_e = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
-                        cnn.Execute("INSERT INTO Employee (ID, Role, Department, EmployeeNumber, Dateofjoining, Dateofleaving, CadreLevel) VALUES (@Id, @Role, @Department, @EmployeeNumber, @DateOfJoining, @DateOfLeaving, @CadreLevel)",
+                        int lastId_e = InsertPerson(cnn, employee);
+                        cnn.Execute("INSERT INTO Employee (ID, Role, Department, DegreeOfEmployment,EmployeeNumber, Dateofjoining, Dateofleaving, CadreLevel) VALUES (@Id, @Role, @Department,@DegreeOfEmployment, @EmployeeNumber, @DateOfJoining, @DateOfLeaving, @CadreLevel)",
                             new
                             {
-                                Id = lastId_e + 1,
+                                Id = lastId_e,
                                 employee.Role,
                                 employee.Department,
                                 employee.EmployeeNumber,
+                                employee.DegreeOfEmployment,
                                 employee.DateOfJoining,
                                 employee.DateOfLeaving,
                                 employee.CadreLevel
@@ -162,8 +163,8 @@ namespace ContactManager
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var sqlQuery = @"INSERT INTO LogTable 
-        (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentAppYear, YearOfApp,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
-        VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentAppYear, @YearOfApp,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
+                (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
+                VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
                 cnn.Execute(sqlQuery, log);
             }
         }

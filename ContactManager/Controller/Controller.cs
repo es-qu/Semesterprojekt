@@ -58,6 +58,7 @@ namespace ContactManager
         {
             Trainee t = new Trainee
             {
+               
                 FirstName = trainee.FirstName,
                 LastName = trainee.LastName,
                 Gender = trainee.Gender,
@@ -107,6 +108,7 @@ namespace ContactManager
         {
             Customer c = new Customer
             {
+                Active = customer.Active,
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
                 Gender = customer.Gender,
@@ -147,8 +149,8 @@ namespace ContactManager
 
         public void Log(LogTable log)
         {
-            log.OperationSuccessful = true;
-            log.DeletionSuccessful = false;
+            log.OperationSuccessful = "";
+            log.DeletionSuccessful = "";
 
             SqliteDataAccess.SaveLog(log);
         }

@@ -90,9 +90,15 @@ namespace ContactManager
             isEditMode = false;
 
             // Clear ComboBoxes
-            CmbCreateSalutation.SelectedItem = null;
-            CmbCreateNationality.SelectedItem = null;
-            CmbCreateCustomerType.SelectedItem = null;
+            CmbCreateSalutation.SelectedIndex = -1;
+            CmbCreateSalutation.Refresh();
+
+            CmbCreateNationality.SelectedIndex = -1;
+            CmbCreateNationality.Refresh();
+
+            CmbCreateCustomerType.SelectedIndex = -1;
+            CmbCreateCustomerType.Refresh();
+
 
             // Clear TextBoxes
             TxtCreateTitle.Clear();
@@ -129,6 +135,7 @@ namespace ContactManager
             RadCreateOther.Checked = false;
             RadCreateCustomer.Checked = false;
             RadCreateCustomer.Enabled = true;
+            RadCreateEmployee.Enabled = true;
             RadCreateEmployee.Checked = false;
 
         }
@@ -296,7 +303,7 @@ namespace ContactManager
                 CompanyContact = TxtCreateCompanyContact.Text,
                 CurrentApprenticeshipYear = NumCreateCurrentAppYear.Value.ToString("yyyy-MM-dd"),
                 YearsOfApprenticeship = NumCreateYearOfApp.Value.ToString("yyyy-MM-dd"),
-                CustomerNumber  = TxtCreateCustomerNumber.Text,
+                CustomerNumber = TxtCreateCustomerNumber.Text,
                 EmployeeNumber = TxtCreateEmployeeNumber.Text
             };
 
@@ -649,7 +656,7 @@ namespace ContactManager
         //Closes the Create Window when the Button CmdCreateCancel is clicked
         private void CmdCreateCancel_Click(object sender, EventArgs e)
         {
-            this.Close();  
+            this.Close();
         }
 
 
@@ -1115,9 +1122,9 @@ namespace ContactManager
                             break;
                     }
 
-                    foreach(var item in CmbCreateSalutation.Items)
+                    foreach (var item in CmbCreateSalutation.Items)
                     {
-                        if(item.ToString() == contact.Salutation) CmbCreateSalutation.SelectedItem = item;
+                        if (item.ToString() == contact.Salutation) CmbCreateSalutation.SelectedItem = item;
                     }
                     TxtCreateTitle.Text = contact.Title;
                     TxtCreateFirstName.Text = contact.FirstName;
@@ -1148,7 +1155,7 @@ namespace ContactManager
                         TxtCreateCustomerNumber.Text = customer.CustomerNumber;
                         foreach (var item in CmbCreateCustomerType.Items)
                         {
-                            if(item.ToString() == customer.CustomerType) CmbCreateCustomerType.SelectedItem = item;
+                            if (item.ToString() == customer.CustomerType) CmbCreateCustomerType.SelectedItem = item;
                         }
                         TxtCreateCompanyName.Text = customer.CompanyName;
                         TxtCreateCompanyContact.Text = customer.CompanyContact;
@@ -1160,19 +1167,26 @@ namespace ContactManager
                         TxtCreateEmployeeNumber.Text = employee.EmployeeNumber;
                         NumCreateDegreeOfEmployment.Value = Convert.ToInt32(employee.DegreeOfEmployment);
                         TxtCreateDepartement.Text = employee.Department;
+                        TxtCreateRole.Text = employee.Role;
                         NumCadreLevel.Value = Convert.ToInt32(employee.CadreLevel);
                         DatCreateDateOfJoining.Text = employee.DateOfJoining;
                         DatCreateDateOfLeaving.Text = employee.DateOfLeaving;
-                    
-                        if (type == typeof(Trainee))
-                        {
-                            Trainee trainee = (Trainee)contact;
-                            RadCreateEmployee.Checked = true;
-                            ChkCreateTrainee.Checked = true;
-                            NumCreateCurrentAppYear.Value = Convert.ToInt32(trainee.CurrentApprenticeshipYear);
-                            NumCreateYearOfApp.Value = Convert.ToInt32(trainee.YearsOfApprenticeship);
-                        }
                     }
+                    else if (type == typeof(Trainee))
+                    {
+                        Trainee trainee = (Trainee)contact;
+                        RadCreateEmployee.Checked = true;
+                        ChkCreateTrainee.Checked = true;
+                        NumCreateDegreeOfEmployment.Value = Convert.ToInt32(trainee.DegreeOfEmployment);
+                        TxtCreateDepartement.Text = trainee.Department;
+                        TxtCreateRole.Text = trainee.Role;
+                        NumCadreLevel.Value = Convert.ToInt32(trainee.CadreLevel);
+                        DatCreateDateOfJoining.Text = trainee.DateOfJoining;
+                        DatCreateDateOfLeaving.Text = trainee.DateOfLeaving;
+                        NumCreateCurrentAppYear.Value = Convert.ToInt32(trainee.CurrentApprenticeshipYear);
+                        NumCreateYearOfApp.Value = Convert.ToInt32(trainee.YearsOfApprenticeship);
+                    }
+
                 }
                 else
                 {
@@ -1414,7 +1428,8 @@ namespace ContactManager
 
                 ProgrBarImport.Value = 0;
                 ProgrBarImport.Visible = false;
-            } else
+            }
+            else
             {
                 MessageBox.Show(this, "An error occurred while importing contacts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 

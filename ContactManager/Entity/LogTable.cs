@@ -30,7 +30,7 @@ namespace ContactManager.Entity
 
         // Additional properties for logging
         public string EventType { get; set; }
-        public bool OperationSuccessful { get; set; }
-        public bool DeletionSuccessful { get; set; }
+        public String OperationSuccessful { get; set; }
+        public String DeletionSuccessful { get; set; }
     }
 }
