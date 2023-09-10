@@ -691,8 +691,9 @@ namespace ContactManager
                         LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.PrivatePhone;
                         LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.BusinessPhone;
                         LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.BusinessAddress;
+                        TxtSearchNote.Text = clickedPerson.Note;
 
-                        // Display type specific informations
+                        // Clear type specific informations
 
                         LblSearchPreviewNumberOutput.Text = "-";
                         LblSearchPreviewTypeOutput.Text = "-";
@@ -789,6 +790,7 @@ namespace ContactManager
                     LblSearchPreviewPrivatePhoneOutput.Text = "-";
                     LblSearchPreviewBusinessPhoneOutput.Text = "-";
                     LblSearchPreviewBusinessAddressOutput.Text = "-";
+                    TxtSearchNote.Text = "-";
 
                     LblSearchPreviewNumberOutput.Text = "-";
                     LblSearchPreviewTypeOutput.Text = "-";
@@ -943,28 +945,26 @@ namespace ContactManager
                             break;
 
                         default:
-                            RadCreateFemale.Checked = false;
+                            RadCreateFemale.Checked = true;
                             RadCreateMale.Checked = false;
                             RadCreateOther.Checked = false;
                             break;
                     }
 
-                    /**************** HIER MUSS NOCH SALUTATION FOLGEN *********************
-                    Funktioniert das mit .Text sonst muss man nach Inhalt vom Index der Combobox Liste --> Testergebnis: erst nach hover wird aktualisiert
-                    CmbCreateSalutation.Text = contact.Salutation;
-                    ******************/
-
+                    foreach(var item in CmbCreateSalutation.Items)
+                    {
+                        if(item.ToString() == contact.Salutation) CmbCreateSalutation.SelectedItem = item;
+                    }
                     TxtCreateTitle.Text = contact.Title;
                     TxtCreateFirstName.Text = contact.FirstName;
                     TxtCreateLastName.Text = contact.LastName;
                     TxtCreateAddress.Text = contact.Address;
                     TxtCreatePlz.Text = contact.PostalCode;
                     TxtCreatePlaceOfResidence.Text = contact.PlaceOfResidence;
-
-                    /***************** Funktioniert das mit .Text wirklich? --> Testergebnis: erst nach hover wird aktualisiert*******
-                    CmbCreateNationality.Text = contact.nationality;
-                    *****/
-
+                    foreach (var item in CmbCreateNationality.Items)
+                    {
+                        if (item.ToString() == contact.Nationality) CmbCreateNationality.SelectedItem = item;
+                    }
                     TxtCreateOasiNr.Text = contact.OasiNumber;
                     DatCreateBirthday.Text = contact.DateOfBirth;
                     TxtCreatePrivatePhone.Text = contact.PrivatePhone;
@@ -972,48 +972,42 @@ namespace ContactManager
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
                     TxtCreateBusinessAddress.Text = contact.BusinessAddress;
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
-
+                    TxtCreateNote.Text = contact.Note;
 
                     // Fill out specific fields
                     Type type = contact.GetType();
 
                     if (type == typeof(Customer))
                     {
-                        contact = (Customer)contact;
+                        Customer customer = (Customer)contact;
                         RadCreateCustomer.Checked = true;
-                        // Hier kommen die Customer Angabe --> 
-                        // TxtCreateCustomerNumber.Text = ;
-                        // CmbCreateCustomerType.Text = ; --> evtl. hier auch per Index Combobox List und nicht per Text möglich
-                        // TxtCreateCompanyName.Text = ;
-                        // TxtCreateCompanyContact.Text = ;
-
+                        TxtCreateCustomerNumber.Text = customer.CustomerNumber;
+                        foreach (var item in CmbCreateCustomerType.Items)
+                        {
+                            if(item.ToString() == customer.CustomerType) CmbCreateCustomerType.SelectedItem = item;
+                        }
+                        TxtCreateCompanyName.Text = customer.CompanyName;
+                        TxtCreateCompanyContact.Text = customer.CompanyContact;
                     }
                     else if (type == typeof(Employee))
                     {
-                        contact = (Employee)contact;
+                        Employee employee = (Employee)contact;
                         RadCreateEmployee.Checked = true;
-                        // Hier kommt die Employee Angabe -->
-                        // TxtCreateEmployeeNumber.Text = ;
-                        // NumCreateDegreeOfEmployment.Value = ;
-                        // TxtCreateDepartement.Text = ;
-                        // NumCadreLevel.Value = ;
-                        // DatCreateDateOfJoining.Text = ;
-                        // DatCreateDateOfLeaving.Text = ;
-                    }
-                    else if (type == typeof(Trainee))
-                    {
-                        contact = (Trainee)contact;
-                        RadCreateEmployee.Checked = true;
-                        ChkCreateTrainee.Checked = true;
-                        // Hier kommt die Employee(Trainiee) Number --> 
-                        // TxtCreateEmployeeNumber.Text = ;
-                        // NumCreateDegreeOfEmployment.Value = ;
-                        // TxtCreateDepartement.Text = ;
-                        // NumCadreLevel.Value = ;
-                        // DatCreateDateOfJoining.Text = ;
-                        // DatCreateDateOfLeaving.Text = ;
-                        // NumCreateCurrentAppYear.Value = ;
-                        // NumCreateYearOfApp.Value = ;
+                        TxtCreateEmployeeNumber.Text = employee.EmployeeNumber;
+                        NumCreateDegreeOfEmployment.Value = Convert.ToInt32(employee.DegreeOfEmployment);
+                        TxtCreateDepartement.Text = employee.Department;
+                        NumCadreLevel.Value = Convert.ToInt32(employee.CadreLevel);
+                        DatCreateDateOfJoining.Text = employee.DateOfJoining;
+                        DatCreateDateOfLeaving.Text = employee.DateOfLeaving;
+                    
+                        if (type == typeof(Trainee))
+                        {
+                            Trainee trainee = (Trainee)contact;
+                            RadCreateEmployee.Checked = true;
+                            ChkCreateTrainee.Checked = true;
+                            NumCreateCurrentAppYear.Value = Convert.ToInt32(trainee.CurrentApprenticeshipYear);
+                            NumCreateYearOfApp.Value = Convert.ToInt32(trainee.YearsOfApprenticeship);
+                        }
                     }
                 }
                 else
