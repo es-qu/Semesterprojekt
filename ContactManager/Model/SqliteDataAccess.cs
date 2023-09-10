@@ -24,49 +24,46 @@ namespace ContactManager
         //    }
         //}
 
+        public static int InsertPerson(IDbConnection cnn, Person person)
+        {
+            string sqlQuery = "INSERT INTO Person (status, gender, Salutation, title, firstName, lastName, street, postalCode, placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note) " +
+                              "VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)";
+            cnn.Execute(sqlQuery, person);
+            return cnn.Query<int>("SELECT last_insert_rowid()").Single(); 
+        }
+
         public static void SaveCustomer(Customer customer)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-
-                cnn.Execute("INSERT INTO Person (status , gender, Salutation, title, firstName, lastName, street, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note)  " +
-                    " VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
-                    new
-                    {
-
-                        customer.status,
-                        customer.gender,
-                        customer.Salutation,
-                        customer.title,
-                        customer.firstName,
-                        customer.lastName,
-                        customer.street,
-                        customer.postalCode,
-                        customer.placeOfResidence,
-                        customer.nationality,
-                        customer.socialSecurityNumber,
-                        customer.dateOfBirth,
-                        customer.phoneNumberPrivat,
-                        customer.email,
-                        customer.phoneNumberBusiness,
-                        customer.EmailBusiness,
-                        customer.note
-                    });
-
-                int lastId = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
-                cnn.Execute("INSERT INTO Customer (ID,CompanyName, CustomerType,CompanyContact,CustomerNumber) " +
-                    "VALUES (@Id, @CompanyName, @CustomerType,@CompanyContact,@CustomerNumber)",
-                new
+                cnn.Open();
+                using (var transaction = cnn.BeginTransaction())
                 {
-                    Id = lastId,
-                    customer.CompanyName,
-                    customer.CustomerType,
-                    customer.CompanyContact,
-                    customer.CustomerNumber
-                });
-            }
+                    try
+                    {
+                        int personId = InsertPerson(cnn, customer);
+                        cnn.Execute("INSERT INTO Customer (ID,CompanyName, CustomerType,CompanyContact,CustomerNumber) VALUES (@Id, @CompanyName, @CustomerType,@CompanyContact,@CustomerNumber)",
+                            new
+                            {
+                                Id = personId,
+                                customer.CompanyName,
+                                customer.CustomerType,
+                                customer.CompanyContact,
+                                customer.CustomerNumber
+                            });
 
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
         }
+
+
 
 
         private static string LoadConnectionString(String id = "Default")
@@ -78,70 +75,57 @@ namespace ContactManager
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                // Insert into Person, Employee and Trainee tables
-                var TraineeId = cnn.Query<int>("SELECT ID FROM Employee WHERE EmployeeNumber = @EmployeeNumber", new { EmployeeNumber = trainee.EmployeeNumber }).FirstOrDefault();
-                if (TraineeId == 0)
+                cnn.Open();
+                using (var transaction = cnn.BeginTransaction())
                 {
-                    int rowsAffected = cnn.Execute(
-                   "INSERT INTO Person (status, gender, Salutation, title, firstName, lastName, street, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note)  " +
-                   " VALUES (@status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
-                   new
-                   {
-                       trainee.status,
-                       trainee.gender,
-                       trainee.Salutation,
-                       trainee.title,
-                       trainee.firstName,
-                       trainee.lastName,
-                       trainee.street,
-                       trainee.postalCode,
-                       trainee.placeOfResidence,
-                       trainee.nationality,
-                       trainee.socialSecurityNumber,
-                       trainee.dateOfBirth,
-                       trainee.phoneNumberPrivat,
-                       trainee.EmailBusiness,
-                       trainee.phoneNumberBusiness,
-                       trainee.email,
-                       trainee.note
-                   });
-                    if (rowsAffected > 0)
+                    try
                     {
-                        int lastId = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
-                        cnn.Execute(
-                            "INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
-                            new
-                            {
-                                Id = lastId,
-                                trainee.Position,
-                                trainee.Department,
-                                trainee.EmployeeNumber,
-                                trainee.dateofjoining,
-                                trainee.dateofleaving,
-                                trainee.NumCadreLevel
-                            });
-                        cnn.Execute(
-                            "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
-                            new
-                            {
-                                Id = lastId,
-                                trainee.TrainingStartDate,
-                                trainee.TrainingEndDate
-                            });
-                    }
-
-                }
-                else
-                {
-                    // Only insert into Trainee table...
-                    cnn.Execute(
-                        "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
-                        new
+                        var TraineeId = cnn.Query<int>("SELECT ID FROM Employee WHERE EmployeeNumber = @EmployeeNumber", new { EmployeeNumber = trainee.EmployeeNumber }).FirstOrDefault();
+                        if (TraineeId == 0)
                         {
-                            Id = TraineeId,
-                            trainee.TrainingStartDate,
-                            trainee.TrainingEndDate
-                        });
+                            int lastId = InsertPerson(cnn, trainee);
+
+                            cnn.Execute(
+                                "INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
+                                new
+                                {
+                                    Id = lastId,
+                                    trainee.Position,
+                                    trainee.Department,
+                                    trainee.EmployeeNumber,
+                                    trainee.dateofjoining,
+                                    trainee.dateofleaving,
+                                    trainee.NumCadreLevel
+                                });
+                            cnn.Execute(
+                                "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
+                                new
+                                {
+                                    Id = lastId,
+                                    trainee.TrainingStartDate,
+                                    trainee.TrainingEndDate
+                                });
+                        }
+                        else
+                        {
+                            // Only insert into Trainee table...
+                            cnn.Execute(
+                                "INSERT INTO Trainee (ID, TrainingStartDate, TrainingEndDate) VALUES (@Id, @TrainingStartDate, @TrainingEndDate)",
+                                new
+                                {
+                                    Id = TraineeId,
+                                    trainee.TrainingStartDate,
+                                    trainee.TrainingEndDate
+                                });
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
                 }
             }
         }
@@ -152,42 +136,32 @@ namespace ContactManager
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("INSERT INTO Person (status , gender, Salutation, title, firstName, lastName, street, postalCode,placeOfResidence, nationality, socialSecurityNumber, dateOfBirth, phoneNumberPrivat, EmailBusiness, phoneNumberBusiness, email, Note)  " +
-               " VALUES ( @status, @gender, @Salutation, @title, @firstName, @lastName, @street, @postalCode,  @placeOfResidence, @nationality, @socialSecurityNumber, @dateOfBirth, @phoneNumberPrivat,  @EmailBusiness, @phoneNumberBusiness, @email, @note)",
-                new
+                cnn.Open();
+                using (var transaction = cnn.BeginTransaction())
                 {
+                    try
+                    {
+                        int lastId_e = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
+                        cnn.Execute("INSERT INTO Employee (ID, Position, Department, EmployeeNumber, dateofjoining, dateofleaving, NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber, @dateofjoining, @dateofleaving, @NumCadreLevel)",
+                            new
+                            {
+                                Id = lastId_e + 1,
+                                employee.Position,
+                                employee.Department,
+                                employee.EmployeeNumber,
+                                employee.dateofjoining,
+                                employee.dateofleaving,
+                                employee.NumCadreLevel
+                            });
 
-                    employee.status,
-                    employee.gender,
-                    employee.Salutation,
-                    employee.title,
-                    employee.firstName,
-                    employee.lastName,
-                    employee.street,
-                    employee.postalCode,
-                    employee.placeOfResidence,
-                    employee.nationality,
-                    employee.socialSecurityNumber,
-                    employee.dateOfBirth,
-                    employee.phoneNumberPrivat,
-                    employee.email,
-                    employee.phoneNumberBusiness,
-                    employee.EmailBusiness,
-                    employee.note
-                });
-
-                int lastId_e = cnn.Query<int>("SELECT IFNULL(MAX(ID), 0) FROM Person").Single();
-                cnn.Execute("INSERT INTO Employee (ID, Position, Department, EmployeeNumber,dateofjoining,dateofleaving,NumCadreLevel) VALUES (@Id, @Position, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@NumCadreLevel)",
-                new
-                {
-                    Id = lastId_e,
-                    employee.Position,
-                    employee.Department,
-                    employee.EmployeeNumber,
-                    employee.dateofjoining,
-                    employee.dateofleaving,
-                    employee.NumCadreLevel
-                });
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
             }
         }
 

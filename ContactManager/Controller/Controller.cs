@@ -100,6 +100,7 @@ namespace ContactManager
         {
             Customer c = new Customer
             {
+                status = customer.status,
                 firstName = customer.firstName,
                 lastName = customer.lastName,
                 gender = customer.gender,
@@ -116,6 +117,7 @@ namespace ContactManager
                 email = customer.email,
                 EmailBusiness = customer.EmailBusiness,
                 note = customer.note,
+                CustomerNumber = customer.CustomerNumber,
                 CompanyName = customer.CompanyName,
                 CustomerType = customer.CustomerType,
                 CompanyContact = customer.CompanyContact
