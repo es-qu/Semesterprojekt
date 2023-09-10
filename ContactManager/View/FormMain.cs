@@ -140,6 +140,8 @@ namespace ContactManager
 
         }
 
+
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             ResetFormState();
@@ -1199,10 +1201,18 @@ namespace ContactManager
         {
             if (DataGridViewSearchResult.SelectedCells != null)
             {
-                if (DataGridViewSearchResult.SelectedCells.Count == 1)
+                var selectedContact = searchResults[DataGridViewSearchResult.SelectedCells[0].RowIndex];
+
+                // Ask the user to confirm the deletion
+                DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete contact {TxtCreateFirstName.Text} {TxtCreateLastName.Text}?",
+                                                            "Confirm Deletion",
+                                                            MessageBoxButtons.YesNo,
+                                                            MessageBoxIcon.Question);
+
+                if (dialogResult == DialogResult.Yes)
                 {
+                    // User clicked 'Yes', proceed with the deletion
                     bool deletionSuccessful = false;
-                    var selectedContact = searchResults[DataGridViewSearchResult.SelectedCells[0].RowIndex];
 
                     if (selectedContact.GetType() == typeof(Customer))
                     {
@@ -1216,19 +1226,35 @@ namespace ContactManager
                     if (deletionSuccessful)
                     {
                         // Deletion was successful. Show a success message.
-                        MessageBox.Show($"Contact {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Customer Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"Contact {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.",
+                                        "Customer Deletion Successful",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+
+                        // Refresh the DataGridView 
+                        searchResults.Remove(selectedContact);
+                        DataGridViewSearchResult.DataSource = null;
+                        DataGridViewSearchResult.DataSource = searchResults;
                     }
                     else
                     {
                         // Deletion failed. Show an error message.
-                        MessageBox.Show("Failed to delete the contact. Please check try again.", "Contact Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Failed to delete the contact. Please check try again.",
+                                        "Contact Deletion Failed",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
                     }
-
-                    CmdSearchExec_Click(sender, e);
                 }
-                else MessageBox.Show("Please select a contact to delete.");
+                else
+                {
+                    // User clicked 'No', close the dialog popup
+                    this.Close();
+                }
             }
-            else MessageBox.Show("Please select a contact to delete.");
+            else
+            {
+                MessageBox.Show("Please select a contact to delete.");
+            }
         }
 
         private void UpdateEmployeeNumber()
@@ -1272,61 +1298,69 @@ namespace ContactManager
 
         private void CmdCreateDeletePerson_Click(object sender, EventArgs e)
         {
-            if (RadCreateCustomer.Checked)
-            {
-                bool deletionSuccessful = SqliteDataAccess.DeleteCustomer(TxtCreateCustomerNumber.Text);
-                if (deletionSuccessful)
-                {
-                    // Deletion was successful. Show a success message.
-                    MessageBox.Show($"Customer {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Customer Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    // Deletion failed. Show an error message.
-                    MessageBox.Show("Failed to delete the Customer. Please check the Customer number and try again.", "Customer Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete {TxtCreateFirstName.Text} {TxtCreateLastName.Text}?",
+                                                        "Confirm Deletion",
+                                                        MessageBoxButtons.YesNo,
+                                                        MessageBoxIcon.Question);
 
-                // Close the current form
-                this.Close();
-            }
-            else if (RadCreateEmployee.Checked)
+            if (dialogResult == DialogResult.Yes)
             {
-                if (ChkCreateTrainee.Checked)
+                // User confirmed the deletion
+                if (RadCreateCustomer.Checked)
                 {
-                    bool deletionSuccessful = SqliteDataAccess.DeleteEmployee(TxtCreateEmployeeNumber.Text);
+                    bool deletionSuccessful = SqliteDataAccess.DeleteCustomer(TxtCreateCustomerNumber.Text);
                     if (deletionSuccessful)
                     {
                         // Deletion was successful. Show a success message.
-                        MessageBox.Show($"Trainee {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Trainee Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"Customer {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Customer Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         // Deletion failed. Show an error message.
-                        MessageBox.Show("Failed to delete the Trainee. Please check the employee number and try again.", "Trainee Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Failed to delete the Customer. Please check the Customer number and try again.", "Customer Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     // Close the current form
                     this.Close();
                 }
-                else
+                else if (RadCreateEmployee.Checked)
                 {
-                    bool deletionSuccessful = SqliteDataAccess.DeleteEmployee(TxtCreateEmployeeNumber.Text);
-                    if (deletionSuccessful)
+                    if (ChkCreateTrainee.Checked)
                     {
-                        // Deletion was successful. Show a success message.
-                        MessageBox.Show($"Employee {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Employee Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        bool deletionSuccessful = SqliteDataAccess.DeleteEmployee(TxtCreateEmployeeNumber.Text);
+                        if (deletionSuccessful)
+                        {
+                            // Deletion was successful. Show a success message.
+                            MessageBox.Show($"Trainee {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Trainee Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            // Deletion failed. Show an error message.
+                            MessageBox.Show("Failed to delete the Trainee. Please check the employee number and try again.", "Trainee Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        // Close the current form
+                        this.Close();
                     }
                     else
                     {
-                        // Deletion failed. Show an error message.
-                        MessageBox.Show("Failed to delete the employee. Please check the employee number and try again.", "Employee Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                        bool deletionSuccessful = SqliteDataAccess.DeleteEmployee(TxtCreateEmployeeNumber.Text);
+                        if (deletionSuccessful)
+                        {
+                            // Deletion was successful. Show a success message.
+                            MessageBox.Show($"Employee {TxtCreateFirstName.Text} {TxtCreateLastName.Text} has been deleted successfully.", "Employee Deletion Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            // Deletion failed. Show an error message.
+                            MessageBox.Show("Failed to delete the employee. Please check the employee number and try again.", "Employee Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
 
-                    // Close the current form
-                    this.Close();
+                        // Close the current form
+                        this.Close();
+                    }
                 }
             }
-
         }
 
         private void CmdImportOpenFile_Click(object sender, EventArgs e)
@@ -1680,6 +1714,11 @@ namespace ContactManager
         {
             Form menu = new FormMenu();
             menu.Show();
+        }
+
+        private void CmdSearchNoteClear_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

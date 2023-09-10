@@ -884,6 +884,7 @@ namespace ContactManager
             this.CmdSearchNoteClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchNoteClear.UseAccentColor = false;
             this.CmdSearchNoteClear.UseVisualStyleBackColor = true;
+            this.CmdSearchNoteClear.Click += new System.EventHandler(this.CmdSearchNoteClear_Click);
             // 
             // TxtSearchNote
             // 
