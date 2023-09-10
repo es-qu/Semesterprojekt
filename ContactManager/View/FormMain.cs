@@ -1354,6 +1354,10 @@ namespace ContactManager
 
         private void CmdImportConfirm_Click(object sender, EventArgs e)
         {
+            ProgrBarImport.Value = 0;
+            ProgrBarImport.Visible = true;
+            int step = 1000 / importContent.Count;
+
             Controller controller = new Controller();
             bool success = true;
 
@@ -1371,6 +1375,8 @@ namespace ContactManager
                         customer.BusinessAddress, customer.EmailAddress, customer.Note,
                         customer.CompanyName, customer.CustomerType, customer.CompanyContact, this, false
                     );
+
+                    ProgrBarImport.Value += step;
                 }
                 else if (type == typeof(Employee))
                 {
@@ -1384,6 +1390,8 @@ namespace ContactManager
                         employee.Role, employee.Department, employee.DateOfJoining, employee.DateOfLeaving,
                         employee.CadreLevel, employee.DegreeOfEmployment, this, false
                     );
+
+                    ProgrBarImport.Value += step;
                 }
                 else if (type == typeof(Trainee))
                 {
@@ -1398,6 +1406,8 @@ namespace ContactManager
                         trainee.CadreLevel, trainee.DegreeOfEmployment, 
                         trainee.CurrentApprenticeshipYear, trainee.YearsOfApprenticeship, this, false
                     );
+
+                    ProgrBarImport.Value += step;
                 }
             }
 
@@ -1408,9 +1418,15 @@ namespace ContactManager
                 CmdImportConfirm.Enabled = false;
                 DataGridViewImportGeneric.DataSource = null;
                 DataGridViewImportSpecific.DataSource = null;
+
+                ProgrBarImport.Value = 0;
+                ProgrBarImport.Visible = false;
             } else
             {
                 MessageBox.Show(this, "An error occurred while importing contacts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                ProgrBarImport.Value = 0;
+                ProgrBarImport.Visible = false;
             }
         }
 
