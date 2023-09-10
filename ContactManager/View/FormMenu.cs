@@ -51,6 +51,7 @@ namespace ContactManager
         {
             Form main = new FormMain(tab);
             main.Show();
+            this.Close();
         }
 
         private void Controls_KeyDown(object sender, KeyEventArgs e)

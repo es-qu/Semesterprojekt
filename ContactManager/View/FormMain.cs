@@ -485,7 +485,7 @@ namespace ContactManager
         //Closes the Create Window when the Button CmdCreateCancel is clicked
         private void CmdCreateCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Close();  
         }
 
 
@@ -1501,6 +1501,12 @@ namespace ContactManager
         private void CmdCreateNoteClear_Click(object sender, EventArgs e)
         {
             TxtCreateNote.Text = "";
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Form menu = new FormMenu();
+            menu.Show();
         }
     }
 }
