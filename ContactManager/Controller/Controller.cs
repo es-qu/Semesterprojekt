@@ -1,138 +1,147 @@
-﻿using ContactManager.Model;
+﻿using ContactManager.Entity;
+using ContactManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace ContactManager
 {
     internal class Controller
     {
-        public bool CreateEmployee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int isActive, string gender, string salutation, string title,
-                                    string address, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
-                                     string phoneBuiness, string email, string businessAddress, string note, string role, string department, string dateOfJoining, string dateOfLeaving, string cadreLevel, string degreeOfEmployment, Form form, bool showSuccessMessage)
+        public Boolean CreateEmployee(Employee employee, Form form, bool isUpdate = false)
         {
             Employee e = new Employee
             {
-                Active = isActive,
-                FirstName = firstName,
-                LastName = lastName,
-                DateOfBirth = dateOfBirth,
-                EmployeeNumber = employeeNumber,
-                Gender = gender,
-                Salutation = salutation,
-                Title = title,
-                Address = address,
-                PostalCode = postalCode,
-                PlaceOfResidence = placeOfResidence,
-                Nationality = nationality,
-                OasiNumber = oasiNumber,
-                PrivatePhone = phonePrivate,
-                BusinessPhone = phoneBuiness,
-                EmailAddress = email,
-                BusinessAddress = businessAddress,
-                Note = note,
-                Role = role,
-                Department = department,
-                CadreLevel = cadreLevel,
-                DegreeOfEmployment = degreeOfEmployment,
-                DateOfJoining = dateOfJoining,
-                DateOfLeaving = dateOfLeaving
+                firstName = employee.firstName,
+                lastName = employee.lastName,
+                gender = employee.gender,
+                Salutation = employee.Salutation,
+                title = employee.title,
+                street = employee.street,
+                postalCode = employee.postalCode,
+                placeOfResidence = employee.placeOfResidence,
+                nationality = employee.nationality,
+                socialSecurityNumber = employee.socialSecurityNumber,
+                dateOfBirth = employee.dateOfBirth,
+                phoneNumberPrivat = employee.phoneNumberPrivat,
+                phoneNumberBusiness = employee.phoneNumberBusiness,
+                email = employee.email,
+                EmailBusiness = employee.EmailBusiness,
+                note = employee.note,
+                EmployeeNumber = employee.EmployeeNumber,
+                Position = employee.Position,
+                Department = employee.Department,
+                status = employee.status,
+                dateofjoining = employee.dateofjoining,
+                dateofleaving = employee.dateofleaving,
+                NumCadreLevel = employee.NumCadreLevel,
+
             };
 
             SqliteDataAccess.SaveEmployee(e);
 
-            // Show confirmation message
-            if (showSuccessMessage)
-            {
-                MessageBox.Show($"Employee {e.FirstName} {e.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            string message = isUpdate
+        ? $"Employee {e.firstName} {e.lastName} has been updated."
+        : $"Employee {e.firstName} {e.lastName} has been created.";
+            MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
 
-        public bool CreateTrainee(string firstName, string lastName, string dateOfBirth, string employeeNumber, int isActive, string gender, string salutaion, string title,
-                                    string address, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
-                                     string phoneBuiness, string email, string businessAddress, string note, string role, string department, string dateOfJoining, string dateOfLeaving, string cadreLevel, string degreeOfEmployment,
-                                    string currentApprenticeshipYear, string yearsOfApprenticeship, Form form, bool showSuccessMessage)
+        public Boolean CreateTrainee(Trainee trainee, Form form, bool isUpdate = false)
         {
             Trainee t = new Trainee
             {
-                Active = isActive,
-                FirstName = firstName,
-                LastName = lastName,
-                DateOfBirth = dateOfBirth,
-                EmployeeNumber = employeeNumber,
-                Gender = gender,
-                Salutation = salutaion,
-                Title = title,
-                Address = address,
-                PostalCode = postalCode,
-                PlaceOfResidence = placeOfResidence,
-                Nationality = nationality,
-                OasiNumber = oasiNumber,
-                PrivatePhone = phonePrivate,
-                BusinessPhone = phoneBuiness,
-                EmailAddress = email,
-                BusinessAddress = businessAddress,
-                Note = note,
-                Role = role,
-                Department = department,
-                CadreLevel = cadreLevel,
-                DegreeOfEmployment = degreeOfEmployment,
-                DateOfJoining = dateOfJoining,
-                DateOfLeaving = dateOfLeaving,
-                CurrentApprenticeshipYear = currentApprenticeshipYear,
-                YearsOfApprenticeship = yearsOfApprenticeship
+                firstName = trainee.firstName,
+                lastName = trainee.lastName,
+                gender = trainee.gender,
+                Salutation = trainee.Salutation,
+                title = trainee.title,
+                street = trainee.street,
+                postalCode = trainee.postalCode,
+                placeOfResidence = trainee.placeOfResidence,
+                nationality = trainee.nationality,
+                socialSecurityNumber =   trainee.socialSecurityNumber,
+                dateOfBirth = trainee.dateOfBirth,
+                phoneNumberPrivat =  trainee.phoneNumberPrivat,
+                phoneNumberBusiness = trainee.phoneNumberBusiness,
+                email = trainee.email,
+                EmailBusiness = trainee.EmailBusiness,
+                note = trainee.note,
+                EmployeeNumber = trainee.EmployeeNumber,
+                Position = trainee.Position,
+                Department = trainee.Department,
+                status = trainee.status,
+                dateofjoining = trainee.dateofjoining,
+                dateofleaving = trainee.dateofleaving,
+                NumCadreLevel = trainee.NumCadreLevel,
+                TrainingStartDate = trainee.TrainingStartDate,
+                TrainingEndDate = trainee.TrainingEndDate
+
             };
+
 
             SqliteDataAccess.SaveTrainee(t);
             // Show confirmation message
-            if (showSuccessMessage)
-            {
-                MessageBox.Show($"Trainee {t.FirstName} {t.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            string message = isUpdate
+        ? $"Trainee {t.firstName} {t.lastName} has been updated."
+        : $"Trainee {t.firstName} {t.lastName} has been created.";
+            MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
 
-        public Boolean CreateCustomer(string firstName, string lastName, string dateOfBirth, string customerNumber, int isActive, string gender, string salutation, string title,
-                                    string address, string postalCode, string placeOfResidence, string nationality, string oasiNumber, string phonePrivate,
-                                     string phoneBuiness, string emailBusiness, string email, string note, string companyName, string customerType, string companyContact, Form form, bool showSuccessMessage)
+
+
+
+        public Boolean CreateCustomer(Customer customer, Form form, bool isUpdate = false)
         {
             Customer c = new Customer
             {
-                Active = isActive,
-                FirstName = firstName,
-                LastName = lastName,
-                DateOfBirth = dateOfBirth,
-                CustomerNumber = customerNumber,
-                Gender = gender,
-                Salutation = salutation,
-                Title = title,
-                Address = address,
-                PostalCode = postalCode,
-                PlaceOfResidence = placeOfResidence,
-                Nationality = nationality,
-                OasiNumber = oasiNumber,
-                PrivatePhone = phonePrivate,
-                BusinessPhone = phoneBuiness,
-                EmailAddress = email,
-                BusinessAddress = emailBusiness,
-                Note = note,
-                CompanyName = companyName,
-                CustomerType = customerType,
-                CompanyContact = companyContact
+                firstName = customer.firstName,
+                lastName = customer.lastName,
+                gender = customer.gender,
+                Salutation = customer.Salutation,
+                title = customer.title,
+                street = customer.street,
+                postalCode = customer.postalCode,
+                placeOfResidence = customer.placeOfResidence,
+                nationality = customer.nationality,
+                socialSecurityNumber = customer.socialSecurityNumber,
+                dateOfBirth = customer.dateOfBirth,
+                phoneNumberPrivat = customer.phoneNumberPrivat,
+                phoneNumberBusiness = customer.phoneNumberBusiness,
+                email = customer.email,
+                EmailBusiness = customer.EmailBusiness,
+                note = customer.note,
+                CompanyName = customer.CompanyName,
+                CustomerType = customer.CustomerType,
+                CompanyContact = customer.CompanyContact
 
             };
 
             SqliteDataAccess.SaveCustomer(c);
 
             // Show confirmation message
-            if(showSuccessMessage)
-            {
-                MessageBox.Show($"Customer {c.FirstName} {c.LastName} has been created.", "Employee Creation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            string message = isUpdate
+         ? $"Customer {c.firstName} {c.lastName} has been updated."
+         : $"Customer {c.firstName} {c.lastName} has been created.";
+            MessageBox.Show(message, "Operation Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             return true;
         }
+
+
+
+        public void Log(LogTable log)
+        {
+            log.OperationSuccessful = true;
+            log.DeletionSuccessful = false;
+
+            SqliteDataAccess.SaveLog(log);
+        }
+
+
+
 
         /// <summary>
         /// Check if the filters are set.
@@ -345,4 +354,5 @@ namespace ContactManager
             return res;
         }
     }
-}
+    }
+

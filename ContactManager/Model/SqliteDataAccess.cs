@@ -1,4 +1,5 @@
-﻿using ContactManager.Model;
+﻿using ContactManager.Entity;
+using ContactManager.Model;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -177,6 +178,18 @@ namespace ContactManager
                     employee.DateOfLeaving,
                     employee.CadreLevel
                 });
+            }
+        }
+
+
+        public static void SaveLog(LogTable log)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var sqlQuery = @"INSERT INTO LogTable 
+        (EventType, FirstName, LastName, Birthday, EmployeeNumber, CustomerNumber, IsPersonActive, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,CurrentAppYear, YearOfApp,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
+        VALUES (@EventType, @firstName, @lastName, @dateOfBirth, @EmployeeNumber, @CustomerNumber, @status, @gender, @Salutation, @title, @street, @postalCode, @placeOfResidence, @nationality, @socialSecurityNumber, @phoneNumberPrivat, @phoneNumberBusiness, @email, @EmailBusiness, @note, @Position, @Department, @dateofjoining, @dateofleaving, @NumCadreLevel,@TrainingStartDate, @TrainingEndDate,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
+                cnn.Execute(sqlQuery, log);
             }
         }
 

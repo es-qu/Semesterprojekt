@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ContactManager.View;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
@@ -39,6 +40,12 @@ namespace ContactManager
         private void CmdSearch_Click(object sender, EventArgs e)
         {
             OpenMainForm(1);
+        }
+
+        private void CmdImport_Click(object sender, EventArgs e)
+        {
+            Form formImport = new FormImport();
+            formImport.Show();
         }
 
         private void CmdImport_Click(object sender, EventArgs e)
@@ -76,5 +83,7 @@ namespace ContactManager
                     break;
             }
         }
+
+        
     }
 }
