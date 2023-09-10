@@ -10,12 +10,13 @@ namespace ContactManager.Entity
     {
 
         // Properties from Employee class
-        public string Position { get; set; }
+        public string Role { get; set; }
         public string Department { get; set; }
         public string EmployeeNumber { get; set; }
-        public string dateofjoining { get; set; }
-        public string dateofleaving { get; set; }
-        public string NumCadreLevel { get; set; }
+        public string DateOfJoining { get; set; }
+        public string DateOfLeaving { get; set; }
+        public string CadreLevel { get; set; }
+        public string DegreeOfEmployment { get; set; }
 
         // Properties from Customer class
         public string CompanyName { get; set; }
@@ -24,8 +25,8 @@ namespace ContactManager.Entity
         public string CustomerNumber { get; set; }
 
         // Properties from Trainee class
-        public string TrainingStartDate { get; set; }
-        public string TrainingEndDate { get; set; }
+        public string CurrentApprenticeshipYear { get; set; }
+        public string YearsOfApprenticeship { get; set; }
 
         // Additional properties for logging
         public string EventType { get; set; }

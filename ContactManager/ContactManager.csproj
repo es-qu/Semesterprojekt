@@ -67,12 +67,6 @@
     <Compile Include="Entity\Trainee.cs" />
     <Compile Include="Model\SearchFilters.cs" />
     <Compile Include="Model\SqliteDataAccess.cs" />
-    <Compile Include="View\FormImport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\FormImport.Designer.cs">
-      <DependentUpon>FormImport.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\FormSearchAdvanced.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,9 +98,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="View\FormImport.resx">
-      <DependentUpon>FormImport.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\FormSearchAdvanced.resx">
       <DependentUpon>FormSearchAdvanced.cs</DependentUpon>
     </EmbeddedResource>

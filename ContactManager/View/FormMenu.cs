@@ -70,7 +70,7 @@ namespace ContactManager
                     break;
 
                 case Keys.Q:
-                    this.Close();
+                    Close();
                     break;
 
                 default:

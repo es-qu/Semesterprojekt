@@ -37,6 +37,7 @@ namespace ContactManager
                 DateOfJoining = employee.DateOfJoining,
                 DateOfLeaving = employee.DateOfLeaving,
                 CadreLevel = employee.CadreLevel,
+                DegreeOfEmployment = employee.DegreeOfEmployment
 
             };
 
@@ -80,6 +81,7 @@ namespace ContactManager
                 DateOfJoining = trainee.DateOfJoining,
                 DateOfLeaving = trainee.DateOfLeaving,
                 CadreLevel = trainee.CadreLevel,
+                DegreeOfEmployment = trainee.DegreeOfEmployment,
                 CurrentApprenticeshipYear = trainee.CurrentApprenticeshipYear,
                 YearsOfApprenticeship = trainee.YearsOfApprenticeship
 

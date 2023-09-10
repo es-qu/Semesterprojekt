@@ -76,12 +76,13 @@ namespace ContactManager
                             int lastId = InsertPerson(cnn, trainee);
 
                             cnn.Execute(
-                                "INSERT INTO Employee (ID, Role, Department, EmployeeNumber,dateofjoining,dateofleaving,CadreLevel) VALUES (@Id, @Role, @Department, @EmployeeNumber,@dateofjoining,@dateofleaving,@CadreLevel)",
+                                "INSERT INTO Employee (ID, Role, Department, DegreeOfEmployment, EmployeeNumber,DateOfJoining,DateOfLeaving,CadreLevel) VALUES (@Id, @Role, @Department, @DegreeOfEmployment, @EmployeeNumber,@DateOfJoining,@DateOfLeaving,@CadreLevel)",
                                 new
                                 {
                                     Id = lastId,
                                     trainee.Role,
                                     trainee.Department,
+                                    trainee.DegreeOfEmployment,
                                     trainee.EmployeeNumber,
                                     trainee.DateOfJoining,
                                     trainee.DateOfLeaving,
@@ -161,8 +162,8 @@ namespace ContactManager
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var sqlQuery = @"INSERT INTO LogTable 
-        (EventType, FirstName, LastName, Birthday, EmployeeNumber, CustomerNumber, IsPersonActive, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,CurrentAppYear, YearOfApp,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
-        VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Position, @Department, @dateofjoining, @dateofleaving, @NumCadreLevel,@TrainingStartDate, @TrainingEndDate,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
+        (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentAppYear, YearOfApp,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
+        VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentAppYear, @YearOfApp,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
                 cnn.Execute(sqlQuery, log);
             }
         }

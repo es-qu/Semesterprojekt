@@ -213,7 +213,8 @@ namespace ContactManager
                     EmployeeNumber = TxtCreateEmployeeNumber.Text,
                     DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                     DateOfLeaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                    CadreLevel = NumCadreLevel.Value.ToString()
+                    CadreLevel = NumCadreLevel.Value.ToString(),
+                    DegreeOfEmployment = NumCreateDegreeOfEmployment.Value.ToString()
                 };
 
                 if (ChkCreateTrainee.Checked)
@@ -243,6 +244,7 @@ namespace ContactManager
                         DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
                         DateOfLeaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                         CadreLevel = NumCadreLevel.Value.ToString(),
+                        DegreeOfEmployment = NumCreateDegreeOfEmployment.Value.ToString(),
                         CurrentApprenticeshipYear = NumCreateCurrentAppYear.Value.ToString(),
                         YearsOfApprenticeship = NumCreateYearOfApp.Value.ToString()
                     };
@@ -283,16 +285,17 @@ namespace ContactManager
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,
                 Note = TxtCreateNote.Text,
-                Position = TxtCreateRole.Text,
+                Role = TxtCreateRole.Text,
                 Department = TxtCreateDepartement.Text,
-                dateofjoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                dateofleaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                NumCadreLevel = NumCadreLevel.Value.ToString(),
+                DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                DateOfLeaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                CadreLevel = NumCadreLevel.Value.ToString(),
+                DegreeOfEmployment = NumCreateDegreeOfEmployment.Value.ToString(),
                 CompanyName = TxtCreateCompanyName.Text,
                 CustomerType = CmbCreateCustomerType.Text,
                 CompanyContact = TxtCreateCompanyContact.Text,
-                TrainingStartDate = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                TrainingEndDate = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                CurrentApprenticeshipYear = NumCreateCurrentAppYear.Value.ToString("yyyy-MM-dd"),
+                YearsOfApprenticeship = NumCreateYearOfApp.Value.ToString("yyyy-MM-dd"),
                 CustomerNumber  = TxtCreateCustomerNumber.Text,
                 EmployeeNumber = TxtCreateEmployeeNumber.Text
             };
@@ -1497,7 +1500,7 @@ namespace ContactManager
 
         private void CmdCreateNoteClear_Click(object sender, EventArgs e)
         {
-
+            TxtCreateNote.Text = "";
         }
     }
 }
