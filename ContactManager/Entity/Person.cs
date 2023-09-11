@@ -124,6 +124,10 @@ namespace ContactManager
             set { businessAddress = value; }
         }
 
+        // CommaSeparatedNoteIds is used for DB reads/writes, because SQLite can't handle arrays/lists
+        //
+        // => store NoteIds as comma separated values with getter and split them in
+        // the setter for easier handling on the application side
         public string CommaSeparatedNoteIds
         {
             get { return string.Join(",", noteIds); }

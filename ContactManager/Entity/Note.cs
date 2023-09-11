@@ -20,7 +20,13 @@ namespace ContactManager.Entity
             this.content = content;
         }
 
-        public string Id { get { return id; } set { id = value; } }
+        public Note(string id, string content, DateTime timestamp) : this(content)
+        {
+            this.id = id;
+            this.timestamp = timestamp;
+        }
+
+        public string Id { get { return id; } }
         public string Content { get { return content; } set { content = value; } }
         public DateTime Timestamp { get { return timestamp; } }
     }

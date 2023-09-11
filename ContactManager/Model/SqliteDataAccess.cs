@@ -359,12 +359,55 @@ namespace ContactManager
             {
                 conn.Open();
 
-                note = (Note)conn.Query<Note>($"SELECT * FROM Notes WHERE id={id} LIMIT 1");
+                note = (Note)conn.Query<Note>($"SELECT * FROM Notes WHERE ID={id} LIMIT 1");
 
                 conn.Close();
             }
 
             return note;
+        }
+
+        /// <summary>
+        /// Saves a Note object into database
+        /// </summary>
+        /// <param name="associatedContact">Person that the note is added to</param>
+        /// <param name="note">Note object</param>
+        /// <returns>True if successfull, else false</returns>
+        public static bool SaveNote(Person associatedContact, Note note)
+        {
+            // Write NoteId into the contact's NoteIds
+
+            // Save note to db
+
+            return false;
+        }
+
+        /// <summary>
+        /// Delete a note from db according to its ID
+        /// </summary>
+        /// <param name="associatedContact">Contact that the note is about</param>
+        /// <param name="noteId">ID to identify the note</param>
+        /// <returns>True if the operation was successful, else false</returns>
+        public static bool DeleteNote(Person associatedContact, string noteId)
+        {
+            // Delete note from contact's NoteIds
+
+            // Delete note from Notes table
+
+            return false;
+        }
+
+        /// <summary>
+        /// Updates note informations (only Content may be updated, other informations 
+        /// are readonly after creating the instance)
+        /// </summary>
+        /// <param name="note">Note object with new informations</param>
+        /// <returns>True if successful, otherwise false</returns>
+        public static bool UpdataNote(Note note)
+        {
+            // SQL command:  $"UPDATE Notes SET Content='{note.Content}' WHERE ID={Note.ID}"
+
+            return false;
         }
     }
 }
