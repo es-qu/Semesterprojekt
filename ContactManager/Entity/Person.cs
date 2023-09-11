@@ -1,4 +1,8 @@
-﻿namespace ContactManager
+﻿using ContactManager.Entity;
+using System;
+using System.Collections.Generic;
+
+namespace ContactManager
 {
     public class Person
     {
@@ -18,7 +22,7 @@
         private string privatePhone = string.Empty;
         private string businessPhone = string.Empty;
         private string businessAddress = string.Empty;
-        private string note = string.Empty;
+        private List<string> noteIds = new List<string>();
 
 
         public Person() { }
@@ -120,10 +124,16 @@
             set { businessAddress = value; }
         }
 
-        public string Note
+        public string CommaSeparatedNoteIds
         {
-            get { return note; }
-            set { note = value; }
+            get { return string.Join(",", noteIds); }
+            set { noteIds = new List<string>(value.Split(',')); }
+        }
+
+        public List<string> NoteIds
+        {
+            get { return noteIds; }
+            set { noteIds = value; }
         }
     }
 }

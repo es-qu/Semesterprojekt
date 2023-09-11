@@ -21,6 +21,7 @@ namespace ContactManager
         public SearchFilters filters = new SearchFilters();
 
         List<object> searchResults;
+        List<Note> currentContactNotes;
         List<object> importContent;
 
         public enum Tab
@@ -188,7 +189,7 @@ namespace ContactManager
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
-                    Note = TxtCreateNote.Text,
+                    CommaSeparatedNoteIds = TxtCreateNote.Text,
                     CompanyName = TxtCreateCompanyName.Text,
                     CustomerType = CmbCreateCustomerType.Text,
                     CompanyContact = TxtCreateCompanyContact.Text,
@@ -215,7 +216,7 @@ namespace ContactManager
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
-                    Note = TxtCreateNote.Text,
+                    CommaSeparatedNoteIds = TxtCreateNote.Text,
                     Role = TxtCreateRole.Text,
                     Department = TxtCreateDepartement.Text,
                     EmployeeNumber = TxtCreateEmployeeNumber.Text,
@@ -245,7 +246,7 @@ namespace ContactManager
                         BusinessAddress = TxtCreateBusinessAddress.Text,
                         BusinessPhone = TxtCreateBusinessPhone.Text,
                         EmailAddress = TxtCreateEmailAddress.Text,
-                        Note = TxtCreateNote.Text,
+                        CommaSeparatedNoteIds = TxtCreateNote.Text,
                         Role = TxtCreateRole.Text,
                         Department = TxtCreateDepartement.Text,
                         EmployeeNumber = TxtCreateEmployeeNumber.Text,
@@ -292,7 +293,7 @@ namespace ContactManager
                 BusinessAddress = TxtCreateBusinessAddress.Text,
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,
-                Note = TxtCreateNote.Text,
+                CommaSeparatedNoteIds = TxtCreateNote.Text,
                 Role = TxtCreateRole.Text,
                 Department = TxtCreateDepartement.Text,
                 DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
@@ -707,6 +708,7 @@ namespace ContactManager
         public void CmdSearchExec_Click(object sender, EventArgs e)
         {
             searchResults = null;
+            currentContactNotes = null;
 
             DataGridViewSearchResult.CurrentCell = null;
             DataGridViewSearchResult.AutoGenerateColumns = false;
@@ -739,7 +741,7 @@ namespace ContactManager
             }
 
 
-            // Display the results
+            // Display the results and get notes
 
             if (searchResults != null)
             {
@@ -785,7 +787,9 @@ namespace ContactManager
                     DataGridViewSearchResult.DataSource = searchResults;
 
                     DataGridViewSearchResult.CurrentCell = DataGridViewSearchResult.FirstDisplayedCell;
-                    int currentSelectedCol = DataGridViewSearchResult.CurrentCell.ColumnIndex;
+                    int currentSelectedRow = DataGridViewSearchResult.CurrentCell.RowIndex;
+
+                    currentContactNotes = Controller.GetNotes(((Person)searchResults[currentSelectedRow]).NoteIds);
                 }
                 else
                 {
@@ -863,7 +867,7 @@ namespace ContactManager
                         LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.PrivatePhone;
                         LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.BusinessPhone;
                         LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.BusinessAddress;
-                        TxtSearchNote.Text = clickedPerson.Note;
+                        TxtSearchNote.Text = clickedPerson.CommaSeparatedNoteIds;
 
                         // Clear type specific informations
 
@@ -1144,7 +1148,7 @@ namespace ContactManager
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
                     TxtCreateBusinessAddress.Text = contact.BusinessAddress;
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
-                    TxtCreateNote.Text = contact.Note;
+                    TxtCreateNote.Text = contact.CommaSeparatedNoteIds;
 
                     // Fill out specific fields
                     Type type = contact.GetType();

@@ -29,7 +29,7 @@ namespace ContactManager
                BusinessPhone = employee.BusinessPhone,
                 EmailAddress = employee.EmailAddress,
                 BusinessAddress = employee.BusinessAddress,
-                Note = employee.Note,
+                CommaSeparatedNoteIds = employee.CommaSeparatedNoteIds,
                 EmployeeNumber = employee.EmployeeNumber,
                 Role = employee.Role,
                 Department = employee.Department,
@@ -74,7 +74,7 @@ namespace ContactManager
                 BusinessPhone = trainee.BusinessPhone,
                 EmailAddress = trainee.EmailAddress,
                 BusinessAddress = trainee.BusinessAddress,
-                Note = trainee.Note,
+                CommaSeparatedNoteIds = trainee.CommaSeparatedNoteIds,
                 EmployeeNumber = trainee.EmployeeNumber,
                 Role = trainee.Role,
                 Department = trainee.Department,
@@ -124,7 +124,7 @@ namespace ContactManager
                 BusinessPhone = customer.BusinessPhone,
                 EmailAddress = customer.EmailAddress,
                 BusinessAddress = customer.BusinessAddress,
-                Note = customer.Note,
+                CommaSeparatedNoteIds = customer.CommaSeparatedNoteIds,
                 CustomerNumber = customer.CustomerNumber,
                 CompanyName = customer.CompanyName,
                 CustomerType = customer.CustomerType,
@@ -368,6 +368,18 @@ namespace ContactManager
 
             return res;
         }
+
+        public static List<Note> GetNotes(List<string> ids)
+        {
+            List<Note> notes = new List<Note>();
+
+            foreach (string id in ids)
+            {
+                notes.Add(SqliteDataAccess.SearchNote(id));
+            }
+
+            return notes;
+        }
     }
-    }
+}
 

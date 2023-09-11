@@ -2,6 +2,7 @@
 using ContactManager.Model;
 using Dapper;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -343,6 +344,27 @@ namespace ContactManager
                 MessageBox.Show(ex.Message);
                 return new List<Type>();
             }
+        }
+
+        /// <summary>
+        /// Get a note object
+        /// </summary>
+        /// <param name="id">ID of the note</param>
+        /// <returns>Note object</returns>
+        public static Note SearchNote(string id)
+        {
+            Note note;
+
+            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+            {
+                conn.Open();
+
+                note = (Note)conn.Query<Note>($"SELECT * FROM Notes WHERE id={id} LIMIT 1");
+
+                conn.Close();
+            }
+
+            return note;
         }
     }
 }
