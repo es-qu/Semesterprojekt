@@ -7,10 +7,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
-using System.Text.RegularExpressions;
-using System.Data.SQLite;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace ContactManager
@@ -1459,17 +1458,14 @@ namespace ContactManager
                 CmdImportConfirm.Enabled = false;
                 DataGridViewImportGeneric.DataSource = null;
                 DataGridViewImportSpecific.DataSource = null;
-
-                ProgrBarImport.Value = 0;
-                ProgrBarImport.Visible = false;
             }
             else
             {
                 MessageBox.Show(this, "An error occurred while importing contacts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                ProgrBarImport.Value = 0;
-                ProgrBarImport.Visible = false;
             }
+
+            ProgrBarImport.Value = 0;
+            ProgrBarImport.Visible = false;
         }
 
         private void CmdImportCancel_Click(object sender, EventArgs e)
