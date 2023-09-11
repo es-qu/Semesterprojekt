@@ -9,6 +9,7 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Runtime.Remoting.Lifetime;
 using System.Security.Policy;
+using System.Windows.Forms;
 
 namespace ContactManager
 {
@@ -326,14 +327,22 @@ namespace ContactManager
         /// <returns></returns>
         private static List<Type> SearchTableByQueryString<Type>(SQLiteConnection conn, string queryString) where Type : Person, new()
         {
-            string joinTargetTableName = typeof(Type).Name;
+            try
+            {
+                string joinTargetTableName = typeof(Type).Name;
 
-            string query = (typeof(Type) != typeof(Trainee))
-                ? $"SELECT * FROM Person INNER JOIN {joinTargetTableName} ON Person.id = {joinTargetTableName}.id WHERE NOT EXISTS (SELECT 1 FROM Trainee WHERE Trainee.id = {joinTargetTableName}.id) AND {queryString}"
-                : $"SELECT * FROM Person INNER JOIN Employee ON Person.id = Employee.id INNER JOIN {joinTargetTableName} ON Person.id = {joinTargetTableName}.id WHERE {queryString}";
+                string query = (typeof(Type) != typeof(Trainee))
+                    ? $"SELECT * FROM Person INNER JOIN {joinTargetTableName} ON Person.id = {joinTargetTableName}.id WHERE NOT EXISTS (SELECT 1 FROM Trainee WHERE Trainee.id = {joinTargetTableName}.id) AND {queryString}"
+                    : $"SELECT * FROM Person INNER JOIN Employee ON Person.id = Employee.id INNER JOIN {joinTargetTableName} ON Person.id = {joinTargetTableName}.id WHERE {queryString}";
 
 
-            return conn.Query<Type>(query).AsList();
+                return conn.Query<Type>(query).AsList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return new List<Type>();
+            }
         }
     }
 }
