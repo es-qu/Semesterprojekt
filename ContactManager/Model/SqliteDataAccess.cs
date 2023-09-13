@@ -359,7 +359,7 @@ namespace ContactManager
             {
                 conn.Open();
 
-                note = (Note)conn.Query<Note>($"SELECT * FROM Notes WHERE ID={id} LIMIT 1");
+                note = (Note)conn.Query<Note>($"SELECT * FROM Notes WHERE Id={id} LIMIT 1");
 
                 conn.Close();
             }
@@ -390,11 +390,40 @@ namespace ContactManager
         /// <returns>True if the operation was successful, else false</returns>
         public static bool DeleteNote(Person associatedContact, string noteId)
         {
-            // Delete note from contact's NoteIds
-
             // Delete note from Notes table
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                try
+                {
+                    cnn.Open();
+                    cnn.Execute("DELETE FROM NOTES WHERE NodeId=@NodeId", new { NoteId = noteId });
+                    cnn.Close();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
 
-            return false;
+            // Delete note from contact's NoteIds
+            associatedContact.NoteIds.Remove(noteId);
+
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                try
+                {
+                    cnn.Open();
+                    // How can we find contact?
+                    cnn.Execute("UPDATE USERS SET(CommaSeparatedNoteIds) VALUES(@CommaSeparatedNoteIds) WHERE Id=@Id", new { CommaSeparatedNoteIds = associatedContact.CommaSeparatedNoteIds });
+                    cnn.Close();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -403,11 +432,36 @@ namespace ContactManager
         /// </summary>
         /// <param name="note">Note object with new informations</param>
         /// <returns>True if successful, otherwise false</returns>
-        public static bool UpdataNote(Note note)
+        public static bool UpdateNote(Note note)
         {
-            // SQL command:  $"UPDATE Notes SET Content='{note.Content}' WHERE ID={Note.ID}"
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Open();
 
-            return false;
+                using (var transaction = cnn.BeginTransaction())
+                {
+                    try
+                    {
+                        cnn.Execute(
+                            "UPDATE NOTES SET (Content, EditTimestamp) VALUES (@Content, @EditTimestamp) " +
+                            "WHERE Id=@Id",
+                            new
+                            {
+                                Content = note.Content,
+                                EditTimestamp = note.EditTimestamp,
+                                Id = note.Id
+                            });
+
+                        transaction.Commit();
+                        return true;
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        return false;
+                    }
+                }
+            }
         }
     }
 }
