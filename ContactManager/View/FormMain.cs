@@ -483,7 +483,7 @@ namespace ContactManager
             }
 
             // Check if the Birthday is changed
-            if (dateMax > DatCreateBirthday.Value && DatCreateBirthday.Value > dateMin)
+            if (dateMax > DatCreateBirthday.Value && DatCreateBirthday.Value > dateMin && DatCreateBirthday.Value < DateTime.Today)
             {
                 Debug.WriteLine("Date is correct");
             }
@@ -512,7 +512,7 @@ namespace ContactManager
             if (RadCreateCustomer.Checked)
             {
                 // Check if the customer Type has changed
-                if (CmbCreateCustomerType.Text == "-")
+                if (CmbCreateCustomerType.Text == "-" || CmbCreateCustomerType.Text == "")
                 {
                     MessageBox.Show("Please select the customer type (A-E)");
                     return false;
