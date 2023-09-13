@@ -90,13 +90,13 @@ namespace ContactManager
             isEditMode = false;
 
             // Clear ComboBoxes
-            CmbCreateSalutation.SelectedIndex = -1;
+            CmbCreateSalutation.SelectedIndex = 0;
             CmbCreateSalutation.Refresh();
 
             CmbCreateNationality.SelectedIndex = -1;
             CmbCreateNationality.Refresh();
 
-            CmbCreateCustomerType.SelectedIndex = -1;
+            CmbCreateCustomerType.SelectedIndex = 0;
             CmbCreateCustomerType.Refresh();
 
 
