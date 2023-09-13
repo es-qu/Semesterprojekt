@@ -2,14 +2,11 @@
 using ContactManager.Model;
 using Dapper;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
-using System.Runtime.Remoting.Lifetime;
-using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace ContactManager
