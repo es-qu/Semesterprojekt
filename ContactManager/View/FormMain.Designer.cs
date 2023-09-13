@@ -329,7 +329,7 @@ namespace ContactManager
             this.CmdSearchClear.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchClear.Name = "CmdSearchClear";
             this.CmdSearchClear.Size = new System.Drawing.Size(97, 30);
-            this.CmdSearchClear.TabIndex = 135;
+            this.CmdSearchClear.TabIndex = 8;
             this.CmdSearchClear.Text = "CLEAR";
             this.CmdSearchClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchClear.UseAccentColor = false;
@@ -374,7 +374,7 @@ namespace ContactManager
             this.TxtSearchDateOfBirth.Multiline = false;
             this.TxtSearchDateOfBirth.Name = "TxtSearchDateOfBirth";
             this.TxtSearchDateOfBirth.Size = new System.Drawing.Size(121, 50);
-            this.TxtSearchDateOfBirth.TabIndex = 11;
+            this.TxtSearchDateOfBirth.TabIndex = 14;
             this.TxtSearchDateOfBirth.Text = "";
             this.TxtSearchDateOfBirth.Enter += new System.EventHandler(this.SearchFilters_Enter);
             this.TxtSearchDateOfBirth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
@@ -405,7 +405,7 @@ namespace ContactManager
             this.TxtSearchAddress.Multiline = false;
             this.TxtSearchAddress.Name = "TxtSearchAddress";
             this.TxtSearchAddress.Size = new System.Drawing.Size(238, 50);
-            this.TxtSearchAddress.TabIndex = 9;
+            this.TxtSearchAddress.TabIndex = 12;
             this.TxtSearchAddress.Text = "";
             this.TxtSearchAddress.Enter += new System.EventHandler(this.SearchFilters_Enter);
             this.TxtSearchAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
@@ -422,7 +422,7 @@ namespace ContactManager
             this.TxtSearchPlaceOfResidence.Multiline = false;
             this.TxtSearchPlaceOfResidence.Name = "TxtSearchPlaceOfResidence";
             this.TxtSearchPlaceOfResidence.Size = new System.Drawing.Size(210, 50);
-            this.TxtSearchPlaceOfResidence.TabIndex = 10;
+            this.TxtSearchPlaceOfResidence.TabIndex = 13;
             this.TxtSearchPlaceOfResidence.Text = "";
             this.TxtSearchPlaceOfResidence.Enter += new System.EventHandler(this.SearchFilters_Enter);
             this.TxtSearchPlaceOfResidence.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
@@ -466,7 +466,7 @@ namespace ContactManager
             this.ChkSearchInactive.Name = "ChkSearchInactive";
             this.ChkSearchInactive.Ripple = true;
             this.ChkSearchInactive.Size = new System.Drawing.Size(145, 37);
-            this.ChkSearchInactive.TabIndex = 2;
+            this.ChkSearchInactive.TabIndex = 6;
             this.ChkSearchInactive.Text = "Include inactive";
             this.ChkSearchInactive.UseVisualStyleBackColor = true;
             // 
@@ -483,7 +483,7 @@ namespace ContactManager
             this.ChkSearchTypeTrainee.Name = "ChkSearchTypeTrainee";
             this.ChkSearchTypeTrainee.Ripple = true;
             this.ChkSearchTypeTrainee.Size = new System.Drawing.Size(88, 37);
-            this.ChkSearchTypeTrainee.TabIndex = 5;
+            this.ChkSearchTypeTrainee.TabIndex = 4;
             this.ChkSearchTypeTrainee.Text = "Trainee";
             this.ChkSearchTypeTrainee.UseVisualStyleBackColor = true;
             // 
@@ -500,7 +500,7 @@ namespace ContactManager
             this.ChkSearchTypeEmployee.Name = "ChkSearchTypeEmployee";
             this.ChkSearchTypeEmployee.Ripple = true;
             this.ChkSearchTypeEmployee.Size = new System.Drawing.Size(104, 37);
-            this.ChkSearchTypeEmployee.TabIndex = 4;
+            this.ChkSearchTypeEmployee.TabIndex = 3;
             this.ChkSearchTypeEmployee.Text = "Employee";
             this.ChkSearchTypeEmployee.UseVisualStyleBackColor = true;
             // 
@@ -517,7 +517,7 @@ namespace ContactManager
             this.ChkSearchTypeCustomer.Name = "ChkSearchTypeCustomer";
             this.ChkSearchTypeCustomer.Ripple = true;
             this.ChkSearchTypeCustomer.Size = new System.Drawing.Size(103, 37);
-            this.ChkSearchTypeCustomer.TabIndex = 3;
+            this.ChkSearchTypeCustomer.TabIndex = 2;
             this.ChkSearchTypeCustomer.Text = "Customer";
             this.ChkSearchTypeCustomer.UseVisualStyleBackColor = true;
             // 
@@ -533,7 +533,7 @@ namespace ContactManager
             this.TxtSearchNumber.Multiline = false;
             this.TxtSearchNumber.Name = "TxtSearchNumber";
             this.TxtSearchNumber.Size = new System.Drawing.Size(181, 50);
-            this.TxtSearchNumber.TabIndex = 8;
+            this.TxtSearchNumber.TabIndex = 11;
             this.TxtSearchNumber.Text = "";
             this.TxtSearchNumber.Enter += new System.EventHandler(this.SearchFilters_Enter);
             this.TxtSearchNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
@@ -592,7 +592,7 @@ namespace ContactManager
             this.TxtSearchFirstName.Multiline = false;
             this.TxtSearchFirstName.Name = "TxtSearchFirstName";
             this.TxtSearchFirstName.Size = new System.Drawing.Size(162, 50);
-            this.TxtSearchFirstName.TabIndex = 6;
+            this.TxtSearchFirstName.TabIndex = 9;
             this.TxtSearchFirstName.Text = "";
             this.TxtSearchFirstName.Enter += new System.EventHandler(this.SearchFilters_Enter);
             this.TxtSearchFirstName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
@@ -609,7 +609,7 @@ namespace ContactManager
             this.TxtSearchLastName.Multiline = false;
             this.TxtSearchLastName.Name = "TxtSearchLastName";
             this.TxtSearchLastName.Size = new System.Drawing.Size(162, 50);
-            this.TxtSearchLastName.TabIndex = 7;
+            this.TxtSearchLastName.TabIndex = 10;
             this.TxtSearchLastName.Text = "";
             this.TxtSearchLastName.Enter += new System.EventHandler(this.SearchFilters_Enter);
             this.TxtSearchLastName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
@@ -673,7 +673,7 @@ namespace ContactManager
             this.CmdSearchAdvanced.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchAdvanced.Name = "CmdSearchAdvanced";
             this.CmdSearchAdvanced.Size = new System.Drawing.Size(87, 30);
-            this.CmdSearchAdvanced.TabIndex = 13;
+            this.CmdSearchAdvanced.TabIndex = 7;
             this.CmdSearchAdvanced.Text = "Advanced";
             this.CmdSearchAdvanced.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchAdvanced.UseAccentColor = false;
@@ -693,7 +693,7 @@ namespace ContactManager
             this.CmdSearchExec.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchExec.Name = "CmdSearchExec";
             this.CmdSearchExec.Size = new System.Drawing.Size(87, 42);
-            this.CmdSearchExec.TabIndex = 12;
+            this.CmdSearchExec.TabIndex = 5;
             this.CmdSearchExec.Text = "Search";
             this.CmdSearchExec.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchExec.UseAccentColor = false;
@@ -746,7 +746,7 @@ namespace ContactManager
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridViewSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DataGridViewSearchResult.Size = new System.Drawing.Size(601, 184);
-            this.DataGridViewSearchResult.TabIndex = 5;
+            this.DataGridViewSearchResult.TabIndex = 15;
             this.DataGridViewSearchResult.SelectionChanged += new System.EventHandler(this.DataGridViewSearchResultSelectionChanged_CellClick);
             // 
             // TxtSearch
@@ -797,7 +797,7 @@ namespace ContactManager
             this.CmdSearchCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchCancel.Name = "CmdSearchCancel";
             this.CmdSearchCancel.Size = new System.Drawing.Size(88, 30);
-            this.CmdSearchCancel.TabIndex = 135;
+            this.CmdSearchCancel.TabIndex = 20;
             this.CmdSearchCancel.Text = "Cancel";
             this.CmdSearchCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchCancel.UseAccentColor = false;
@@ -838,7 +838,7 @@ namespace ContactManager
             this.CmdSearchNoteEdit.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchNoteEdit.Name = "CmdSearchNoteEdit";
             this.CmdSearchNoteEdit.Size = new System.Drawing.Size(58, 30);
-            this.CmdSearchNoteEdit.TabIndex = 19;
+            this.CmdSearchNoteEdit.TabIndex = 18;
             this.CmdSearchNoteEdit.Text = "Edit";
             this.CmdSearchNoteEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchNoteEdit.UseAccentColor = false;
@@ -858,7 +858,7 @@ namespace ContactManager
             this.CmdSearchNoteSave.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchNoteSave.Name = "CmdSearchNoteSave";
             this.CmdSearchNoteSave.Size = new System.Drawing.Size(58, 30);
-            this.CmdSearchNoteSave.TabIndex = 18;
+            this.CmdSearchNoteSave.TabIndex = 17;
             this.CmdSearchNoteSave.Text = "SAVE";
             this.CmdSearchNoteSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchNoteSave.UseAccentColor = false;
@@ -879,7 +879,7 @@ namespace ContactManager
             this.CmdSearchNoteClear.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchNoteClear.Name = "CmdSearchNoteClear";
             this.CmdSearchNoteClear.Size = new System.Drawing.Size(66, 30);
-            this.CmdSearchNoteClear.TabIndex = 20;
+            this.CmdSearchNoteClear.TabIndex = 19;
             this.CmdSearchNoteClear.Text = "CLEAR";
             this.CmdSearchNoteClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchNoteClear.UseAccentColor = false;
@@ -893,7 +893,7 @@ namespace ContactManager
             this.TxtSearchNote.Multiline = true;
             this.TxtSearchNote.Name = "TxtSearchNote";
             this.TxtSearchNote.Size = new System.Drawing.Size(630, 184);
-            this.TxtSearchNote.TabIndex = 17;
+            this.TxtSearchNote.TabIndex = 16;
             // 
             // LblSearchPreviewStatus
             // 
@@ -959,7 +959,7 @@ namespace ContactManager
             this.CmdSearchPersonEdit.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchPersonEdit.Name = "CmdSearchPersonEdit";
             this.CmdSearchPersonEdit.Size = new System.Drawing.Size(58, 30);
-            this.CmdSearchPersonEdit.TabIndex = 15;
+            this.CmdSearchPersonEdit.TabIndex = 21;
             this.CmdSearchPersonEdit.Text = "Edit";
             this.CmdSearchPersonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchPersonEdit.UseAccentColor = false;
@@ -1059,7 +1059,7 @@ namespace ContactManager
             this.CmdSearchPersonDelete.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchPersonDelete.Name = "CmdSearchPersonDelete";
             this.CmdSearchPersonDelete.Size = new System.Drawing.Size(65, 30);
-            this.CmdSearchPersonDelete.TabIndex = 16;
+            this.CmdSearchPersonDelete.TabIndex = 22;
             this.CmdSearchPersonDelete.Text = "DELETE";
             this.CmdSearchPersonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdSearchPersonDelete.UseAccentColor = false;
@@ -1645,7 +1645,7 @@ namespace ContactManager
             this.CmdCreateDeletePerson.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreateDeletePerson.Name = "CmdCreateDeletePerson";
             this.CmdCreateDeletePerson.Size = new System.Drawing.Size(63, 44);
-            this.CmdCreateDeletePerson.TabIndex = 103;
+            this.CmdCreateDeletePerson.TabIndex = 101;
             this.CmdCreateDeletePerson.Text = "DELETE";
             this.CmdCreateDeletePerson.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdCreateDeletePerson.UseAccentColor = true;
@@ -1666,7 +1666,7 @@ namespace ContactManager
             this.CmdCreateNoteClear.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreateNoteClear.Name = "CmdCreateNoteClear";
             this.CmdCreateNoteClear.Size = new System.Drawing.Size(54, 30);
-            this.CmdCreateNoteClear.TabIndex = 102;
+            this.CmdCreateNoteClear.TabIndex = 100;
             this.CmdCreateNoteClear.Text = "CLEAR";
             this.CmdCreateNoteClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdCreateNoteClear.UseAccentColor = false;
@@ -1679,7 +1679,7 @@ namespace ContactManager
             this.TxtCreateNote.Multiline = true;
             this.TxtCreateNote.Name = "TxtCreateNote";
             this.TxtCreateNote.Size = new System.Drawing.Size(627, 157);
-            this.TxtCreateNote.TabIndex = 101;
+            this.TxtCreateNote.TabIndex = 35;
             // 
             // LblCreateNotes
             // 
@@ -1706,7 +1706,7 @@ namespace ContactManager
             this.CmdCreateCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreateCancel.Name = "CmdCreateCancel";
             this.CmdCreateCancel.Size = new System.Drawing.Size(88, 44);
-            this.CmdCreateCancel.TabIndex = 100;
+            this.CmdCreateCancel.TabIndex = 104;
             this.CmdCreateCancel.Text = "Cancel";
             this.CmdCreateCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdCreateCancel.UseAccentColor = false;
@@ -1726,7 +1726,7 @@ namespace ContactManager
             this.CmdCreatePersonSaveAndNew.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreatePersonSaveAndNew.Name = "CmdCreatePersonSaveAndNew";
             this.CmdCreatePersonSaveAndNew.Size = new System.Drawing.Size(115, 44);
-            this.CmdCreatePersonSaveAndNew.TabIndex = 99;
+            this.CmdCreatePersonSaveAndNew.TabIndex = 103;
             this.CmdCreatePersonSaveAndNew.Text = "Save & New";
             this.CmdCreatePersonSaveAndNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdCreatePersonSaveAndNew.UseAccentColor = false;
@@ -1785,7 +1785,7 @@ namespace ContactManager
             this.PnlCreateInfoGeneral.Location = new System.Drawing.Point(5, 5);
             this.PnlCreateInfoGeneral.Name = "PnlCreateInfoGeneral";
             this.PnlCreateInfoGeneral.Size = new System.Drawing.Size(616, 591);
-            this.PnlCreateInfoGeneral.TabIndex = 82;
+            this.PnlCreateInfoGeneral.TabIndex = 0;
             // 
             // GrpCreateType
             // 
@@ -1925,7 +1925,7 @@ namespace ContactManager
             this.LblCreateOasiNr.Name = "LblCreateOasiNr";
             this.LblCreateOasiNr.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.LblCreateOasiNr.Size = new System.Drawing.Size(94, 19);
-            this.LblCreateOasiNr.TabIndex = 16;
+            this.LblCreateOasiNr.TabIndex = 66;
             this.LblCreateOasiNr.Text = "OASI number";
             // 
             // DatCreateBirthday
@@ -2360,7 +2360,7 @@ namespace ContactManager
             this.CmdCreateSavePerson.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreateSavePerson.Name = "CmdCreateSavePerson";
             this.CmdCreateSavePerson.Size = new System.Drawing.Size(146, 44);
-            this.CmdCreateSavePerson.TabIndex = 98;
+            this.CmdCreateSavePerson.TabIndex = 102;
             this.CmdCreateSavePerson.Text = "Save";
             this.CmdCreateSavePerson.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdCreateSavePerson.UseAccentColor = false;
@@ -2381,7 +2381,7 @@ namespace ContactManager
             this.PnlCreateInfoCustomer.Location = new System.Drawing.Point(637, 5);
             this.PnlCreateInfoCustomer.Name = "PnlCreateInfoCustomer";
             this.PnlCreateInfoCustomer.Size = new System.Drawing.Size(630, 178);
-            this.PnlCreateInfoCustomer.TabIndex = 85;
+            this.PnlCreateInfoCustomer.TabIndex = 10;
             // 
             // TxtCreateCustomerNumber
             // 
@@ -2395,7 +2395,7 @@ namespace ContactManager
             this.TxtCreateCustomerNumber.Multiline = false;
             this.TxtCreateCustomerNumber.Name = "TxtCreateCustomerNumber";
             this.TxtCreateCustomerNumber.Size = new System.Drawing.Size(123, 50);
-            this.TxtCreateCustomerNumber.TabIndex = 35;
+            this.TxtCreateCustomerNumber.TabIndex = 22;
             this.TxtCreateCustomerNumber.Text = "";
             // 
             // LblCreateCustomerNumber
@@ -2453,7 +2453,7 @@ namespace ContactManager
             this.CmbCreateCustomerType.Name = "CmbCreateCustomerType";
             this.CmbCreateCustomerType.Size = new System.Drawing.Size(76, 49);
             this.CmbCreateCustomerType.StartIndex = 0;
-            this.CmbCreateCustomerType.TabIndex = 33;
+            this.CmbCreateCustomerType.TabIndex = 23;
             // 
             // TxtCreateCompanyName
             // 
@@ -2467,7 +2467,7 @@ namespace ContactManager
             this.TxtCreateCompanyName.Multiline = false;
             this.TxtCreateCompanyName.Name = "TxtCreateCompanyName";
             this.TxtCreateCompanyName.Size = new System.Drawing.Size(262, 50);
-            this.TxtCreateCompanyName.TabIndex = 31;
+            this.TxtCreateCompanyName.TabIndex = 24;
             this.TxtCreateCompanyName.Text = "";
             // 
             // LblCreateCustomerType
@@ -2510,7 +2510,7 @@ namespace ContactManager
             this.TxtCreateCompanyContact.Multiline = false;
             this.TxtCreateCompanyContact.Name = "TxtCreateCompanyContact";
             this.TxtCreateCompanyContact.Size = new System.Drawing.Size(239, 50);
-            this.TxtCreateCompanyContact.TabIndex = 32;
+            this.TxtCreateCompanyContact.TabIndex = 25;
             this.TxtCreateCompanyContact.Text = "";
             // 
             // PnlCreateInfoEmployee
@@ -2535,7 +2535,7 @@ namespace ContactManager
             this.PnlCreateInfoEmployee.Location = new System.Drawing.Point(637, 5);
             this.PnlCreateInfoEmployee.Name = "PnlCreateInfoEmployee";
             this.PnlCreateInfoEmployee.Size = new System.Drawing.Size(630, 350);
-            this.PnlCreateInfoEmployee.TabIndex = 83;
+            this.PnlCreateInfoEmployee.TabIndex = 20;
             // 
             // NumCreateDegreeOfEmployment
             // 
@@ -2549,7 +2549,7 @@ namespace ContactManager
             this.NumCreateDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.NumCreateDegreeOfEmployment.Name = "NumCreateDegreeOfEmployment";
             this.NumCreateDegreeOfEmployment.Size = new System.Drawing.Size(49, 29);
-            this.NumCreateDegreeOfEmployment.TabIndex = 23;
+            this.NumCreateDegreeOfEmployment.TabIndex = 27;
             this.NumCreateDegreeOfEmployment.ValueChanged += new System.EventHandler(this.NumCreateDegreeOfEmployment_ValueChanged);
             // 
             // PrgDegreeOfEmployment
@@ -2600,7 +2600,7 @@ namespace ContactManager
             0});
             this.NumCreateYearOfApp.Name = "NumCreateYearOfApp";
             this.NumCreateYearOfApp.Size = new System.Drawing.Size(44, 29);
-            this.NumCreateYearOfApp.TabIndex = 30;
+            this.NumCreateYearOfApp.TabIndex = 34;
             // 
             // LblCreateCurrentAppYear
             // 
@@ -2628,7 +2628,7 @@ namespace ContactManager
             0});
             this.NumCreateCurrentAppYear.Name = "NumCreateCurrentAppYear";
             this.NumCreateCurrentAppYear.Size = new System.Drawing.Size(49, 29);
-            this.NumCreateCurrentAppYear.TabIndex = 29;
+            this.NumCreateCurrentAppYear.TabIndex = 33;
             // 
             // LblCreateDateOfJoining
             // 
@@ -2667,7 +2667,7 @@ namespace ContactManager
             this.DatCreateDateOfLeaving.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.DatCreateDateOfLeaving.Name = "DatCreateDateOfLeaving";
             this.DatCreateDateOfLeaving.Size = new System.Drawing.Size(109, 29);
-            this.DatCreateDateOfLeaving.TabIndex = 28;
+            this.DatCreateDateOfLeaving.TabIndex = 32;
             this.DatCreateDateOfLeaving.Value = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             // 
             // DatCreateDateOfJoining
@@ -2679,7 +2679,7 @@ namespace ContactManager
             this.DatCreateDateOfJoining.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.DatCreateDateOfJoining.Name = "DatCreateDateOfJoining";
             this.DatCreateDateOfJoining.Size = new System.Drawing.Size(117, 29);
-            this.DatCreateDateOfJoining.TabIndex = 27;
+            this.DatCreateDateOfJoining.TabIndex = 31;
             this.DatCreateDateOfJoining.Value = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             // 
             // TxtCreateEmployeeNumber
@@ -2694,7 +2694,7 @@ namespace ContactManager
             this.TxtCreateEmployeeNumber.Multiline = false;
             this.TxtCreateEmployeeNumber.Name = "TxtCreateEmployeeNumber";
             this.TxtCreateEmployeeNumber.Size = new System.Drawing.Size(125, 50);
-            this.TxtCreateEmployeeNumber.TabIndex = 22;
+            this.TxtCreateEmployeeNumber.TabIndex = 26;
             this.TxtCreateEmployeeNumber.Text = "";
             // 
             // LblEmployeeNumber
@@ -2737,7 +2737,7 @@ namespace ContactManager
             this.TxtCreateDepartement.Multiline = false;
             this.TxtCreateDepartement.Name = "TxtCreateDepartement";
             this.TxtCreateDepartement.Size = new System.Drawing.Size(263, 50);
-            this.TxtCreateDepartement.TabIndex = 24;
+            this.TxtCreateDepartement.TabIndex = 28;
             this.TxtCreateDepartement.Text = "";
             // 
             // NumCadreLevel
@@ -2752,7 +2752,7 @@ namespace ContactManager
             0});
             this.NumCadreLevel.Name = "NumCadreLevel";
             this.NumCadreLevel.Size = new System.Drawing.Size(49, 29);
-            this.NumCadreLevel.TabIndex = 26;
+            this.NumCadreLevel.TabIndex = 30;
             // 
             // LblDegreeOfEmployment
             // 
@@ -2808,7 +2808,7 @@ namespace ContactManager
             this.TxtCreateRole.Multiline = false;
             this.TxtCreateRole.Name = "TxtCreateRole";
             this.TxtCreateRole.Size = new System.Drawing.Size(216, 50);
-            this.TxtCreateRole.TabIndex = 25;
+            this.TxtCreateRole.TabIndex = 29;
             this.TxtCreateRole.Text = "";
             // 
             // TabImport
@@ -2909,7 +2909,7 @@ namespace ContactManager
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridViewImportSpecific.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DataGridViewImportSpecific.Size = new System.Drawing.Size(1252, 160);
-            this.DataGridViewImportSpecific.TabIndex = 137;
+            this.DataGridViewImportSpecific.TabIndex = 5;
             // 
             // materialLabel2
             // 
@@ -2947,7 +2947,7 @@ namespace ContactManager
             this.CmdImportCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdImportCancel.Name = "CmdImportCancel";
             this.CmdImportCancel.Size = new System.Drawing.Size(77, 36);
-            this.CmdImportCancel.TabIndex = 134;
+            this.CmdImportCancel.TabIndex = 3;
             this.CmdImportCancel.Text = "Cancel";
             this.CmdImportCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdImportCancel.UseAccentColor = false;
@@ -2967,7 +2967,7 @@ namespace ContactManager
             this.CmdImportConfirm.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdImportConfirm.Name = "CmdImportConfirm";
             this.CmdImportConfirm.Size = new System.Drawing.Size(86, 36);
-            this.CmdImportConfirm.TabIndex = 133;
+            this.CmdImportConfirm.TabIndex = 2;
             this.CmdImportConfirm.Text = "Confirm";
             this.CmdImportConfirm.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdImportConfirm.UseAccentColor = false;
@@ -3020,7 +3020,7 @@ namespace ContactManager
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridViewImportGeneric.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DataGridViewImportGeneric.Size = new System.Drawing.Size(1252, 302);
-            this.DataGridViewImportGeneric.TabIndex = 132;
+            this.DataGridViewImportGeneric.TabIndex = 4;
             this.DataGridViewImportGeneric.SelectionChanged += new System.EventHandler(this.DataGridViewImportGeneric_SelectionChanged);
             // 
             // CmdImportOpenFile
@@ -3035,7 +3035,7 @@ namespace ContactManager
             this.CmdImportOpenFile.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdImportOpenFile.Name = "CmdImportOpenFile";
             this.CmdImportOpenFile.Size = new System.Drawing.Size(92, 36);
-            this.CmdImportOpenFile.TabIndex = 131;
+            this.CmdImportOpenFile.TabIndex = 1;
             this.CmdImportOpenFile.Text = "Open File";
             this.CmdImportOpenFile.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.CmdImportOpenFile.UseAccentColor = false;
