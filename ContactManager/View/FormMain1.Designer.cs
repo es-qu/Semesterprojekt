@@ -61,12 +61,52 @@ namespace ContactManager.View {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        public static bool ContentColumn_UserAddedColumn {
+            get {
+                object obj = ResourceManager.GetObject("ContentColumn.UserAddedColumn", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        public static bool EditTimestampColumn_UserAddedColumn {
+            get {
+                object obj = ResourceManager.GetObject("EditTimestampColumn.UserAddedColumn", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        public static bool NoteColumn_UserAddedColumn {
+            get {
+                object obj = ResourceManager.GetObject("NoteColumn.UserAddedColumn", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Point similar to {X=17,Y=17}.
         /// </summary>
         public static System.Drawing.Point OpenFileDialogImportContacts_TrayLocation {
             get {
                 object obj = ResourceManager.GetObject("OpenFileDialogImportContacts.TrayLocation", resourceCulture);
                 return ((System.Drawing.Point)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        public static bool TimestampColumn_UserAddedColumn {
+            get {
+                object obj = ResourceManager.GetObject("TimestampColumn.UserAddedColumn", resourceCulture);
+                return ((bool)(obj));
             }
         }
     }
