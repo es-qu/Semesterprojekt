@@ -160,13 +160,17 @@ namespace ContactManager
             }
         }
 
-
         public Person CreatePersonFromForm()
         {
-
             string gender = RadCreateMale.Checked ? "Male" :
                 RadCreateFemale.Checked ? "Female" :
                 RadCreateOther.Checked ? "Other" : null;
+
+            List<string> noteIds = new List<string>();
+            foreach (Note item in currentContactNotes)
+            {
+                noteIds.Add(item.Id);
+            }
 
             if (RadCreateCustomer.Checked)
             {
@@ -185,6 +189,7 @@ namespace ContactManager
                     OasiNumber = TxtCreateOasiNr.Text,
                     DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                     PrivatePhone = TxtCreatePrivatePhone.Text,
+                    NoteIds = noteIds,
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
@@ -192,25 +197,10 @@ namespace ContactManager
                     CustomerType = CmbCreateCustomerType.Text,
                     CompanyContact = TxtCreateCompanyContact.Text,
                     CustomerNumber = TxtCreateCustomerNumber.Text
-
                 };
             }
             else if (RadCreateEmployee.Checked)
             {
-                List<Note> notes = new List<Note>();
-                List<string> noteIds = new List<string>();
-                foreach (DataGridViewRow row in DataGridViewCreateNotes.Rows)
-                {
-                    if (!row.IsNewRow) // Skip the empty row at the end
-                    {
-                        string content = Convert.ToString(row.Cells["ContentColumn"].Value);
-                        Note note = new Note(row.Cells["NoteColumn"].Value.ToString(), content);
-
-                        notes.Add(note);
-                        noteIds.Add(note.Id); 
-                    }
-                }
-
                 var employee = new Employee
                 {
                     Active = (int)SwtCreateActive.CheckState,
@@ -226,8 +216,7 @@ namespace ContactManager
                     OasiNumber = TxtCreateOasiNr.Text,
                     DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                     PrivatePhone = TxtCreatePrivatePhone.Text,
-                    Notes = notes,
-                    CommaSeparatedNoteIds = string.Join(",", notes.Select(note => note.Id)),
+                    NoteIds = noteIds,
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
@@ -238,7 +227,6 @@ namespace ContactManager
                     DateOfLeaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
                     CadreLevel = NumCadreLevel.Value.ToString(),
                     DegreeOfEmployment = NumCreateDegreeOfEmployment.Value.ToString()
-
                 };
 
 
@@ -259,6 +247,7 @@ namespace ContactManager
                         OasiNumber = TxtCreateOasiNr.Text,
                         DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                         PrivatePhone = TxtCreatePrivatePhone.Text,
+                        NoteIds = noteIds,
                         BusinessAddress = TxtCreateBusinessAddress.Text,
                         BusinessPhone = TxtCreateBusinessPhone.Text,
                         EmailAddress = TxtCreateEmailAddress.Text,
@@ -286,10 +275,16 @@ namespace ContactManager
         }
         private LogTable LogForm(string eventType)
         {
-
             string gender = RadCreateMale.Checked ? "Male" :
                 RadCreateFemale.Checked ? "Female" :
                 RadCreateOther.Checked ? "Other" : null;
+
+            List<string> noteIds = new List<string>();
+            foreach (Note item in currentContactNotes)
+            {
+                noteIds.Add(item.Id);
+            }
+
             LogTable logInfo = new LogTable
             {
                 EventType = eventType,
@@ -306,6 +301,7 @@ namespace ContactManager
                 OasiNumber = TxtCreateOasiNr.Text,
                 DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                 PrivatePhone = TxtCreatePrivatePhone.Text,
+                NoteIds = noteIds,
                 BusinessAddress = TxtCreateBusinessAddress.Text,
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,

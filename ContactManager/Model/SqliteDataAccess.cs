@@ -46,7 +46,6 @@ namespace ContactManager
                     catch
                     {
                         transaction.Rollback();
-                        throw;
                     }
                 }
             }
@@ -114,7 +113,6 @@ namespace ContactManager
                     catch
                     {
                         transaction.Rollback();
-                        throw;
                     }
                 }
             }
@@ -126,7 +124,7 @@ namespace ContactManager
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                int lastId_e;
+                int lastId_e = 0;
                 cnn.Open();
                 using (var transaction = cnn.BeginTransaction())
                 {
@@ -152,31 +150,12 @@ namespace ContactManager
                     catch
                     {
                         transaction.Rollback();
-                        throw;
                     }
                 }
+
                 return lastId_e;
             }
-
         }
-
-
-        public static void SaveLog(LogTable log)
-        {
-            //using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            //{
-            //    var sqlQuery = @"INSERT INTO LogTable 
-            //    (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
-            //    VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
-            //    cnn.Execute(sqlQuery, log);
-            //    string sqlQuery1 = "SELECT * FROM LogTable WHERE EmployeeNumber = @EmployeeNumber";
-            //    var logs = cnn.Query<LogTable>(sqlQuery1, new { EmployeeNumber = log.EmployeeNumber });
-            //}
-        }
-
-
-
-
 
         public static string GetNextNumber(string tableName, string columnName, string idType)
         {
@@ -356,13 +335,21 @@ namespace ContactManager
         {
             Note note;
 
-            using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+            try
             {
-                conn.Open();
+                using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    conn.Open();
 
-                note = (Note)conn.Query<Note>("SELECT * FROM Notes WHERE Id=@Id LIMIT 1", new { Id = id }).FirstOrDefault();
+                    note = (Note)conn.Query<Note>("SELECT * FROM Notes WHERE Id=@Id LIMIT 1", new { Id = id }).FirstOrDefault();
 
-                conn.Close();
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
             }
 
             return note;
@@ -397,16 +384,15 @@ namespace ContactManager
                         }
                     }
 
-                    // Save associatedContact to its table
-                    sql = "UPDATE Person SET CommaSeparatedNoteIds = @CommaSeparatedNoteIds WHERE ID = @ID";
-                    cnn.Execute(sql, associatedContact);
+                    // Save NoteId in the contact's CommaSeparatedNotes string
+                    // --- Update contact
 
                     return true;
                 }
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
                 return false;
             }
         }
@@ -419,35 +405,24 @@ namespace ContactManager
         /// <returns>True if the operation was successful, else false</returns>
         public static bool DeleteNote(Person associatedContact, string noteId)
         {
-            // Delete note from Notes table
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 try
                 {
                     cnn.Open();
-                    cnn.Execute("DELETE FROM NOTES WHERE NodeId=@NodeId", new { NoteId = noteId });
+                    // Delete note from Notes table
+                    cnn.Execute("DELETE FROM NOTES WHERE Id=@Id", new { Id = noteId });
+
+                    // Delete note from contact's NoteIds
+                    associatedContact.NoteIds.Remove(noteId);
+                    //Update the Person with the new NoteIds
+                    //cnn.Execute("UPDATE Person SET(CommaSeparatedNoteIds) VALUES(@CommaSeparatedNoteIds) WHERE Id=@Id", new { CommaSeparatedNoteIds = associatedContact.CommaSeparatedNoteIds });
+
                     cnn.Close();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    return false;
-                }
-            }
-
-            // Delete note from contact's NoteIds
-            associatedContact.NoteIds.Remove(noteId);
-
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                try
-                {
-                    cnn.Open();
-                    // How can we find contact?
-                    cnn.Execute("UPDATE USERS SET(CommaSeparatedNoteIds) VALUES(@CommaSeparatedNoteIds) WHERE Id=@Id", new { CommaSeparatedNoteIds = associatedContact.CommaSeparatedNoteIds });
-                    cnn.Close();
-                }
-                catch
-                {
+                    MessageBox.Show(ex.Message);
                     return false;
                 }
             }
@@ -484,9 +459,10 @@ namespace ContactManager
                         transaction.Commit();
                         return true;
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         transaction.Rollback();
+                        MessageBox.Show(ex.Message);
                         return false;
                     }
                 }
