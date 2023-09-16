@@ -166,11 +166,21 @@ namespace ContactManager
                 RadCreateFemale.Checked ? "Female" :
                 RadCreateOther.Checked ? "Other" : null;
 
+            List<Note> notes = new List<Note>();
             List<string> noteIds = new List<string>();
-            foreach (Note item in currentContactNotes)
+            foreach (DataGridViewRow row in DataGridViewCreateNotes.Rows)
             {
-                noteIds.Add(item.Id);
+                if (!row.IsNewRow)
+                {
+                    string content = Convert.ToString(row.Cells["ContentColumn"].Value);
+                    string id = Convert.ToString(row.Cells["IdColumn"].Value);
+                    Note note = new Note(id, content); 
+
+                    notes.Add(note);
+                    noteIds.Add(note.Id);
+                }
             }
+            noteCounter = 0;
 
             if (RadCreateCustomer.Checked)
             {
@@ -190,6 +200,7 @@ namespace ContactManager
                     DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                     PrivatePhone = TxtCreatePrivatePhone.Text,
                     NoteIds = noteIds,
+                    Notes = notes,
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
@@ -217,6 +228,7 @@ namespace ContactManager
                     DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                     PrivatePhone = TxtCreatePrivatePhone.Text,
                     NoteIds = noteIds,
+                    Notes = notes,
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
@@ -248,6 +260,7 @@ namespace ContactManager
                         DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                         PrivatePhone = TxtCreatePrivatePhone.Text,
                         NoteIds = noteIds,
+                        Notes = notes,
                         BusinessAddress = TxtCreateBusinessAddress.Text,
                         BusinessPhone = TxtCreateBusinessPhone.Text,
                         EmailAddress = TxtCreateEmailAddress.Text,
@@ -279,11 +292,11 @@ namespace ContactManager
                 RadCreateFemale.Checked ? "Female" :
                 RadCreateOther.Checked ? "Other" : null;
 
-            List<string> noteIds = new List<string>();
-            foreach (Note item in currentContactNotes)
-            {
-                noteIds.Add(item.Id);
-            }
+            //List<string> noteIds = new List<string>();
+            //foreach (Note item in currentContactNotes)
+            //{
+            //    noteIds.Add(item.Id);
+            //}
 
             LogTable logInfo = new LogTable
             {
@@ -301,7 +314,6 @@ namespace ContactManager
                 OasiNumber = TxtCreateOasiNr.Text,
                 DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                 PrivatePhone = TxtCreatePrivatePhone.Text,
-                NoteIds = noteIds,
                 BusinessAddress = TxtCreateBusinessAddress.Text,
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,
@@ -330,7 +342,7 @@ namespace ContactManager
             string eventType = success ? successEvent : failureEvent;
             LogTable logInfo = LogForm(eventType);
             Controller controller = new Controller();
-            controller.Log(logInfo);
+            //controller.Log(logInfo);
 
             if (success)
             {
@@ -358,7 +370,7 @@ namespace ContactManager
             string eventType = success ? successEvent : failureEvent;
             LogTable logInfo = LogForm(eventType);
             Controller controller = new Controller();
-            controller.Log(logInfo);
+            //controller.Log(logInfo);
 
             if (success)
             {
@@ -1716,13 +1728,29 @@ namespace ContactManager
                 }
             }
         }
+        private int noteCounter = 0;
 
         private void CmdCreateNoteClear_Click(object sender, EventArgs e)
         {
+            // Create a new Note
+            string content = "";
 
-            DataGridViewCreateNotes.Rows.Add("id1", "content1", "2023-09-14 12:34:56", "2023-09-14 12:34:56");
+            string idString = SqliteDataAccess.GetNextNoteId("Notes", "Id");
 
+            if (idString.Length <= 1 || !int.TryParse(idString.Substring(1), out int idFromDb))
+            {
 
+                return;
+            }
+
+            int nextId = idFromDb + noteCounter;
+            string id = "N" + nextId.ToString();
+
+            Note note = new Note(id, content);
+
+            DataGridViewCreateNotes.Rows.Add( note.Content, note.Id, note.CreateTimestamp.ToString(),note.EditTimestamp.ToString());
+
+            noteCounter++;
         }
 
 

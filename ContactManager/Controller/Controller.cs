@@ -45,15 +45,13 @@ namespace ContactManager
 
             };
 
-            int newEmployeeId = SqliteDataAccess.SaveEmployee(e);
+            int PersonID = SqliteDataAccess.SaveEmployee(e);
 
-            foreach (var noteId in employee.NoteIds)
+            foreach (var note in employee.Notes)
             {
-                var note = new Note { Content = "First note", Id = noteId };
-
-                // Save the note with the reference to the new employee
-                SqliteDataAccess.SaveNote(employee, note);
+                SqliteDataAccess.SaveNote(employee, note); 
             }
+            SqliteDataAccess.UpdatePerson(employee, PersonID);
 
             if (showSuccessMessage)
             {
@@ -86,7 +84,9 @@ namespace ContactManager
                 BusinessPhone = trainee.BusinessPhone,
                 EmailAddress = trainee.EmailAddress,
                 BusinessAddress = trainee.BusinessAddress,
+                Notes = trainee.Notes,
                 CommaSeparatedNoteIds = trainee.CommaSeparatedNoteIds,
+                NoteIds = trainee.NoteIds,
                 EmployeeNumber = trainee.EmployeeNumber,
                 Role = trainee.Role,
                 Department = trainee.Department,
@@ -100,8 +100,14 @@ namespace ContactManager
 
             };
 
+            int PersonID = SqliteDataAccess.SaveTrainee(t);
 
-            SqliteDataAccess.SaveTrainee(t);
+            foreach (var note in trainee.Notes)
+            {
+                SqliteDataAccess.SaveNote(trainee, note);
+            }
+            SqliteDataAccess.UpdatePerson(trainee, PersonID);
+
             if (showSuccessMessage)
             {
                 // Show confirmation message
@@ -134,17 +140,24 @@ namespace ContactManager
                 DateOfBirth = customer.DateOfBirth,
                 PrivatePhone = customer.PrivatePhone,
                 BusinessPhone = customer.BusinessPhone,
+                Notes = customer.Notes,
+                CommaSeparatedNoteIds = customer.CommaSeparatedNoteIds,
+                NoteIds = customer.NoteIds,
                 EmailAddress = customer.EmailAddress,
                 BusinessAddress = customer.BusinessAddress,
-                CommaSeparatedNoteIds = customer.CommaSeparatedNoteIds,
                 CustomerNumber = customer.CustomerNumber,
                 CompanyName = customer.CompanyName,
                 CustomerType = customer.CustomerType,
                 CompanyContact = customer.CompanyContact
 
             };
+            int PersonID = SqliteDataAccess.SaveCustomer(c);
 
-            SqliteDataAccess.SaveCustomer(c);
+            foreach (var note in customer.Notes)
+            {
+                SqliteDataAccess.SaveNote(customer, note);
+            }
+            SqliteDataAccess.UpdatePerson(customer, PersonID);
 
             if (showSuccessMessage)
             {
@@ -159,13 +172,13 @@ namespace ContactManager
 
 
 
-        public void Log(LogTable log)
-        {
-            log.OperationSuccessful = "";
-            log.DeletionSuccessful = "";
+        //public void Log(LogTable log)
+        //{
+        //    log.OperationSuccessful = "";
+        //    log.DeletionSuccessful = "";
 
-            SqliteDataAccess.SaveLog(log);
-        }
+        //    SqliteDataAccess.SaveLog(log);
+        //}
 
 
 
