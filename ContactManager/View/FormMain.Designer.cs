@@ -774,6 +774,7 @@ namespace ContactManager
             // DataGridViewSearchNotes
             // 
             this.DataGridViewSearchNotes.AllowUserToAddRows = false;
+            this.DataGridViewSearchNotes.AllowUserToDeleteRows = false;
             this.DataGridViewSearchNotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataGridViewSearchNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.DataGridViewSearchNotes.BackgroundColor = System.Drawing.Color.DimGray;
@@ -795,7 +796,6 @@ namespace ContactManager
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewSearchNotes.DefaultCellStyle = dataGridViewCellStyle6;
-            this.DataGridViewSearchNotes.Enabled = false;
             this.DataGridViewSearchNotes.GridColor = System.Drawing.Color.Gray;
             this.DataGridViewSearchNotes.Location = new System.Drawing.Point(18, 378);
             this.DataGridViewSearchNotes.MultiSelect = false;

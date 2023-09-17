@@ -821,7 +821,7 @@ namespace ContactManager
                         DataPropertyName = "Content"
                     };
                     DataGridViewSearchNotes.Columns.Add(contentColumn);
-
+                    
                     DataGridViewTextBoxColumn createTimestampColumn = new DataGridViewTextBoxColumn
                     {
                         Name = "createTimestampColumn",
@@ -1361,6 +1361,7 @@ namespace ContactManager
 
             DataGridViewSearchNotes.DataSource = currentContactNotes;
 
+            // Clear note textfield after note saved
             TxtSearchNewNote.Clear();
         }
 
