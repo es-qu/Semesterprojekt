@@ -850,6 +850,7 @@ namespace ContactManager
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewSearchNotes.DefaultCellStyle = dataGridViewCellStyle6;
+            this.DataGridViewSearchNotes.Enabled = false;
             this.DataGridViewSearchNotes.GridColor = System.Drawing.Color.Gray;
             this.DataGridViewSearchNotes.Location = new System.Drawing.Point(27, 582);
             this.DataGridViewSearchNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -871,10 +872,11 @@ namespace ContactManager
             dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SlateBlue;
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridViewSearchNotes.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.DataGridViewSearchNotes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DataGridViewSearchNotes.Size = new System.Drawing.Size(948, 283);
             this.DataGridViewSearchNotes.TabIndex = 135;
-            this.DataGridViewSearchNotes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewSearchNotes_CellClick);
             this.DataGridViewSearchNotes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewSearchNotes_CellEndEdit);
+            this.DataGridViewSearchNotes.SelectionChanged += new System.EventHandler(this.DataGridViewSearchNotes_SelectionChanged);
             // 
             // CmdSearchCancel
             // 

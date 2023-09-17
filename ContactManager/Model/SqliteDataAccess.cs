@@ -455,7 +455,16 @@ namespace ContactManager
                 {
                     conn.Open();
 
-                    conn.Execute("INSERT INTO Notes (Id, Content, CreateTimestamp, EditTimestamp) VALUES (@Id, @Content, @CreateTimestamp, @EditTimestamp)", note);
+                    Note noteOnDb = conn.Query<Note>("SELECT * FROM Notes WHERE Id=@Id", new { Id=note.Id }).FirstOrDefault();
+
+                    if(noteOnDb != null)
+                    {
+                        conn.Execute("INSERT INTO Notes (Id, Content, CreateTimestamp, EditTimestamp) VALUES (@Id, @Content, @CreateTimestamp, @EditTimestamp)", note);
+                    }
+                    else
+                    {
+                        UpdateNote(note);
+                    }
 
                     conn.Close();
                 }

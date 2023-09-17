@@ -3,6 +3,7 @@ using ContactManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Security;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 
@@ -385,6 +386,11 @@ namespace ContactManager
             }
 
             return notes;
+        }
+
+        public static bool SaveNote(Person associatedContact, Note note)
+        {
+            return SqliteDataAccess.SaveNote(associatedContact, note);
         }
     }
 }

@@ -899,6 +899,7 @@ namespace ContactManager
                         CmdSearchSaveNote.Enabled = false;
 
                         var clickedPerson = (Person)searchResults[currentRow.Index];
+                        currentContact = clickedPerson;
                         LblSearchPreviewStatusOutput.Text = (clickedPerson.Active != 0) ? "Active" : "Inactive";
                         LblSearchPreviewTitleOutput.Text = clickedPerson.Title;
                         LblSearchPreviewGenderOutput.Text = clickedPerson.Gender;
@@ -915,7 +916,10 @@ namespace ContactManager
                         LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.PrivatePhone;
                         LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.BusinessPhone;
                         LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.BusinessAddress;
+                        DataGridViewSearchNotes.DataSource = null;
+                        currentContactNotes = Controller.GetNotes(currentContact.NoteIds);
                         DataGridViewSearchNotes.DataSource = currentContactNotes;
+                        DataGridViewSearchNotes.ClearSelection();
 
                         // Clear type specific informations
 
@@ -1015,6 +1019,7 @@ namespace ContactManager
                     LblSearchPreviewBusinessPhoneOutput.Text = "-";
                     LblSearchPreviewBusinessAddressOutput.Text = "-";
                     DataGridViewSearchNotes.DataSource = null;
+                    currentContactNotes = null;
 
                     LblSearchPreviewNumberOutput.Text = "-";
                     LblSearchPreviewTypeOutput.Text = "-";
@@ -1341,7 +1346,15 @@ namespace ContactManager
 
         private void CmdSearchNoteSave_Click(object sender, EventArgs e)
         {
-            //
+            if(currentContactNotes != null)
+            {
+                foreach (Note note in currentContactNotes)
+                {
+                    Controller.SaveNote(currentContact, note);
+                }
+
+                CmdSearchSaveNote.Enabled = false;
+            }
         }
 
 
@@ -1759,23 +1772,27 @@ namespace ContactManager
 
         private void CmdSearchAddNote_Click(object sender, EventArgs e)
         {
-            //
+            DataGridViewSearchNotes.DataSource = null;
+
+            Note note = new Note();
+
+            if(currentContactNotes != null)
+            {
+                currentContactNotes.Add(note);
+            }
+            else
+            {
+                currentContactNotes = new List<Note>() { note };
+            }
+                
+            currentContact.NoteIds.Add(note.Id);
+
+            DataGridViewSearchNotes.DataSource = currentContactNotes;
         }
 
         private void CmdSearchDeleteNote_Click(object sender, EventArgs e)
         {
             //
-        }
-
-        private void DataGridViewSearchNotes_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (currentContactNotes != null)
-            {
-                if (e.RowIndex >= 0 && e.RowIndex < currentContactNotes.Count)
-                {
-                    CmdSearchDeleteNote.Enabled = true;
-                }
-            }
         }
 
         private void DataGridViewSearchNotes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -1793,7 +1810,17 @@ namespace ContactManager
                     }
                 }
             }
+        }
 
+        private void DataGridViewSearchNotes_SelectionChanged(object sender, EventArgs e)
+        {
+            if (currentContactNotes != null)
+            {
+                if (DataGridViewSearchNotes.SelectedCells[0].RowIndex >= 0 && DataGridViewSearchNotes.SelectedCells[0].RowIndex < currentContactNotes.Count)
+                {
+                    CmdSearchDeleteNote.Enabled = true;
+                }
+            }
         }
     }
 }
