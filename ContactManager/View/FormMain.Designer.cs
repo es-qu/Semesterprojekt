@@ -81,7 +81,7 @@ namespace ContactManager
             this.CmdSearchCancel = new MaterialSkin.Controls.MaterialButton();
             this.LblSearchPreviewNumberOutput = new System.Windows.Forms.Label();
             this.LblSearchPreviewTypeOutput = new System.Windows.Forms.Label();
-            this.CmdSearchNoteSave = new MaterialSkin.Controls.MaterialButton();
+            this.CmdSearchSaveNote = new MaterialSkin.Controls.MaterialButton();
             this.LblSearchPreviewStatus = new System.Windows.Forms.Label();
             this.LblSearchPreviewStatusOutput = new System.Windows.Forms.Label();
             this.LblSearchNotes = new MaterialSkin.Controls.MaterialLabel();
@@ -766,7 +766,7 @@ namespace ContactManager
             this.PnlSearchPreview.Controls.Add(this.CmdSearchCancel);
             this.PnlSearchPreview.Controls.Add(this.LblSearchPreviewNumberOutput);
             this.PnlSearchPreview.Controls.Add(this.LblSearchPreviewTypeOutput);
-            this.PnlSearchPreview.Controls.Add(this.CmdSearchNoteSave);
+            this.PnlSearchPreview.Controls.Add(this.CmdSearchSaveNote);
             this.PnlSearchPreview.Controls.Add(this.LblSearchPreviewStatus);
             this.PnlSearchPreview.Controls.Add(this.LblSearchPreviewStatusOutput);
             this.PnlSearchPreview.Controls.Add(this.LblSearchNotes);
@@ -814,7 +814,7 @@ namespace ContactManager
             this.CmdSearchAddNote.Enabled = false;
             this.CmdSearchAddNote.HighEmphasis = true;
             this.CmdSearchAddNote.Icon = null;
-            this.CmdSearchAddNote.Location = new System.Drawing.Point(637, 868);
+            this.CmdSearchAddNote.Location = new System.Drawing.Point(637, 869);
             this.CmdSearchAddNote.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchAddNote.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchAddNote.Name = "CmdSearchAddNote";
@@ -873,6 +873,8 @@ namespace ContactManager
             this.DataGridViewSearchNotes.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DataGridViewSearchNotes.Size = new System.Drawing.Size(948, 283);
             this.DataGridViewSearchNotes.TabIndex = 135;
+            this.DataGridViewSearchNotes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewSearchNotes_CellClick);
+            this.DataGridViewSearchNotes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewSearchNotes_CellEndEdit);
             // 
             // CmdSearchCancel
             // 
@@ -916,26 +918,26 @@ namespace ContactManager
             this.LblSearchPreviewTypeOutput.TabIndex = 133;
             this.LblSearchPreviewTypeOutput.Text = "-";
             // 
-            // CmdSearchNoteSave
+            // CmdSearchSaveNote
             // 
-            this.CmdSearchNoteSave.AutoSize = false;
-            this.CmdSearchNoteSave.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CmdSearchNoteSave.Depth = 0;
-            this.CmdSearchNoteSave.DrawShadows = true;
-            this.CmdSearchNoteSave.Enabled = false;
-            this.CmdSearchNoteSave.HighEmphasis = true;
-            this.CmdSearchNoteSave.Icon = null;
-            this.CmdSearchNoteSave.Location = new System.Drawing.Point(748, 869);
-            this.CmdSearchNoteSave.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CmdSearchNoteSave.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CmdSearchNoteSave.Name = "CmdSearchNoteSave";
-            this.CmdSearchNoteSave.Size = new System.Drawing.Size(87, 46);
-            this.CmdSearchNoteSave.TabIndex = 17;
-            this.CmdSearchNoteSave.Text = "SAVE";
-            this.CmdSearchNoteSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CmdSearchNoteSave.UseAccentColor = false;
-            this.CmdSearchNoteSave.UseVisualStyleBackColor = true;
-            this.CmdSearchNoteSave.Click += new System.EventHandler(this.CmdSearchNoteSave_Click);
+            this.CmdSearchSaveNote.AutoSize = false;
+            this.CmdSearchSaveNote.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdSearchSaveNote.Depth = 0;
+            this.CmdSearchSaveNote.DrawShadows = true;
+            this.CmdSearchSaveNote.Enabled = false;
+            this.CmdSearchSaveNote.HighEmphasis = true;
+            this.CmdSearchSaveNote.Icon = null;
+            this.CmdSearchSaveNote.Location = new System.Drawing.Point(748, 869);
+            this.CmdSearchSaveNote.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdSearchSaveNote.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdSearchSaveNote.Name = "CmdSearchSaveNote";
+            this.CmdSearchSaveNote.Size = new System.Drawing.Size(87, 46);
+            this.CmdSearchSaveNote.TabIndex = 17;
+            this.CmdSearchSaveNote.Text = "SAVE";
+            this.CmdSearchSaveNote.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdSearchSaveNote.UseAccentColor = false;
+            this.CmdSearchSaveNote.UseVisualStyleBackColor = true;
+            this.CmdSearchSaveNote.Click += new System.EventHandler(this.CmdSearchNoteSave_Click);
             // 
             // LblSearchPreviewStatus
             // 
@@ -3315,7 +3317,7 @@ namespace ContactManager
         private System.Windows.Forms.Label LblSearchPreviewStatusOutput;
         private System.Windows.Forms.Label LblSearchPreviewStatus;
         private MaterialSkin.Controls.MaterialLabel LblSearchPerson;
-        private MaterialSkin.Controls.MaterialButton CmdSearchNoteSave;
+        private MaterialSkin.Controls.MaterialButton CmdSearchSaveNote;
         private MaterialSkin.Controls.MaterialButton CmdCreateDeletePerson;
         private MaterialSkin.Controls.MaterialButton CmdSearchClear;
         private System.Windows.Forms.Label LblSearchPreviewNumberOutput;

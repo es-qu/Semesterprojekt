@@ -161,6 +161,21 @@ namespace ContactManager
             }
         }
 
+        public List<string> GetIdsFromCurrentContactNotes()
+        {
+            List<string> ids = new List<string>();
+
+            if (currentContactNotes != null)
+            {
+                foreach (Note note in currentContactNotes)
+                {
+                    ids.Add(note.Id);
+                }
+            }
+
+            return ids;
+        }
+
         public Person CreatePersonFromForm()
         {
             string gender = RadCreateMale.Checked ? "Male" :
@@ -187,6 +202,7 @@ namespace ContactManager
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
+                    NoteIds = GetIdsFromCurrentContactNotes(),
                     CompanyName = TxtCreateCompanyName.Text,
                     CustomerType = CmbCreateCustomerType.Text,
                     CompanyContact = TxtCreateCompanyContact.Text,
@@ -213,6 +229,7 @@ namespace ContactManager
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
+                    NoteIds = GetIdsFromCurrentContactNotes(),
                     Role = TxtCreateRole.Text,
                     Department = TxtCreateDepartement.Text,
                     EmployeeNumber = TxtCreateEmployeeNumber.Text,
@@ -242,6 +259,7 @@ namespace ContactManager
                         BusinessAddress = TxtCreateBusinessAddress.Text,
                         BusinessPhone = TxtCreateBusinessPhone.Text,
                         EmailAddress = TxtCreateEmailAddress.Text,
+                        NoteIds = GetIdsFromCurrentContactNotes(),
                         Role = TxtCreateRole.Text,
                         Department = TxtCreateDepartement.Text,
                         EmployeeNumber = TxtCreateEmployeeNumber.Text,
@@ -288,7 +306,7 @@ namespace ContactManager
                 BusinessAddress = TxtCreateBusinessAddress.Text,
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,
-                CommaSeparatedNoteIds = currentContact.CommaSeparatedNoteIds,
+                //CommaSeparatedNoteIds = string.Join(',', GetIdsFromCurrentContactNotes()),
                 Role = TxtCreateRole.Text,
                 Department = TxtCreateDepartement.Text,
                 DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
@@ -312,8 +330,8 @@ namespace ContactManager
         {
             string eventType = success ? successEvent : failureEvent;
             LogTable logInfo = LogForm(eventType);
-            Controller controller = new Controller();
-            controller.Log(logInfo);
+            //Controller controller = new Controller();
+            //controller.Log(logInfo);
 
             if (success)
             {
@@ -340,8 +358,8 @@ namespace ContactManager
         {
             string eventType = success ? successEvent : failureEvent;
             LogTable logInfo = LogForm(eventType);
-            Controller controller = new Controller();
-            controller.Log(logInfo);
+            //Controller controller = new Controller();
+            //controller.Log(logInfo);
 
             if (success)
             {
@@ -782,32 +800,6 @@ namespace ContactManager
 
                 DataGridViewSearchResult.CellFormatting += DataGridViewSearchResult_CellFormatting;
 
-                // Format notes
-                DataGridViewTextBoxColumn contentColumn = new DataGridViewTextBoxColumn
-                {
-                    Name = "contentColumn",
-                    HeaderText = "Content",
-                    DataPropertyName = "Content"
-                };
-                DataGridViewSearchNotes.Columns.Add(contentColumn);
-
-                DataGridViewTextBoxColumn editTimestampColumn = new DataGridViewTextBoxColumn
-                {
-                    Name = "editTimestampColumn",
-                    HeaderText = "Last Edit",
-                    DataPropertyName = "EditTimestamp"
-                };
-                DataGridViewSearchNotes.Columns.Add(editTimestampColumn);
-
-                DataGridViewTextBoxColumn createTimestampColumn = new DataGridViewTextBoxColumn
-                {
-                    Name = "createTimestampColumn",
-                    HeaderText = "Created",
-                    DataPropertyName = "CreateTimestamp"
-                };
-                DataGridViewSearchNotes.Columns.Add(createTimestampColumn);
-
-
                 if (searchResults.Count > 0)
                 {
                     LblNoResults.Visible = false;
@@ -819,6 +811,31 @@ namespace ContactManager
 
                     currentContact = (Person)searchResults[currentSelectedRow];
                     currentContactNotes = Controller.GetNotes(currentContact.NoteIds);
+
+                    // Format notes
+                    DataGridViewTextBoxColumn contentColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "contentColumn",
+                        HeaderText = "Content",
+                        DataPropertyName = "Content"
+                    };
+                    DataGridViewSearchNotes.Columns.Add(contentColumn);
+
+                    DataGridViewTextBoxColumn editTimestampColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "editTimestampColumn",
+                        HeaderText = "Last Edit",
+                        DataPropertyName = "EditTimestamp"
+                    };
+                    DataGridViewSearchNotes.Columns.Add(editTimestampColumn);
+
+                    DataGridViewTextBoxColumn createTimestampColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "createTimestampColumn",
+                        HeaderText = "Created",
+                        DataPropertyName = "CreateTimestamp"
+                    };
+                    DataGridViewSearchNotes.Columns.Add(createTimestampColumn);
 
                     DataGridViewSearchNotes.DataSource = currentContactNotes;
                 }
@@ -877,9 +894,9 @@ namespace ContactManager
                         // Enable/disable buttons
                         CmdSearchPersonEdit.Enabled = true;
                         CmdSearchPersonDelete.Enabled = true;
-                        CmdSearchAddNote.Enabled = false;
+                        CmdSearchAddNote.Enabled = true;
                         CmdSearchDeleteNote.Enabled = false;
-                        CmdSearchNoteSave.Enabled = true;
+                        CmdSearchSaveNote.Enabled = false;
 
                         var clickedPerson = (Person)searchResults[currentRow.Index];
                         LblSearchPreviewStatusOutput.Text = (clickedPerson.Active != 0) ? "Active" : "Inactive";
@@ -1017,7 +1034,7 @@ namespace ContactManager
                     CmdSearchPersonDelete.Enabled = false;
                     CmdSearchAddNote.Enabled = false;
                     CmdSearchDeleteNote.Enabled = false;
-                    CmdSearchNoteSave.Enabled = false;
+                    CmdSearchSaveNote.Enabled = false;
                 }
             }
         }
@@ -1748,6 +1765,35 @@ namespace ContactManager
         private void CmdSearchDeleteNote_Click(object sender, EventArgs e)
         {
             //
+        }
+
+        private void DataGridViewSearchNotes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (currentContactNotes != null)
+            {
+                if (e.RowIndex >= 0 && e.RowIndex < currentContactNotes.Count)
+                {
+                    CmdSearchDeleteNote.Enabled = true;
+                }
+            }
+        }
+
+        private void DataGridViewSearchNotes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (currentContactNotes != null)
+            {
+                if (e.RowIndex >= 0 && e.RowIndex < currentContactNotes.Count)
+                {
+                    if (e.ColumnIndex == 0)
+                    {
+                        // Update the 'Content' property of the corresponding Note object in currentContactNotes
+                        currentContactNotes[e.RowIndex].Content = DataGridViewSearchNotes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                        CmdSearchSaveNote.Enabled = true;
+                    }
+                }
+            }
+
         }
     }
 }

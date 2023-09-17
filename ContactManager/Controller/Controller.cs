@@ -152,7 +152,7 @@ namespace ContactManager
             log.OperationSuccessful = "";
             log.DeletionSuccessful = "";
 
-            //SqliteDataAccess.SaveLog(log);
+            SqliteDataAccess.SaveLog(log);
         }
 
 
@@ -377,7 +377,10 @@ namespace ContactManager
             {
                 foreach (string id in ids)
                 {
-                    notes.Add(SqliteDataAccess.SearchNote(id));
+                    if(id != "")
+                    {
+                        notes.Add(SqliteDataAccess.SearchNote(id));
+                    }
                 }
             }
 
