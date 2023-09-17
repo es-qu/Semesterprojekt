@@ -21,6 +21,7 @@ namespace ContactManager
         public SearchFilters filters = new SearchFilters();
 
         List<object> searchResults;
+        Person currentContact;
         List<Note> currentContactNotes;
         List<object> importContent;
 
@@ -111,7 +112,6 @@ namespace ContactManager
             TxtCreatePrivatePhone.Clear();
             TxtCreateEmailAddress.Clear();
             TxtCreateBusinessPhone.Clear();
-            TxtCreateNote.Clear();
             TxtCreateRole.Clear();
             TxtCreateDepartement.Clear();
             TxtCreateEmployeeNumber.Clear();
@@ -161,10 +161,8 @@ namespace ContactManager
             }
         }
 
-
         public Person CreatePersonFromForm()
         {
-
             string gender = RadCreateMale.Checked ? "Male" :
                 RadCreateFemale.Checked ? "Female" :
                 RadCreateOther.Checked ? "Other" : null;
@@ -189,7 +187,6 @@ namespace ContactManager
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
-                    CommaSeparatedNoteIds = TxtCreateNote.Text,
                     CompanyName = TxtCreateCompanyName.Text,
                     CustomerType = CmbCreateCustomerType.Text,
                     CompanyContact = TxtCreateCompanyContact.Text,
@@ -216,7 +213,6 @@ namespace ContactManager
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
-                    CommaSeparatedNoteIds = TxtCreateNote.Text,
                     Role = TxtCreateRole.Text,
                     Department = TxtCreateDepartement.Text,
                     EmployeeNumber = TxtCreateEmployeeNumber.Text,
@@ -246,7 +242,6 @@ namespace ContactManager
                         BusinessAddress = TxtCreateBusinessAddress.Text,
                         BusinessPhone = TxtCreateBusinessPhone.Text,
                         EmailAddress = TxtCreateEmailAddress.Text,
-                        CommaSeparatedNoteIds = TxtCreateNote.Text,
                         Role = TxtCreateRole.Text,
                         Department = TxtCreateDepartement.Text,
                         EmployeeNumber = TxtCreateEmployeeNumber.Text,
@@ -293,7 +288,7 @@ namespace ContactManager
                 BusinessAddress = TxtCreateBusinessAddress.Text,
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,
-                CommaSeparatedNoteIds = TxtCreateNote.Text,
+                CommaSeparatedNoteIds = currentContact.CommaSeparatedNoteIds,
                 Role = TxtCreateRole.Text,
                 Department = TxtCreateDepartement.Text,
                 DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
@@ -360,6 +355,7 @@ namespace ContactManager
         {
             Controller controller = new Controller();
             var person = CreatePersonFromForm();
+            currentContact = person;
 
             if (isEditMode == false)
             {
@@ -385,15 +381,15 @@ namespace ContactManager
 
                 if (person is Trainee trainee)
                 {
-                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, SqliteDataAccess.DeleteEmployee, () => controller.CreateTrainee(trainee, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => SqliteDataAccess.DeleteEmployee(empNumber), () => controller.CreateTrainee(trainee, this, true), deleteAndRecreateLogAction);
                 }
                 else if (person is Employee employee)
                 {
-                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, SqliteDataAccess.DeleteEmployee, () => controller.CreateEmployee(employee, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => SqliteDataAccess.DeleteEmployee(empNumber), () => controller.CreateEmployee(employee, this, true), deleteAndRecreateLogAction);
                 }
                 else if (person is Customer customer)
                 {
-                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, SqliteDataAccess.DeleteCustomer, () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => SqliteDataAccess.DeleteCustomer(custNumber), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
                 }
             }
         }
@@ -708,12 +704,18 @@ namespace ContactManager
         public void CmdSearchExec_Click(object sender, EventArgs e)
         {
             searchResults = null;
+            currentContact = null;
             currentContactNotes = null;
 
             DataGridViewSearchResult.CurrentCell = null;
             DataGridViewSearchResult.AutoGenerateColumns = false;
             DataGridViewSearchResult.Columns.Clear();
             DataGridViewSearchResult.DataSource = null;
+
+            DataGridViewSearchNotes.CurrentCell = null;
+            DataGridViewSearchNotes.AutoGenerateColumns = false;
+            DataGridViewSearchNotes.Columns.Clear();
+            DataGridViewSearchNotes.DataSource = null;
 
             LblSearchResultCounter.Text = "Results: 0";
 
@@ -745,6 +747,7 @@ namespace ContactManager
 
             if (searchResults != null)
             {
+                // Format search results
                 DataGridViewTextBoxColumn firstNameColumn = new DataGridViewTextBoxColumn
                 {
                     Name = "firstNameColumn",
@@ -779,6 +782,31 @@ namespace ContactManager
 
                 DataGridViewSearchResult.CellFormatting += DataGridViewSearchResult_CellFormatting;
 
+                // Format notes
+                DataGridViewTextBoxColumn contentColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "contentColumn",
+                    HeaderText = "Content",
+                    DataPropertyName = "Content"
+                };
+                DataGridViewSearchNotes.Columns.Add(contentColumn);
+
+                DataGridViewTextBoxColumn editTimestampColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "editTimestampColumn",
+                    HeaderText = "Last Edit",
+                    DataPropertyName = "EditTimestamp"
+                };
+                DataGridViewSearchNotes.Columns.Add(editTimestampColumn);
+
+                DataGridViewTextBoxColumn createTimestampColumn = new DataGridViewTextBoxColumn
+                {
+                    Name = "createTimestampColumn",
+                    HeaderText = "Created",
+                    DataPropertyName = "CreateTimestamp"
+                };
+                DataGridViewSearchNotes.Columns.Add(createTimestampColumn);
+
 
                 if (searchResults.Count > 0)
                 {
@@ -789,7 +817,10 @@ namespace ContactManager
                     DataGridViewSearchResult.CurrentCell = DataGridViewSearchResult.FirstDisplayedCell;
                     int currentSelectedRow = DataGridViewSearchResult.CurrentCell.RowIndex;
 
-                    currentContactNotes = Controller.GetNotes(((Person)searchResults[currentSelectedRow]).NoteIds);
+                    currentContact = (Person)searchResults[currentSelectedRow];
+                    currentContactNotes = Controller.GetNotes(currentContact.NoteIds);
+
+                    DataGridViewSearchNotes.DataSource = currentContactNotes;
                 }
                 else
                 {
@@ -843,12 +874,12 @@ namespace ContactManager
                     if (currentRow != null && currentRow.Index < searchResults.Count)
                     {
 
-                        // Enable buttons
+                        // Enable/disable buttons
                         CmdSearchPersonEdit.Enabled = true;
                         CmdSearchPersonDelete.Enabled = true;
+                        CmdSearchAddNote.Enabled = false;
+                        CmdSearchDeleteNote.Enabled = false;
                         CmdSearchNoteSave.Enabled = true;
-                        CmdSearchNoteEdit.Enabled = true;
-                        CmdSearchNoteClear.Enabled = true;
 
                         var clickedPerson = (Person)searchResults[currentRow.Index];
                         LblSearchPreviewStatusOutput.Text = (clickedPerson.Active != 0) ? "Active" : "Inactive";
@@ -867,7 +898,7 @@ namespace ContactManager
                         LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.PrivatePhone;
                         LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.BusinessPhone;
                         LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.BusinessAddress;
-                        TxtSearchNote.Text = clickedPerson.CommaSeparatedNoteIds;
+                        DataGridViewSearchNotes.DataSource = currentContactNotes;
 
                         // Clear type specific informations
 
@@ -966,7 +997,7 @@ namespace ContactManager
                     LblSearchPreviewPrivatePhoneOutput.Text = "-";
                     LblSearchPreviewBusinessPhoneOutput.Text = "-";
                     LblSearchPreviewBusinessAddressOutput.Text = "-";
-                    TxtSearchNote.Text = "-";
+                    DataGridViewSearchNotes.DataSource = null;
 
                     LblSearchPreviewNumberOutput.Text = "-";
                     LblSearchPreviewTypeOutput.Text = "-";
@@ -984,10 +1015,9 @@ namespace ContactManager
                     // Disable buttons
                     CmdSearchPersonEdit.Enabled = false;
                     CmdSearchPersonDelete.Enabled = false;
+                    CmdSearchAddNote.Enabled = false;
+                    CmdSearchDeleteNote.Enabled = false;
                     CmdSearchNoteSave.Enabled = false;
-                    CmdSearchNoteEdit.Enabled = false;
-                    CmdSearchNoteClear.Enabled = false;
-
                 }
             }
         }
@@ -1148,7 +1178,8 @@ namespace ContactManager
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
                     TxtCreateBusinessAddress.Text = contact.BusinessAddress;
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
-                    TxtCreateNote.Text = contact.CommaSeparatedNoteIds;
+                    DataGridViewCreateNotes.DataSource = null;
+                    DataGridViewCreateNotes.DataSource = currentContactNotes;
 
                     // Fill out specific fields
                     Type type = contact.GetType();
@@ -1703,11 +1734,6 @@ namespace ContactManager
                     }
                 }
             }
-        }
-
-        private void CmdCreateNoteClear_Click(object sender, EventArgs e)
-        {
-            TxtCreateNote.Text = "";
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)

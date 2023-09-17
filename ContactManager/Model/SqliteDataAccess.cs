@@ -2,14 +2,11 @@
 using ContactManager.Model;
 using Dapper;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
-using System.Runtime.Remoting.Lifetime;
-using System.Security.Policy;
 using System.Windows.Forms;
 
 namespace ContactManager
@@ -18,8 +15,8 @@ namespace ContactManager
     {
         public static int InsertPerson(IDbConnection cnn, Person person)
         {
-            string sqlQuery = "INSERT INTO Person (Active, Gender, Salutation, Title, FirstName, LastName, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, Note) " +
-                              "VALUES (@Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @Note)";
+            string sqlQuery = "INSERT INTO Person (Active, Gender, Salutation, Title, FirstName, LastName, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, CommaSeparatedNoteIds) " +
+                              "VALUES (@Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @CommaSeparatedNoteIds)";
             cnn.Execute(sqlQuery, person);
             return cnn.Query<int>("SELECT last_insert_rowid()").Single();
         }
@@ -165,8 +162,8 @@ namespace ContactManager
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var sqlQuery = @"INSERT INTO LogTable 
-                (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
-                VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
+                (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, CommaSeparatedNoteIds, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
+                VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @CommaSeparatedNoteIds, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
                 cnn.Execute(sqlQuery, log);
                 string sqlQuery1 = "SELECT * FROM LogTable WHERE EmployeeNumber = @EmployeeNumber";
                 var logs = cnn.Query<LogTable>(sqlQuery1, new { EmployeeNumber = log.EmployeeNumber });
@@ -212,8 +209,37 @@ namespace ContactManager
             }
         }
 
+        public static bool DeleteAllNotes(int personId)
+        {
+            try
+            {
+                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
 
-        public static bool DeleteEmployee(string employeeNumber)
+                    string noteIds = (string)cnn.Query<string>("SELECT CommaSeparatedNoteIds FROM Person WHERE Id=@Id", new { Id = personId }).FirstOrDefault();
+
+                    if (noteIds != null)
+                    {
+                        foreach (string noteId in noteIds.Split(','))
+                        {
+                            cnn.Execute("DELETE FROM Notes WHERE Id=@Id", new { Id = noteId });
+                        }
+                    }
+
+                    cnn.Close();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        public static bool DeleteEmployee(string employeeNumber, bool deleteAllNotes = true)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -222,6 +248,8 @@ namespace ContactManager
 
                 if (personId != 0) // If the employee is found
                 {
+                    if (deleteAllNotes) DeleteAllNotes(personId);
+
                     // Check if the person is also a Trainee
                     var isTrainee = cnn.Query<int>("SELECT COUNT(*) FROM Trainee WHERE ID = @ID", new { ID = personId }).Single() > 0;
 
@@ -247,7 +275,7 @@ namespace ContactManager
         }
 
 
-        public static bool DeleteCustomer(string customerNumber)
+        public static bool DeleteCustomer(string customerNumber, bool deleteAllNotes = true)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -256,6 +284,8 @@ namespace ContactManager
 
                 if (personId != 0) // If the customer is found
                 {
+                    if (deleteAllNotes) DeleteAllNotes(personId);
+
                     // Delete the customer
                     var customerDeleted = cnn.Execute("DELETE FROM Customer WHERE CustomerNumber = @CustomerNumber", new { CustomerNumber = customerNumber });
 
@@ -346,6 +376,50 @@ namespace ContactManager
             }
         }
 
+        public static bool UpdateContact(Person person)
+        {
+            try
+            {
+                if (person.GetType() == typeof(Customer))
+                {
+                    Customer customer = (Customer)person;
+                    bool deleted = DeleteCustomer(customer.CustomerNumber, false);
+
+                    if (deleted)
+                    {
+                        SaveCustomer(customer);
+                    }
+                }
+                else if (person.GetType() == typeof(Employee) && person.GetType() != typeof(Trainee))
+                {
+                    Employee employee = (Employee)person;
+                    bool deleted = DeleteEmployee(employee.EmployeeNumber, false);
+
+                    if (deleted)
+                    {
+                        SaveEmployee(employee);
+                    }
+                }
+                else if (person.GetType() == typeof(Trainee))
+                {
+                    Trainee trainee = (Trainee)person;
+                    bool deleted = DeleteEmployee(trainee.EmployeeNumber, false);
+
+                    if (deleted)
+                    {
+                        SaveEmployee(trainee);
+                    }        
+                }
+                
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
         /// <summary>
         /// Get a note object
         /// </summary>
@@ -359,7 +433,7 @@ namespace ContactManager
             {
                 conn.Open();
 
-                note = (Note)conn.Query<Note>($"SELECT * FROM Notes WHERE Id={id} LIMIT 1");
+                note = (Note)conn.Query<Note>($"SELECT * FROM Notes WHERE Id=@Id", new { Id = id }).FirstOrDefault();
 
                 conn.Close();
             }
@@ -375,11 +449,27 @@ namespace ContactManager
         /// <returns>True if successfull, else false</returns>
         public static bool SaveNote(Person associatedContact, Note note)
         {
-            // Write NoteId into the contact's NoteIds
+            try
+            {
+                using (SQLiteConnection conn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    conn.Open();
 
+                    conn.Execute("INSERT INTO Notes (Id, Content, CreateTimestamp, EditTimestamp) VALUES (@Id, @Content, @CreateTimestamp, @EditTimestamp)", note);
+
+                    conn.Close();
+                }
+
+                return UpdateContact(associatedContact);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
             // Save note to db
 
-            return false;
+            // Write NoteId into the contact's NoteIds
         }
 
         /// <summary>
@@ -396,7 +486,7 @@ namespace ContactManager
                 try
                 {
                     cnn.Open();
-                    cnn.Execute("DELETE FROM NOTES WHERE NodeId=@NodeId", new { NoteId = noteId });
+                    cnn.Execute("DELETE FROM NOTES WHERE Id=@Id", new { Id = noteId });
                     cnn.Close();
                 }
                 catch
@@ -414,7 +504,7 @@ namespace ContactManager
                 {
                     cnn.Open();
                     // How can we find contact?
-                    cnn.Execute("UPDATE USERS SET(CommaSeparatedNoteIds) VALUES(@CommaSeparatedNoteIds) WHERE Id=@Id", new { CommaSeparatedNoteIds = associatedContact.CommaSeparatedNoteIds });
+                    cnn.Execute("UPDATE USERS SET CommaSeparatedNoteIds=@CommaSeparatedNoteIds WHERE Id=@Id", new { CommaSeparatedNoteIds = associatedContact.CommaSeparatedNoteIds });
                     cnn.Close();
                 }
                 catch
@@ -442,15 +532,7 @@ namespace ContactManager
                 {
                     try
                     {
-                        cnn.Execute(
-                            "UPDATE NOTES SET (Content, EditTimestamp) VALUES (@Content, @EditTimestamp) " +
-                            "WHERE Id=@Id",
-                            new
-                            {
-                                Content = note.Content,
-                                EditTimestamp = note.EditTimestamp,
-                                Id = note.Id
-                            });
+                        cnn.Execute("UPDATE Notes SET Content=@Content, EditTimestamp=@EditTimestamp WHERE Id=@Id", note);
 
                         transaction.Commit();
                         return true;

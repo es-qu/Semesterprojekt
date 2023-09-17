@@ -34,6 +34,10 @@ namespace ContactManager
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,10 +46,6 @@ namespace ContactManager
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -79,6 +79,9 @@ namespace ContactManager
             this.DataGridViewSearchResult = new System.Windows.Forms.DataGridView();
             this.TxtSearch = new System.Windows.Forms.TextBox();
             this.PnlSearchPreview = new System.Windows.Forms.Panel();
+            this.CmdSearchDeleteNote = new MaterialSkin.Controls.MaterialButton();
+            this.CmdSearchAddNote = new MaterialSkin.Controls.MaterialButton();
+            this.DataGridViewSearchNotes = new System.Windows.Forms.DataGridView();
             this.CmdSearchCancel = new MaterialSkin.Controls.MaterialButton();
             this.LblSearchPreviewNumberOutput = new System.Windows.Forms.Label();
             this.LblSearchPreviewTypeOutput = new System.Windows.Forms.Label();
@@ -153,7 +156,6 @@ namespace ContactManager
             this.TabCreateEdit = new System.Windows.Forms.TabPage();
             this.TabCreate = new MaterialSkin.Controls.MaterialCard();
             this.CmdCreateDeletePerson = new MaterialSkin.Controls.MaterialButton();
-            this.LblCreateNotes = new MaterialSkin.Controls.MaterialLabel();
             this.CmdCreateCancel = new MaterialSkin.Controls.MaterialButton();
             this.CmdCreatePersonSaveAndNew = new MaterialSkin.Controls.MaterialButton();
             this.LblCreateTypeSelection = new System.Windows.Forms.Label();
@@ -238,16 +240,15 @@ namespace ContactManager
             this.DataGridViewImportGeneric = new System.Windows.Forms.DataGridView();
             this.CmdImportOpenFile = new MaterialSkin.Controls.MaterialButton();
             this.OpenFileDialogImportContacts = new System.Windows.Forms.OpenFileDialog();
-            this.DataGridViewSearchNotes = new System.Windows.Forms.DataGridView();
-            this.CmdSearchAddNote = new MaterialSkin.Controls.MaterialButton();
-            this.CmdSearchDeleteNote = new MaterialSkin.Controls.MaterialButton();
-            this.CmdCreateDeleteNote = new MaterialSkin.Controls.MaterialButton();
+            this.LblCreateNotes = new MaterialSkin.Controls.MaterialLabel();
+            this.DataGridViewCreateNotes = new System.Windows.Forms.DataGridView();
             this.CmdCreateAddNote = new MaterialSkin.Controls.MaterialButton();
-            this.dDataGridViewCreateNotes = new System.Windows.Forms.DataGridView();
+            this.CmdCreateDeleteNote = new MaterialSkin.Controls.MaterialButton();
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchResult)).BeginInit();
             this.PnlSearchPreview.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchNotes)).BeginInit();
             this.PnlSearchPreviewCustomer.SuspendLayout();
             this.PnlSearchPreviewTrainee.SuspendLayout();
             this.PnlSearchPreviewGeneral.SuspendLayout();
@@ -267,8 +268,7 @@ namespace ContactManager
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportSpecific)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportGeneric)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchNotes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dDataGridViewCreateNotes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCreateNotes)).BeginInit();
             this.SuspendLayout();
             // 
             // TCtrlMain
@@ -792,6 +792,96 @@ namespace ContactManager
             this.PnlSearchPreview.Name = "PnlSearchPreview";
             this.PnlSearchPreview.Size = new System.Drawing.Size(980, 915);
             this.PnlSearchPreview.TabIndex = 107;
+            // 
+            // CmdSearchDeleteNote
+            // 
+            this.CmdSearchDeleteNote.AutoSize = false;
+            this.CmdSearchDeleteNote.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdSearchDeleteNote.Depth = 0;
+            this.CmdSearchDeleteNote.DrawShadows = true;
+            this.CmdSearchDeleteNote.Enabled = false;
+            this.CmdSearchDeleteNote.HighEmphasis = true;
+            this.CmdSearchDeleteNote.Icon = null;
+            this.CmdSearchDeleteNote.Location = new System.Drawing.Point(691, 869);
+            this.CmdSearchDeleteNote.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdSearchDeleteNote.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdSearchDeleteNote.Name = "CmdSearchDeleteNote";
+            this.CmdSearchDeleteNote.Size = new System.Drawing.Size(46, 46);
+            this.CmdSearchDeleteNote.TabIndex = 137;
+            this.CmdSearchDeleteNote.Text = "-";
+            this.CmdSearchDeleteNote.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdSearchDeleteNote.UseAccentColor = false;
+            this.CmdSearchDeleteNote.UseVisualStyleBackColor = true;
+            this.CmdSearchDeleteNote.Click += new System.EventHandler(this.CmdSearchDeleteNote_Click);
+            // 
+            // CmdSearchAddNote
+            // 
+            this.CmdSearchAddNote.AutoSize = false;
+            this.CmdSearchAddNote.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdSearchAddNote.Depth = 0;
+            this.CmdSearchAddNote.DrawShadows = true;
+            this.CmdSearchAddNote.Enabled = false;
+            this.CmdSearchAddNote.HighEmphasis = true;
+            this.CmdSearchAddNote.Icon = null;
+            this.CmdSearchAddNote.Location = new System.Drawing.Point(637, 868);
+            this.CmdSearchAddNote.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdSearchAddNote.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdSearchAddNote.Name = "CmdSearchAddNote";
+            this.CmdSearchAddNote.Size = new System.Drawing.Size(46, 46);
+            this.CmdSearchAddNote.TabIndex = 136;
+            this.CmdSearchAddNote.Text = "+";
+            this.CmdSearchAddNote.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdSearchAddNote.UseAccentColor = false;
+            this.CmdSearchAddNote.UseVisualStyleBackColor = true;
+            this.CmdSearchAddNote.Click += new System.EventHandler(this.CmdSearchAddNote_Click);
+            // 
+            // DataGridViewSearchNotes
+            // 
+            this.DataGridViewSearchNotes.AllowUserToAddRows = false;
+            this.DataGridViewSearchNotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewSearchNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.DataGridViewSearchNotes.BackgroundColor = System.Drawing.Color.DimGray;
+            this.DataGridViewSearchNotes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchNotes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGridViewSearchNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewSearchNotes.DefaultCellStyle = dataGridViewCellStyle6;
+            this.DataGridViewSearchNotes.GridColor = System.Drawing.Color.Gray;
+            this.DataGridViewSearchNotes.Location = new System.Drawing.Point(27, 582);
+            this.DataGridViewSearchNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DataGridViewSearchNotes.MultiSelect = false;
+            this.DataGridViewSearchNotes.Name = "DataGridViewSearchNotes";
+            this.DataGridViewSearchNotes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchNotes.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.DataGridViewSearchNotes.RowHeadersVisible = false;
+            this.DataGridViewSearchNotes.RowHeadersWidth = 51;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewSearchNotes.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.DataGridViewSearchNotes.Size = new System.Drawing.Size(948, 283);
+            this.DataGridViewSearchNotes.TabIndex = 135;
             // 
             // CmdSearchCancel
             // 
@@ -1625,7 +1715,7 @@ namespace ContactManager
             this.TabCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.TabCreate.Controls.Add(this.CmdCreateDeleteNote);
             this.TabCreate.Controls.Add(this.CmdCreateAddNote);
-            this.TabCreate.Controls.Add(this.dDataGridViewCreateNotes);
+            this.TabCreate.Controls.Add(this.DataGridViewCreateNotes);
             this.TabCreate.Controls.Add(this.CmdCreateDeletePerson);
             this.TabCreate.Controls.Add(this.LblCreateNotes);
             this.TabCreate.Controls.Add(this.CmdCreateCancel);
@@ -1665,19 +1755,6 @@ namespace ContactManager
             this.CmdCreateDeletePerson.UseVisualStyleBackColor = true;
             this.CmdCreateDeletePerson.Visible = false;
             this.CmdCreateDeletePerson.Click += new System.EventHandler(this.CmdCreateDeletePerson_Click);
-            // 
-            // LblCreateNotes
-            // 
-            this.LblCreateNotes.AutoSize = true;
-            this.LblCreateNotes.Depth = 0;
-            this.LblCreateNotes.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateNotes.Location = new System.Drawing.Point(958, 554);
-            this.LblCreateNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblCreateNotes.MouseState = MaterialSkin.MouseState.HOVER;
-            this.LblCreateNotes.Name = "LblCreateNotes";
-            this.LblCreateNotes.Size = new System.Drawing.Size(42, 19);
-            this.LblCreateNotes.TabIndex = 93;
-            this.LblCreateNotes.Text = "Notes";
             // 
             // CmdCreateCancel
             // 
@@ -3025,115 +3102,66 @@ namespace ContactManager
             this.OpenFileDialogImportContacts.Filter = "CSV Files (*.csv) | *.csv";
             this.OpenFileDialogImportContacts.InitialDirectory = "$PWD\\..\\..\\ExampleFiles\\";
             // 
-            // DataGridViewSearchNotes
+            // LblCreateNotes
             // 
-            this.DataGridViewSearchNotes.AllowUserToAddRows = false;
-            this.DataGridViewSearchNotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridViewSearchNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.DataGridViewSearchNotes.BackgroundColor = System.Drawing.Color.DimGray;
-            this.DataGridViewSearchNotes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewSearchNotes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.DataGridViewSearchNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewSearchNotes.DefaultCellStyle = dataGridViewCellStyle6;
-            this.DataGridViewSearchNotes.GridColor = System.Drawing.Color.Gray;
-            this.DataGridViewSearchNotes.Location = new System.Drawing.Point(27, 582);
-            this.DataGridViewSearchNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.DataGridViewSearchNotes.MultiSelect = false;
-            this.DataGridViewSearchNotes.Name = "DataGridViewSearchNotes";
-            this.DataGridViewSearchNotes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewSearchNotes.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.DataGridViewSearchNotes.RowHeadersVisible = false;
-            this.DataGridViewSearchNotes.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGridViewSearchNotes.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.DataGridViewSearchNotes.Size = new System.Drawing.Size(948, 283);
-            this.DataGridViewSearchNotes.TabIndex = 135;
+            this.LblCreateNotes.AutoSize = true;
+            this.LblCreateNotes.Depth = 0;
+            this.LblCreateNotes.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.LblCreateNotes.Location = new System.Drawing.Point(958, 554);
+            this.LblCreateNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblCreateNotes.MouseState = MaterialSkin.MouseState.HOVER;
+            this.LblCreateNotes.Name = "LblCreateNotes";
+            this.LblCreateNotes.Size = new System.Drawing.Size(42, 19);
+            this.LblCreateNotes.TabIndex = 93;
+            this.LblCreateNotes.Text = "Notes";
             // 
-            // CmdSearchAddNote
+            // DataGridViewCreateNotes
             // 
-            this.CmdSearchAddNote.AutoSize = false;
-            this.CmdSearchAddNote.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CmdSearchAddNote.Depth = 0;
-            this.CmdSearchAddNote.DrawShadows = true;
-            this.CmdSearchAddNote.Enabled = false;
-            this.CmdSearchAddNote.HighEmphasis = true;
-            this.CmdSearchAddNote.Icon = null;
-            this.CmdSearchAddNote.Location = new System.Drawing.Point(637, 868);
-            this.CmdSearchAddNote.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CmdSearchAddNote.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CmdSearchAddNote.Name = "CmdSearchAddNote";
-            this.CmdSearchAddNote.Size = new System.Drawing.Size(46, 46);
-            this.CmdSearchAddNote.TabIndex = 136;
-            this.CmdSearchAddNote.Text = "+";
-            this.CmdSearchAddNote.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CmdSearchAddNote.UseAccentColor = false;
-            this.CmdSearchAddNote.UseVisualStyleBackColor = true;
-            this.CmdSearchAddNote.Click += new System.EventHandler(this.CmdSearchAddNote_Click);
-            // 
-            // CmdSearchDeleteNote
-            // 
-            this.CmdSearchDeleteNote.AutoSize = false;
-            this.CmdSearchDeleteNote.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CmdSearchDeleteNote.Depth = 0;
-            this.CmdSearchDeleteNote.DrawShadows = true;
-            this.CmdSearchDeleteNote.Enabled = false;
-            this.CmdSearchDeleteNote.HighEmphasis = true;
-            this.CmdSearchDeleteNote.Icon = null;
-            this.CmdSearchDeleteNote.Location = new System.Drawing.Point(691, 869);
-            this.CmdSearchDeleteNote.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CmdSearchDeleteNote.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CmdSearchDeleteNote.Name = "CmdSearchDeleteNote";
-            this.CmdSearchDeleteNote.Size = new System.Drawing.Size(46, 46);
-            this.CmdSearchDeleteNote.TabIndex = 137;
-            this.CmdSearchDeleteNote.Text = "-";
-            this.CmdSearchDeleteNote.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CmdSearchDeleteNote.UseAccentColor = false;
-            this.CmdSearchDeleteNote.UseVisualStyleBackColor = true;
-            this.CmdSearchDeleteNote.Click += new System.EventHandler(this.CmdSearchDeleteNote_Click);
-            // 
-            // CmdCreateDeleteNote
-            // 
-            this.CmdCreateDeleteNote.AutoSize = false;
-            this.CmdCreateDeleteNote.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CmdCreateDeleteNote.Depth = 0;
-            this.CmdCreateDeleteNote.DrawShadows = true;
-            this.CmdCreateDeleteNote.Enabled = false;
-            this.CmdCreateDeleteNote.HighEmphasis = true;
-            this.CmdCreateDeleteNote.Icon = null;
-            this.CmdCreateDeleteNote.Location = new System.Drawing.Point(1014, 848);
-            this.CmdCreateDeleteNote.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.CmdCreateDeleteNote.MouseState = MaterialSkin.MouseState.HOVER;
-            this.CmdCreateDeleteNote.Name = "CmdCreateDeleteNote";
-            this.CmdCreateDeleteNote.Size = new System.Drawing.Size(67, 67);
-            this.CmdCreateDeleteNote.TabIndex = 141;
-            this.CmdCreateDeleteNote.Text = "-";
-            this.CmdCreateDeleteNote.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
-            this.CmdCreateDeleteNote.UseAccentColor = false;
-            this.CmdCreateDeleteNote.UseVisualStyleBackColor = true;
+            this.DataGridViewCreateNotes.AllowUserToAddRows = false;
+            this.DataGridViewCreateNotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewCreateNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.DataGridViewCreateNotes.BackgroundColor = System.Drawing.Color.DimGray;
+            this.DataGridViewCreateNotes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewCreateNotes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.DataGridViewCreateNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewCreateNotes.DefaultCellStyle = dataGridViewCellStyle10;
+            this.DataGridViewCreateNotes.GridColor = System.Drawing.Color.Gray;
+            this.DataGridViewCreateNotes.Location = new System.Drawing.Point(939, 600);
+            this.DataGridViewCreateNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DataGridViewCreateNotes.MultiSelect = false;
+            this.DataGridViewCreateNotes.Name = "DataGridViewCreateNotes";
+            this.DataGridViewCreateNotes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewCreateNotes.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.DataGridViewCreateNotes.RowHeadersVisible = false;
+            this.DataGridViewCreateNotes.RowHeadersWidth = 51;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewCreateNotes.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.DataGridViewCreateNotes.Size = new System.Drawing.Size(957, 238);
+            this.DataGridViewCreateNotes.TabIndex = 139;
             // 
             // CmdCreateAddNote
             // 
@@ -3155,53 +3183,25 @@ namespace ContactManager
             this.CmdCreateAddNote.UseAccentColor = false;
             this.CmdCreateAddNote.UseVisualStyleBackColor = true;
             // 
-            // dDataGridViewCreateNotes
+            // CmdCreateDeleteNote
             // 
-            this.dDataGridViewCreateNotes.AllowUserToAddRows = false;
-            this.dDataGridViewCreateNotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dDataGridViewCreateNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dDataGridViewCreateNotes.BackgroundColor = System.Drawing.Color.DimGray;
-            this.dDataGridViewCreateNotes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dDataGridViewCreateNotes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.dDataGridViewCreateNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dDataGridViewCreateNotes.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dDataGridViewCreateNotes.GridColor = System.Drawing.Color.Gray;
-            this.dDataGridViewCreateNotes.Location = new System.Drawing.Point(939, 600);
-            this.dDataGridViewCreateNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dDataGridViewCreateNotes.MultiSelect = false;
-            this.dDataGridViewCreateNotes.Name = "dDataGridViewCreateNotes";
-            this.dDataGridViewCreateNotes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dDataGridViewCreateNotes.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.dDataGridViewCreateNotes.RowHeadersVisible = false;
-            this.dDataGridViewCreateNotes.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.dDataGridViewCreateNotes.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.dDataGridViewCreateNotes.Size = new System.Drawing.Size(957, 238);
-            this.dDataGridViewCreateNotes.TabIndex = 139;
+            this.CmdCreateDeleteNote.AutoSize = false;
+            this.CmdCreateDeleteNote.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CmdCreateDeleteNote.Depth = 0;
+            this.CmdCreateDeleteNote.DrawShadows = true;
+            this.CmdCreateDeleteNote.Enabled = false;
+            this.CmdCreateDeleteNote.HighEmphasis = true;
+            this.CmdCreateDeleteNote.Icon = null;
+            this.CmdCreateDeleteNote.Location = new System.Drawing.Point(1014, 848);
+            this.CmdCreateDeleteNote.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdCreateDeleteNote.MouseState = MaterialSkin.MouseState.HOVER;
+            this.CmdCreateDeleteNote.Name = "CmdCreateDeleteNote";
+            this.CmdCreateDeleteNote.Size = new System.Drawing.Size(67, 67);
+            this.CmdCreateDeleteNote.TabIndex = 141;
+            this.CmdCreateDeleteNote.Text = "-";
+            this.CmdCreateDeleteNote.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.CmdCreateDeleteNote.UseAccentColor = false;
+            this.CmdCreateDeleteNote.UseVisualStyleBackColor = true;
             // 
             // FormMain
             // 
@@ -3225,6 +3225,7 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchResult)).EndInit();
             this.PnlSearchPreview.ResumeLayout(false);
             this.PnlSearchPreview.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchNotes)).EndInit();
             this.PnlSearchPreviewCustomer.ResumeLayout(false);
             this.PnlSearchPreviewCustomer.PerformLayout();
             this.PnlSearchPreviewTrainee.ResumeLayout(false);
@@ -3255,8 +3256,7 @@ namespace ContactManager
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportSpecific)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportGeneric)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchNotes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dDataGridViewCreateNotes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCreateNotes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3333,7 +3333,6 @@ namespace ContactManager
         private System.Windows.Forms.Label LblCreateTypeSelection;
         private MaterialSkin.Controls.MaterialButton CmdCreateCancel;
         private MaterialSkin.Controls.MaterialButton CmdCreatePersonSaveAndNew;
-        private MaterialSkin.Controls.MaterialLabel LblCreateNotes;
         private System.Windows.Forms.Panel PnlCreateInfoCustomer;
         private MaterialSkin.Controls.MaterialLabel LblCreateCompanyName;
         private MaterialSkin.Controls.MaterialComboBox CmbCreateCustomerType;
@@ -3459,6 +3458,7 @@ namespace ContactManager
         private MaterialSkin.Controls.MaterialButton CmdSearchDeleteNote;
         private MaterialSkin.Controls.MaterialButton CmdCreateDeleteNote;
         private MaterialSkin.Controls.MaterialButton CmdCreateAddNote;
-        private System.Windows.Forms.DataGridView dDataGridViewCreateNotes;
+        private System.Windows.Forms.DataGridView DataGridViewCreateNotes;
+        private MaterialSkin.Controls.MaterialLabel LblCreateNotes;
     }
 }
