@@ -15,8 +15,8 @@ namespace ContactManager
     {
         public static int InsertPerson(IDbConnection cnn, Person person)
         {
-            string sqlQuery = "INSERT INTO Person (Active, Gender, Salutation, Title, FirstName, LastName, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, CommaSeparatedNoteIds) " +
-                              "VALUES (@Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @CommaSeparatedNoteIds)";
+            string sqlQuery = "INSERT INTO Person (Active, Gender, Salutation, Title, FirstName, LastName, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, Note) " +
+                              "VALUES (@Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @Note)";
             cnn.Execute(sqlQuery, person);
             return cnn.Query<int>("SELECT last_insert_rowid()").Single();
         }
@@ -122,18 +122,16 @@ namespace ContactManager
 
 
 
-        public static int SaveEmployee(Employee employee)
+        public static void SaveEmployee(Employee employee)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                int lastId_e;
                 cnn.Open();
                 using (var transaction = cnn.BeginTransaction())
                 {
-
                     try
                     {
-                        lastId_e = InsertPerson(cnn, employee);
+                        int lastId_e = InsertPerson(cnn, employee);
                         cnn.Execute("INSERT INTO Employee (ID, Role, Department, DegreeOfEmployment,EmployeeNumber, Dateofjoining, Dateofleaving, CadreLevel) VALUES (@Id, @Role, @Department,@DegreeOfEmployment, @EmployeeNumber, @DateOfJoining, @DateOfLeaving, @CadreLevel)",
                             new
                             {
@@ -155,23 +153,21 @@ namespace ContactManager
                         throw;
                     }
                 }
-                return lastId_e;
             }
-
         }
 
 
         public static void SaveLog(LogTable log)
         {
-            //using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            //{
-            //    var sqlQuery = @"INSERT INTO LogTable 
-            //    (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
-            //    VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
-            //    cnn.Execute(sqlQuery, log);
-            //    string sqlQuery1 = "SELECT * FROM LogTable WHERE EmployeeNumber = @EmployeeNumber";
-            //    var logs = cnn.Query<LogTable>(sqlQuery1, new { EmployeeNumber = log.EmployeeNumber });
-            //}
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var sqlQuery = @"INSERT INTO LogTable 
+                (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, Note, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
+                VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @Note, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
+                cnn.Execute(sqlQuery, log);
+                string sqlQuery1 = "SELECT * FROM LogTable WHERE EmployeeNumber = @EmployeeNumber";
+                var logs = cnn.Query<LogTable>(sqlQuery1, new { EmployeeNumber = log.EmployeeNumber });
+            }
         }
 
 
@@ -360,7 +356,7 @@ namespace ContactManager
             {
                 conn.Open();
 
-                note = (Note)conn.Query<Note>("SELECT * FROM Notes WHERE Id=@Id LIMIT 1", new { Id = id }).FirstOrDefault();
+                note = (Note)conn.Query<Note>($"SELECT * FROM Notes WHERE Id={id} LIMIT 1");
 
                 conn.Close();
             }
@@ -374,41 +370,13 @@ namespace ContactManager
         /// <param name="associatedContact">Person that the note is added to</param>
         /// <param name="note">Note object</param>
         /// <returns>True if successfull, else false</returns>
-
         public static bool SaveNote(Person associatedContact, Note note)
         {
-            try
-            {
-                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    // Save note to Notes
-                    string sql = "INSERT INTO Notes (Id, Content, CreateTimestamp, EditTimestamp) VALUES (@Id, @Content, @CreateTimestamp, @EditTimestamp)";
-                    cnn.Execute(sql, note);
+            // Write NoteId into the contact's NoteIds
 
-                    if (!string.IsNullOrEmpty(note.Id))
-                    {
-                        if (string.IsNullOrEmpty(associatedContact.CommaSeparatedNoteIds))
-                        {
-                            associatedContact.CommaSeparatedNoteIds = note.Id;
-                        }
-                        else
-                        {
-                            associatedContact.CommaSeparatedNoteIds += "," + note.Id;
-                        }
-                    }
+            // Save note to db
 
-                    // Save associatedContact to its table
-                    sql = "UPDATE Person SET CommaSeparatedNoteIds = @CommaSeparatedNoteIds WHERE ID = @ID";
-                    cnn.Execute(sql, associatedContact);
-
-                    return true;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                return false;
-            }
+            return false;
         }
 
         /// <summary>

@@ -26,12 +26,10 @@ namespace ContactManager
                 OasiNumber = employee.OasiNumber,
                 DateOfBirth = employee.DateOfBirth,
                 PrivatePhone = employee.PrivatePhone,
-                BusinessPhone = employee.BusinessPhone,
+               BusinessPhone = employee.BusinessPhone,
                 EmailAddress = employee.EmailAddress,
                 BusinessAddress = employee.BusinessAddress,
-                Notes = employee.Notes,
                 CommaSeparatedNoteIds = employee.CommaSeparatedNoteIds,
-                NoteIds = employee.NoteIds,
                 EmployeeNumber = employee.EmployeeNumber,
                 Role = employee.Role,
                 Department = employee.Department,
@@ -39,21 +37,11 @@ namespace ContactManager
                 DateOfJoining = employee.DateOfJoining,
                 DateOfLeaving = employee.DateOfLeaving,
                 CadreLevel = employee.CadreLevel,
-                DegreeOfEmployment = employee.DegreeOfEmployment,
-
-
+                DegreeOfEmployment = employee.DegreeOfEmployment
 
             };
 
-            int newEmployeeId = SqliteDataAccess.SaveEmployee(e);
-
-            foreach (var noteId in employee.NoteIds)
-            {
-                var note = new Note { Content = "First note", Id = noteId };
-
-                // Save the note with the reference to the new employee
-                SqliteDataAccess.SaveNote(employee, note);
-            }
+            SqliteDataAccess.SaveEmployee(e);
 
             if (showSuccessMessage)
             {

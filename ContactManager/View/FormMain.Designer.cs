@@ -34,14 +34,6 @@ namespace ContactManager
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -50,6 +42,14 @@ namespace ContactManager
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TCtrlMain = new MaterialSkin.Controls.MaterialTabControl();
             this.TabSearch = new System.Windows.Forms.TabPage();
             this.CmdSearchClear = new MaterialSkin.Controls.MaterialButton();
@@ -79,7 +79,6 @@ namespace ContactManager
             this.DataGridViewSearchResult = new System.Windows.Forms.DataGridView();
             this.TxtSearch = new System.Windows.Forms.TextBox();
             this.PnlSearchPreview = new System.Windows.Forms.Panel();
-            this.DataGridViewSearchNotes = new System.Windows.Forms.DataGridView();
             this.CmdSearchCancel = new MaterialSkin.Controls.MaterialButton();
             this.LblSearchPreviewNumberOutput = new System.Windows.Forms.Label();
             this.LblSearchPreviewTypeOutput = new System.Windows.Forms.Label();
@@ -155,7 +154,6 @@ namespace ContactManager
             this.LblSearchPreviewDegreeOfEmploymentOutput = new System.Windows.Forms.Label();
             this.TabCreateEdit = new System.Windows.Forms.TabPage();
             this.TabCreate = new MaterialSkin.Controls.MaterialCard();
-            this.DataGridViewCreateNotes = new System.Windows.Forms.DataGridView();
             this.CmdCreateDeletePerson = new MaterialSkin.Controls.MaterialButton();
             this.CmdCreateNoteClear = new MaterialSkin.Controls.MaterialButton();
             this.LblCreateNotes = new MaterialSkin.Controls.MaterialLabel();
@@ -243,22 +241,18 @@ namespace ContactManager
             this.DataGridViewImportGeneric = new System.Windows.Forms.DataGridView();
             this.CmdImportOpenFile = new MaterialSkin.Controls.MaterialButton();
             this.OpenFileDialogImportContacts = new System.Windows.Forms.OpenFileDialog();
-            this.ContentColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NoteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TimestampColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EditTimestampColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataGridViewSearchNotes = new System.Windows.Forms.DataGridView();
+            this.DataGridViewCreateNotes = new System.Windows.Forms.DataGridView();
             this.TCtrlMain.SuspendLayout();
             this.TabSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchResult)).BeginInit();
             this.PnlSearchPreview.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchNotes)).BeginInit();
             this.PnlSearchPreviewCustomer.SuspendLayout();
             this.PnlSearchPreviewTrainee.SuspendLayout();
             this.PnlSearchPreviewGeneral.SuspendLayout();
             this.PnlSearchPreviewEmployee.SuspendLayout();
             this.TabCreateEdit.SuspendLayout();
             this.TabCreate.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCreateNotes)).BeginInit();
             this.PnlCreateInfoGeneral.SuspendLayout();
             this.GrpCreateType.SuspendLayout();
             this.PnlCreateInfoCustomer.SuspendLayout();
@@ -272,6 +266,8 @@ namespace ContactManager
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportSpecific)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportGeneric)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchNotes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCreateNotes)).BeginInit();
             this.SuspendLayout();
             // 
             // TCtrlMain
@@ -281,13 +277,13 @@ namespace ContactManager
             this.TCtrlMain.Controls.Add(this.TabImport);
             this.TCtrlMain.Depth = 0;
             this.TCtrlMain.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TCtrlMain.Location = new System.Drawing.Point(4, 64);
-            this.TCtrlMain.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TCtrlMain.Location = new System.Drawing.Point(6, 98);
+            this.TCtrlMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TCtrlMain.MouseState = MaterialSkin.MouseState.HOVER;
             this.TCtrlMain.Multiline = true;
             this.TCtrlMain.Name = "TCtrlMain";
             this.TCtrlMain.SelectedIndex = 0;
-            this.TCtrlMain.Size = new System.Drawing.Size(1275, 638);
+            this.TCtrlMain.Size = new System.Drawing.Size(1912, 982);
             this.TCtrlMain.TabIndex = 0;
             this.TCtrlMain.SelectedIndexChanged += new System.EventHandler(this.TCtrlMain_SelectedIndexChanged);
             // 
@@ -321,11 +317,11 @@ namespace ContactManager
             this.TabSearch.Controls.Add(this.TxtSearch);
             this.TabSearch.Controls.Add(this.PnlSearchPreview);
             this.TabSearch.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TabSearch.Location = new System.Drawing.Point(4, 34);
-            this.TabSearch.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TabSearch.Location = new System.Drawing.Point(4, 49);
+            this.TabSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TabSearch.Name = "TabSearch";
-            this.TabSearch.Padding = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.TabSearch.Size = new System.Drawing.Size(1267, 600);
+            this.TabSearch.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TabSearch.Size = new System.Drawing.Size(1904, 929);
             this.TabSearch.TabIndex = 0;
             this.TabSearch.Text = "Search";
             this.TabSearch.UseVisualStyleBackColor = true;
@@ -338,11 +334,11 @@ namespace ContactManager
             this.CmdSearchClear.DrawShadows = true;
             this.CmdSearchClear.HighEmphasis = true;
             this.CmdSearchClear.Icon = null;
-            this.CmdSearchClear.Location = new System.Drawing.Point(472, 70);
-            this.CmdSearchClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchClear.Location = new System.Drawing.Point(708, 108);
+            this.CmdSearchClear.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchClear.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchClear.Name = "CmdSearchClear";
-            this.CmdSearchClear.Size = new System.Drawing.Size(97, 30);
+            this.CmdSearchClear.Size = new System.Drawing.Size(146, 46);
             this.CmdSearchClear.TabIndex = 8;
             this.CmdSearchClear.Text = "CLEAR";
             this.CmdSearchClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -356,7 +352,8 @@ namespace ContactManager
             this.LblSearchPerson.Depth = 0;
             this.LblSearchPerson.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.LblSearchPerson.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LblSearchPerson.Location = new System.Drawing.Point(10, 356);
+            this.LblSearchPerson.Location = new System.Drawing.Point(15, 548);
+            this.LblSearchPerson.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPerson.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchPerson.Name = "LblSearchPerson";
             this.LblSearchPerson.Size = new System.Drawing.Size(53, 19);
@@ -368,10 +365,9 @@ namespace ContactManager
             this.LblNoResults.AutoSize = true;
             this.LblNoResults.BackColor = System.Drawing.Color.DimGray;
             this.LblNoResults.ForeColor = System.Drawing.Color.White;
-            this.LblNoResults.Location = new System.Drawing.Point(279, 455);
-            this.LblNoResults.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblNoResults.Location = new System.Drawing.Point(418, 700);
             this.LblNoResults.Name = "LblNoResults";
-            this.LblNoResults.Size = new System.Drawing.Size(59, 14);
+            this.LblNoResults.Size = new System.Drawing.Size(86, 19);
             this.LblNoResults.TabIndex = 128;
             this.LblNoResults.Text = "No Results";
             this.LblNoResults.Visible = false;
@@ -381,13 +377,13 @@ namespace ContactManager
             this.TxtSearchDateOfBirth.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtSearchDateOfBirth.Depth = 0;
             this.TxtSearchDateOfBirth.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtSearchDateOfBirth.Location = new System.Drawing.Point(496, 265);
-            this.TxtSearchDateOfBirth.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtSearchDateOfBirth.Location = new System.Drawing.Point(744, 408);
+            this.TxtSearchDateOfBirth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtSearchDateOfBirth.MaxLength = 50;
             this.TxtSearchDateOfBirth.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtSearchDateOfBirth.Multiline = false;
             this.TxtSearchDateOfBirth.Name = "TxtSearchDateOfBirth";
-            this.TxtSearchDateOfBirth.Size = new System.Drawing.Size(121, 50);
+            this.TxtSearchDateOfBirth.Size = new System.Drawing.Size(182, 50);
             this.TxtSearchDateOfBirth.TabIndex = 14;
             this.TxtSearchDateOfBirth.Text = "";
             this.TxtSearchDateOfBirth.Enter += new System.EventHandler(this.SearchFilters_Enter);
@@ -398,11 +394,10 @@ namespace ContactManager
             this.LblSearchDateOfBirth.AutoSize = true;
             this.LblSearchDateOfBirth.Depth = 0;
             this.LblSearchDateOfBirth.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchDateOfBirth.Location = new System.Drawing.Point(496, 238);
-            this.LblSearchDateOfBirth.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblSearchDateOfBirth.Location = new System.Drawing.Point(744, 366);
             this.LblSearchDateOfBirth.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchDateOfBirth.Name = "LblSearchDateOfBirth";
-            this.LblSearchDateOfBirth.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblSearchDateOfBirth.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblSearchDateOfBirth.Size = new System.Drawing.Size(89, 19);
             this.LblSearchDateOfBirth.TabIndex = 126;
             this.LblSearchDateOfBirth.Text = "Date of birth";
@@ -412,13 +407,13 @@ namespace ContactManager
             this.TxtSearchAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtSearchAddress.Depth = 0;
             this.TxtSearchAddress.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtSearchAddress.Location = new System.Drawing.Point(9, 265);
-            this.TxtSearchAddress.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtSearchAddress.Location = new System.Drawing.Point(14, 408);
+            this.TxtSearchAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtSearchAddress.MaxLength = 50;
             this.TxtSearchAddress.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtSearchAddress.Multiline = false;
             this.TxtSearchAddress.Name = "TxtSearchAddress";
-            this.TxtSearchAddress.Size = new System.Drawing.Size(238, 50);
+            this.TxtSearchAddress.Size = new System.Drawing.Size(357, 50);
             this.TxtSearchAddress.TabIndex = 12;
             this.TxtSearchAddress.Text = "";
             this.TxtSearchAddress.Enter += new System.EventHandler(this.SearchFilters_Enter);
@@ -429,13 +424,13 @@ namespace ContactManager
             this.TxtSearchPlaceOfResidence.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtSearchPlaceOfResidence.Depth = 0;
             this.TxtSearchPlaceOfResidence.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtSearchPlaceOfResidence.Location = new System.Drawing.Point(266, 265);
-            this.TxtSearchPlaceOfResidence.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtSearchPlaceOfResidence.Location = new System.Drawing.Point(399, 408);
+            this.TxtSearchPlaceOfResidence.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtSearchPlaceOfResidence.MaxLength = 50;
             this.TxtSearchPlaceOfResidence.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtSearchPlaceOfResidence.Multiline = false;
             this.TxtSearchPlaceOfResidence.Name = "TxtSearchPlaceOfResidence";
-            this.TxtSearchPlaceOfResidence.Size = new System.Drawing.Size(210, 50);
+            this.TxtSearchPlaceOfResidence.Size = new System.Drawing.Size(315, 50);
             this.TxtSearchPlaceOfResidence.TabIndex = 13;
             this.TxtSearchPlaceOfResidence.Text = "";
             this.TxtSearchPlaceOfResidence.Enter += new System.EventHandler(this.SearchFilters_Enter);
@@ -446,11 +441,10 @@ namespace ContactManager
             this.LblSearchAddress.AutoSize = true;
             this.LblSearchAddress.Depth = 0;
             this.LblSearchAddress.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchAddress.Location = new System.Drawing.Point(10, 238);
-            this.LblSearchAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblSearchAddress.Location = new System.Drawing.Point(15, 366);
             this.LblSearchAddress.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchAddress.Name = "LblSearchAddress";
-            this.LblSearchAddress.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblSearchAddress.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblSearchAddress.Size = new System.Drawing.Size(58, 19);
             this.LblSearchAddress.TabIndex = 125;
             this.LblSearchAddress.Text = "Address";
@@ -460,11 +454,10 @@ namespace ContactManager
             this.LblSearchPlaceOfResidence.AutoSize = true;
             this.LblSearchPlaceOfResidence.Depth = 0;
             this.LblSearchPlaceOfResidence.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchPlaceOfResidence.Location = new System.Drawing.Point(263, 238);
-            this.LblSearchPlaceOfResidence.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblSearchPlaceOfResidence.Location = new System.Drawing.Point(394, 366);
             this.LblSearchPlaceOfResidence.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchPlaceOfResidence.Name = "LblSearchPlaceOfResidence";
-            this.LblSearchPlaceOfResidence.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblSearchPlaceOfResidence.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblSearchPlaceOfResidence.Size = new System.Drawing.Size(130, 19);
             this.LblSearchPlaceOfResidence.TabIndex = 124;
             this.LblSearchPlaceOfResidence.Text = "Place of residence";
@@ -473,7 +466,7 @@ namespace ContactManager
             // 
             this.ChkSearchInactive.AutoSize = true;
             this.ChkSearchInactive.Depth = 0;
-            this.ChkSearchInactive.Location = new System.Drawing.Point(472, 17);
+            this.ChkSearchInactive.Location = new System.Drawing.Point(708, 26);
             this.ChkSearchInactive.Margin = new System.Windows.Forms.Padding(0);
             this.ChkSearchInactive.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ChkSearchInactive.MouseState = MaterialSkin.MouseState.HOVER;
@@ -490,7 +483,7 @@ namespace ContactManager
             this.ChkSearchTypeTrainee.Checked = true;
             this.ChkSearchTypeTrainee.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChkSearchTypeTrainee.Depth = 0;
-            this.ChkSearchTypeTrainee.Location = new System.Drawing.Point(243, 62);
+            this.ChkSearchTypeTrainee.Location = new System.Drawing.Point(364, 95);
             this.ChkSearchTypeTrainee.Margin = new System.Windows.Forms.Padding(0);
             this.ChkSearchTypeTrainee.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ChkSearchTypeTrainee.MouseState = MaterialSkin.MouseState.HOVER;
@@ -507,7 +500,7 @@ namespace ContactManager
             this.ChkSearchTypeEmployee.Checked = true;
             this.ChkSearchTypeEmployee.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChkSearchTypeEmployee.Depth = 0;
-            this.ChkSearchTypeEmployee.Location = new System.Drawing.Point(125, 62);
+            this.ChkSearchTypeEmployee.Location = new System.Drawing.Point(188, 95);
             this.ChkSearchTypeEmployee.Margin = new System.Windows.Forms.Padding(0);
             this.ChkSearchTypeEmployee.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ChkSearchTypeEmployee.MouseState = MaterialSkin.MouseState.HOVER;
@@ -524,7 +517,7 @@ namespace ContactManager
             this.ChkSearchTypeCustomer.Checked = true;
             this.ChkSearchTypeCustomer.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ChkSearchTypeCustomer.Depth = 0;
-            this.ChkSearchTypeCustomer.Location = new System.Drawing.Point(9, 62);
+            this.ChkSearchTypeCustomer.Location = new System.Drawing.Point(14, 95);
             this.ChkSearchTypeCustomer.Margin = new System.Windows.Forms.Padding(0);
             this.ChkSearchTypeCustomer.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ChkSearchTypeCustomer.MouseState = MaterialSkin.MouseState.HOVER;
@@ -540,13 +533,13 @@ namespace ContactManager
             this.TxtSearchNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtSearchNumber.Depth = 0;
             this.TxtSearchNumber.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtSearchNumber.Location = new System.Drawing.Point(374, 159);
-            this.TxtSearchNumber.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtSearchNumber.Location = new System.Drawing.Point(561, 245);
+            this.TxtSearchNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtSearchNumber.MaxLength = 50;
             this.TxtSearchNumber.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtSearchNumber.Multiline = false;
             this.TxtSearchNumber.Name = "TxtSearchNumber";
-            this.TxtSearchNumber.Size = new System.Drawing.Size(181, 50);
+            this.TxtSearchNumber.Size = new System.Drawing.Size(272, 50);
             this.TxtSearchNumber.TabIndex = 11;
             this.TxtSearchNumber.Text = "";
             this.TxtSearchNumber.Enter += new System.EventHandler(this.SearchFilters_Enter);
@@ -557,11 +550,10 @@ namespace ContactManager
             this.LblSearchNumber.AutoSize = true;
             this.LblSearchNumber.Depth = 0;
             this.LblSearchNumber.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchNumber.Location = new System.Drawing.Point(374, 133);
-            this.LblSearchNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblSearchNumber.Location = new System.Drawing.Point(561, 205);
             this.LblSearchNumber.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchNumber.Name = "LblSearchNumber";
-            this.LblSearchNumber.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblSearchNumber.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblSearchNumber.Size = new System.Drawing.Size(181, 19);
             this.LblSearchNumber.TabIndex = 115;
             this.LblSearchNumber.Text = "Customer- / Employee-Nr.";
@@ -571,11 +563,10 @@ namespace ContactManager
             this.LblSearchFirstName.AutoSize = true;
             this.LblSearchFirstName.Depth = 0;
             this.LblSearchFirstName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchFirstName.Location = new System.Drawing.Point(10, 133);
-            this.LblSearchFirstName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblSearchFirstName.Location = new System.Drawing.Point(15, 205);
             this.LblSearchFirstName.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchFirstName.Name = "LblSearchFirstName";
-            this.LblSearchFirstName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblSearchFirstName.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblSearchFirstName.Size = new System.Drawing.Size(76, 19);
             this.LblSearchFirstName.TabIndex = 113;
             this.LblSearchFirstName.Text = "First name";
@@ -585,11 +576,10 @@ namespace ContactManager
             this.LblSearchLastName.AutoSize = true;
             this.LblSearchLastName.Depth = 0;
             this.LblSearchLastName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchLastName.Location = new System.Drawing.Point(194, 133);
-            this.LblSearchLastName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblSearchLastName.Location = new System.Drawing.Point(291, 205);
             this.LblSearchLastName.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchLastName.Name = "LblSearchLastName";
-            this.LblSearchLastName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblSearchLastName.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblSearchLastName.Size = new System.Drawing.Size(76, 19);
             this.LblSearchLastName.TabIndex = 114;
             this.LblSearchLastName.Text = "Last name";
@@ -599,13 +589,13 @@ namespace ContactManager
             this.TxtSearchFirstName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtSearchFirstName.Depth = 0;
             this.TxtSearchFirstName.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtSearchFirstName.Location = new System.Drawing.Point(9, 159);
-            this.TxtSearchFirstName.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtSearchFirstName.Location = new System.Drawing.Point(14, 245);
+            this.TxtSearchFirstName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtSearchFirstName.MaxLength = 50;
             this.TxtSearchFirstName.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtSearchFirstName.Multiline = false;
             this.TxtSearchFirstName.Name = "TxtSearchFirstName";
-            this.TxtSearchFirstName.Size = new System.Drawing.Size(162, 50);
+            this.TxtSearchFirstName.Size = new System.Drawing.Size(243, 50);
             this.TxtSearchFirstName.TabIndex = 9;
             this.TxtSearchFirstName.Text = "";
             this.TxtSearchFirstName.Enter += new System.EventHandler(this.SearchFilters_Enter);
@@ -616,13 +606,13 @@ namespace ContactManager
             this.TxtSearchLastName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtSearchLastName.Depth = 0;
             this.TxtSearchLastName.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtSearchLastName.Location = new System.Drawing.Point(193, 159);
-            this.TxtSearchLastName.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtSearchLastName.Location = new System.Drawing.Point(290, 245);
+            this.TxtSearchLastName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtSearchLastName.MaxLength = 50;
             this.TxtSearchLastName.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtSearchLastName.Multiline = false;
             this.TxtSearchLastName.Name = "TxtSearchLastName";
-            this.TxtSearchLastName.Size = new System.Drawing.Size(162, 50);
+            this.TxtSearchLastName.Size = new System.Drawing.Size(243, 50);
             this.TxtSearchLastName.TabIndex = 10;
             this.TxtSearchLastName.Text = "";
             this.TxtSearchLastName.Enter += new System.EventHandler(this.SearchFilters_Enter);
@@ -634,7 +624,8 @@ namespace ContactManager
             this.LblSearchResultCounter.Depth = 0;
             this.LblSearchResultCounter.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.LblSearchResultCounter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LblSearchResultCounter.Location = new System.Drawing.Point(10, 570);
+            this.LblSearchResultCounter.Location = new System.Drawing.Point(15, 877);
+            this.LblSearchResultCounter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchResultCounter.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchResultCounter.Name = "LblSearchResultCounter";
             this.LblSearchResultCounter.Size = new System.Drawing.Size(70, 19);
@@ -649,11 +640,11 @@ namespace ContactManager
             this.CmdSearchCreate.DrawShadows = true;
             this.CmdSearchCreate.HighEmphasis = true;
             this.CmdSearchCreate.Icon = null;
-            this.CmdSearchCreate.Location = new System.Drawing.Point(535, 564);
-            this.CmdSearchCreate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchCreate.Location = new System.Drawing.Point(802, 868);
+            this.CmdSearchCreate.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchCreate.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchCreate.Name = "CmdSearchCreate";
-            this.CmdSearchCreate.Size = new System.Drawing.Size(75, 30);
+            this.CmdSearchCreate.Size = new System.Drawing.Size(112, 46);
             this.CmdSearchCreate.TabIndex = 14;
             this.CmdSearchCreate.Text = "CREATE";
             this.CmdSearchCreate.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -667,7 +658,8 @@ namespace ContactManager
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(10, 25);
+            this.materialLabel1.Location = new System.Drawing.Point(15, 38);
+            this.materialLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
             this.materialLabel1.Size = new System.Drawing.Size(108, 19);
@@ -682,11 +674,11 @@ namespace ContactManager
             this.CmdSearchAdvanced.DrawShadows = true;
             this.CmdSearchAdvanced.HighEmphasis = true;
             this.CmdSearchAdvanced.Icon = null;
-            this.CmdSearchAdvanced.Location = new System.Drawing.Point(374, 70);
-            this.CmdSearchAdvanced.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchAdvanced.Location = new System.Drawing.Point(561, 108);
+            this.CmdSearchAdvanced.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchAdvanced.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchAdvanced.Name = "CmdSearchAdvanced";
-            this.CmdSearchAdvanced.Size = new System.Drawing.Size(87, 30);
+            this.CmdSearchAdvanced.Size = new System.Drawing.Size(130, 46);
             this.CmdSearchAdvanced.TabIndex = 7;
             this.CmdSearchAdvanced.Text = "Advanced";
             this.CmdSearchAdvanced.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -702,11 +694,11 @@ namespace ContactManager
             this.CmdSearchExec.DrawShadows = true;
             this.CmdSearchExec.HighEmphasis = true;
             this.CmdSearchExec.Icon = null;
-            this.CmdSearchExec.Location = new System.Drawing.Point(374, 17);
-            this.CmdSearchExec.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchExec.Location = new System.Drawing.Point(561, 26);
+            this.CmdSearchExec.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchExec.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchExec.Name = "CmdSearchExec";
-            this.CmdSearchExec.Size = new System.Drawing.Size(87, 42);
+            this.CmdSearchExec.Size = new System.Drawing.Size(130, 65);
             this.CmdSearchExec.TabIndex = 5;
             this.CmdSearchExec.Text = "Search";
             this.CmdSearchExec.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -739,7 +731,8 @@ namespace ContactManager
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewSearchResult.DefaultCellStyle = dataGridViewCellStyle2;
             this.DataGridViewSearchResult.GridColor = System.Drawing.Color.Gray;
-            this.DataGridViewSearchResult.Location = new System.Drawing.Point(9, 378);
+            this.DataGridViewSearchResult.Location = new System.Drawing.Point(14, 582);
+            this.DataGridViewSearchResult.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.DataGridViewSearchResult.MultiSelect = false;
             this.DataGridViewSearchResult.Name = "DataGridViewSearchResult";
             this.DataGridViewSearchResult.ReadOnly = true;
@@ -759,15 +752,16 @@ namespace ContactManager
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.SlateBlue;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridViewSearchResult.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.DataGridViewSearchResult.Size = new System.Drawing.Size(601, 184);
+            this.DataGridViewSearchResult.Size = new System.Drawing.Size(902, 283);
             this.DataGridViewSearchResult.TabIndex = 15;
             this.DataGridViewSearchResult.SelectionChanged += new System.EventHandler(this.DataGridViewSearchResultSelectionChanged_CellClick);
             // 
             // TxtSearch
             // 
-            this.TxtSearch.Location = new System.Drawing.Point(141, 25);
+            this.TxtSearch.Location = new System.Drawing.Point(212, 38);
+            this.TxtSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TxtSearch.Name = "TxtSearch";
-            this.TxtSearch.Size = new System.Drawing.Size(190, 20);
+            this.TxtSearch.Size = new System.Drawing.Size(283, 26);
             this.TxtSearch.TabIndex = 1;
             this.TxtSearch.Enter += new System.EventHandler(this.TxtSearch_Enter);
             this.TxtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Search_KeyDown);
@@ -792,59 +786,11 @@ namespace ContactManager
             this.PnlSearchPreview.Controls.Add(this.PnlSearchPreviewTrainee);
             this.PnlSearchPreview.Controls.Add(this.PnlSearchPreviewGeneral);
             this.PnlSearchPreview.Controls.Add(this.PnlSearchPreviewEmployee);
-            this.PnlSearchPreview.Location = new System.Drawing.Point(614, 0);
-            this.PnlSearchPreview.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PnlSearchPreview.Location = new System.Drawing.Point(921, 0);
+            this.PnlSearchPreview.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.PnlSearchPreview.Name = "PnlSearchPreview";
-            this.PnlSearchPreview.Size = new System.Drawing.Size(653, 595);
+            this.PnlSearchPreview.Size = new System.Drawing.Size(980, 915);
             this.PnlSearchPreview.TabIndex = 107;
-            // 
-            // DataGridViewSearchNotes
-            // 
-            this.DataGridViewSearchNotes.AllowUserToAddRows = false;
-            this.DataGridViewSearchNotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridViewSearchNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.DataGridViewSearchNotes.BackgroundColor = System.Drawing.Color.DimGray;
-            this.DataGridViewSearchNotes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewSearchNotes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            this.DataGridViewSearchNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewSearchNotes.DefaultCellStyle = dataGridViewCellStyle6;
-            this.DataGridViewSearchNotes.GridColor = System.Drawing.Color.Gray;
-            this.DataGridViewSearchNotes.Location = new System.Drawing.Point(6, 378);
-            this.DataGridViewSearchNotes.MultiSelect = false;
-            this.DataGridViewSearchNotes.Name = "DataGridViewSearchNotes";
-            this.DataGridViewSearchNotes.ReadOnly = true;
-            this.DataGridViewSearchNotes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewSearchNotes.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.DataGridViewSearchNotes.RowHeadersVisible = false;
-            this.DataGridViewSearchNotes.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGridViewSearchNotes.RowsDefaultCellStyle = dataGridViewCellStyle8;
-            this.DataGridViewSearchNotes.Size = new System.Drawing.Size(644, 184);
-            this.DataGridViewSearchNotes.TabIndex = 135;
             // 
             // CmdSearchCancel
             // 
@@ -854,11 +800,11 @@ namespace ContactManager
             this.CmdSearchCancel.DrawShadows = true;
             this.CmdSearchCancel.HighEmphasis = true;
             this.CmdSearchCancel.Icon = null;
-            this.CmdSearchCancel.Location = new System.Drawing.Point(562, 564);
-            this.CmdSearchCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchCancel.Location = new System.Drawing.Point(843, 868);
+            this.CmdSearchCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchCancel.Name = "CmdSearchCancel";
-            this.CmdSearchCancel.Size = new System.Drawing.Size(88, 30);
+            this.CmdSearchCancel.Size = new System.Drawing.Size(132, 46);
             this.CmdSearchCancel.TabIndex = 20;
             this.CmdSearchCancel.Text = "Cancel";
             this.CmdSearchCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -870,7 +816,8 @@ namespace ContactManager
             // 
             this.LblSearchPreviewNumberOutput.AutoSize = true;
             this.LblSearchPreviewNumberOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchPreviewNumberOutput.Location = new System.Drawing.Point(51, 3);
+            this.LblSearchPreviewNumberOutput.Location = new System.Drawing.Point(76, 5);
+            this.LblSearchPreviewNumberOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewNumberOutput.Name = "LblSearchPreviewNumberOutput";
             this.LblSearchPreviewNumberOutput.Size = new System.Drawing.Size(13, 17);
             this.LblSearchPreviewNumberOutput.TabIndex = 134;
@@ -880,7 +827,8 @@ namespace ContactManager
             // 
             this.LblSearchPreviewTypeOutput.AutoSize = true;
             this.LblSearchPreviewTypeOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchPreviewTypeOutput.Location = new System.Drawing.Point(196, 3);
+            this.LblSearchPreviewTypeOutput.Location = new System.Drawing.Point(294, 5);
+            this.LblSearchPreviewTypeOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewTypeOutput.Name = "LblSearchPreviewTypeOutput";
             this.LblSearchPreviewTypeOutput.Size = new System.Drawing.Size(13, 17);
             this.LblSearchPreviewTypeOutput.TabIndex = 133;
@@ -895,11 +843,11 @@ namespace ContactManager
             this.CmdSearchNoteEdit.Enabled = false;
             this.CmdSearchNoteEdit.HighEmphasis = true;
             this.CmdSearchNoteEdit.Icon = null;
-            this.CmdSearchNoteEdit.Location = new System.Drawing.Point(428, 564);
-            this.CmdSearchNoteEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchNoteEdit.Location = new System.Drawing.Point(642, 868);
+            this.CmdSearchNoteEdit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchNoteEdit.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchNoteEdit.Name = "CmdSearchNoteEdit";
-            this.CmdSearchNoteEdit.Size = new System.Drawing.Size(58, 30);
+            this.CmdSearchNoteEdit.Size = new System.Drawing.Size(87, 46);
             this.CmdSearchNoteEdit.TabIndex = 18;
             this.CmdSearchNoteEdit.Text = "Edit";
             this.CmdSearchNoteEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -915,11 +863,11 @@ namespace ContactManager
             this.CmdSearchNoteSave.Enabled = false;
             this.CmdSearchNoteSave.HighEmphasis = true;
             this.CmdSearchNoteSave.Icon = null;
-            this.CmdSearchNoteSave.Location = new System.Drawing.Point(365, 564);
-            this.CmdSearchNoteSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchNoteSave.Location = new System.Drawing.Point(548, 868);
+            this.CmdSearchNoteSave.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchNoteSave.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchNoteSave.Name = "CmdSearchNoteSave";
-            this.CmdSearchNoteSave.Size = new System.Drawing.Size(58, 30);
+            this.CmdSearchNoteSave.Size = new System.Drawing.Size(87, 46);
             this.CmdSearchNoteSave.TabIndex = 17;
             this.CmdSearchNoteSave.Text = "SAVE";
             this.CmdSearchNoteSave.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -936,11 +884,11 @@ namespace ContactManager
             this.CmdSearchNoteClear.Enabled = false;
             this.CmdSearchNoteClear.HighEmphasis = true;
             this.CmdSearchNoteClear.Icon = null;
-            this.CmdSearchNoteClear.Location = new System.Drawing.Point(491, 564);
-            this.CmdSearchNoteClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchNoteClear.Location = new System.Drawing.Point(736, 868);
+            this.CmdSearchNoteClear.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchNoteClear.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchNoteClear.Name = "CmdSearchNoteClear";
-            this.CmdSearchNoteClear.Size = new System.Drawing.Size(66, 30);
+            this.CmdSearchNoteClear.Size = new System.Drawing.Size(99, 46);
             this.CmdSearchNoteClear.TabIndex = 19;
             this.CmdSearchNoteClear.Text = "CLEAR";
             this.CmdSearchNoteClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -951,9 +899,10 @@ namespace ContactManager
             // LblSearchPreviewStatus
             // 
             this.LblSearchPreviewStatus.AutoSize = true;
-            this.LblSearchPreviewStatus.Location = new System.Drawing.Point(345, 3);
+            this.LblSearchPreviewStatus.Location = new System.Drawing.Point(518, 5);
+            this.LblSearchPreviewStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewStatus.Name = "LblSearchPreviewStatus";
-            this.LblSearchPreviewStatus.Size = new System.Drawing.Size(44, 14);
+            this.LblSearchPreviewStatus.Size = new System.Drawing.Size(64, 19);
             this.LblSearchPreviewStatus.TabIndex = 132;
             this.LblSearchPreviewStatus.Text = "Status: ";
             // 
@@ -961,7 +910,8 @@ namespace ContactManager
             // 
             this.LblSearchPreviewStatusOutput.AutoSize = true;
             this.LblSearchPreviewStatusOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblSearchPreviewStatusOutput.Location = new System.Drawing.Point(400, 3);
+            this.LblSearchPreviewStatusOutput.Location = new System.Drawing.Point(600, 5);
+            this.LblSearchPreviewStatusOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewStatusOutput.Name = "LblSearchPreviewStatusOutput";
             this.LblSearchPreviewStatusOutput.Size = new System.Drawing.Size(13, 17);
             this.LblSearchPreviewStatusOutput.TabIndex = 132;
@@ -973,7 +923,8 @@ namespace ContactManager
             this.LblSearchNotes.Depth = 0;
             this.LblSearchNotes.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.LblSearchNotes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LblSearchNotes.Location = new System.Drawing.Point(18, 356);
+            this.LblSearchNotes.Location = new System.Drawing.Point(27, 548);
+            this.LblSearchNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchNotes.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblSearchNotes.Name = "LblSearchNotes";
             this.LblSearchNotes.Size = new System.Drawing.Size(42, 19);
@@ -983,18 +934,20 @@ namespace ContactManager
             // LblSearchPreviewType
             // 
             this.LblSearchPreviewType.AutoSize = true;
-            this.LblSearchPreviewType.Location = new System.Drawing.Point(152, 3);
+            this.LblSearchPreviewType.Location = new System.Drawing.Point(228, 5);
+            this.LblSearchPreviewType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewType.Name = "LblSearchPreviewType";
-            this.LblSearchPreviewType.Size = new System.Drawing.Size(33, 14);
+            this.LblSearchPreviewType.Size = new System.Drawing.Size(49, 19);
             this.LblSearchPreviewType.TabIndex = 120;
             this.LblSearchPreviewType.Text = "Type:";
             // 
             // LblSearchPreviewNumber
             // 
             this.LblSearchPreviewNumber.AutoSize = true;
-            this.LblSearchPreviewNumber.Location = new System.Drawing.Point(17, 3);
+            this.LblSearchPreviewNumber.Location = new System.Drawing.Point(26, 5);
+            this.LblSearchPreviewNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewNumber.Name = "LblSearchPreviewNumber";
-            this.LblSearchPreviewNumber.Size = new System.Drawing.Size(23, 14);
+            this.LblSearchPreviewNumber.Size = new System.Drawing.Size(35, 19);
             this.LblSearchPreviewNumber.TabIndex = 119;
             this.LblSearchPreviewNumber.Text = "Nr.:";
             // 
@@ -1007,11 +960,11 @@ namespace ContactManager
             this.CmdSearchPersonEdit.Enabled = false;
             this.CmdSearchPersonEdit.HighEmphasis = true;
             this.CmdSearchPersonEdit.Icon = null;
-            this.CmdSearchPersonEdit.Location = new System.Drawing.Point(18, 322);
-            this.CmdSearchPersonEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchPersonEdit.Location = new System.Drawing.Point(27, 495);
+            this.CmdSearchPersonEdit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchPersonEdit.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchPersonEdit.Name = "CmdSearchPersonEdit";
-            this.CmdSearchPersonEdit.Size = new System.Drawing.Size(58, 30);
+            this.CmdSearchPersonEdit.Size = new System.Drawing.Size(87, 46);
             this.CmdSearchPersonEdit.TabIndex = 21;
             this.CmdSearchPersonEdit.Text = "Edit";
             this.CmdSearchPersonEdit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1028,36 +981,40 @@ namespace ContactManager
             this.PnlSearchPreviewCustomer.Controls.Add(this.LblSearchPreviewCompanyContact);
             this.PnlSearchPreviewCustomer.Controls.Add(this.LblSearchPreviewCustomerType);
             this.PnlSearchPreviewCustomer.Controls.Add(this.LblSearchPreviewCompanyName);
-            this.PnlSearchPreviewCustomer.Location = new System.Drawing.Point(333, 17);
+            this.PnlSearchPreviewCustomer.Location = new System.Drawing.Point(500, 26);
+            this.PnlSearchPreviewCustomer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PnlSearchPreviewCustomer.Name = "PnlSearchPreviewCustomer";
-            this.PnlSearchPreviewCustomer.Size = new System.Drawing.Size(317, 89);
+            this.PnlSearchPreviewCustomer.Size = new System.Drawing.Size(476, 137);
             this.PnlSearchPreviewCustomer.TabIndex = 124;
             this.PnlSearchPreviewCustomer.Visible = false;
             // 
             // LblSearchPreviewCompanyContactOutput
             // 
             this.LblSearchPreviewCompanyContactOutput.AutoSize = true;
-            this.LblSearchPreviewCompanyContactOutput.Location = new System.Drawing.Point(184, 66);
+            this.LblSearchPreviewCompanyContactOutput.Location = new System.Drawing.Point(276, 102);
+            this.LblSearchPreviewCompanyContactOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewCompanyContactOutput.Name = "LblSearchPreviewCompanyContactOutput";
-            this.LblSearchPreviewCompanyContactOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewCompanyContactOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewCompanyContactOutput.TabIndex = 126;
             this.LblSearchPreviewCompanyContactOutput.Text = "-";
             // 
             // LblSearchPreviewCompanyNameOutput
             // 
             this.LblSearchPreviewCompanyNameOutput.AutoSize = true;
-            this.LblSearchPreviewCompanyNameOutput.Location = new System.Drawing.Point(184, 48);
+            this.LblSearchPreviewCompanyNameOutput.Location = new System.Drawing.Point(276, 74);
+            this.LblSearchPreviewCompanyNameOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewCompanyNameOutput.Name = "LblSearchPreviewCompanyNameOutput";
-            this.LblSearchPreviewCompanyNameOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewCompanyNameOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewCompanyNameOutput.TabIndex = 125;
             this.LblSearchPreviewCompanyNameOutput.Text = "-";
             // 
             // LblSearchPreviewCustomerTypeOutput
             // 
             this.LblSearchPreviewCustomerTypeOutput.AutoSize = true;
-            this.LblSearchPreviewCustomerTypeOutput.Location = new System.Drawing.Point(184, 30);
+            this.LblSearchPreviewCustomerTypeOutput.Location = new System.Drawing.Point(276, 46);
+            this.LblSearchPreviewCustomerTypeOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewCustomerTypeOutput.Name = "LblSearchPreviewCustomerTypeOutput";
-            this.LblSearchPreviewCustomerTypeOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewCustomerTypeOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewCustomerTypeOutput.TabIndex = 124;
             this.LblSearchPreviewCustomerTypeOutput.Text = "-";
             // 
@@ -1065,36 +1022,40 @@ namespace ContactManager
             // 
             this.LblSearchHeadlineCustomer.AutoSize = true;
             this.LblSearchHeadlineCustomer.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblSearchHeadlineCustomer.Location = new System.Drawing.Point(12, 9);
+            this.LblSearchHeadlineCustomer.Location = new System.Drawing.Point(18, 14);
+            this.LblSearchHeadlineCustomer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchHeadlineCustomer.Name = "LblSearchHeadlineCustomer";
-            this.LblSearchHeadlineCustomer.Size = new System.Drawing.Size(130, 14);
+            this.LblSearchHeadlineCustomer.Size = new System.Drawing.Size(180, 19);
             this.LblSearchHeadlineCustomer.TabIndex = 1;
             this.LblSearchHeadlineCustomer.Text = "Customer information";
             // 
             // LblSearchPreviewCompanyContact
             // 
             this.LblSearchPreviewCompanyContact.AutoSize = true;
-            this.LblSearchPreviewCompanyContact.Location = new System.Drawing.Point(12, 66);
+            this.LblSearchPreviewCompanyContact.Location = new System.Drawing.Point(18, 102);
+            this.LblSearchPreviewCompanyContact.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewCompanyContact.Name = "LblSearchPreviewCompanyContact";
-            this.LblSearchPreviewCompanyContact.Size = new System.Drawing.Size(91, 14);
+            this.LblSearchPreviewCompanyContact.Size = new System.Drawing.Size(137, 19);
             this.LblSearchPreviewCompanyContact.TabIndex = 123;
             this.LblSearchPreviewCompanyContact.Text = "Company contact";
             // 
             // LblSearchPreviewCustomerType
             // 
             this.LblSearchPreviewCustomerType.AutoSize = true;
-            this.LblSearchPreviewCustomerType.Location = new System.Drawing.Point(12, 30);
+            this.LblSearchPreviewCustomerType.Location = new System.Drawing.Point(18, 46);
+            this.LblSearchPreviewCustomerType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewCustomerType.Name = "LblSearchPreviewCustomerType";
-            this.LblSearchPreviewCustomerType.Size = new System.Drawing.Size(106, 14);
+            this.LblSearchPreviewCustomerType.Size = new System.Drawing.Size(160, 19);
             this.LblSearchPreviewCustomerType.TabIndex = 121;
             this.LblSearchPreviewCustomerType.Text = "Customer type (A-E)";
             // 
             // LblSearchPreviewCompanyName
             // 
             this.LblSearchPreviewCompanyName.AutoSize = true;
-            this.LblSearchPreviewCompanyName.Location = new System.Drawing.Point(12, 48);
+            this.LblSearchPreviewCompanyName.Location = new System.Drawing.Point(18, 74);
+            this.LblSearchPreviewCompanyName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewCompanyName.Name = "LblSearchPreviewCompanyName";
-            this.LblSearchPreviewCompanyName.Size = new System.Drawing.Size(81, 14);
+            this.LblSearchPreviewCompanyName.Size = new System.Drawing.Size(124, 19);
             this.LblSearchPreviewCompanyName.TabIndex = 122;
             this.LblSearchPreviewCompanyName.Text = "Company name";
             // 
@@ -1107,11 +1068,11 @@ namespace ContactManager
             this.CmdSearchPersonDelete.Enabled = false;
             this.CmdSearchPersonDelete.HighEmphasis = true;
             this.CmdSearchPersonDelete.Icon = null;
-            this.CmdSearchPersonDelete.Location = new System.Drawing.Point(82, 322);
-            this.CmdSearchPersonDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdSearchPersonDelete.Location = new System.Drawing.Point(123, 495);
+            this.CmdSearchPersonDelete.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdSearchPersonDelete.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdSearchPersonDelete.Name = "CmdSearchPersonDelete";
-            this.CmdSearchPersonDelete.Size = new System.Drawing.Size(65, 30);
+            this.CmdSearchPersonDelete.Size = new System.Drawing.Size(98, 46);
             this.CmdSearchPersonDelete.TabIndex = 22;
             this.CmdSearchPersonDelete.Text = "DELETE";
             this.CmdSearchPersonDelete.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1126,27 +1087,30 @@ namespace ContactManager
             this.PnlSearchPreviewTrainee.Controls.Add(this.label14);
             this.PnlSearchPreviewTrainee.Controls.Add(this.LblSearchPreviewCurrentAppYear);
             this.PnlSearchPreviewTrainee.Controls.Add(this.LblSearchPreviewYearsOfApp);
-            this.PnlSearchPreviewTrainee.Location = new System.Drawing.Point(333, 188);
+            this.PnlSearchPreviewTrainee.Location = new System.Drawing.Point(500, 289);
+            this.PnlSearchPreviewTrainee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PnlSearchPreviewTrainee.Name = "PnlSearchPreviewTrainee";
-            this.PnlSearchPreviewTrainee.Size = new System.Drawing.Size(317, 69);
+            this.PnlSearchPreviewTrainee.Size = new System.Drawing.Size(476, 106);
             this.PnlSearchPreviewTrainee.TabIndex = 125;
             this.PnlSearchPreviewTrainee.Visible = false;
             // 
             // LblSearchPreviewYearsOfAppOutput
             // 
             this.LblSearchPreviewYearsOfAppOutput.AutoSize = true;
-            this.LblSearchPreviewYearsOfAppOutput.Location = new System.Drawing.Point(184, 39);
+            this.LblSearchPreviewYearsOfAppOutput.Location = new System.Drawing.Point(276, 60);
+            this.LblSearchPreviewYearsOfAppOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewYearsOfAppOutput.Name = "LblSearchPreviewYearsOfAppOutput";
-            this.LblSearchPreviewYearsOfAppOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewYearsOfAppOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewYearsOfAppOutput.TabIndex = 133;
             this.LblSearchPreviewYearsOfAppOutput.Text = "-";
             // 
             // LblSearchPreviewCurrentAppYearOutput
             // 
             this.LblSearchPreviewCurrentAppYearOutput.AutoSize = true;
-            this.LblSearchPreviewCurrentAppYearOutput.Location = new System.Drawing.Point(184, 21);
+            this.LblSearchPreviewCurrentAppYearOutput.Location = new System.Drawing.Point(276, 32);
+            this.LblSearchPreviewCurrentAppYearOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewCurrentAppYearOutput.Name = "LblSearchPreviewCurrentAppYearOutput";
-            this.LblSearchPreviewCurrentAppYearOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewCurrentAppYearOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewCurrentAppYearOutput.TabIndex = 132;
             this.LblSearchPreviewCurrentAppYearOutput.Text = "-";
             // 
@@ -1154,27 +1118,30 @@ namespace ContactManager
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(12, 3);
+            this.label14.Location = new System.Drawing.Point(18, 5);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(115, 14);
+            this.label14.Size = new System.Drawing.Size(160, 19);
             this.label14.TabIndex = 1;
             this.label14.Text = "Trainee information";
             // 
             // LblSearchPreviewCurrentAppYear
             // 
             this.LblSearchPreviewCurrentAppYear.AutoSize = true;
-            this.LblSearchPreviewCurrentAppYear.Location = new System.Drawing.Point(12, 21);
+            this.LblSearchPreviewCurrentAppYear.Location = new System.Drawing.Point(18, 32);
+            this.LblSearchPreviewCurrentAppYear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewCurrentAppYear.Name = "LblSearchPreviewCurrentAppYear";
-            this.LblSearchPreviewCurrentAppYear.Size = new System.Drawing.Size(128, 14);
+            this.LblSearchPreviewCurrentAppYear.Size = new System.Drawing.Size(194, 19);
             this.LblSearchPreviewCurrentAppYear.TabIndex = 121;
             this.LblSearchPreviewCurrentAppYear.Text = "Current apprenticeship y.";
             // 
             // LblSearchPreviewYearsOfApp
             // 
             this.LblSearchPreviewYearsOfApp.AutoSize = true;
-            this.LblSearchPreviewYearsOfApp.Location = new System.Drawing.Point(12, 39);
+            this.LblSearchPreviewYearsOfApp.Location = new System.Drawing.Point(18, 60);
+            this.LblSearchPreviewYearsOfApp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewYearsOfApp.Name = "LblSearchPreviewYearsOfApp";
-            this.LblSearchPreviewYearsOfApp.Size = new System.Drawing.Size(123, 14);
+            this.LblSearchPreviewYearsOfApp.Size = new System.Drawing.Size(181, 19);
             this.LblSearchPreviewYearsOfApp.TabIndex = 122;
             this.LblSearchPreviewYearsOfApp.Text = "Years of apprenticeship";
             // 
@@ -1211,161 +1178,179 @@ namespace ContactManager
             this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchPreviewPrivatePhone);
             this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchPreviewOasiNumber);
             this.PnlSearchPreviewGeneral.Controls.Add(this.LblSearchPreviewDateOfBirth);
-            this.PnlSearchPreviewGeneral.Location = new System.Drawing.Point(6, 17);
+            this.PnlSearchPreviewGeneral.Location = new System.Drawing.Point(9, 26);
+            this.PnlSearchPreviewGeneral.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PnlSearchPreviewGeneral.Name = "PnlSearchPreviewGeneral";
-            this.PnlSearchPreviewGeneral.Size = new System.Drawing.Size(321, 302);
+            this.PnlSearchPreviewGeneral.Size = new System.Drawing.Size(482, 465);
             this.PnlSearchPreviewGeneral.TabIndex = 126;
             // 
             // LblSearchPreviewSalutationOutput
             // 
             this.LblSearchPreviewSalutationOutput.AutoSize = true;
-            this.LblSearchPreviewSalutationOutput.Location = new System.Drawing.Point(144, 66);
+            this.LblSearchPreviewSalutationOutput.Location = new System.Drawing.Point(216, 102);
+            this.LblSearchPreviewSalutationOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewSalutationOutput.Name = "LblSearchPreviewSalutationOutput";
-            this.LblSearchPreviewSalutationOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewSalutationOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewSalutationOutput.TabIndex = 135;
             this.LblSearchPreviewSalutationOutput.Text = "-";
             // 
             // LblSearchPreviewSalutation
             // 
             this.LblSearchPreviewSalutation.AutoSize = true;
-            this.LblSearchPreviewSalutation.Location = new System.Drawing.Point(11, 66);
+            this.LblSearchPreviewSalutation.Location = new System.Drawing.Point(16, 102);
+            this.LblSearchPreviewSalutation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewSalutation.Name = "LblSearchPreviewSalutation";
-            this.LblSearchPreviewSalutation.Size = new System.Drawing.Size(54, 14);
+            this.LblSearchPreviewSalutation.Size = new System.Drawing.Size(80, 19);
             this.LblSearchPreviewSalutation.TabIndex = 134;
             this.LblSearchPreviewSalutation.Text = "Salutation";
             // 
             // LblSearchPreviewGenderOutput
             // 
             this.LblSearchPreviewGenderOutput.AutoSize = true;
-            this.LblSearchPreviewGenderOutput.Location = new System.Drawing.Point(144, 48);
+            this.LblSearchPreviewGenderOutput.Location = new System.Drawing.Point(216, 74);
+            this.LblSearchPreviewGenderOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewGenderOutput.Name = "LblSearchPreviewGenderOutput";
-            this.LblSearchPreviewGenderOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewGenderOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewGenderOutput.TabIndex = 133;
             this.LblSearchPreviewGenderOutput.Text = "-";
             // 
             // LblSearchPreviewGender
             // 
             this.LblSearchPreviewGender.AutoSize = true;
-            this.LblSearchPreviewGender.Location = new System.Drawing.Point(11, 48);
+            this.LblSearchPreviewGender.Location = new System.Drawing.Point(16, 74);
+            this.LblSearchPreviewGender.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewGender.Name = "LblSearchPreviewGender";
-            this.LblSearchPreviewGender.Size = new System.Drawing.Size(43, 14);
+            this.LblSearchPreviewGender.Size = new System.Drawing.Size(63, 19);
             this.LblSearchPreviewGender.TabIndex = 132;
             this.LblSearchPreviewGender.Text = "Gender";
             // 
             // LblSearchPreviewBusinessAddressOutput
             // 
             this.LblSearchPreviewBusinessAddressOutput.AutoSize = true;
-            this.LblSearchPreviewBusinessAddressOutput.Location = new System.Drawing.Point(144, 283);
+            this.LblSearchPreviewBusinessAddressOutput.Location = new System.Drawing.Point(216, 435);
+            this.LblSearchPreviewBusinessAddressOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewBusinessAddressOutput.Name = "LblSearchPreviewBusinessAddressOutput";
-            this.LblSearchPreviewBusinessAddressOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewBusinessAddressOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewBusinessAddressOutput.TabIndex = 131;
             this.LblSearchPreviewBusinessAddressOutput.Text = "-";
             // 
             // LblSearchPreviewBusinessPhoneOutput
             // 
             this.LblSearchPreviewBusinessPhoneOutput.AutoSize = true;
-            this.LblSearchPreviewBusinessPhoneOutput.Location = new System.Drawing.Point(144, 265);
+            this.LblSearchPreviewBusinessPhoneOutput.Location = new System.Drawing.Point(216, 408);
+            this.LblSearchPreviewBusinessPhoneOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewBusinessPhoneOutput.Name = "LblSearchPreviewBusinessPhoneOutput";
-            this.LblSearchPreviewBusinessPhoneOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewBusinessPhoneOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewBusinessPhoneOutput.TabIndex = 130;
             this.LblSearchPreviewBusinessPhoneOutput.Text = "-";
             // 
             // LblSearchPreviewPrivatePhoneOutput
             // 
             this.LblSearchPreviewPrivatePhoneOutput.AutoSize = true;
-            this.LblSearchPreviewPrivatePhoneOutput.Location = new System.Drawing.Point(144, 247);
+            this.LblSearchPreviewPrivatePhoneOutput.Location = new System.Drawing.Point(216, 380);
+            this.LblSearchPreviewPrivatePhoneOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewPrivatePhoneOutput.Name = "LblSearchPreviewPrivatePhoneOutput";
-            this.LblSearchPreviewPrivatePhoneOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewPrivatePhoneOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewPrivatePhoneOutput.TabIndex = 129;
             this.LblSearchPreviewPrivatePhoneOutput.Text = "-";
             // 
             // LblSearchPreviewEmailAddressOutput
             // 
             this.LblSearchPreviewEmailAddressOutput.AutoSize = true;
-            this.LblSearchPreviewEmailAddressOutput.Location = new System.Drawing.Point(144, 229);
+            this.LblSearchPreviewEmailAddressOutput.Location = new System.Drawing.Point(216, 352);
+            this.LblSearchPreviewEmailAddressOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewEmailAddressOutput.Name = "LblSearchPreviewEmailAddressOutput";
-            this.LblSearchPreviewEmailAddressOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewEmailAddressOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewEmailAddressOutput.TabIndex = 128;
             this.LblSearchPreviewEmailAddressOutput.Text = "-";
             // 
             // LblSearchPreviewDateOfBirthOutput
             // 
             this.LblSearchPreviewDateOfBirthOutput.AutoSize = true;
-            this.LblSearchPreviewDateOfBirthOutput.Location = new System.Drawing.Point(144, 211);
+            this.LblSearchPreviewDateOfBirthOutput.Location = new System.Drawing.Point(216, 325);
+            this.LblSearchPreviewDateOfBirthOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewDateOfBirthOutput.Name = "LblSearchPreviewDateOfBirthOutput";
-            this.LblSearchPreviewDateOfBirthOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewDateOfBirthOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewDateOfBirthOutput.TabIndex = 127;
             this.LblSearchPreviewDateOfBirthOutput.Text = "-";
             // 
             // LblSearchPreviewOasiNumberOutput
             // 
             this.LblSearchPreviewOasiNumberOutput.AutoSize = true;
-            this.LblSearchPreviewOasiNumberOutput.Location = new System.Drawing.Point(144, 193);
+            this.LblSearchPreviewOasiNumberOutput.Location = new System.Drawing.Point(216, 297);
+            this.LblSearchPreviewOasiNumberOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewOasiNumberOutput.Name = "LblSearchPreviewOasiNumberOutput";
-            this.LblSearchPreviewOasiNumberOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewOasiNumberOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewOasiNumberOutput.TabIndex = 126;
             this.LblSearchPreviewOasiNumberOutput.Text = "-";
             // 
             // LblSearchPreviewNationalityOutput
             // 
             this.LblSearchPreviewNationalityOutput.AutoSize = true;
-            this.LblSearchPreviewNationalityOutput.Location = new System.Drawing.Point(144, 175);
+            this.LblSearchPreviewNationalityOutput.Location = new System.Drawing.Point(216, 269);
+            this.LblSearchPreviewNationalityOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewNationalityOutput.Name = "LblSearchPreviewNationalityOutput";
-            this.LblSearchPreviewNationalityOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewNationalityOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewNationalityOutput.TabIndex = 125;
             this.LblSearchPreviewNationalityOutput.Text = "-";
             // 
             // LblSearchPreviewPlaceOfResidenceOutput
             // 
             this.LblSearchPreviewPlaceOfResidenceOutput.AutoSize = true;
-            this.LblSearchPreviewPlaceOfResidenceOutput.Location = new System.Drawing.Point(144, 157);
+            this.LblSearchPreviewPlaceOfResidenceOutput.Location = new System.Drawing.Point(216, 242);
+            this.LblSearchPreviewPlaceOfResidenceOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewPlaceOfResidenceOutput.Name = "LblSearchPreviewPlaceOfResidenceOutput";
-            this.LblSearchPreviewPlaceOfResidenceOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewPlaceOfResidenceOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewPlaceOfResidenceOutput.TabIndex = 124;
             this.LblSearchPreviewPlaceOfResidenceOutput.Text = "-";
             // 
             // LblSearchPreviewPostalCodeOutput
             // 
             this.LblSearchPreviewPostalCodeOutput.AutoSize = true;
-            this.LblSearchPreviewPostalCodeOutput.Location = new System.Drawing.Point(144, 139);
+            this.LblSearchPreviewPostalCodeOutput.Location = new System.Drawing.Point(216, 214);
+            this.LblSearchPreviewPostalCodeOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewPostalCodeOutput.Name = "LblSearchPreviewPostalCodeOutput";
-            this.LblSearchPreviewPostalCodeOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewPostalCodeOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewPostalCodeOutput.TabIndex = 123;
             this.LblSearchPreviewPostalCodeOutput.Text = "-";
             // 
             // LblSearchPreviewAddressOutput
             // 
             this.LblSearchPreviewAddressOutput.AutoSize = true;
-            this.LblSearchPreviewAddressOutput.Location = new System.Drawing.Point(144, 121);
+            this.LblSearchPreviewAddressOutput.Location = new System.Drawing.Point(216, 186);
+            this.LblSearchPreviewAddressOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewAddressOutput.Name = "LblSearchPreviewAddressOutput";
-            this.LblSearchPreviewAddressOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewAddressOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewAddressOutput.TabIndex = 122;
             this.LblSearchPreviewAddressOutput.Text = "-";
             // 
             // LblSearchPreviewLastNameOutput
             // 
             this.LblSearchPreviewLastNameOutput.AutoSize = true;
-            this.LblSearchPreviewLastNameOutput.Location = new System.Drawing.Point(144, 103);
+            this.LblSearchPreviewLastNameOutput.Location = new System.Drawing.Point(216, 158);
+            this.LblSearchPreviewLastNameOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewLastNameOutput.Name = "LblSearchPreviewLastNameOutput";
-            this.LblSearchPreviewLastNameOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewLastNameOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewLastNameOutput.TabIndex = 121;
             this.LblSearchPreviewLastNameOutput.Text = "-";
             // 
             // LblSearchPreviewFirstNameOutput
             // 
             this.LblSearchPreviewFirstNameOutput.AutoSize = true;
-            this.LblSearchPreviewFirstNameOutput.Location = new System.Drawing.Point(144, 85);
+            this.LblSearchPreviewFirstNameOutput.Location = new System.Drawing.Point(216, 131);
+            this.LblSearchPreviewFirstNameOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewFirstNameOutput.Name = "LblSearchPreviewFirstNameOutput";
-            this.LblSearchPreviewFirstNameOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewFirstNameOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewFirstNameOutput.TabIndex = 120;
             this.LblSearchPreviewFirstNameOutput.Text = "-";
             // 
             // LblSearchPreviewTitleOutput
             // 
             this.LblSearchPreviewTitleOutput.AutoSize = true;
-            this.LblSearchPreviewTitleOutput.Location = new System.Drawing.Point(144, 30);
+            this.LblSearchPreviewTitleOutput.Location = new System.Drawing.Point(216, 46);
+            this.LblSearchPreviewTitleOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewTitleOutput.Name = "LblSearchPreviewTitleOutput";
-            this.LblSearchPreviewTitleOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewTitleOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewTitleOutput.TabIndex = 119;
             this.LblSearchPreviewTitleOutput.Text = "-";
             // 
@@ -1373,126 +1358,140 @@ namespace ContactManager
             // 
             this.LblSearchHeadlineGeneral.AutoSize = true;
             this.LblSearchHeadlineGeneral.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblSearchHeadlineGeneral.Location = new System.Drawing.Point(12, 9);
+            this.LblSearchHeadlineGeneral.Location = new System.Drawing.Point(18, 14);
+            this.LblSearchHeadlineGeneral.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchHeadlineGeneral.Name = "LblSearchHeadlineGeneral";
-            this.LblSearchHeadlineGeneral.Size = new System.Drawing.Size(50, 14);
+            this.LblSearchHeadlineGeneral.Size = new System.Drawing.Size(70, 19);
             this.LblSearchHeadlineGeneral.TabIndex = 0;
             this.LblSearchHeadlineGeneral.Text = "General";
             // 
             // LblSearchPreviewTitle
             // 
             this.LblSearchPreviewTitle.AutoSize = true;
-            this.LblSearchPreviewTitle.Location = new System.Drawing.Point(11, 30);
+            this.LblSearchPreviewTitle.Location = new System.Drawing.Point(16, 46);
+            this.LblSearchPreviewTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewTitle.Name = "LblSearchPreviewTitle";
-            this.LblSearchPreviewTitle.Size = new System.Drawing.Size(26, 14);
+            this.LblSearchPreviewTitle.Size = new System.Drawing.Size(37, 19);
             this.LblSearchPreviewTitle.TabIndex = 106;
             this.LblSearchPreviewTitle.Text = "Title";
             // 
             // LblSearchPreviewFirstName
             // 
             this.LblSearchPreviewFirstName.AutoSize = true;
-            this.LblSearchPreviewFirstName.Location = new System.Drawing.Point(11, 85);
+            this.LblSearchPreviewFirstName.Location = new System.Drawing.Point(16, 131);
+            this.LblSearchPreviewFirstName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewFirstName.Name = "LblSearchPreviewFirstName";
-            this.LblSearchPreviewFirstName.Size = new System.Drawing.Size(57, 14);
+            this.LblSearchPreviewFirstName.Size = new System.Drawing.Size(86, 19);
             this.LblSearchPreviewFirstName.TabIndex = 107;
             this.LblSearchPreviewFirstName.Text = "First name";
             // 
             // LblSearchPreviewLastName
             // 
             this.LblSearchPreviewLastName.AutoSize = true;
-            this.LblSearchPreviewLastName.Location = new System.Drawing.Point(11, 103);
+            this.LblSearchPreviewLastName.Location = new System.Drawing.Point(16, 158);
+            this.LblSearchPreviewLastName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewLastName.Name = "LblSearchPreviewLastName";
-            this.LblSearchPreviewLastName.Size = new System.Drawing.Size(57, 14);
+            this.LblSearchPreviewLastName.Size = new System.Drawing.Size(84, 19);
             this.LblSearchPreviewLastName.TabIndex = 108;
             this.LblSearchPreviewLastName.Text = "Last name";
             // 
             // LblSearchPreviewAddress
             // 
             this.LblSearchPreviewAddress.AutoSize = true;
-            this.LblSearchPreviewAddress.Location = new System.Drawing.Point(11, 121);
+            this.LblSearchPreviewAddress.Location = new System.Drawing.Point(16, 186);
+            this.LblSearchPreviewAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewAddress.Name = "LblSearchPreviewAddress";
-            this.LblSearchPreviewAddress.Size = new System.Drawing.Size(49, 14);
+            this.LblSearchPreviewAddress.Size = new System.Drawing.Size(69, 19);
             this.LblSearchPreviewAddress.TabIndex = 109;
             this.LblSearchPreviewAddress.Text = "Address";
             // 
             // LblSearchPreviewBusinessAddress
             // 
             this.LblSearchPreviewBusinessAddress.AutoSize = true;
-            this.LblSearchPreviewBusinessAddress.Location = new System.Drawing.Point(11, 283);
+            this.LblSearchPreviewBusinessAddress.Location = new System.Drawing.Point(16, 435);
+            this.LblSearchPreviewBusinessAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewBusinessAddress.Name = "LblSearchPreviewBusinessAddress";
-            this.LblSearchPreviewBusinessAddress.Size = new System.Drawing.Size(95, 14);
+            this.LblSearchPreviewBusinessAddress.Size = new System.Drawing.Size(138, 19);
             this.LblSearchPreviewBusinessAddress.TabIndex = 118;
             this.LblSearchPreviewBusinessAddress.Text = "Business address";
             // 
             // LblSearchPreviewPostalCode
             // 
             this.LblSearchPreviewPostalCode.AutoSize = true;
-            this.LblSearchPreviewPostalCode.Location = new System.Drawing.Point(11, 139);
+            this.LblSearchPreviewPostalCode.Location = new System.Drawing.Point(16, 214);
+            this.LblSearchPreviewPostalCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewPostalCode.Name = "LblSearchPreviewPostalCode";
-            this.LblSearchPreviewPostalCode.Size = new System.Drawing.Size(63, 14);
+            this.LblSearchPreviewPostalCode.Size = new System.Drawing.Size(94, 19);
             this.LblSearchPreviewPostalCode.TabIndex = 110;
             this.LblSearchPreviewPostalCode.Text = "Postal code";
             // 
             // LblSearchPreviewEmailAddress
             // 
             this.LblSearchPreviewEmailAddress.AutoSize = true;
-            this.LblSearchPreviewEmailAddress.Location = new System.Drawing.Point(11, 229);
+            this.LblSearchPreviewEmailAddress.Location = new System.Drawing.Point(16, 352);
+            this.LblSearchPreviewEmailAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewEmailAddress.Name = "LblSearchPreviewEmailAddress";
-            this.LblSearchPreviewEmailAddress.Size = new System.Drawing.Size(74, 14);
+            this.LblSearchPreviewEmailAddress.Size = new System.Drawing.Size(112, 19);
             this.LblSearchPreviewEmailAddress.TabIndex = 117;
             this.LblSearchPreviewEmailAddress.Text = "Email address";
             // 
             // LblSearchPreviewPlaceOfResidence
             // 
             this.LblSearchPreviewPlaceOfResidence.AutoSize = true;
-            this.LblSearchPreviewPlaceOfResidence.Location = new System.Drawing.Point(11, 157);
+            this.LblSearchPreviewPlaceOfResidence.Location = new System.Drawing.Point(16, 242);
+            this.LblSearchPreviewPlaceOfResidence.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewPlaceOfResidence.Name = "LblSearchPreviewPlaceOfResidence";
-            this.LblSearchPreviewPlaceOfResidence.Size = new System.Drawing.Size(97, 14);
+            this.LblSearchPreviewPlaceOfResidence.Size = new System.Drawing.Size(146, 19);
             this.LblSearchPreviewPlaceOfResidence.TabIndex = 111;
             this.LblSearchPreviewPlaceOfResidence.Text = "Place of residence";
             // 
             // LblSearchPreviewBusinessPhone
             // 
             this.LblSearchPreviewBusinessPhone.AutoSize = true;
-            this.LblSearchPreviewBusinessPhone.Location = new System.Drawing.Point(11, 265);
+            this.LblSearchPreviewBusinessPhone.Location = new System.Drawing.Point(16, 408);
+            this.LblSearchPreviewBusinessPhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewBusinessPhone.Name = "LblSearchPreviewBusinessPhone";
-            this.LblSearchPreviewBusinessPhone.Size = new System.Drawing.Size(85, 14);
+            this.LblSearchPreviewBusinessPhone.Size = new System.Drawing.Size(125, 19);
             this.LblSearchPreviewBusinessPhone.TabIndex = 116;
             this.LblSearchPreviewBusinessPhone.Text = "Business phone";
             // 
             // LblSearchPreviewNationality
             // 
             this.LblSearchPreviewNationality.AutoSize = true;
-            this.LblSearchPreviewNationality.Location = new System.Drawing.Point(11, 175);
+            this.LblSearchPreviewNationality.Location = new System.Drawing.Point(16, 269);
+            this.LblSearchPreviewNationality.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewNationality.Name = "LblSearchPreviewNationality";
-            this.LblSearchPreviewNationality.Size = new System.Drawing.Size(56, 14);
+            this.LblSearchPreviewNationality.Size = new System.Drawing.Size(84, 19);
             this.LblSearchPreviewNationality.TabIndex = 112;
             this.LblSearchPreviewNationality.Text = "Nationality";
             // 
             // LblSearchPreviewPrivatePhone
             // 
             this.LblSearchPreviewPrivatePhone.AutoSize = true;
-            this.LblSearchPreviewPrivatePhone.Location = new System.Drawing.Point(11, 247);
+            this.LblSearchPreviewPrivatePhone.Location = new System.Drawing.Point(16, 380);
+            this.LblSearchPreviewPrivatePhone.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewPrivatePhone.Name = "LblSearchPreviewPrivatePhone";
-            this.LblSearchPreviewPrivatePhone.Size = new System.Drawing.Size(73, 14);
+            this.LblSearchPreviewPrivatePhone.Size = new System.Drawing.Size(109, 19);
             this.LblSearchPreviewPrivatePhone.TabIndex = 115;
             this.LblSearchPreviewPrivatePhone.Text = "Private phone";
             // 
             // LblSearchPreviewOasiNumber
             // 
             this.LblSearchPreviewOasiNumber.AutoSize = true;
-            this.LblSearchPreviewOasiNumber.Location = new System.Drawing.Point(11, 193);
+            this.LblSearchPreviewOasiNumber.Location = new System.Drawing.Point(16, 297);
+            this.LblSearchPreviewOasiNumber.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewOasiNumber.Name = "LblSearchPreviewOasiNumber";
-            this.LblSearchPreviewOasiNumber.Size = new System.Drawing.Size(71, 14);
+            this.LblSearchPreviewOasiNumber.Size = new System.Drawing.Size(108, 19);
             this.LblSearchPreviewOasiNumber.TabIndex = 113;
             this.LblSearchPreviewOasiNumber.Text = "OASI number";
             // 
             // LblSearchPreviewDateOfBirth
             // 
             this.LblSearchPreviewDateOfBirth.AutoSize = true;
-            this.LblSearchPreviewDateOfBirth.Location = new System.Drawing.Point(11, 211);
+            this.LblSearchPreviewDateOfBirth.Location = new System.Drawing.Point(16, 325);
+            this.LblSearchPreviewDateOfBirth.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblSearchPreviewDateOfBirth.Name = "LblSearchPreviewDateOfBirth";
-            this.LblSearchPreviewDateOfBirth.Size = new System.Drawing.Size(66, 14);
+            this.LblSearchPreviewDateOfBirth.Size = new System.Drawing.Size(99, 19);
             this.LblSearchPreviewDateOfBirth.TabIndex = 114;
             this.LblSearchPreviewDateOfBirth.Text = "Date of birth";
             // 
@@ -1511,40 +1510,40 @@ namespace ContactManager
             this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewRoleOutput);
             this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDepartementOutput);
             this.PnlSearchPreviewEmployee.Controls.Add(this.LblSearchPreviewDegreeOfEmploymentOutput);
-            this.PnlSearchPreviewEmployee.Location = new System.Drawing.Point(333, 17);
-            this.PnlSearchPreviewEmployee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.PnlSearchPreviewEmployee.Location = new System.Drawing.Point(500, 26);
+            this.PnlSearchPreviewEmployee.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.PnlSearchPreviewEmployee.Name = "PnlSearchPreviewEmployee";
-            this.PnlSearchPreviewEmployee.Size = new System.Drawing.Size(317, 170);
+            this.PnlSearchPreviewEmployee.Size = new System.Drawing.Size(476, 262);
             this.PnlSearchPreviewEmployee.TabIndex = 125;
             this.PnlSearchPreviewEmployee.Visible = false;
             // 
             // LblSearchPreviewDateOfLeaving
             // 
             this.LblSearchPreviewDateOfLeaving.AutoSize = true;
-            this.LblSearchPreviewDateOfLeaving.Location = new System.Drawing.Point(12, 138);
-            this.LblSearchPreviewDateOfLeaving.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDateOfLeaving.Location = new System.Drawing.Point(18, 212);
+            this.LblSearchPreviewDateOfLeaving.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewDateOfLeaving.Name = "LblSearchPreviewDateOfLeaving";
-            this.LblSearchPreviewDateOfLeaving.Size = new System.Drawing.Size(79, 14);
+            this.LblSearchPreviewDateOfLeaving.Size = new System.Drawing.Size(117, 19);
             this.LblSearchPreviewDateOfLeaving.TabIndex = 126;
             this.LblSearchPreviewDateOfLeaving.Text = "Date of leaving";
             // 
             // LblSearchPreviewDateOfJoining
             // 
             this.LblSearchPreviewDateOfJoining.AutoSize = true;
-            this.LblSearchPreviewDateOfJoining.Location = new System.Drawing.Point(12, 120);
-            this.LblSearchPreviewDateOfJoining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDateOfJoining.Location = new System.Drawing.Point(18, 185);
+            this.LblSearchPreviewDateOfJoining.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewDateOfJoining.Name = "LblSearchPreviewDateOfJoining";
-            this.LblSearchPreviewDateOfJoining.Size = new System.Drawing.Size(75, 14);
+            this.LblSearchPreviewDateOfJoining.Size = new System.Drawing.Size(114, 19);
             this.LblSearchPreviewDateOfJoining.TabIndex = 125;
             this.LblSearchPreviewDateOfJoining.Text = "Date of joining";
             // 
             // LblSearchPreviewCadreLevel
             // 
             this.LblSearchPreviewCadreLevel.AutoSize = true;
-            this.LblSearchPreviewCadreLevel.Location = new System.Drawing.Point(12, 84);
-            this.LblSearchPreviewCadreLevel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewCadreLevel.Location = new System.Drawing.Point(18, 129);
+            this.LblSearchPreviewCadreLevel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewCadreLevel.Name = "LblSearchPreviewCadreLevel";
-            this.LblSearchPreviewCadreLevel.Size = new System.Drawing.Size(88, 14);
+            this.LblSearchPreviewCadreLevel.Size = new System.Drawing.Size(131, 19);
             this.LblSearchPreviewCadreLevel.TabIndex = 124;
             this.LblSearchPreviewCadreLevel.Text = "Cadre level (0-5)";
             // 
@@ -1552,111 +1551,111 @@ namespace ContactManager
             // 
             this.LblSearchPreviewEmployee.AutoSize = true;
             this.LblSearchPreviewEmployee.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblSearchPreviewEmployee.Location = new System.Drawing.Point(12, 9);
-            this.LblSearchPreviewEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewEmployee.Location = new System.Drawing.Point(18, 14);
+            this.LblSearchPreviewEmployee.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewEmployee.Name = "LblSearchPreviewEmployee";
-            this.LblSearchPreviewEmployee.Size = new System.Drawing.Size(128, 14);
+            this.LblSearchPreviewEmployee.Size = new System.Drawing.Size(179, 19);
             this.LblSearchPreviewEmployee.TabIndex = 1;
             this.LblSearchPreviewEmployee.Text = "Employee information";
             // 
             // LblSearchPreviewRole
             // 
             this.LblSearchPreviewRole.AutoSize = true;
-            this.LblSearchPreviewRole.Location = new System.Drawing.Point(12, 66);
-            this.LblSearchPreviewRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewRole.Location = new System.Drawing.Point(18, 102);
+            this.LblSearchPreviewRole.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewRole.Name = "LblSearchPreviewRole";
-            this.LblSearchPreviewRole.Size = new System.Drawing.Size(75, 14);
+            this.LblSearchPreviewRole.Size = new System.Drawing.Size(114, 19);
             this.LblSearchPreviewRole.TabIndex = 123;
             this.LblSearchPreviewRole.Text = "Role (Job title)";
             // 
             // LblSearchPreviewDegreeOfEmployment
             // 
             this.LblSearchPreviewDegreeOfEmployment.AutoSize = true;
-            this.LblSearchPreviewDegreeOfEmployment.Location = new System.Drawing.Point(12, 30);
-            this.LblSearchPreviewDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDegreeOfEmployment.Location = new System.Drawing.Point(18, 46);
+            this.LblSearchPreviewDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewDegreeOfEmployment.Name = "LblSearchPreviewDegreeOfEmployment";
-            this.LblSearchPreviewDegreeOfEmployment.Size = new System.Drawing.Size(123, 14);
+            this.LblSearchPreviewDegreeOfEmployment.Size = new System.Drawing.Size(187, 19);
             this.LblSearchPreviewDegreeOfEmployment.TabIndex = 121;
             this.LblSearchPreviewDegreeOfEmployment.Text = "Deg. of employment (%)";
             // 
             // LblSearchPreviewDepartement
             // 
             this.LblSearchPreviewDepartement.AutoSize = true;
-            this.LblSearchPreviewDepartement.Location = new System.Drawing.Point(12, 48);
-            this.LblSearchPreviewDepartement.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDepartement.Location = new System.Drawing.Point(18, 74);
+            this.LblSearchPreviewDepartement.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewDepartement.Name = "LblSearchPreviewDepartement";
-            this.LblSearchPreviewDepartement.Size = new System.Drawing.Size(68, 14);
+            this.LblSearchPreviewDepartement.Size = new System.Drawing.Size(102, 19);
             this.LblSearchPreviewDepartement.TabIndex = 122;
             this.LblSearchPreviewDepartement.Text = "Departement";
             // 
             // LblSearchPreviewDateOfLeavingOutput
             // 
             this.LblSearchPreviewDateOfLeavingOutput.AutoSize = true;
-            this.LblSearchPreviewDateOfLeavingOutput.Location = new System.Drawing.Point(184, 140);
-            this.LblSearchPreviewDateOfLeavingOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDateOfLeavingOutput.Location = new System.Drawing.Point(276, 215);
+            this.LblSearchPreviewDateOfLeavingOutput.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewDateOfLeavingOutput.Name = "LblSearchPreviewDateOfLeavingOutput";
-            this.LblSearchPreviewDateOfLeavingOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewDateOfLeavingOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewDateOfLeavingOutput.TabIndex = 132;
             this.LblSearchPreviewDateOfLeavingOutput.Text = "-";
             // 
             // LblSearchPreviewDateOfJoiningOutput
             // 
             this.LblSearchPreviewDateOfJoiningOutput.AutoSize = true;
-            this.LblSearchPreviewDateOfJoiningOutput.Location = new System.Drawing.Point(184, 121);
-            this.LblSearchPreviewDateOfJoiningOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDateOfJoiningOutput.Location = new System.Drawing.Point(276, 186);
+            this.LblSearchPreviewDateOfJoiningOutput.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewDateOfJoiningOutput.Name = "LblSearchPreviewDateOfJoiningOutput";
-            this.LblSearchPreviewDateOfJoiningOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewDateOfJoiningOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewDateOfJoiningOutput.TabIndex = 131;
             this.LblSearchPreviewDateOfJoiningOutput.Text = "-";
             // 
             // LblSearchPreviewCadreLevelOutput
             // 
             this.LblSearchPreviewCadreLevelOutput.AutoSize = true;
-            this.LblSearchPreviewCadreLevelOutput.Location = new System.Drawing.Point(184, 85);
-            this.LblSearchPreviewCadreLevelOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewCadreLevelOutput.Location = new System.Drawing.Point(276, 131);
+            this.LblSearchPreviewCadreLevelOutput.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewCadreLevelOutput.Name = "LblSearchPreviewCadreLevelOutput";
-            this.LblSearchPreviewCadreLevelOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewCadreLevelOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewCadreLevelOutput.TabIndex = 130;
             this.LblSearchPreviewCadreLevelOutput.Text = "-";
             // 
             // LblSearchPreviewRoleOutput
             // 
             this.LblSearchPreviewRoleOutput.AutoSize = true;
-            this.LblSearchPreviewRoleOutput.Location = new System.Drawing.Point(184, 66);
-            this.LblSearchPreviewRoleOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewRoleOutput.Location = new System.Drawing.Point(276, 102);
+            this.LblSearchPreviewRoleOutput.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewRoleOutput.Name = "LblSearchPreviewRoleOutput";
-            this.LblSearchPreviewRoleOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewRoleOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewRoleOutput.TabIndex = 129;
             this.LblSearchPreviewRoleOutput.Text = "-";
             // 
             // LblSearchPreviewDepartementOutput
             // 
             this.LblSearchPreviewDepartementOutput.AutoSize = true;
-            this.LblSearchPreviewDepartementOutput.Location = new System.Drawing.Point(184, 48);
-            this.LblSearchPreviewDepartementOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDepartementOutput.Location = new System.Drawing.Point(276, 74);
+            this.LblSearchPreviewDepartementOutput.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewDepartementOutput.Name = "LblSearchPreviewDepartementOutput";
-            this.LblSearchPreviewDepartementOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewDepartementOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewDepartementOutput.TabIndex = 128;
             this.LblSearchPreviewDepartementOutput.Text = "-";
             // 
             // LblSearchPreviewDegreeOfEmploymentOutput
             // 
             this.LblSearchPreviewDegreeOfEmploymentOutput.AutoSize = true;
-            this.LblSearchPreviewDegreeOfEmploymentOutput.Location = new System.Drawing.Point(184, 30);
-            this.LblSearchPreviewDegreeOfEmploymentOutput.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblSearchPreviewDegreeOfEmploymentOutput.Location = new System.Drawing.Point(276, 46);
+            this.LblSearchPreviewDegreeOfEmploymentOutput.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.LblSearchPreviewDegreeOfEmploymentOutput.Name = "LblSearchPreviewDegreeOfEmploymentOutput";
-            this.LblSearchPreviewDegreeOfEmploymentOutput.Size = new System.Drawing.Size(11, 14);
+            this.LblSearchPreviewDegreeOfEmploymentOutput.Size = new System.Drawing.Size(15, 19);
             this.LblSearchPreviewDegreeOfEmploymentOutput.TabIndex = 127;
             this.LblSearchPreviewDegreeOfEmploymentOutput.Text = "-";
             // 
             // TabCreateEdit
             // 
             this.TabCreateEdit.Controls.Add(this.TabCreate);
-            this.TabCreateEdit.Location = new System.Drawing.Point(4, 34);
-            this.TabCreateEdit.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TabCreateEdit.Location = new System.Drawing.Point(4, 49);
+            this.TabCreateEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TabCreateEdit.Name = "TabCreateEdit";
-            this.TabCreateEdit.Padding = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.TabCreateEdit.Size = new System.Drawing.Size(1267, 600);
+            this.TabCreateEdit.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.TabCreateEdit.Size = new System.Drawing.Size(1904, 929);
             this.TabCreateEdit.TabIndex = 1;
             this.TabCreateEdit.Text = "Create";
             this.TabCreateEdit.UseVisualStyleBackColor = true;
@@ -1678,65 +1677,12 @@ namespace ContactManager
             this.TabCreate.Depth = 0;
             this.TabCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TabCreate.Location = new System.Drawing.Point(0, 0);
-            this.TabCreate.Margin = new System.Windows.Forms.Padding(14, 14, 14, 14);
+            this.TabCreate.Margin = new System.Windows.Forms.Padding(21, 22, 21, 22);
             this.TabCreate.MouseState = MaterialSkin.MouseState.HOVER;
             this.TabCreate.Name = "TabCreate";
-            this.TabCreate.Padding = new System.Windows.Forms.Padding(14, 14, 14, 14);
-            this.TabCreate.Size = new System.Drawing.Size(1922, 923);
+            this.TabCreate.Padding = new System.Windows.Forms.Padding(21, 22, 21, 22);
+            this.TabCreate.Size = new System.Drawing.Size(2883, 1420);
             this.TabCreate.TabIndex = 59;
-            // 
-            // DataGridViewCreateNotes
-            // 
-            this.DataGridViewCreateNotes.AllowUserToAddRows = false;
-            this.DataGridViewCreateNotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DataGridViewCreateNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.DataGridViewCreateNotes.BackgroundColor = System.Drawing.Color.DimGray;
-            this.DataGridViewCreateNotes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewCreateNotes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
-            this.DataGridViewCreateNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DataGridViewCreateNotes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ContentColumn,
-            this.NoteColumn,
-            this.TimestampColumn,
-            this.EditTimestampColumn});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.WindowFrame;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DataGridViewCreateNotes.DefaultCellStyle = dataGridViewCellStyle10;
-            this.DataGridViewCreateNotes.GridColor = System.Drawing.Color.Gray;
-            this.DataGridViewCreateNotes.Location = new System.Drawing.Point(637, 376);
-            this.DataGridViewCreateNotes.MultiSelect = false;
-            this.DataGridViewCreateNotes.Name = "DataGridViewCreateNotes";
-            this.DataGridViewCreateNotes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DataGridViewCreateNotes.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            this.DataGridViewCreateNotes.RowHeadersVisible = false;
-            this.DataGridViewCreateNotes.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateBlue;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.DataGridViewCreateNotes.RowsDefaultCellStyle = dataGridViewCellStyle12;
-            this.DataGridViewCreateNotes.Size = new System.Drawing.Size(629, 166);
-            this.DataGridViewCreateNotes.TabIndex = 105;
-            this.DataGridViewCreateNotes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridViewCreateNotes_CellContentClick);
             // 
             // CmdCreateDeletePerson
             // 
@@ -1746,11 +1692,11 @@ namespace ContactManager
             this.CmdCreateDeletePerson.DrawShadows = true;
             this.CmdCreateDeletePerson.HighEmphasis = true;
             this.CmdCreateDeletePerson.Icon = null;
-            this.CmdCreateDeletePerson.Location = new System.Drawing.Point(820, 552);
-            this.CmdCreateDeletePerson.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdCreateDeletePerson.Location = new System.Drawing.Point(1230, 849);
+            this.CmdCreateDeletePerson.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdCreateDeletePerson.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreateDeletePerson.Name = "CmdCreateDeletePerson";
-            this.CmdCreateDeletePerson.Size = new System.Drawing.Size(63, 44);
+            this.CmdCreateDeletePerson.Size = new System.Drawing.Size(94, 68);
             this.CmdCreateDeletePerson.TabIndex = 101;
             this.CmdCreateDeletePerson.Text = "DELETE";
             this.CmdCreateDeletePerson.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1767,11 +1713,11 @@ namespace ContactManager
             this.CmdCreateNoteClear.DrawShadows = true;
             this.CmdCreateNoteClear.HighEmphasis = true;
             this.CmdCreateNoteClear.Icon = null;
-            this.CmdCreateNoteClear.Location = new System.Drawing.Point(637, 552);
-            this.CmdCreateNoteClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdCreateNoteClear.Location = new System.Drawing.Point(956, 849);
+            this.CmdCreateNoteClear.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdCreateNoteClear.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreateNoteClear.Name = "CmdCreateNoteClear";
-            this.CmdCreateNoteClear.Size = new System.Drawing.Size(54, 30);
+            this.CmdCreateNoteClear.Size = new System.Drawing.Size(81, 46);
             this.CmdCreateNoteClear.TabIndex = 100;
             this.CmdCreateNoteClear.Text = "CLEAR";
             this.CmdCreateNoteClear.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1784,7 +1730,8 @@ namespace ContactManager
             this.LblCreateNotes.AutoSize = true;
             this.LblCreateNotes.Depth = 0;
             this.LblCreateNotes.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateNotes.Location = new System.Drawing.Point(639, 360);
+            this.LblCreateNotes.Location = new System.Drawing.Point(958, 554);
+            this.LblCreateNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblCreateNotes.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateNotes.Name = "LblCreateNotes";
             this.LblCreateNotes.Size = new System.Drawing.Size(42, 19);
@@ -1799,11 +1746,11 @@ namespace ContactManager
             this.CmdCreateCancel.DrawShadows = true;
             this.CmdCreateCancel.HighEmphasis = true;
             this.CmdCreateCancel.Icon = null;
-            this.CmdCreateCancel.Location = new System.Drawing.Point(1176, 551);
-            this.CmdCreateCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdCreateCancel.Location = new System.Drawing.Point(1764, 848);
+            this.CmdCreateCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdCreateCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreateCancel.Name = "CmdCreateCancel";
-            this.CmdCreateCancel.Size = new System.Drawing.Size(88, 44);
+            this.CmdCreateCancel.Size = new System.Drawing.Size(132, 68);
             this.CmdCreateCancel.TabIndex = 104;
             this.CmdCreateCancel.Text = "Cancel";
             this.CmdCreateCancel.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1819,11 +1766,11 @@ namespace ContactManager
             this.CmdCreatePersonSaveAndNew.DrawShadows = true;
             this.CmdCreatePersonSaveAndNew.HighEmphasis = true;
             this.CmdCreatePersonSaveAndNew.Icon = null;
-            this.CmdCreatePersonSaveAndNew.Location = new System.Drawing.Point(1055, 551);
-            this.CmdCreatePersonSaveAndNew.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdCreatePersonSaveAndNew.Location = new System.Drawing.Point(1582, 848);
+            this.CmdCreatePersonSaveAndNew.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdCreatePersonSaveAndNew.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreatePersonSaveAndNew.Name = "CmdCreatePersonSaveAndNew";
-            this.CmdCreatePersonSaveAndNew.Size = new System.Drawing.Size(115, 44);
+            this.CmdCreatePersonSaveAndNew.Size = new System.Drawing.Size(172, 68);
             this.CmdCreatePersonSaveAndNew.TabIndex = 103;
             this.CmdCreatePersonSaveAndNew.Text = "Save & New";
             this.CmdCreatePersonSaveAndNew.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -1837,9 +1784,10 @@ namespace ContactManager
             this.LblCreateTypeSelection.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.LblCreateTypeSelection.Font = new System.Drawing.Font("Segoe UI Light", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblCreateTypeSelection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.LblCreateTypeSelection.Location = new System.Drawing.Point(850, 200);
+            this.LblCreateTypeSelection.Location = new System.Drawing.Point(1275, 308);
+            this.LblCreateTypeSelection.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblCreateTypeSelection.Name = "LblCreateTypeSelection";
-            this.LblCreateTypeSelection.Size = new System.Drawing.Size(331, 37);
+            this.LblCreateTypeSelection.Size = new System.Drawing.Size(491, 54);
             this.LblCreateTypeSelection.TabIndex = 86;
             this.LblCreateTypeSelection.Text = "Please select a contact type.";
             // 
@@ -1880,9 +1828,10 @@ namespace ContactManager
             this.PnlCreateInfoGeneral.Controls.Add(this.LblCreatePrivatePhone);
             this.PnlCreateInfoGeneral.Controls.Add(this.TxtCreatePrivatePhone);
             this.PnlCreateInfoGeneral.Controls.Add(this.GrpCreateGender);
-            this.PnlCreateInfoGeneral.Location = new System.Drawing.Point(5, 5);
+            this.PnlCreateInfoGeneral.Location = new System.Drawing.Point(8, 8);
+            this.PnlCreateInfoGeneral.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PnlCreateInfoGeneral.Name = "PnlCreateInfoGeneral";
-            this.PnlCreateInfoGeneral.Size = new System.Drawing.Size(616, 591);
+            this.PnlCreateInfoGeneral.Size = new System.Drawing.Size(923, 908);
             this.PnlCreateInfoGeneral.TabIndex = 0;
             // 
             // GrpCreateType
@@ -1890,9 +1839,11 @@ namespace ContactManager
             this.GrpCreateType.Controls.Add(this.RadCreateEmployee);
             this.GrpCreateType.Controls.Add(this.RadCreateCustomer);
             this.GrpCreateType.Controls.Add(this.ChkCreateTrainee);
-            this.GrpCreateType.Location = new System.Drawing.Point(430, 372);
+            this.GrpCreateType.Location = new System.Drawing.Point(645, 572);
+            this.GrpCreateType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GrpCreateType.Name = "GrpCreateType";
-            this.GrpCreateType.Size = new System.Drawing.Size(172, 182);
+            this.GrpCreateType.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GrpCreateType.Size = new System.Drawing.Size(258, 280);
             this.GrpCreateType.TabIndex = 79;
             this.GrpCreateType.TabStop = false;
             this.GrpCreateType.Text = "Type*";
@@ -1901,7 +1852,7 @@ namespace ContactManager
             // 
             this.RadCreateEmployee.AutoSize = true;
             this.RadCreateEmployee.Depth = 0;
-            this.RadCreateEmployee.Location = new System.Drawing.Point(25, 88);
+            this.RadCreateEmployee.Location = new System.Drawing.Point(38, 135);
             this.RadCreateEmployee.Margin = new System.Windows.Forms.Padding(0);
             this.RadCreateEmployee.MouseLocation = new System.Drawing.Point(-1, -1);
             this.RadCreateEmployee.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1918,7 +1869,7 @@ namespace ContactManager
             // 
             this.RadCreateCustomer.AutoSize = true;
             this.RadCreateCustomer.Depth = 0;
-            this.RadCreateCustomer.Location = new System.Drawing.Point(25, 40);
+            this.RadCreateCustomer.Location = new System.Drawing.Point(38, 62);
             this.RadCreateCustomer.Margin = new System.Windows.Forms.Padding(0);
             this.RadCreateCustomer.MouseLocation = new System.Drawing.Point(-1, -1);
             this.RadCreateCustomer.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1935,7 +1886,7 @@ namespace ContactManager
             // 
             this.ChkCreateTrainee.AutoSize = true;
             this.ChkCreateTrainee.Depth = 0;
-            this.ChkCreateTrainee.Location = new System.Drawing.Point(53, 126);
+            this.ChkCreateTrainee.Location = new System.Drawing.Point(80, 194);
             this.ChkCreateTrainee.Margin = new System.Windows.Forms.Padding(0);
             this.ChkCreateTrainee.MouseLocation = new System.Drawing.Point(-1, -1);
             this.ChkCreateTrainee.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1951,7 +1902,7 @@ namespace ContactManager
             // 
             this.RadCreateOther.AutoSize = true;
             this.RadCreateOther.Depth = 0;
-            this.RadCreateOther.Location = new System.Drawing.Point(309, 22);
+            this.RadCreateOther.Location = new System.Drawing.Point(464, 34);
             this.RadCreateOther.Margin = new System.Windows.Forms.Padding(0);
             this.RadCreateOther.MouseLocation = new System.Drawing.Point(-1, -1);
             this.RadCreateOther.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1967,7 +1918,7 @@ namespace ContactManager
             // 
             this.RadCreateFemale.AutoSize = true;
             this.RadCreateFemale.Depth = 0;
-            this.RadCreateFemale.Location = new System.Drawing.Point(145, 22);
+            this.RadCreateFemale.Location = new System.Drawing.Point(218, 34);
             this.RadCreateFemale.Margin = new System.Windows.Forms.Padding(0);
             this.RadCreateFemale.MouseLocation = new System.Drawing.Point(-1, -1);
             this.RadCreateFemale.MouseState = MaterialSkin.MouseState.HOVER;
@@ -1983,7 +1934,7 @@ namespace ContactManager
             // 
             this.RadCreateMale.AutoSize = true;
             this.RadCreateMale.Depth = 0;
-            this.RadCreateMale.Location = new System.Drawing.Point(236, 22);
+            this.RadCreateMale.Location = new System.Drawing.Point(354, 34);
             this.RadCreateMale.Margin = new System.Windows.Forms.Padding(0);
             this.RadCreateMale.MouseLocation = new System.Drawing.Point(-1, -1);
             this.RadCreateMale.MouseState = MaterialSkin.MouseState.HOVER;
@@ -2001,7 +1952,7 @@ namespace ContactManager
             this.SwtCreateActive.Checked = true;
             this.SwtCreateActive.CheckState = System.Windows.Forms.CheckState.Checked;
             this.SwtCreateActive.Depth = 0;
-            this.SwtCreateActive.Location = new System.Drawing.Point(11, 23);
+            this.SwtCreateActive.Location = new System.Drawing.Point(16, 35);
             this.SwtCreateActive.Margin = new System.Windows.Forms.Padding(0);
             this.SwtCreateActive.MouseLocation = new System.Drawing.Point(-1, -1);
             this.SwtCreateActive.MouseState = MaterialSkin.MouseState.HOVER;
@@ -2017,11 +1968,10 @@ namespace ContactManager
             this.LblCreateOasiNr.AutoSize = true;
             this.LblCreateOasiNr.Depth = 0;
             this.LblCreateOasiNr.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateOasiNr.Location = new System.Drawing.Point(250, 273);
-            this.LblCreateOasiNr.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateOasiNr.Location = new System.Drawing.Point(375, 420);
             this.LblCreateOasiNr.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateOasiNr.Name = "LblCreateOasiNr";
-            this.LblCreateOasiNr.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateOasiNr.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateOasiNr.Size = new System.Drawing.Size(94, 19);
             this.LblCreateOasiNr.TabIndex = 66;
             this.LblCreateOasiNr.Text = "OASI number";
@@ -2032,10 +1982,10 @@ namespace ContactManager
             this.DatCreateBirthday.CustomFormat = "HTML Format";
             this.DatCreateBirthday.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatCreateBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatCreateBirthday.Location = new System.Drawing.Point(480, 300);
-            this.DatCreateBirthday.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.DatCreateBirthday.Location = new System.Drawing.Point(720, 462);
+            this.DatCreateBirthday.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DatCreateBirthday.Name = "DatCreateBirthday";
-            this.DatCreateBirthday.Size = new System.Drawing.Size(114, 29);
+            this.DatCreateBirthday.Size = new System.Drawing.Size(169, 39);
             this.DatCreateBirthday.TabIndex = 14;
             this.DatCreateBirthday.Value = new System.DateTime(1899, 1, 1, 0, 0, 0, 0);
             // 
@@ -2044,13 +1994,13 @@ namespace ContactManager
             this.TxtCreatePlz.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreatePlz.Depth = 0;
             this.TxtCreatePlz.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreatePlz.Location = new System.Drawing.Point(276, 207);
-            this.TxtCreatePlz.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreatePlz.Location = new System.Drawing.Point(414, 318);
+            this.TxtCreatePlz.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreatePlz.MaxLength = 50;
             this.TxtCreatePlz.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreatePlz.Multiline = false;
             this.TxtCreatePlz.Name = "TxtCreatePlz";
-            this.TxtCreatePlz.Size = new System.Drawing.Size(96, 50);
+            this.TxtCreatePlz.Size = new System.Drawing.Size(144, 50);
             this.TxtCreatePlz.TabIndex = 10;
             this.TxtCreatePlz.Text = "";
             // 
@@ -2073,11 +2023,12 @@ namespace ContactManager
             "Ms",
             "Mr",
             "Mx"});
-            this.CmbCreateSalutation.Location = new System.Drawing.Point(526, 20);
+            this.CmbCreateSalutation.Location = new System.Drawing.Point(789, 31);
+            this.CmbCreateSalutation.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CmbCreateSalutation.MaxDropDownItems = 4;
             this.CmbCreateSalutation.MouseState = MaterialSkin.MouseState.OUT;
             this.CmbCreateSalutation.Name = "CmbCreateSalutation";
-            this.CmbCreateSalutation.Size = new System.Drawing.Size(76, 49);
+            this.CmbCreateSalutation.Size = new System.Drawing.Size(112, 49);
             this.CmbCreateSalutation.StartIndex = 0;
             this.CmbCreateSalutation.TabIndex = 5;
             // 
@@ -2086,13 +2037,13 @@ namespace ContactManager
             this.TxtCreateAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateAddress.Depth = 0;
             this.TxtCreateAddress.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateAddress.Location = new System.Drawing.Point(17, 207);
-            this.TxtCreateAddress.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateAddress.Location = new System.Drawing.Point(26, 318);
+            this.TxtCreateAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateAddress.MaxLength = 50;
             this.TxtCreateAddress.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateAddress.Multiline = false;
             this.TxtCreateAddress.Name = "TxtCreateAddress";
-            this.TxtCreateAddress.Size = new System.Drawing.Size(238, 50);
+            this.TxtCreateAddress.Size = new System.Drawing.Size(357, 50);
             this.TxtCreateAddress.TabIndex = 9;
             this.TxtCreateAddress.Text = "";
             // 
@@ -2101,11 +2052,10 @@ namespace ContactManager
             this.LblCreateSalutation.AutoSize = true;
             this.LblCreateSalutation.Depth = 0;
             this.LblCreateSalutation.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateSalutation.Location = new System.Drawing.Point(427, 32);
-            this.LblCreateSalutation.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateSalutation.Location = new System.Drawing.Point(640, 49);
             this.LblCreateSalutation.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateSalutation.Name = "LblCreateSalutation";
-            this.LblCreateSalutation.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateSalutation.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateSalutation.Size = new System.Drawing.Size(74, 19);
             this.LblCreateSalutation.TabIndex = 42;
             this.LblCreateSalutation.Text = "Salutation";
@@ -2115,13 +2065,13 @@ namespace ContactManager
             this.TxtCreateOasiNr.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateOasiNr.Depth = 0;
             this.TxtCreateOasiNr.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateOasiNr.Location = new System.Drawing.Point(249, 299);
-            this.TxtCreateOasiNr.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateOasiNr.Location = new System.Drawing.Point(374, 460);
+            this.TxtCreateOasiNr.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateOasiNr.MaxLength = 50;
             this.TxtCreateOasiNr.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateOasiNr.Multiline = false;
             this.TxtCreateOasiNr.Name = "TxtCreateOasiNr";
-            this.TxtCreateOasiNr.Size = new System.Drawing.Size(212, 50);
+            this.TxtCreateOasiNr.Size = new System.Drawing.Size(318, 50);
             this.TxtCreateOasiNr.TabIndex = 13;
             this.TxtCreateOasiNr.Text = "";
             // 
@@ -2130,13 +2080,13 @@ namespace ContactManager
             this.TxtCreatePlaceOfResidence.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreatePlaceOfResidence.Depth = 0;
             this.TxtCreatePlaceOfResidence.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreatePlaceOfResidence.Location = new System.Drawing.Point(393, 207);
-            this.TxtCreatePlaceOfResidence.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreatePlaceOfResidence.Location = new System.Drawing.Point(590, 318);
+            this.TxtCreatePlaceOfResidence.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreatePlaceOfResidence.MaxLength = 50;
             this.TxtCreatePlaceOfResidence.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreatePlaceOfResidence.Multiline = false;
             this.TxtCreatePlaceOfResidence.Name = "TxtCreatePlaceOfResidence";
-            this.TxtCreatePlaceOfResidence.Size = new System.Drawing.Size(210, 50);
+            this.TxtCreatePlaceOfResidence.Size = new System.Drawing.Size(315, 50);
             this.TxtCreatePlaceOfResidence.TabIndex = 11;
             this.TxtCreatePlaceOfResidence.Text = "";
             // 
@@ -2154,11 +2104,12 @@ namespace ContactManager
             this.CmbCreateNationality.FormattingEnabled = true;
             this.CmbCreateNationality.IntegralHeight = false;
             this.CmbCreateNationality.ItemHeight = 43;
-            this.CmbCreateNationality.Location = new System.Drawing.Point(16, 300);
+            this.CmbCreateNationality.Location = new System.Drawing.Point(24, 462);
+            this.CmbCreateNationality.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CmbCreateNationality.MaxDropDownItems = 4;
             this.CmbCreateNationality.MouseState = MaterialSkin.MouseState.OUT;
             this.CmbCreateNationality.Name = "CmbCreateNationality";
-            this.CmbCreateNationality.Size = new System.Drawing.Size(217, 49);
+            this.CmbCreateNationality.Size = new System.Drawing.Size(324, 49);
             this.CmbCreateNationality.StartIndex = 0;
             this.CmbCreateNationality.TabIndex = 12;
             // 
@@ -2167,13 +2118,13 @@ namespace ContactManager
             this.TxtCreateTitle.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateTitle.Depth = 0;
             this.TxtCreateTitle.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateTitle.Location = new System.Drawing.Point(18, 117);
-            this.TxtCreateTitle.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateTitle.Location = new System.Drawing.Point(27, 180);
+            this.TxtCreateTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateTitle.MaxLength = 50;
             this.TxtCreateTitle.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateTitle.Multiline = false;
             this.TxtCreateTitle.Name = "TxtCreateTitle";
-            this.TxtCreateTitle.Size = new System.Drawing.Size(116, 50);
+            this.TxtCreateTitle.Size = new System.Drawing.Size(174, 50);
             this.TxtCreateTitle.TabIndex = 6;
             this.TxtCreateTitle.Text = "";
             // 
@@ -2182,14 +2133,14 @@ namespace ContactManager
             this.TxtCreateBusinessAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateBusinessAddress.Depth = 0;
             this.TxtCreateBusinessAddress.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateBusinessAddress.Location = new System.Drawing.Point(222, 504);
-            this.TxtCreateBusinessAddress.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateBusinessAddress.Location = new System.Drawing.Point(333, 775);
+            this.TxtCreateBusinessAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateBusinessAddress.MaxLength = 50;
             this.TxtCreateBusinessAddress.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateBusinessAddress.Multiline = false;
             this.TxtCreateBusinessAddress.Name = "TxtCreateBusinessAddress";
             this.TxtCreateBusinessAddress.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.TxtCreateBusinessAddress.Size = new System.Drawing.Size(175, 50);
+            this.TxtCreateBusinessAddress.Size = new System.Drawing.Size(262, 50);
             this.TxtCreateBusinessAddress.TabIndex = 18;
             this.TxtCreateBusinessAddress.Text = "";
             // 
@@ -2198,11 +2149,10 @@ namespace ContactManager
             this.LblCreateFirstName.AutoSize = true;
             this.LblCreateFirstName.Depth = 0;
             this.LblCreateFirstName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateFirstName.Location = new System.Drawing.Point(160, 91);
-            this.LblCreateFirstName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateFirstName.Location = new System.Drawing.Point(240, 140);
             this.LblCreateFirstName.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateFirstName.Name = "LblCreateFirstName";
-            this.LblCreateFirstName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateFirstName.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateFirstName.Size = new System.Drawing.Size(83, 19);
             this.LblCreateFirstName.TabIndex = 43;
             this.LblCreateFirstName.Text = "First name*";
@@ -2212,11 +2162,10 @@ namespace ContactManager
             this.LblCreateBusinessAddress.AutoSize = true;
             this.LblCreateBusinessAddress.Depth = 0;
             this.LblCreateBusinessAddress.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateBusinessAddress.Location = new System.Drawing.Point(224, 477);
-            this.LblCreateBusinessAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateBusinessAddress.Location = new System.Drawing.Point(336, 734);
             this.LblCreateBusinessAddress.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateBusinessAddress.Name = "LblCreateBusinessAddress";
-            this.LblCreateBusinessAddress.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateBusinessAddress.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateBusinessAddress.Size = new System.Drawing.Size(125, 19);
             this.LblCreateBusinessAddress.TabIndex = 31;
             this.LblCreateBusinessAddress.Text = "Business address";
@@ -2226,11 +2175,10 @@ namespace ContactManager
             this.LblCreatePLZ.AutoSize = true;
             this.LblCreatePLZ.Depth = 0;
             this.LblCreatePLZ.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreatePLZ.Location = new System.Drawing.Point(277, 181);
-            this.LblCreatePLZ.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreatePLZ.Location = new System.Drawing.Point(416, 278);
             this.LblCreatePLZ.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreatePLZ.Name = "LblCreatePLZ";
-            this.LblCreatePLZ.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreatePLZ.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreatePLZ.Size = new System.Drawing.Size(91, 19);
             this.LblCreatePLZ.TabIndex = 68;
             this.LblCreatePLZ.Text = "Postal code*";
@@ -2240,11 +2188,10 @@ namespace ContactManager
             this.LblCreateLastName.AutoSize = true;
             this.LblCreateLastName.Depth = 0;
             this.LblCreateLastName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateLastName.Location = new System.Drawing.Point(393, 91);
-            this.LblCreateLastName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateLastName.Location = new System.Drawing.Point(590, 140);
             this.LblCreateLastName.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateLastName.Name = "LblCreateLastName";
-            this.LblCreateLastName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateLastName.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateLastName.Size = new System.Drawing.Size(83, 19);
             this.LblCreateLastName.TabIndex = 44;
             this.LblCreateLastName.Text = "Last name*";
@@ -2254,11 +2201,10 @@ namespace ContactManager
             this.LblCreateAddress.AutoSize = true;
             this.LblCreateAddress.Depth = 0;
             this.LblCreateAddress.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateAddress.Location = new System.Drawing.Point(17, 183);
-            this.LblCreateAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateAddress.Location = new System.Drawing.Point(26, 282);
             this.LblCreateAddress.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateAddress.Name = "LblCreateAddress";
-            this.LblCreateAddress.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateAddress.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateAddress.Size = new System.Drawing.Size(65, 19);
             this.LblCreateAddress.TabIndex = 67;
             this.LblCreateAddress.Text = "Address*";
@@ -2268,13 +2214,13 @@ namespace ContactManager
             this.TxtCreateFirstName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateFirstName.Depth = 0;
             this.TxtCreateFirstName.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateFirstName.Location = new System.Drawing.Point(159, 117);
-            this.TxtCreateFirstName.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateFirstName.Location = new System.Drawing.Point(238, 180);
+            this.TxtCreateFirstName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateFirstName.MaxLength = 50;
             this.TxtCreateFirstName.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateFirstName.Multiline = false;
             this.TxtCreateFirstName.Name = "TxtCreateFirstName";
-            this.TxtCreateFirstName.Size = new System.Drawing.Size(210, 50);
+            this.TxtCreateFirstName.Size = new System.Drawing.Size(315, 50);
             this.TxtCreateFirstName.TabIndex = 7;
             this.TxtCreateFirstName.Text = "";
             // 
@@ -2283,11 +2229,10 @@ namespace ContactManager
             this.LblCreateNationality.AutoSize = true;
             this.LblCreateNationality.Depth = 0;
             this.LblCreateNationality.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateNationality.Location = new System.Drawing.Point(15, 274);
-            this.LblCreateNationality.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateNationality.Location = new System.Drawing.Point(22, 422);
             this.LblCreateNationality.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateNationality.Name = "LblCreateNationality";
-            this.LblCreateNationality.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateNationality.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateNationality.Size = new System.Drawing.Size(78, 19);
             this.LblCreateNationality.TabIndex = 66;
             this.LblCreateNationality.Text = "Nationality";
@@ -2297,13 +2242,13 @@ namespace ContactManager
             this.TxtCreateLastName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateLastName.Depth = 0;
             this.TxtCreateLastName.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateLastName.Location = new System.Drawing.Point(392, 117);
-            this.TxtCreateLastName.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateLastName.Location = new System.Drawing.Point(588, 180);
+            this.TxtCreateLastName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateLastName.MaxLength = 50;
             this.TxtCreateLastName.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateLastName.Multiline = false;
             this.TxtCreateLastName.Name = "TxtCreateLastName";
-            this.TxtCreateLastName.Size = new System.Drawing.Size(210, 50);
+            this.TxtCreateLastName.Size = new System.Drawing.Size(315, 50);
             this.TxtCreateLastName.TabIndex = 8;
             this.TxtCreateLastName.Text = "";
             // 
@@ -2312,11 +2257,10 @@ namespace ContactManager
             this.LblCreatePlaceOfResidence.AutoSize = true;
             this.LblCreatePlaceOfResidence.Depth = 0;
             this.LblCreatePlaceOfResidence.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreatePlaceOfResidence.Location = new System.Drawing.Point(392, 181);
-            this.LblCreatePlaceOfResidence.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreatePlaceOfResidence.Location = new System.Drawing.Point(588, 278);
             this.LblCreatePlaceOfResidence.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreatePlaceOfResidence.Name = "LblCreatePlaceOfResidence";
-            this.LblCreatePlaceOfResidence.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreatePlaceOfResidence.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreatePlaceOfResidence.Size = new System.Drawing.Size(137, 19);
             this.LblCreatePlaceOfResidence.TabIndex = 65;
             this.LblCreatePlaceOfResidence.Text = "Place of residence*";
@@ -2326,11 +2270,10 @@ namespace ContactManager
             this.LblCreateDateOfBirth.AutoSize = true;
             this.LblCreateDateOfBirth.Depth = 0;
             this.LblCreateDateOfBirth.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateDateOfBirth.Location = new System.Drawing.Point(479, 274);
-            this.LblCreateDateOfBirth.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateDateOfBirth.Location = new System.Drawing.Point(718, 422);
             this.LblCreateDateOfBirth.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateDateOfBirth.Name = "LblCreateDateOfBirth";
-            this.LblCreateDateOfBirth.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateDateOfBirth.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateDateOfBirth.Size = new System.Drawing.Size(96, 19);
             this.LblCreateDateOfBirth.TabIndex = 62;
             this.LblCreateDateOfBirth.Text = "Date of birth*";
@@ -2340,11 +2283,10 @@ namespace ContactManager
             this.LblCreateTitle.AutoSize = true;
             this.LblCreateTitle.Depth = 0;
             this.LblCreateTitle.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateTitle.Location = new System.Drawing.Point(17, 90);
-            this.LblCreateTitle.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateTitle.Location = new System.Drawing.Point(26, 138);
             this.LblCreateTitle.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateTitle.Name = "LblCreateTitle";
-            this.LblCreateTitle.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateTitle.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateTitle.Size = new System.Drawing.Size(32, 19);
             this.LblCreateTitle.TabIndex = 63;
             this.LblCreateTitle.Text = "Title";
@@ -2354,11 +2296,10 @@ namespace ContactManager
             this.LblCreateEmailAddress.AutoSize = true;
             this.LblCreateEmailAddress.Depth = 0;
             this.LblCreateEmailAddress.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateEmailAddress.Location = new System.Drawing.Point(223, 378);
-            this.LblCreateEmailAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateEmailAddress.Location = new System.Drawing.Point(334, 582);
             this.LblCreateEmailAddress.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateEmailAddress.Name = "LblCreateEmailAddress";
-            this.LblCreateEmailAddress.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateEmailAddress.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateEmailAddress.Size = new System.Drawing.Size(108, 19);
             this.LblCreateEmailAddress.TabIndex = 75;
             this.LblCreateEmailAddress.Text = "Email address*";
@@ -2368,13 +2309,13 @@ namespace ContactManager
             this.TxtCreateEmailAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateEmailAddress.Depth = 0;
             this.TxtCreateEmailAddress.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateEmailAddress.Location = new System.Drawing.Point(223, 407);
-            this.TxtCreateEmailAddress.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateEmailAddress.Location = new System.Drawing.Point(334, 626);
+            this.TxtCreateEmailAddress.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateEmailAddress.MaxLength = 50;
             this.TxtCreateEmailAddress.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateEmailAddress.Multiline = false;
             this.TxtCreateEmailAddress.Name = "TxtCreateEmailAddress";
-            this.TxtCreateEmailAddress.Size = new System.Drawing.Size(175, 50);
+            this.TxtCreateEmailAddress.Size = new System.Drawing.Size(262, 50);
             this.TxtCreateEmailAddress.TabIndex = 16;
             this.TxtCreateEmailAddress.Text = "";
             // 
@@ -2383,11 +2324,10 @@ namespace ContactManager
             this.LblCreateBusnissPhone.AutoSize = true;
             this.LblCreateBusnissPhone.Depth = 0;
             this.LblCreateBusnissPhone.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateBusnissPhone.Location = new System.Drawing.Point(21, 475);
-            this.LblCreateBusnissPhone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateBusnissPhone.Location = new System.Drawing.Point(32, 731);
             this.LblCreateBusnissPhone.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateBusnissPhone.Name = "LblCreateBusnissPhone";
-            this.LblCreateBusnissPhone.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateBusnissPhone.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateBusnissPhone.Size = new System.Drawing.Size(113, 19);
             this.LblCreateBusnissPhone.TabIndex = 47;
             this.LblCreateBusnissPhone.Text = "Business phone";
@@ -2397,13 +2337,13 @@ namespace ContactManager
             this.TxtCreateBusinessPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateBusinessPhone.Depth = 0;
             this.TxtCreateBusinessPhone.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateBusinessPhone.Location = new System.Drawing.Point(18, 504);
-            this.TxtCreateBusinessPhone.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateBusinessPhone.Location = new System.Drawing.Point(27, 775);
+            this.TxtCreateBusinessPhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateBusinessPhone.MaxLength = 50;
             this.TxtCreateBusinessPhone.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateBusinessPhone.Multiline = false;
             this.TxtCreateBusinessPhone.Name = "TxtCreateBusinessPhone";
-            this.TxtCreateBusinessPhone.Size = new System.Drawing.Size(175, 50);
+            this.TxtCreateBusinessPhone.Size = new System.Drawing.Size(262, 50);
             this.TxtCreateBusinessPhone.TabIndex = 17;
             this.TxtCreateBusinessPhone.Text = "";
             // 
@@ -2412,11 +2352,10 @@ namespace ContactManager
             this.LblCreatePrivatePhone.AutoSize = true;
             this.LblCreatePrivatePhone.Depth = 0;
             this.LblCreatePrivatePhone.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreatePrivatePhone.Location = new System.Drawing.Point(17, 378);
-            this.LblCreatePrivatePhone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreatePrivatePhone.Location = new System.Drawing.Point(26, 582);
             this.LblCreatePrivatePhone.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreatePrivatePhone.Name = "LblCreatePrivatePhone";
-            this.LblCreatePrivatePhone.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreatePrivatePhone.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreatePrivatePhone.Size = new System.Drawing.Size(98, 19);
             this.LblCreatePrivatePhone.TabIndex = 48;
             this.LblCreatePrivatePhone.Text = "Private phone";
@@ -2426,21 +2365,23 @@ namespace ContactManager
             this.TxtCreatePrivatePhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreatePrivatePhone.Depth = 0;
             this.TxtCreatePrivatePhone.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreatePrivatePhone.Location = new System.Drawing.Point(18, 407);
-            this.TxtCreatePrivatePhone.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreatePrivatePhone.Location = new System.Drawing.Point(27, 626);
+            this.TxtCreatePrivatePhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreatePrivatePhone.MaxLength = 50;
             this.TxtCreatePrivatePhone.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreatePrivatePhone.Multiline = false;
             this.TxtCreatePrivatePhone.Name = "TxtCreatePrivatePhone";
-            this.TxtCreatePrivatePhone.Size = new System.Drawing.Size(175, 50);
+            this.TxtCreatePrivatePhone.Size = new System.Drawing.Size(262, 50);
             this.TxtCreatePrivatePhone.TabIndex = 15;
             this.TxtCreatePrivatePhone.Text = "";
             // 
             // GrpCreateGender
             // 
-            this.GrpCreateGender.Location = new System.Drawing.Point(131, 3);
+            this.GrpCreateGender.Location = new System.Drawing.Point(196, 5);
+            this.GrpCreateGender.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.GrpCreateGender.Name = "GrpCreateGender";
-            this.GrpCreateGender.Size = new System.Drawing.Size(277, 66);
+            this.GrpCreateGender.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.GrpCreateGender.Size = new System.Drawing.Size(416, 102);
             this.GrpCreateGender.TabIndex = 80;
             this.GrpCreateGender.TabStop = false;
             this.GrpCreateGender.Text = "Gender*";
@@ -2453,11 +2394,11 @@ namespace ContactManager
             this.CmdCreateSavePerson.DrawShadows = true;
             this.CmdCreateSavePerson.HighEmphasis = true;
             this.CmdCreateSavePerson.Icon = null;
-            this.CmdCreateSavePerson.Location = new System.Drawing.Point(903, 551);
-            this.CmdCreateSavePerson.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CmdCreateSavePerson.Location = new System.Drawing.Point(1354, 848);
+            this.CmdCreateSavePerson.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.CmdCreateSavePerson.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdCreateSavePerson.Name = "CmdCreateSavePerson";
-            this.CmdCreateSavePerson.Size = new System.Drawing.Size(146, 44);
+            this.CmdCreateSavePerson.Size = new System.Drawing.Size(219, 68);
             this.CmdCreateSavePerson.TabIndex = 102;
             this.CmdCreateSavePerson.Text = "Save";
             this.CmdCreateSavePerson.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -2476,9 +2417,10 @@ namespace ContactManager
             this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCustomerType);
             this.PnlCreateInfoCustomer.Controls.Add(this.LblCreateCompanyContact);
             this.PnlCreateInfoCustomer.Controls.Add(this.TxtCreateCompanyContact);
-            this.PnlCreateInfoCustomer.Location = new System.Drawing.Point(637, 5);
+            this.PnlCreateInfoCustomer.Location = new System.Drawing.Point(956, 8);
+            this.PnlCreateInfoCustomer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PnlCreateInfoCustomer.Name = "PnlCreateInfoCustomer";
-            this.PnlCreateInfoCustomer.Size = new System.Drawing.Size(630, 178);
+            this.PnlCreateInfoCustomer.Size = new System.Drawing.Size(944, 273);
             this.PnlCreateInfoCustomer.TabIndex = 10;
             // 
             // TxtCreateCustomerNumber
@@ -2486,13 +2428,13 @@ namespace ContactManager
             this.TxtCreateCustomerNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateCustomerNumber.Depth = 0;
             this.TxtCreateCustomerNumber.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateCustomerNumber.Location = new System.Drawing.Point(148, 13);
-            this.TxtCreateCustomerNumber.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateCustomerNumber.Location = new System.Drawing.Point(222, 20);
+            this.TxtCreateCustomerNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateCustomerNumber.MaxLength = 50;
             this.TxtCreateCustomerNumber.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateCustomerNumber.Multiline = false;
             this.TxtCreateCustomerNumber.Name = "TxtCreateCustomerNumber";
-            this.TxtCreateCustomerNumber.Size = new System.Drawing.Size(123, 50);
+            this.TxtCreateCustomerNumber.Size = new System.Drawing.Size(184, 50);
             this.TxtCreateCustomerNumber.TabIndex = 22;
             this.TxtCreateCustomerNumber.Text = "";
             // 
@@ -2501,11 +2443,10 @@ namespace ContactManager
             this.LblCreateCustomerNumber.AutoSize = true;
             this.LblCreateCustomerNumber.Depth = 0;
             this.LblCreateCustomerNumber.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateCustomerNumber.Location = new System.Drawing.Point(10, 26);
-            this.LblCreateCustomerNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateCustomerNumber.Location = new System.Drawing.Point(15, 40);
             this.LblCreateCustomerNumber.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateCustomerNumber.Name = "LblCreateCustomerNumber";
-            this.LblCreateCustomerNumber.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateCustomerNumber.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateCustomerNumber.Size = new System.Drawing.Size(127, 19);
             this.LblCreateCustomerNumber.TabIndex = 34;
             this.LblCreateCustomerNumber.Text = "Customer number";
@@ -2515,11 +2456,10 @@ namespace ContactManager
             this.LblCreateCompanyName.AutoSize = true;
             this.LblCreateCompanyName.Depth = 0;
             this.LblCreateCompanyName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateCompanyName.Location = new System.Drawing.Point(10, 92);
-            this.LblCreateCompanyName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateCompanyName.Location = new System.Drawing.Point(15, 142);
             this.LblCreateCompanyName.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateCompanyName.Name = "LblCreateCompanyName";
-            this.LblCreateCompanyName.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateCompanyName.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateCompanyName.Size = new System.Drawing.Size(120, 19);
             this.LblCreateCompanyName.TabIndex = 30;
             this.LblCreateCompanyName.Text = "Company name*";
@@ -2545,11 +2485,12 @@ namespace ContactManager
             "C",
             "D",
             "E"});
-            this.CmbCreateCustomerType.Location = new System.Drawing.Point(454, 12);
+            this.CmbCreateCustomerType.Location = new System.Drawing.Point(681, 18);
+            this.CmbCreateCustomerType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.CmbCreateCustomerType.MaxDropDownItems = 4;
             this.CmbCreateCustomerType.MouseState = MaterialSkin.MouseState.OUT;
             this.CmbCreateCustomerType.Name = "CmbCreateCustomerType";
-            this.CmbCreateCustomerType.Size = new System.Drawing.Size(76, 49);
+            this.CmbCreateCustomerType.Size = new System.Drawing.Size(112, 49);
             this.CmbCreateCustomerType.StartIndex = 0;
             this.CmbCreateCustomerType.TabIndex = 23;
             // 
@@ -2558,13 +2499,13 @@ namespace ContactManager
             this.TxtCreateCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateCompanyName.Depth = 0;
             this.TxtCreateCompanyName.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateCompanyName.Location = new System.Drawing.Point(10, 118);
-            this.TxtCreateCompanyName.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateCompanyName.Location = new System.Drawing.Point(15, 182);
+            this.TxtCreateCompanyName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateCompanyName.MaxLength = 50;
             this.TxtCreateCompanyName.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateCompanyName.Multiline = false;
             this.TxtCreateCompanyName.Name = "TxtCreateCompanyName";
-            this.TxtCreateCompanyName.Size = new System.Drawing.Size(262, 50);
+            this.TxtCreateCompanyName.Size = new System.Drawing.Size(393, 50);
             this.TxtCreateCompanyName.TabIndex = 24;
             this.TxtCreateCompanyName.Text = "";
             // 
@@ -2573,11 +2514,10 @@ namespace ContactManager
             this.LblCreateCustomerType.AutoSize = true;
             this.LblCreateCustomerType.Depth = 0;
             this.LblCreateCustomerType.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateCustomerType.Location = new System.Drawing.Point(292, 25);
-            this.LblCreateCustomerType.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateCustomerType.Location = new System.Drawing.Point(438, 38);
             this.LblCreateCustomerType.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateCustomerType.Name = "LblCreateCustomerType";
-            this.LblCreateCustomerType.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateCustomerType.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateCustomerType.Size = new System.Drawing.Size(148, 19);
             this.LblCreateCustomerType.TabIndex = 32;
             this.LblCreateCustomerType.Text = "Customer type* (A-E)";
@@ -2587,11 +2527,10 @@ namespace ContactManager
             this.LblCreateCompanyContact.AutoSize = true;
             this.LblCreateCompanyContact.Depth = 0;
             this.LblCreateCompanyContact.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateCompanyContact.Location = new System.Drawing.Point(292, 91);
-            this.LblCreateCompanyContact.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateCompanyContact.Location = new System.Drawing.Point(438, 140);
             this.LblCreateCompanyContact.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateCompanyContact.Name = "LblCreateCompanyContact";
-            this.LblCreateCompanyContact.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateCompanyContact.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateCompanyContact.Size = new System.Drawing.Size(133, 19);
             this.LblCreateCompanyContact.TabIndex = 33;
             this.LblCreateCompanyContact.Text = "Company contact*";
@@ -2601,13 +2540,13 @@ namespace ContactManager
             this.TxtCreateCompanyContact.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateCompanyContact.Depth = 0;
             this.TxtCreateCompanyContact.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateCompanyContact.Location = new System.Drawing.Point(291, 118);
-            this.TxtCreateCompanyContact.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateCompanyContact.Location = new System.Drawing.Point(436, 182);
+            this.TxtCreateCompanyContact.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateCompanyContact.MaxLength = 50;
             this.TxtCreateCompanyContact.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateCompanyContact.Multiline = false;
             this.TxtCreateCompanyContact.Name = "TxtCreateCompanyContact";
-            this.TxtCreateCompanyContact.Size = new System.Drawing.Size(239, 50);
+            this.TxtCreateCompanyContact.Size = new System.Drawing.Size(358, 50);
             this.TxtCreateCompanyContact.TabIndex = 25;
             this.TxtCreateCompanyContact.Text = "";
             // 
@@ -2630,9 +2569,10 @@ namespace ContactManager
             this.PnlCreateInfoEmployee.Controls.Add(this.LblCadreLevel);
             this.PnlCreateInfoEmployee.Controls.Add(this.LblRole);
             this.PnlCreateInfoEmployee.Controls.Add(this.TxtCreateRole);
-            this.PnlCreateInfoEmployee.Location = new System.Drawing.Point(637, 5);
+            this.PnlCreateInfoEmployee.Location = new System.Drawing.Point(956, 8);
+            this.PnlCreateInfoEmployee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PnlCreateInfoEmployee.Name = "PnlCreateInfoEmployee";
-            this.PnlCreateInfoEmployee.Size = new System.Drawing.Size(630, 350);
+            this.PnlCreateInfoEmployee.Size = new System.Drawing.Size(944, 537);
             this.PnlCreateInfoEmployee.TabIndex = 20;
             // 
             // NumCreateDegreeOfEmployment
@@ -2643,20 +2583,21 @@ namespace ContactManager
             0,
             0,
             0});
-            this.NumCreateDegreeOfEmployment.Location = new System.Drawing.Point(484, 27);
-            this.NumCreateDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.NumCreateDegreeOfEmployment.Location = new System.Drawing.Point(726, 42);
+            this.NumCreateDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NumCreateDegreeOfEmployment.Name = "NumCreateDegreeOfEmployment";
-            this.NumCreateDegreeOfEmployment.Size = new System.Drawing.Size(49, 29);
+            this.NumCreateDegreeOfEmployment.Size = new System.Drawing.Size(74, 39);
             this.NumCreateDegreeOfEmployment.TabIndex = 27;
             this.NumCreateDegreeOfEmployment.ValueChanged += new System.EventHandler(this.NumCreateDegreeOfEmployment_ValueChanged);
             // 
             // PrgDegreeOfEmployment
             // 
             this.PrgDegreeOfEmployment.Depth = 0;
-            this.PrgDegreeOfEmployment.Location = new System.Drawing.Point(287, 51);
+            this.PrgDegreeOfEmployment.Location = new System.Drawing.Point(430, 78);
+            this.PrgDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PrgDegreeOfEmployment.MouseState = MaterialSkin.MouseState.HOVER;
             this.PrgDegreeOfEmployment.Name = "PrgDegreeOfEmployment";
-            this.PrgDegreeOfEmployment.Size = new System.Drawing.Size(185, 5);
+            this.PrgDegreeOfEmployment.Size = new System.Drawing.Size(278, 5);
             this.PrgDegreeOfEmployment.TabIndex = 85;
             this.PrgDegreeOfEmployment.Value = 100;
             // 
@@ -2667,9 +2608,10 @@ namespace ContactManager
             this.PnlCreateInfoTrainee.Controls.Add(this.NumCreateYearOfApp);
             this.PnlCreateInfoTrainee.Controls.Add(this.LblCreateCurrentAppYear);
             this.PnlCreateInfoTrainee.Controls.Add(this.NumCreateCurrentAppYear);
-            this.PnlCreateInfoTrainee.Location = new System.Drawing.Point(7, 263);
+            this.PnlCreateInfoTrainee.Location = new System.Drawing.Point(10, 405);
+            this.PnlCreateInfoTrainee.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.PnlCreateInfoTrainee.Name = "PnlCreateInfoTrainee";
-            this.PnlCreateInfoTrainee.Size = new System.Drawing.Size(465, 77);
+            this.PnlCreateInfoTrainee.Size = new System.Drawing.Size(696, 117);
             this.PnlCreateInfoTrainee.TabIndex = 84;
             // 
             // LblCreateYearOfApp
@@ -2677,11 +2619,10 @@ namespace ContactManager
             this.LblCreateYearOfApp.AutoSize = true;
             this.LblCreateYearOfApp.Depth = 0;
             this.LblCreateYearOfApp.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateYearOfApp.Location = new System.Drawing.Point(246, 12);
-            this.LblCreateYearOfApp.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateYearOfApp.Location = new System.Drawing.Point(369, 18);
             this.LblCreateYearOfApp.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateYearOfApp.Name = "LblCreateYearOfApp";
-            this.LblCreateYearOfApp.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateYearOfApp.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateYearOfApp.Size = new System.Drawing.Size(175, 19);
             this.LblCreateYearOfApp.TabIndex = 27;
             this.LblCreateYearOfApp.Text = "Years of apprenticeship*";
@@ -2689,15 +2630,15 @@ namespace ContactManager
             // NumCreateYearOfApp
             // 
             this.NumCreateYearOfApp.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumCreateYearOfApp.Location = new System.Drawing.Point(249, 34);
-            this.NumCreateYearOfApp.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.NumCreateYearOfApp.Location = new System.Drawing.Point(374, 52);
+            this.NumCreateYearOfApp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NumCreateYearOfApp.Maximum = new decimal(new int[] {
             12,
             0,
             0,
             0});
             this.NumCreateYearOfApp.Name = "NumCreateYearOfApp";
-            this.NumCreateYearOfApp.Size = new System.Drawing.Size(44, 29);
+            this.NumCreateYearOfApp.Size = new System.Drawing.Size(66, 39);
             this.NumCreateYearOfApp.TabIndex = 34;
             // 
             // LblCreateCurrentAppYear
@@ -2705,11 +2646,10 @@ namespace ContactManager
             this.LblCreateCurrentAppYear.AutoSize = true;
             this.LblCreateCurrentAppYear.Depth = 0;
             this.LblCreateCurrentAppYear.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateCurrentAppYear.Location = new System.Drawing.Point(2, 12);
-            this.LblCreateCurrentAppYear.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateCurrentAppYear.Location = new System.Drawing.Point(3, 18);
             this.LblCreateCurrentAppYear.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateCurrentAppYear.Name = "LblCreateCurrentAppYear";
-            this.LblCreateCurrentAppYear.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateCurrentAppYear.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateCurrentAppYear.Size = new System.Drawing.Size(194, 19);
             this.LblCreateCurrentAppYear.TabIndex = 28;
             this.LblCreateCurrentAppYear.Text = "Current apprenticeship year";
@@ -2717,15 +2657,15 @@ namespace ContactManager
             // NumCreateCurrentAppYear
             // 
             this.NumCreateCurrentAppYear.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumCreateCurrentAppYear.Location = new System.Drawing.Point(5, 34);
-            this.NumCreateCurrentAppYear.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.NumCreateCurrentAppYear.Location = new System.Drawing.Point(8, 52);
+            this.NumCreateCurrentAppYear.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NumCreateCurrentAppYear.Maximum = new decimal(new int[] {
             4,
             0,
             0,
             0});
             this.NumCreateCurrentAppYear.Name = "NumCreateCurrentAppYear";
-            this.NumCreateCurrentAppYear.Size = new System.Drawing.Size(49, 29);
+            this.NumCreateCurrentAppYear.Size = new System.Drawing.Size(74, 39);
             this.NumCreateCurrentAppYear.TabIndex = 33;
             // 
             // LblCreateDateOfJoining
@@ -2733,11 +2673,10 @@ namespace ContactManager
             this.LblCreateDateOfJoining.AutoSize = true;
             this.LblCreateDateOfJoining.Depth = 0;
             this.LblCreateDateOfJoining.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateDateOfJoining.Location = new System.Drawing.Point(8, 181);
-            this.LblCreateDateOfJoining.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateDateOfJoining.Location = new System.Drawing.Point(12, 278);
             this.LblCreateDateOfJoining.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateDateOfJoining.Name = "LblCreateDateOfJoining";
-            this.LblCreateDateOfJoining.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateDateOfJoining.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateDateOfJoining.Size = new System.Drawing.Size(112, 19);
             this.LblCreateDateOfJoining.TabIndex = 21;
             this.LblCreateDateOfJoining.Text = "Date of joining*";
@@ -2747,11 +2686,10 @@ namespace ContactManager
             this.LblCreateDateOfLeaving.AutoSize = true;
             this.LblCreateDateOfLeaving.Depth = 0;
             this.LblCreateDateOfLeaving.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCreateDateOfLeaving.Location = new System.Drawing.Point(148, 181);
-            this.LblCreateDateOfLeaving.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCreateDateOfLeaving.Location = new System.Drawing.Point(222, 278);
             this.LblCreateDateOfLeaving.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCreateDateOfLeaving.Name = "LblCreateDateOfLeaving";
-            this.LblCreateDateOfLeaving.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCreateDateOfLeaving.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCreateDateOfLeaving.Size = new System.Drawing.Size(108, 19);
             this.LblCreateDateOfLeaving.TabIndex = 22;
             this.LblCreateDateOfLeaving.Text = "Date of leaving";
@@ -2761,10 +2699,10 @@ namespace ContactManager
             this.DatCreateDateOfLeaving.CustomFormat = "HTML Format";
             this.DatCreateDateOfLeaving.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatCreateDateOfLeaving.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatCreateDateOfLeaving.Location = new System.Drawing.Point(148, 207);
-            this.DatCreateDateOfLeaving.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.DatCreateDateOfLeaving.Location = new System.Drawing.Point(222, 318);
+            this.DatCreateDateOfLeaving.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DatCreateDateOfLeaving.Name = "DatCreateDateOfLeaving";
-            this.DatCreateDateOfLeaving.Size = new System.Drawing.Size(109, 29);
+            this.DatCreateDateOfLeaving.Size = new System.Drawing.Size(162, 39);
             this.DatCreateDateOfLeaving.TabIndex = 32;
             this.DatCreateDateOfLeaving.Value = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             // 
@@ -2773,10 +2711,10 @@ namespace ContactManager
             this.DatCreateDateOfJoining.CustomFormat = "HTML Format";
             this.DatCreateDateOfJoining.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DatCreateDateOfJoining.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatCreateDateOfJoining.Location = new System.Drawing.Point(7, 207);
-            this.DatCreateDateOfJoining.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.DatCreateDateOfJoining.Location = new System.Drawing.Point(10, 318);
+            this.DatCreateDateOfJoining.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DatCreateDateOfJoining.Name = "DatCreateDateOfJoining";
-            this.DatCreateDateOfJoining.Size = new System.Drawing.Size(117, 29);
+            this.DatCreateDateOfJoining.Size = new System.Drawing.Size(174, 39);
             this.DatCreateDateOfJoining.TabIndex = 31;
             this.DatCreateDateOfJoining.Value = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             // 
@@ -2785,13 +2723,13 @@ namespace ContactManager
             this.TxtCreateEmployeeNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateEmployeeNumber.Depth = 0;
             this.TxtCreateEmployeeNumber.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateEmployeeNumber.Location = new System.Drawing.Point(146, 12);
-            this.TxtCreateEmployeeNumber.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateEmployeeNumber.Location = new System.Drawing.Point(219, 18);
+            this.TxtCreateEmployeeNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateEmployeeNumber.MaxLength = 50;
             this.TxtCreateEmployeeNumber.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateEmployeeNumber.Multiline = false;
             this.TxtCreateEmployeeNumber.Name = "TxtCreateEmployeeNumber";
-            this.TxtCreateEmployeeNumber.Size = new System.Drawing.Size(125, 50);
+            this.TxtCreateEmployeeNumber.Size = new System.Drawing.Size(188, 50);
             this.TxtCreateEmployeeNumber.TabIndex = 26;
             this.TxtCreateEmployeeNumber.Text = "";
             // 
@@ -2800,11 +2738,10 @@ namespace ContactManager
             this.LblEmployeeNumber.AutoSize = true;
             this.LblEmployeeNumber.Depth = 0;
             this.LblEmployeeNumber.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblEmployeeNumber.Location = new System.Drawing.Point(8, 25);
-            this.LblEmployeeNumber.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblEmployeeNumber.Location = new System.Drawing.Point(12, 38);
             this.LblEmployeeNumber.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblEmployeeNumber.Name = "LblEmployeeNumber";
-            this.LblEmployeeNumber.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblEmployeeNumber.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblEmployeeNumber.Size = new System.Drawing.Size(128, 19);
             this.LblEmployeeNumber.TabIndex = 14;
             this.LblEmployeeNumber.Text = "Employee number";
@@ -2814,11 +2751,10 @@ namespace ContactManager
             this.LblDepartement.AutoSize = true;
             this.LblDepartement.Depth = 0;
             this.LblDepartement.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblDepartement.Location = new System.Drawing.Point(8, 87);
-            this.LblDepartement.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblDepartement.Location = new System.Drawing.Point(12, 134);
             this.LblDepartement.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblDepartement.Name = "LblDepartement";
-            this.LblDepartement.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblDepartement.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblDepartement.Size = new System.Drawing.Size(92, 19);
             this.LblDepartement.TabIndex = 15;
             this.LblDepartement.Text = "Departement";
@@ -2828,28 +2764,28 @@ namespace ContactManager
             this.TxtCreateDepartement.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateDepartement.Depth = 0;
             this.TxtCreateDepartement.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateDepartement.Location = new System.Drawing.Point(8, 113);
-            this.TxtCreateDepartement.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateDepartement.Location = new System.Drawing.Point(12, 174);
+            this.TxtCreateDepartement.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateDepartement.MaxLength = 50;
             this.TxtCreateDepartement.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateDepartement.Multiline = false;
             this.TxtCreateDepartement.Name = "TxtCreateDepartement";
-            this.TxtCreateDepartement.Size = new System.Drawing.Size(263, 50);
+            this.TxtCreateDepartement.Size = new System.Drawing.Size(394, 50);
             this.TxtCreateDepartement.TabIndex = 28;
             this.TxtCreateDepartement.Text = "";
             // 
             // NumCadreLevel
             // 
             this.NumCadreLevel.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumCadreLevel.Location = new System.Drawing.Point(515, 118);
-            this.NumCadreLevel.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.NumCadreLevel.Location = new System.Drawing.Point(772, 182);
+            this.NumCadreLevel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NumCadreLevel.Maximum = new decimal(new int[] {
             5,
             0,
             0,
             0});
             this.NumCadreLevel.Name = "NumCadreLevel";
-            this.NumCadreLevel.Size = new System.Drawing.Size(49, 29);
+            this.NumCadreLevel.Size = new System.Drawing.Size(74, 39);
             this.NumCadreLevel.TabIndex = 30;
             // 
             // LblDegreeOfEmployment
@@ -2857,11 +2793,10 @@ namespace ContactManager
             this.LblDegreeOfEmployment.AutoSize = true;
             this.LblDegreeOfEmployment.Depth = 0;
             this.LblDegreeOfEmployment.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblDegreeOfEmployment.Location = new System.Drawing.Point(286, 25);
-            this.LblDegreeOfEmployment.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblDegreeOfEmployment.Location = new System.Drawing.Point(429, 38);
             this.LblDegreeOfEmployment.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblDegreeOfEmployment.Name = "LblDegreeOfEmployment";
-            this.LblDegreeOfEmployment.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblDegreeOfEmployment.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblDegreeOfEmployment.Size = new System.Drawing.Size(195, 19);
             this.LblDegreeOfEmployment.TabIndex = 23;
             this.LblDegreeOfEmployment.Text = "Degree of employment* (%)";
@@ -2871,11 +2806,10 @@ namespace ContactManager
             this.LblCadreLevel.AutoSize = true;
             this.LblCadreLevel.Depth = 0;
             this.LblCadreLevel.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblCadreLevel.Location = new System.Drawing.Point(514, 91);
-            this.LblCadreLevel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblCadreLevel.Location = new System.Drawing.Point(771, 140);
             this.LblCadreLevel.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblCadreLevel.Name = "LblCadreLevel";
-            this.LblCadreLevel.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblCadreLevel.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblCadreLevel.Size = new System.Drawing.Size(115, 19);
             this.LblCadreLevel.TabIndex = 25;
             this.LblCadreLevel.Text = "Cadre level (0-5)";
@@ -2885,11 +2819,10 @@ namespace ContactManager
             this.LblRole.AutoSize = true;
             this.LblRole.Depth = 0;
             this.LblRole.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblRole.Location = new System.Drawing.Point(288, 87);
-            this.LblRole.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblRole.Location = new System.Drawing.Point(432, 134);
             this.LblRole.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblRole.Name = "LblRole";
-            this.LblRole.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.LblRole.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.LblRole.Size = new System.Drawing.Size(104, 19);
             this.LblRole.TabIndex = 24;
             this.LblRole.Text = "Role (Job title)";
@@ -2899,22 +2832,23 @@ namespace ContactManager
             this.TxtCreateRole.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtCreateRole.Depth = 0;
             this.TxtCreateRole.Font = new System.Drawing.Font("Roboto", 12F);
-            this.TxtCreateRole.Location = new System.Drawing.Point(287, 113);
-            this.TxtCreateRole.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.TxtCreateRole.Location = new System.Drawing.Point(430, 174);
+            this.TxtCreateRole.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.TxtCreateRole.MaxLength = 50;
             this.TxtCreateRole.MouseState = MaterialSkin.MouseState.OUT;
             this.TxtCreateRole.Multiline = false;
             this.TxtCreateRole.Name = "TxtCreateRole";
-            this.TxtCreateRole.Size = new System.Drawing.Size(216, 50);
+            this.TxtCreateRole.Size = new System.Drawing.Size(324, 50);
             this.TxtCreateRole.TabIndex = 29;
             this.TxtCreateRole.Text = "";
             // 
             // TabImport
             // 
             this.TabImport.Controls.Add(this.panel1);
-            this.TabImport.Location = new System.Drawing.Point(4, 34);
+            this.TabImport.Location = new System.Drawing.Point(4, 49);
+            this.TabImport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TabImport.Name = "TabImport";
-            this.TabImport.Size = new System.Drawing.Size(1267, 600);
+            this.TabImport.Size = new System.Drawing.Size(1904, 929);
             this.TabImport.TabIndex = 2;
             this.TabImport.Text = "Import";
             this.TabImport.UseVisualStyleBackColor = true;
@@ -2930,20 +2864,22 @@ namespace ContactManager
             this.panel1.Controls.Add(this.CmdImportConfirm);
             this.panel1.Controls.Add(this.DataGridViewImportGeneric);
             this.panel1.Controls.Add(this.CmdImportOpenFile);
-            this.panel1.Location = new System.Drawing.Point(4, 4);
+            this.panel1.Location = new System.Drawing.Point(6, 6);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1260, 630);
+            this.panel1.Size = new System.Drawing.Size(1890, 969);
             this.panel1.TabIndex = 0;
             // 
             // ProgrBarImport
             // 
             this.ProgrBarImport.Depth = 0;
-            this.ProgrBarImport.Location = new System.Drawing.Point(634, 37);
+            this.ProgrBarImport.Location = new System.Drawing.Point(951, 57);
+            this.ProgrBarImport.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ProgrBarImport.MarqueeAnimationSpeed = 10;
             this.ProgrBarImport.Maximum = 1000;
             this.ProgrBarImport.MouseState = MaterialSkin.MouseState.HOVER;
             this.ProgrBarImport.Name = "ProgrBarImport";
-            this.ProgrBarImport.Size = new System.Drawing.Size(421, 5);
+            this.ProgrBarImport.Size = new System.Drawing.Size(632, 5);
             this.ProgrBarImport.Step = 1;
             this.ProgrBarImport.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.ProgrBarImport.TabIndex = 139;
@@ -2954,7 +2890,8 @@ namespace ContactManager
             this.LblImportType.AutoSize = true;
             this.LblImportType.Depth = 0;
             this.LblImportType.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.LblImportType.Location = new System.Drawing.Point(3, 412);
+            this.LblImportType.Location = new System.Drawing.Point(4, 634);
+            this.LblImportType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblImportType.MouseState = MaterialSkin.MouseState.HOVER;
             this.LblImportType.Name = "LblImportType";
             this.LblImportType.Size = new System.Drawing.Size(5, 19);
@@ -2986,8 +2923,8 @@ namespace ContactManager
             dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewImportSpecific.DefaultCellStyle = dataGridViewCellStyle14;
             this.DataGridViewImportSpecific.GridColor = System.Drawing.Color.Gray;
-            this.DataGridViewImportSpecific.Location = new System.Drawing.Point(4, 434);
-            this.DataGridViewImportSpecific.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DataGridViewImportSpecific.Location = new System.Drawing.Point(6, 668);
+            this.DataGridViewImportSpecific.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.DataGridViewImportSpecific.MultiSelect = false;
             this.DataGridViewImportSpecific.Name = "DataGridViewImportSpecific";
             this.DataGridViewImportSpecific.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -3006,7 +2943,7 @@ namespace ContactManager
             dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.SlateBlue;
             dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridViewImportSpecific.RowsDefaultCellStyle = dataGridViewCellStyle16;
-            this.DataGridViewImportSpecific.Size = new System.Drawing.Size(1252, 160);
+            this.DataGridViewImportSpecific.Size = new System.Drawing.Size(1878, 246);
             this.DataGridViewImportSpecific.TabIndex = 5;
             // 
             // materialLabel2
@@ -3014,7 +2951,8 @@ namespace ContactManager
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(3, 81);
+            this.materialLabel2.Location = new System.Drawing.Point(4, 125);
+            this.materialLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(60, 19);
@@ -3026,9 +2964,10 @@ namespace ContactManager
             this.LblImportPreviewEmpty.AutoSize = true;
             this.LblImportPreviewEmpty.BackColor = System.Drawing.Color.DimGray;
             this.LblImportPreviewEmpty.ForeColor = System.Drawing.Color.White;
-            this.LblImportPreviewEmpty.Location = new System.Drawing.Point(550, 244);
+            this.LblImportPreviewEmpty.Location = new System.Drawing.Point(825, 375);
+            this.LblImportPreviewEmpty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblImportPreviewEmpty.Name = "LblImportPreviewEmpty";
-            this.LblImportPreviewEmpty.Size = new System.Drawing.Size(160, 25);
+            this.LblImportPreviewEmpty.Size = new System.Drawing.Size(242, 40);
             this.LblImportPreviewEmpty.TabIndex = 135;
             this.LblImportPreviewEmpty.Text = "Nothing To Import";
             this.LblImportPreviewEmpty.Visible = false;
@@ -3040,8 +2979,8 @@ namespace ContactManager
             this.CmdImportCancel.DrawShadows = true;
             this.CmdImportCancel.HighEmphasis = true;
             this.CmdImportCancel.Icon = null;
-            this.CmdImportCancel.Location = new System.Drawing.Point(1179, 6);
-            this.CmdImportCancel.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdImportCancel.Location = new System.Drawing.Point(1768, 9);
+            this.CmdImportCancel.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
             this.CmdImportCancel.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdImportCancel.Name = "CmdImportCancel";
             this.CmdImportCancel.Size = new System.Drawing.Size(77, 36);
@@ -3060,8 +2999,8 @@ namespace ContactManager
             this.CmdImportConfirm.Enabled = false;
             this.CmdImportConfirm.HighEmphasis = true;
             this.CmdImportConfirm.Icon = null;
-            this.CmdImportConfirm.Location = new System.Drawing.Point(1085, 6);
-            this.CmdImportConfirm.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdImportConfirm.Location = new System.Drawing.Point(1628, 9);
+            this.CmdImportConfirm.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
             this.CmdImportConfirm.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdImportConfirm.Name = "CmdImportConfirm";
             this.CmdImportConfirm.Size = new System.Drawing.Size(86, 36);
@@ -3097,8 +3036,8 @@ namespace ContactManager
             dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewImportGeneric.DefaultCellStyle = dataGridViewCellStyle18;
             this.DataGridViewImportGeneric.GridColor = System.Drawing.Color.Gray;
-            this.DataGridViewImportGeneric.Location = new System.Drawing.Point(4, 105);
-            this.DataGridViewImportGeneric.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DataGridViewImportGeneric.Location = new System.Drawing.Point(6, 162);
+            this.DataGridViewImportGeneric.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.DataGridViewImportGeneric.MultiSelect = false;
             this.DataGridViewImportGeneric.Name = "DataGridViewImportGeneric";
             this.DataGridViewImportGeneric.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -3117,7 +3056,7 @@ namespace ContactManager
             dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.SlateBlue;
             dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.White;
             this.DataGridViewImportGeneric.RowsDefaultCellStyle = dataGridViewCellStyle20;
-            this.DataGridViewImportGeneric.Size = new System.Drawing.Size(1252, 302);
+            this.DataGridViewImportGeneric.Size = new System.Drawing.Size(1878, 465);
             this.DataGridViewImportGeneric.TabIndex = 4;
             this.DataGridViewImportGeneric.SelectionChanged += new System.EventHandler(this.DataGridViewImportGeneric_SelectionChanged);
             // 
@@ -3128,8 +3067,8 @@ namespace ContactManager
             this.CmdImportOpenFile.DrawShadows = true;
             this.CmdImportOpenFile.HighEmphasis = true;
             this.CmdImportOpenFile.Icon = null;
-            this.CmdImportOpenFile.Location = new System.Drawing.Point(4, 6);
-            this.CmdImportOpenFile.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.CmdImportOpenFile.Location = new System.Drawing.Point(6, 9);
+            this.CmdImportOpenFile.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
             this.CmdImportOpenFile.MouseState = MaterialSkin.MouseState.HOVER;
             this.CmdImportOpenFile.Name = "CmdImportOpenFile";
             this.CmdImportOpenFile.Size = new System.Drawing.Size(92, 36);
@@ -3145,36 +3084,114 @@ namespace ContactManager
             this.OpenFileDialogImportContacts.Filter = "CSV Files (*.csv) | *.csv";
             this.OpenFileDialogImportContacts.InitialDirectory = "$PWD\\..\\..\\ExampleFiles\\";
             // 
-            // ContentColumn
+            // DataGridViewSearchNotes
             // 
-            this.ContentColumn.HeaderText = "Content";
-            this.ContentColumn.Name = "ContentColumn";
+            this.DataGridViewSearchNotes.AllowUserToAddRows = false;
+            this.DataGridViewSearchNotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewSearchNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.DataGridViewSearchNotes.BackgroundColor = System.Drawing.Color.DimGray;
+            this.DataGridViewSearchNotes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchNotes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.DataGridViewSearchNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewSearchNotes.DefaultCellStyle = dataGridViewCellStyle6;
+            this.DataGridViewSearchNotes.GridColor = System.Drawing.Color.Gray;
+            this.DataGridViewSearchNotes.Location = new System.Drawing.Point(9, 582);
+            this.DataGridViewSearchNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DataGridViewSearchNotes.MultiSelect = false;
+            this.DataGridViewSearchNotes.Name = "DataGridViewSearchNotes";
+            this.DataGridViewSearchNotes.ReadOnly = true;
+            this.DataGridViewSearchNotes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewSearchNotes.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.DataGridViewSearchNotes.RowHeadersVisible = false;
+            this.DataGridViewSearchNotes.RowHeadersWidth = 51;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewSearchNotes.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.DataGridViewSearchNotes.Size = new System.Drawing.Size(966, 283);
+            this.DataGridViewSearchNotes.TabIndex = 135;
             // 
-            // NoteColumn
+            // DataGridViewCreateNotes
             // 
-            this.NoteColumn.HeaderText = "Note";
-            this.NoteColumn.Name = "NoteColumn";
-            // 
-            // TimestampColumn
-            // 
-            this.TimestampColumn.HeaderText = "Timestamp";
-            this.TimestampColumn.Name = "TimestampColumn";
-            // 
-            // EditTimestampColumn
-            // 
-            this.EditTimestampColumn.HeaderText = "EditTimestamp";
-            this.EditTimestampColumn.Name = "EditTimestampColumn";
+            this.DataGridViewCreateNotes.AllowUserToAddRows = false;
+            this.DataGridViewCreateNotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DataGridViewCreateNotes.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.DataGridViewCreateNotes.BackgroundColor = System.Drawing.Color.DimGray;
+            this.DataGridViewCreateNotes.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewCreateNotes.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.DataGridViewCreateNotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.WindowFrame;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DataGridViewCreateNotes.DefaultCellStyle = dataGridViewCellStyle10;
+            this.DataGridViewCreateNotes.GridColor = System.Drawing.Color.Gray;
+            this.DataGridViewCreateNotes.Location = new System.Drawing.Point(956, 578);
+            this.DataGridViewCreateNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DataGridViewCreateNotes.MultiSelect = false;
+            this.DataGridViewCreateNotes.Name = "DataGridViewCreateNotes";
+            this.DataGridViewCreateNotes.ReadOnly = true;
+            this.DataGridViewCreateNotes.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DataGridViewCreateNotes.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            this.DataGridViewCreateNotes.RowHeadersVisible = false;
+            this.DataGridViewCreateNotes.RowHeadersWidth = 51;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.DimGray;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.SlateBlue;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.DataGridViewCreateNotes.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            this.DataGridViewCreateNotes.Size = new System.Drawing.Size(944, 256);
+            this.DataGridViewCreateNotes.TabIndex = 105;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1283, 715);
+            this.ClientSize = new System.Drawing.Size(1924, 1100);
             this.Controls.Add(this.TCtrlMain);
-            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.Name = "FormMain";
-            this.Padding = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Sizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -3187,7 +3204,6 @@ namespace ContactManager
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchResult)).EndInit();
             this.PnlSearchPreview.ResumeLayout(false);
             this.PnlSearchPreview.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchNotes)).EndInit();
             this.PnlSearchPreviewCustomer.ResumeLayout(false);
             this.PnlSearchPreviewCustomer.PerformLayout();
             this.PnlSearchPreviewTrainee.ResumeLayout(false);
@@ -3199,7 +3215,6 @@ namespace ContactManager
             this.TabCreateEdit.ResumeLayout(false);
             this.TabCreate.ResumeLayout(false);
             this.TabCreate.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCreateNotes)).EndInit();
             this.PnlCreateInfoGeneral.ResumeLayout(false);
             this.PnlCreateInfoGeneral.PerformLayout();
             this.GrpCreateType.ResumeLayout(false);
@@ -3219,6 +3234,8 @@ namespace ContactManager
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportSpecific)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridViewImportGeneric)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewSearchNotes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DataGridViewCreateNotes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3421,9 +3438,5 @@ namespace ContactManager
         private MaterialSkin.Controls.MaterialProgressBar ProgrBarImport;
         private System.Windows.Forms.DataGridView DataGridViewSearchNotes;
         private System.Windows.Forms.DataGridView DataGridViewCreateNotes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ContentColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NoteColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TimestampColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EditTimestampColumn;
     }
 }

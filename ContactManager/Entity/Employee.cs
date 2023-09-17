@@ -1,7 +1,4 @@
-﻿using ContactManager.Entity;
-using System.Collections.Generic;
-
-namespace ContactManager.Model
+﻿namespace ContactManager.Model
 {
     public class Employee : Person
     {
@@ -16,7 +13,6 @@ namespace ContactManager.Model
 
         public Employee():base() { }
 
-        public List<Note> Notes { get; set; }
 
         public string Department
         {
