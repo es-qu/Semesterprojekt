@@ -796,6 +796,7 @@ namespace ContactManager
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DataGridViewSearchNotes.DefaultCellStyle = dataGridViewCellStyle6;
+            this.DataGridViewSearchNotes.Enabled = false;
             this.DataGridViewSearchNotes.GridColor = System.Drawing.Color.Gray;
             this.DataGridViewSearchNotes.Location = new System.Drawing.Point(18, 378);
             this.DataGridViewSearchNotes.MultiSelect = false;
