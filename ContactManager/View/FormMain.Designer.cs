@@ -1656,6 +1656,7 @@ namespace ContactManager
             // TabCreate
             // 
             this.TabCreate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.TabCreate.Controls.Add(this.PnlCreateInfoEmployee);
             this.TabCreate.Controls.Add(this.CmdCreateDeletePerson);
             this.TabCreate.Controls.Add(this.CmdCreateCancel);
             this.TabCreate.Controls.Add(this.CmdCreatePersonSaveAndNew);
@@ -1663,7 +1664,6 @@ namespace ContactManager
             this.TabCreate.Controls.Add(this.PnlCreateInfoGeneral);
             this.TabCreate.Controls.Add(this.CmdCreateSavePerson);
             this.TabCreate.Controls.Add(this.PnlCreateInfoCustomer);
-            this.TabCreate.Controls.Add(this.PnlCreateInfoEmployee);
             this.TabCreate.Depth = 0;
             this.TabCreate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.TabCreate.Location = new System.Drawing.Point(0, 0);
@@ -2545,6 +2545,11 @@ namespace ContactManager
             this.NumCreateDegreeOfEmployment.Name = "NumCreateDegreeOfEmployment";
             this.NumCreateDegreeOfEmployment.Size = new System.Drawing.Size(74, 39);
             this.NumCreateDegreeOfEmployment.TabIndex = 27;
+            this.NumCreateDegreeOfEmployment.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             this.NumCreateDegreeOfEmployment.ValueChanged += new System.EventHandler(this.NumCreateDegreeOfEmployment_ValueChanged);
             // 
             // PrgDegreeOfEmployment

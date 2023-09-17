@@ -43,10 +43,10 @@ namespace ContactManager
 
                         transaction.Commit();
                     }
-                    catch
+                    catch(Exception ex)
                     {
                         transaction.Rollback();
-                        throw;
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
