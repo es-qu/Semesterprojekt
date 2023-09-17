@@ -1295,7 +1295,7 @@ namespace ContactManager
 
         private void CmdSearchNoteSave_Click(object sender, EventArgs e)
         {
-
+            //
         }
 
 
@@ -1716,9 +1716,14 @@ namespace ContactManager
             menu.Show();
         }
 
-        private void CmdSearchNoteClear_Click(object sender, EventArgs e)
+        private void CmdSearchAddNote_Click(object sender, EventArgs e)
         {
+            //
+        }
 
+        private void CmdSearchDeleteNote_Click(object sender, EventArgs e)
+        {
+            //
         }
     }
 }
