@@ -889,6 +889,9 @@ namespace ContactManager
                         CmdSearchPersonDelete.Enabled = true;
                         CmdSearchSaveNewNote.Enabled = false;
 
+                        // Enable/diable Textfield
+                        TxtSearchNewNote.Enabled = true;
+
                         var clickedPerson = (Person)searchResults[currentRow.Index];
                         currentContact = clickedPerson;
                         LblSearchPreviewStatusOutput.Text = (clickedPerson.Active != 0) ? "Active" : "Inactive";
@@ -911,6 +914,7 @@ namespace ContactManager
                         currentContactNotes = Controller.GetNotes(currentContact.NoteIds);
                         DataGridViewSearchNotes.DataSource = currentContactNotes;
                         DataGridViewSearchNotes.ClearSelection();
+                        TxtSearchNewNote.Clear();
 
                         // Clear type specific informations
 
@@ -1356,6 +1360,8 @@ namespace ContactManager
             }
 
             DataGridViewSearchNotes.DataSource = currentContactNotes;
+
+            TxtSearchNewNote.Clear();
         }
 
 

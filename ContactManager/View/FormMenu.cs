@@ -62,6 +62,18 @@ namespace ContactManager
                     OpenMainForm(0);
                     break;
 
+                case Keys.D:
+                    OpenMainForm(1);
+                    break;
+
+                case Keys.E:
+                    OpenMainForm(1);
+                    break;
+
+                case Keys.N:
+                    OpenMainForm(1);
+                    break;
+
                 case Keys.S:
                     OpenMainForm(1);
                     break;
