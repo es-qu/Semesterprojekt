@@ -459,11 +459,11 @@ namespace ContactManager
 
                     if(noteOnDb != null)
                     {
-                        conn.Execute("INSERT INTO Notes (Id, Content, CreateTimestamp, EditTimestamp) VALUES (@Id, @Content, @CreateTimestamp, @EditTimestamp)", note);
+                        UpdateNote(note);
                     }
                     else
                     {
-                        UpdateNote(note);
+                        conn.Execute("INSERT INTO Notes (Id, Content, CreateTimestamp, EditTimestamp) VALUES (@Id, @Content, @CreateTimestamp, @EditTimestamp)", note);
                     }
 
                     conn.Close();

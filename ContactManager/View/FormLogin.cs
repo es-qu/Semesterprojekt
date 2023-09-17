@@ -21,6 +21,7 @@ namespace ContactManager
         {
             if (TxtUsername.Text != String.Empty && TxtPassword.Text != String.Empty)
             {
+                // REMOVE || true !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 if (TxtUsername.Text == "root" && TxtPassword.Text == "Password123" || true)
                 {
                     // Open menu

@@ -17,7 +17,7 @@ namespace ContactManager.Entity
             this.editTimestamp = this.createTimestamp;
         }
 
-        public Note(string content) : base()
+        public Note(string content) : this()
         {
             this.content = content;
         }

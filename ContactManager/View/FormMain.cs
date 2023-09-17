@@ -4,6 +4,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -821,14 +822,6 @@ namespace ContactManager
                     };
                     DataGridViewSearchNotes.Columns.Add(contentColumn);
 
-                    DataGridViewTextBoxColumn editTimestampColumn = new DataGridViewTextBoxColumn
-                    {
-                        Name = "editTimestampColumn",
-                        HeaderText = "Last Edit",
-                        DataPropertyName = "EditTimestamp"
-                    };
-                    DataGridViewSearchNotes.Columns.Add(editTimestampColumn);
-
                     DataGridViewTextBoxColumn createTimestampColumn = new DataGridViewTextBoxColumn
                     {
                         Name = "createTimestampColumn",
@@ -894,9 +887,7 @@ namespace ContactManager
                         // Enable/disable buttons
                         CmdSearchPersonEdit.Enabled = true;
                         CmdSearchPersonDelete.Enabled = true;
-                        CmdSearchAddNote.Enabled = true;
-                        CmdSearchDeleteNote.Enabled = false;
-                        CmdSearchSaveNote.Enabled = false;
+                        CmdSearchSaveNewNote.Enabled = false;
 
                         var clickedPerson = (Person)searchResults[currentRow.Index];
                         currentContact = clickedPerson;
@@ -1037,9 +1028,7 @@ namespace ContactManager
                     // Disable buttons
                     CmdSearchPersonEdit.Enabled = false;
                     CmdSearchPersonDelete.Enabled = false;
-                    CmdSearchAddNote.Enabled = false;
-                    CmdSearchDeleteNote.Enabled = false;
-                    CmdSearchSaveNote.Enabled = false;
+                    CmdSearchSaveNewNote.Enabled = false;
                 }
             }
         }
@@ -1339,22 +1328,34 @@ namespace ContactManager
             Close();
         }
 
-        private void CmdSearchCreate_Click(object sender, EventArgs e)
-        {
-            TCtrlMain.SelectedTab = TabCreateEdit;
-        }
-
         private void CmdSearchNoteSave_Click(object sender, EventArgs e)
         {
-            if(currentContactNotes != null)
+            DataGridViewSearchNotes.DataSource = null;
+
+            Note newNote = new Note(TxtSearchNewNote.Text);
+
+            if (currentContactNotes != null)
             {
-                foreach (Note note in currentContactNotes)
+                currentContactNotes.Add(newNote);
+            }
+            else
+            {
+                currentContactNotes = new List<Note>() { newNote };
+            }
+
+            currentContact.NoteIds.Add(newNote.Id);
+
+            if (currentContactNotes != null)
+            {
+                foreach (Note item in currentContactNotes)
                 {
-                    Controller.SaveNote(currentContact, note);
+                    Controller.SaveNote(currentContact, item);
                 }
 
-                CmdSearchSaveNote.Enabled = false;
+                CmdSearchSaveNewNote.Enabled = false;
             }
+
+            DataGridViewSearchNotes.DataSource = currentContactNotes;
         }
 
 
@@ -1772,22 +1773,7 @@ namespace ContactManager
 
         private void CmdSearchAddNote_Click(object sender, EventArgs e)
         {
-            DataGridViewSearchNotes.DataSource = null;
 
-            Note note = new Note();
-
-            if(currentContactNotes != null)
-            {
-                currentContactNotes.Add(note);
-            }
-            else
-            {
-                currentContactNotes = new List<Note>() { note };
-            }
-                
-            currentContact.NoteIds.Add(note.Id);
-
-            DataGridViewSearchNotes.DataSource = currentContactNotes;
         }
 
         private void CmdSearchDeleteNote_Click(object sender, EventArgs e)
@@ -1806,21 +1792,15 @@ namespace ContactManager
                         // Update the 'Content' property of the corresponding Note object in currentContactNotes
                         currentContactNotes[e.RowIndex].Content = DataGridViewSearchNotes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
 
-                        CmdSearchSaveNote.Enabled = true;
+                        CmdSearchSaveNewNote.Enabled = true;
                     }
                 }
             }
         }
 
-        private void DataGridViewSearchNotes_SelectionChanged(object sender, EventArgs e)
+        private void TxtSearchNewNote_TextChanged(object sender, EventArgs e)
         {
-            if (currentContactNotes != null)
-            {
-                if (DataGridViewSearchNotes.SelectedCells[0].RowIndex >= 0 && DataGridViewSearchNotes.SelectedCells[0].RowIndex < currentContactNotes.Count)
-                {
-                    CmdSearchDeleteNote.Enabled = true;
-                }
-            }
+            CmdSearchSaveNewNote.Enabled = (TxtSearchNewNote.Text != string.Empty && currentContact != null);
         }
     }
 }
