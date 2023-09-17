@@ -1178,8 +1178,6 @@ namespace ContactManager
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
                     TxtCreateBusinessAddress.Text = contact.BusinessAddress;
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
-                    DataGridViewCreateNotes.DataSource = null;
-                    DataGridViewCreateNotes.DataSource = currentContactNotes;
 
                     // Fill out specific fields
                     Type type = contact.GetType();
