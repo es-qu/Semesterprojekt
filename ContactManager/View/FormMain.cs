@@ -111,7 +111,6 @@ namespace ContactManager
             TxtCreatePrivatePhone.Clear();
             TxtCreateEmailAddress.Clear();
             TxtCreateBusinessPhone.Clear();
-            TxtCreateNote.Clear();
             TxtCreateRole.Clear();
             TxtCreateDepartement.Clear();
             TxtCreateEmployeeNumber.Clear();
@@ -161,13 +160,27 @@ namespace ContactManager
             }
         }
 
-
         public Person CreatePersonFromForm()
         {
-
             string gender = RadCreateMale.Checked ? "Male" :
                 RadCreateFemale.Checked ? "Female" :
                 RadCreateOther.Checked ? "Other" : null;
+
+            List<Note> notes = new List<Note>();
+            List<string> noteIds = new List<string>();
+            foreach (DataGridViewRow row in DataGridViewCreateNotes.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    string content = Convert.ToString(row.Cells["ContentColumn"].Value);
+                    string id = Convert.ToString(row.Cells["IdColumn"].Value);
+                    Note note = new Note(id, content); 
+
+                    notes.Add(note);
+                    noteIds.Add(note.Id);
+                }
+            }
+            noteCounter = 0;
 
             if (RadCreateCustomer.Checked)
             {
@@ -186,10 +199,11 @@ namespace ContactManager
                     OasiNumber = TxtCreateOasiNr.Text,
                     DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                     PrivatePhone = TxtCreatePrivatePhone.Text,
+                    NoteIds = noteIds,
+                    Notes = notes,
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
-                    CommaSeparatedNoteIds = TxtCreateNote.Text,
                     CompanyName = TxtCreateCompanyName.Text,
                     CustomerType = CmbCreateCustomerType.Text,
                     CompanyContact = TxtCreateCompanyContact.Text,
@@ -213,10 +227,11 @@ namespace ContactManager
                     OasiNumber = TxtCreateOasiNr.Text,
                     DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                     PrivatePhone = TxtCreatePrivatePhone.Text,
+                    NoteIds = noteIds,
+                    Notes = notes,
                     BusinessAddress = TxtCreateBusinessAddress.Text,
                     BusinessPhone = TxtCreateBusinessPhone.Text,
                     EmailAddress = TxtCreateEmailAddress.Text,
-                    CommaSeparatedNoteIds = TxtCreateNote.Text,
                     Role = TxtCreateRole.Text,
                     Department = TxtCreateDepartement.Text,
                     EmployeeNumber = TxtCreateEmployeeNumber.Text,
@@ -225,6 +240,7 @@ namespace ContactManager
                     CadreLevel = NumCadreLevel.Value.ToString(),
                     DegreeOfEmployment = NumCreateDegreeOfEmployment.Value.ToString()
                 };
+
 
                 if (ChkCreateTrainee.Checked)
                 {
@@ -243,10 +259,12 @@ namespace ContactManager
                         OasiNumber = TxtCreateOasiNr.Text,
                         DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
                         PrivatePhone = TxtCreatePrivatePhone.Text,
+                        NoteIds = noteIds,
+                        Notes = notes,
                         BusinessAddress = TxtCreateBusinessAddress.Text,
                         BusinessPhone = TxtCreateBusinessPhone.Text,
                         EmailAddress = TxtCreateEmailAddress.Text,
-                        CommaSeparatedNoteIds = TxtCreateNote.Text,
+                        CommaSeparatedNoteIds = "",
                         Role = TxtCreateRole.Text,
                         Department = TxtCreateDepartement.Text,
                         EmployeeNumber = TxtCreateEmployeeNumber.Text,
@@ -270,10 +288,16 @@ namespace ContactManager
         }
         private LogTable LogForm(string eventType)
         {
-
             string gender = RadCreateMale.Checked ? "Male" :
                 RadCreateFemale.Checked ? "Female" :
                 RadCreateOther.Checked ? "Other" : null;
+
+            //List<string> noteIds = new List<string>();
+            //foreach (Note item in currentContactNotes)
+            //{
+            //    noteIds.Add(item.Id);
+            //}
+
             LogTable logInfo = new LogTable
             {
                 EventType = eventType,
@@ -293,7 +317,7 @@ namespace ContactManager
                 BusinessAddress = TxtCreateBusinessAddress.Text,
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,
-                CommaSeparatedNoteIds = TxtCreateNote.Text,
+                CommaSeparatedNoteIds = "",
                 Role = TxtCreateRole.Text,
                 Department = TxtCreateDepartement.Text,
                 DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
@@ -318,7 +342,7 @@ namespace ContactManager
             string eventType = success ? successEvent : failureEvent;
             LogTable logInfo = LogForm(eventType);
             Controller controller = new Controller();
-            controller.Log(logInfo);
+            //controller.Log(logInfo);
 
             if (success)
             {
@@ -346,7 +370,7 @@ namespace ContactManager
             string eventType = success ? successEvent : failureEvent;
             LogTable logInfo = LogForm(eventType);
             Controller controller = new Controller();
-            controller.Log(logInfo);
+            //controller.Log(logInfo);
 
             if (success)
             {
@@ -867,7 +891,7 @@ namespace ContactManager
                         LblSearchPreviewPrivatePhoneOutput.Text = clickedPerson.PrivatePhone;
                         LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.BusinessPhone;
                         LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.BusinessAddress;
-                        TxtSearchNote.Text = clickedPerson.CommaSeparatedNoteIds;
+                        
 
                         // Clear type specific informations
 
@@ -966,7 +990,7 @@ namespace ContactManager
                     LblSearchPreviewPrivatePhoneOutput.Text = "-";
                     LblSearchPreviewBusinessPhoneOutput.Text = "-";
                     LblSearchPreviewBusinessAddressOutput.Text = "-";
-                    TxtSearchNote.Text = "-";
+                    
 
                     LblSearchPreviewNumberOutput.Text = "-";
                     LblSearchPreviewTypeOutput.Text = "-";
@@ -1148,7 +1172,7 @@ namespace ContactManager
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
                     TxtCreateBusinessAddress.Text = contact.BusinessAddress;
                     TxtCreateBusinessPhone.Text = contact.BusinessPhone;
-                    TxtCreateNote.Text = contact.CommaSeparatedNoteIds;
+                    
 
                     // Fill out specific fields
                     Type type = contact.GetType();
@@ -1704,11 +1728,31 @@ namespace ContactManager
                 }
             }
         }
+        private int noteCounter = 0;
 
         private void CmdCreateNoteClear_Click(object sender, EventArgs e)
         {
-            TxtCreateNote.Text = "";
+            // Create a new Note
+            string content = "";
+
+            string idString = SqliteDataAccess.GetNextNoteId("Notes", "Id");
+
+            if (idString.Length <= 1 || !int.TryParse(idString.Substring(1), out int idFromDb))
+            {
+
+                return;
+            }
+
+            int nextId = idFromDb + noteCounter;
+            string id = "N" + nextId.ToString();
+
+            Note note = new Note(id, content);
+
+            DataGridViewCreateNotes.Rows.Add( note.Content, note.Id, note.CreateTimestamp.ToString(),note.EditTimestamp.ToString());
+
+            noteCounter++;
         }
+
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -1717,6 +1761,11 @@ namespace ContactManager
         }
 
         private void CmdSearchNoteClear_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DataGridViewCreateNotes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

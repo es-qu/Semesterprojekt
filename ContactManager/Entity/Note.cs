@@ -2,32 +2,25 @@
 
 namespace ContactManager.Entity
 {
-    internal class Note
+    public class Note
     {
-        private string id;
-        private string content;
-        DateTime timestamp;
+        public string Id { get; set; }
+        public string Content { get; set; }
+        public DateTime CreateTimestamp { get; private set; }
+        public DateTime EditTimestamp { get; private set; }
 
-        public Note()
+        public Note(string id, string content)
         {
-            this.id = Guid.NewGuid().ToString();
-            this.content = "";
-            this.timestamp = DateTime.Now;
+            Id = id;
+            Content = content;
+            CreateTimestamp = DateTime.Now; // Note is created now
+            EditTimestamp = DateTime.MinValue; // Note is not edited yet
         }
 
-        public Note(string content) : base()
+        public void UpdateContent(string newContent)
         {
-            this.content = content;
+            Content = newContent;
+            EditTimestamp = DateTime.Now; // Note is edited now
         }
-
-        public Note(string id, string content, DateTime timestamp) : this(content)
-        {
-            this.id = id;
-            this.timestamp = timestamp;
-        }
-
-        public string Id { get { return id; } }
-        public string Content { get { return content; } set { content = value; } }
-        public DateTime Timestamp { get { return timestamp; } }
     }
 }

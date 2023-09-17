@@ -1,4 +1,7 @@
-﻿namespace ContactManager.Model
+﻿using ContactManager.Entity;
+using System.Collections.Generic;
+
+namespace ContactManager.Model
 {
     public class Employee : Person
     {
