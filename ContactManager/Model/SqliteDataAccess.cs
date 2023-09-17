@@ -21,10 +21,8 @@ namespace ContactManager
             return cnn.Query<int>("SELECT last_insert_rowid()").Single();
         }
 
-        public static int SaveCustomer(Customer customer)
+        public static void SaveCustomer(Customer customer)
         {
-            int personId = 0;
-
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Open();
@@ -32,7 +30,7 @@ namespace ContactManager
                 {
                     try
                     {
-                        personId = InsertPerson(cnn, customer);
+                        int personId = InsertPerson(cnn, customer);
                         cnn.Execute("INSERT INTO Customer (ID,CompanyName, CustomerType,CompanyContact,CustomerNumber) VALUES (@Id, @CompanyName, @CustomerType,@CompanyContact,@CustomerNumber)",
                             new
                             {
@@ -51,8 +49,6 @@ namespace ContactManager
                     }
                 }
             }
-
-            return personId;
         }
 
 
@@ -63,10 +59,8 @@ namespace ContactManager
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
 
-        public static int SaveTrainee(Trainee trainee)
+        public static void SaveTrainee(Trainee trainee)
         {
-            int result = 0;
-
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Open();
@@ -100,10 +94,10 @@ namespace ContactManager
                                     trainee.YearsOfApprenticeship,
                                     trainee.CurrentApprenticeshipYear
                                 });
-                            result = lastId;
                         }
                         else
                         {
+                            // Only insert into Trainee table...
                             cnn.Execute(
                                 "INSERT INTO Trainee (ID, YearsOfApprenticeship, CurrentApprenticeshipYear) VALUES (@Id, @YearsOfApprenticeship, @CurrentApprenticeshipYear)",
                                 new
@@ -112,7 +106,6 @@ namespace ContactManager
                                     trainee.YearsOfApprenticeship,
                                     trainee.CurrentApprenticeshipYear
                                 });
-                            result = TraineeId;
                         }
 
                         transaction.Commit();
@@ -123,8 +116,6 @@ namespace ContactManager
                     }
                 }
             }
-
-            return result;
         }
 
 
@@ -201,25 +192,6 @@ namespace ContactManager
             }
         }
 
-
-        public static string GetNextNoteId(string tableName, string columnName)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                string prefix = "N";
-                int prefixLength = prefix.Length; // This should match the length of your prefix
-
-                var defaultNumber = prefix + new string('0', prefixLength);
-                var maxNumberStr = cnn.Query<string>($"SELECT IFNULL(MAX({columnName}), '{defaultNumber}') FROM {tableName}").FirstOrDefault();
-
-                // Skip the prefix and parse the number part of the ID.
-                int maxNumberInt = int.Parse(maxNumberStr.Substring(prefixLength));
-
-                maxNumberInt++;
-
-                return prefix + maxNumberInt.ToString("D" + prefixLength);
-            }
-        }
 
         public static bool DeleteEmployee(string employeeNumber)
         {
@@ -390,46 +362,41 @@ namespace ContactManager
         /// <param name="note">Note object</param>
         /// <returns>True if successfull, else false</returns>
 
-
         public static bool SaveNote(Person associatedContact, Note note)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            try
             {
-                string sql = "INSERT INTO Notes (Id, Content, CreateTimestamp, EditTimestamp) VALUES (@Id, @Content, @CreateTimestamp, @EditTimestamp)";
-                cnn.Execute(sql, note);
-
-                if (!string.IsNullOrEmpty(note.Id))
+                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    var noteIds = associatedContact.CommaSeparatedNoteIds != null
-                        ? associatedContact.CommaSeparatedNoteIds.Split(',').ToList()
-                        : new List<string>();
+                    // Save note to Notes
+                    string sql = "INSERT INTO Notes (Id, Content, CreateTimestamp, EditTimestamp) VALUES (@Id, @Content, @CreateTimestamp, @EditTimestamp)";
+                    cnn.Execute(sql, note);
 
-                    if (!noteIds.Contains(note.Id))
+                    if (!string.IsNullOrEmpty(note.Id))
                     {
-                        noteIds.Add(note.Id);
-                        associatedContact.CommaSeparatedNoteIds = string.Join(",", noteIds);
+                        if (string.IsNullOrEmpty(associatedContact.CommaSeparatedNoteIds))
+                        {
+                            associatedContact.CommaSeparatedNoteIds = note.Id;
+                        }
+                        else
+                        {
+                            associatedContact.CommaSeparatedNoteIds += "," + note.Id;
+                        }
                     }
+
+                    // Save NoteId in the contact's CommaSeparatedNotes string
+                    // --- Update contact
+
+                    return true;
                 }
-
-                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
             }
         }
 
-        public static bool UpdatePerson(Person person, int PersonID)
-        {
-            if (person == null || person.CommaSeparatedNoteIds == null)
-            {
-                throw new ArgumentNullException("Person and CommaSeparatedNoteIds cannot be null");
-            }
-
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                string sqlQuery = "UPDATE Person SET CommaSeparatedNoteIds = @CommaSeparatedNoteIds WHERE ID = @ID";
-                cnn.Execute(sqlQuery, new { CommaSeparatedNoteIds = person.CommaSeparatedNoteIds, ID = PersonID });
-
-                return true;
-            }
-        }
         /// <summary>
         /// Delete a note from db according to its ID
         /// </summary>

@@ -23,7 +23,6 @@ namespace ContactManager
         private string businessPhone = string.Empty;
         private string businessAddress = string.Empty;
         private List<string> noteIds = new List<string>();
-        public List<Note> Notes { get; set; }
 
 
         public Person() { }

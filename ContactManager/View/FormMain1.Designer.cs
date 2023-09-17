@@ -83,9 +83,9 @@ namespace ContactManager.View {
         /// <summary>
         ///   Looks up a localized resource of type System.Boolean similar to True.
         /// </summary>
-        public static bool IdColumn_UserAddedColumn {
+        public static bool NoteColumn_UserAddedColumn {
             get {
-                object obj = ResourceManager.GetObject("IdColumn.UserAddedColumn", resourceCulture);
+                object obj = ResourceManager.GetObject("NoteColumn.UserAddedColumn", resourceCulture);
                 return ((bool)(obj));
             }
         }

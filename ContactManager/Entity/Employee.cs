@@ -16,6 +16,7 @@ namespace ContactManager.Model
 
         public Employee():base() { }
 
+        public List<Note> Notes { get; set; }
 
         public string Department
         {
