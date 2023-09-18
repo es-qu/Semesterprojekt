@@ -1340,14 +1340,16 @@ namespace ContactManager
 
             if (currentContactNotes != null)
             {
-                currentContactNotes.Add(newNote);
+                //currentContactNotes.Add(newNote);
+                currentContactNotes.Insert(0, newNote);
             }
             else
             {
                 currentContactNotes = new List<Note>() { newNote };
             }
 
-            currentContact.NoteIds.Add(newNote.Id);
+            //currentContact.NoteIds.Add(newNote.Id);
+            currentContact.NoteIds.Insert(0, newNote.Id);
 
             if (currentContactNotes != null)
             {
