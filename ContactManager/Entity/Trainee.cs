@@ -1,14 +1,16 @@
-﻿namespace ContactManager.Model
+﻿namespace ContactManager.Entity
 {
+    // this is a contact type class and inherits from class Employee
     public class Trainee : Employee
     {
+        // fields
         private string currentApprenticeshipYear = string.Empty;
         private string yearsOfApprenticeship = string.Empty;
 
-
+        // constructor
         public Trainee():base() { }
 
-
+        // properties
         public string CurrentApprenticeshipYear
         {
             get { return currentApprenticeshipYear; }

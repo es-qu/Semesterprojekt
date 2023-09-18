@@ -1,7 +1,9 @@
-﻿namespace ContactManager.Model
+﻿namespace ContactManager.Entity
 {
+    // this is a contact type class and inherits from class person
     public class Employee : Person
     {
+        // fields
         private string department = string.Empty;
         private string role = string.Empty;
         private string cadreLevel = string.Empty;
@@ -10,10 +12,10 @@
         private string dateOfLeaving = string.Empty;
         private string employeeNumber = string.Empty;
 
-
+        // constructor
         public Employee():base() { }
 
-
+        // properties
         public string Department
         {
             get { return department; }

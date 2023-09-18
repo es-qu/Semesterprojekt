@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ContactManager.Entity
+﻿namespace ContactManager.Entity
 {
+    // this class is used for the log database
     public class LogTable : Person
     {
 
@@ -30,7 +25,6 @@ namespace ContactManager.Entity
 
         // Additional properties for logging
         public string EventType { get; set; }
-        public String OperationSuccessful { get; set; }
-        public String DeletionSuccessful { get; set; }
+
     }
 }

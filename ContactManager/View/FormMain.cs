@@ -4,7 +4,6 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -140,7 +139,6 @@ namespace ContactManager
             RadCreateEmployee.Checked = false;
 
         }
-
 
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -400,15 +398,15 @@ namespace ContactManager
 
                 if (person is Trainee trainee)
                 {
-                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => SqliteDataAccess.DeleteEmployee(empNumber), () => controller.CreateTrainee(trainee, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber), () => controller.CreateTrainee(trainee, this, true), deleteAndRecreateLogAction);
                 }
                 else if (person is Employee employee)
                 {
-                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => SqliteDataAccess.DeleteEmployee(empNumber), () => controller.CreateEmployee(employee, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber), () => controller.CreateEmployee(employee, this, true), deleteAndRecreateLogAction);
                 }
                 else if (person is Customer customer)
                 {
-                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => SqliteDataAccess.DeleteCustomer(custNumber), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => Controller.DeleteCustomer(custNumber), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
                 }
             }
         }
@@ -587,7 +585,7 @@ namespace ContactManager
             return true;
         }
 
-        // Falg for Customer and employee
+        // Flag for Customer and employee
         private bool isEditMode = false;
         private void RadCreateCustomer_CheckedChanged(object sender, EventArgs e)
         {
@@ -599,7 +597,7 @@ namespace ContactManager
                 // Generate the next Customer number
                 if (!isEditMode)
                 {
-                    TxtCreateCustomerNumber.Text = SqliteDataAccess.GetNextNumber("Customer", "CustomerNumber", "CUST");
+                    TxtCreateCustomerNumber.Text = Controller.GetNextNumber("Customer", "CustomerNumber", "CUST");
                 }
                 else
                 {
@@ -629,7 +627,7 @@ namespace ContactManager
                 if (!isEditMode)
                 {
                     // Generate the next employee number
-                    TxtCreateEmployeeNumber.Text = SqliteDataAccess.GetNextNumber("Employee", "EmployeeNumber", "EMP");
+                    TxtCreateEmployeeNumber.Text = Controller.GetNextNumber("Employee", "EmployeeNumber", "EMP");
                 }
             }
             else
@@ -709,7 +707,7 @@ namespace ContactManager
         private void CmdSearchAdvanced_Click(object sender, EventArgs e)
         {
             // Save the filter input states to sync them later with advanced search GUI
-            storeSearchFilters();
+            StoreSearchFilters();
 
             FormSearchAdvanced formSearchAdvanced = new FormSearchAdvanced(this);
             formSearchAdvanced.ShowDialog();
@@ -738,7 +736,7 @@ namespace ContactManager
 
             LblSearchResultCounter.Text = "Results: 0";
 
-            storeSearchFilters();
+            StoreSearchFilters();
 
             if (TxtSearch.Text != string.Empty)
             {
@@ -821,7 +819,7 @@ namespace ContactManager
                         DataPropertyName = "Content"
                     };
                     DataGridViewSearchNotes.Columns.Add(contentColumn);
-                    
+
                     DataGridViewTextBoxColumn createTimestampColumn = new DataGridViewTextBoxColumn
                     {
                         Name = "createTimestampColumn",
@@ -1078,7 +1076,7 @@ namespace ContactManager
         /// <summary>
         /// Sync the search GUI with the input states in filters object
         /// </summary>
-        public void syncSearchGUI()
+        public void SyncSearchGUI()
         {
             // Check boxes
             ChkSearchInactive.Checked = filters.SearchInactive;
@@ -1099,7 +1097,7 @@ namespace ContactManager
         /// <summary>
         /// Save the states of all inputs into filters object
         /// </summary>
-        public void storeSearchFilters()
+        public void StoreSearchFilters()
         {
             // Check boxes
             filters.SearchInactive = ChkSearchInactive.Checked;
@@ -1120,7 +1118,7 @@ namespace ContactManager
         private void CmdSearchClear_Click(object sender, EventArgs e)
         {
             filters = new SearchFilters();
-            syncSearchGUI();
+            SyncSearchGUI();
         }
 
         private void CmdSearchPersonEdit_Click(object sender, EventArgs e)
@@ -1263,11 +1261,11 @@ namespace ContactManager
 
                     if (selectedContact.GetType() == typeof(Customer))
                     {
-                        deletionSuccessful = SqliteDataAccess.DeleteCustomer(((Customer)selectedContact).CustomerNumber);
+                        deletionSuccessful = Controller.DeleteCustomer(((Customer)selectedContact).CustomerNumber);
                     }
                     else if (selectedContact.GetType() == typeof(Employee) || selectedContact.GetType() == typeof(Trainee))
                     {
-                        deletionSuccessful = SqliteDataAccess.DeleteEmployee(((Employee)selectedContact).EmployeeNumber);
+                        deletionSuccessful = Controller.DeleteEmployee(((Employee)selectedContact).EmployeeNumber);
                     }
 
                     if (deletionSuccessful)
@@ -1380,7 +1378,7 @@ namespace ContactManager
                 // User confirmed the deletion
                 if (RadCreateCustomer.Checked)
                 {
-                    bool deletionSuccessful = SqliteDataAccess.DeleteCustomer(TxtCreateCustomerNumber.Text);
+                    bool deletionSuccessful = Controller.DeleteCustomer(TxtCreateCustomerNumber.Text);
                     if (deletionSuccessful)
                     {
                         // Deletion was successful. Show a success message.
@@ -1399,7 +1397,7 @@ namespace ContactManager
                 {
                     if (ChkCreateTrainee.Checked)
                     {
-                        bool deletionSuccessful = SqliteDataAccess.DeleteEmployee(TxtCreateEmployeeNumber.Text);
+                        bool deletionSuccessful = Controller.DeleteEmployee(TxtCreateEmployeeNumber.Text);
                         if (deletionSuccessful)
                         {
                             // Deletion was successful. Show a success message.
@@ -1416,7 +1414,7 @@ namespace ContactManager
                     }
                     else
                     {
-                        bool deletionSuccessful = SqliteDataAccess.DeleteEmployee(TxtCreateEmployeeNumber.Text);
+                        bool deletionSuccessful = Controller.DeleteEmployee(TxtCreateEmployeeNumber.Text);
                         if (deletionSuccessful)
                         {
                             // Deletion was successful. Show a success message.
@@ -1780,32 +1778,6 @@ namespace ContactManager
             menu.Show();
         }
 
-        private void CmdSearchAddNote_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CmdSearchDeleteNote_Click(object sender, EventArgs e)
-        {
-            //
-        }
-
-        private void DataGridViewSearchNotes_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            if (currentContactNotes != null)
-            {
-                if (e.RowIndex >= 0 && e.RowIndex < currentContactNotes.Count)
-                {
-                    if (e.ColumnIndex == 0)
-                    {
-                        // Update the 'Content' property of the corresponding Note object in currentContactNotes
-                        currentContactNotes[e.RowIndex].Content = DataGridViewSearchNotes.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
-
-                        CmdSearchSaveNewNote.Enabled = true;
-                    }
-                }
-            }
-        }
 
         private void TxtSearchNewNote_TextChanged(object sender, EventArgs e)
         {

@@ -1,5 +1,4 @@
 ﻿using ContactManager.Entity;
-using ContactManager.Model;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -9,11 +8,27 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace ContactManager
+namespace ContactManager.Model
 {
+    // this class is for the interaction with the SQLite database
     internal class SqliteDataAccess
     {
-        public static int InsertPerson(IDbConnection cnn, Person person)
+
+        /// <summary>
+        /// To ensure the connection to the SQLite database via loading the defined connection string
+        /// </summary>
+        private static string LoadConnectionString(String id = "Default")
+        {
+            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+        }
+
+        /// <summary>
+        /// Inserts a SQL row in the database "Person.db" -> Table "Person" with the informations from the base class Person
+        /// </summary>
+        /// <param name="cnn"> Database connection </param>
+        /// <param name="person"> Person to save </param>
+        /// <returns> Returns the last inserted id for further processing about the person according to the contact type </returns>
+        private static int InsertPerson(IDbConnection cnn, Person person)
         {
             string sqlQuery = "INSERT INTO Person (Active, Gender, Salutation, Title, FirstName, LastName, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, DateOfBirth, PrivatePhone, BusinessAddress, BusinessPhone, EmailAddress, CommaSeparatedNoteIds) " +
                               "VALUES (@Active, @Gender, @Salutation, @Title, @FirstName, @LastName, @Address, @PostalCode,  @PlaceOfResidence, @Nationality, @OasiNumber, @DateOfBirth, @PrivatePhone,  @BusinessAddress, @BusinessPhone, @EmailAddress, @CommaSeparatedNoteIds)";
@@ -21,6 +36,14 @@ namespace ContactManager
             return cnn.Query<int>("SELECT last_insert_rowid()").Single();
         }
 
+
+        // the following methods are accessed from outside / controller
+        // saves and deletes
+
+        /// <summary>
+        /// Inserts a SQL row in the database "Person.db" -> Table "Customer" with the informations from the class Customer additional to the InsertPerson Method
+        /// </summary>
+        /// <param name="customer"> Customer to save </param>
         public static void SaveCustomer(Customer customer)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -52,14 +75,48 @@ namespace ContactManager
             }
         }
 
-
-
-
-        private static string LoadConnectionString(String id = "Default")
+        /// <summary>
+        /// Inserts a SQL row in the database "Person.db" -> Table "Employee" with the informations from the class Customer additional to the InsertPerson Method
+        /// </summary>
+        /// <param name="employee"> Employee to save </param>
+        public static void SaveEmployee(Employee employee)
         {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Open();
+                using (var transaction = cnn.BeginTransaction())
+                {
+                    try
+                    {
+                        int lastId_e = InsertPerson(cnn, employee);
+                        cnn.Execute("INSERT INTO Employee (ID, Role, Department, DegreeOfEmployment,EmployeeNumber, Dateofjoining, Dateofleaving, CadreLevel) VALUES (@Id, @Role, @Department,@DegreeOfEmployment, @EmployeeNumber, @DateOfJoining, @DateOfLeaving, @CadreLevel)",
+                            new
+                            {
+                                Id = lastId_e,
+                                employee.Role,
+                                employee.Department,
+                                employee.EmployeeNumber,
+                                employee.DegreeOfEmployment,
+                                employee.DateOfJoining,
+                                employee.DateOfLeaving,
+                                employee.CadreLevel
+                            });
+
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
         }
 
+        /// <summary>
+        /// Inserts a SQL row in the database "Person.db" -> Table "Trainee" with the informations from the class Trainee additional to the InsertPerson Method
+        /// </summary>
+        /// <param name="trainee"> Trainee to save </param>
         public static void SaveTrainee(Trainee trainee)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -120,60 +177,14 @@ namespace ContactManager
             }
         }
 
-
-
-        public static void SaveEmployee(Employee employee)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                cnn.Open();
-                using (var transaction = cnn.BeginTransaction())
-                {
-                    try
-                    {
-                        int lastId_e = InsertPerson(cnn, employee);
-                        cnn.Execute("INSERT INTO Employee (ID, Role, Department, DegreeOfEmployment,EmployeeNumber, Dateofjoining, Dateofleaving, CadreLevel) VALUES (@Id, @Role, @Department,@DegreeOfEmployment, @EmployeeNumber, @DateOfJoining, @DateOfLeaving, @CadreLevel)",
-                            new
-                            {
-                                Id = lastId_e,
-                                employee.Role,
-                                employee.Department,
-                                employee.EmployeeNumber,
-                                employee.DegreeOfEmployment,
-                                employee.DateOfJoining,
-                                employee.DateOfLeaving,
-                                employee.CadreLevel
-                            });
-
-                        transaction.Commit();
-                    }
-                    catch
-                    {
-                        transaction.Rollback();
-                        throw;
-                    }
-                }
-            }
-        }
-
-
-        public static void SaveLog(LogTable log)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var sqlQuery = @"INSERT INTO LogTable 
-                (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, CommaSeparatedNoteIds, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
-                VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @CommaSeparatedNoteIds, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
-                cnn.Execute(sqlQuery, log);
-                string sqlQuery1 = "SELECT * FROM LogTable WHERE EmployeeNumber = @EmployeeNumber";
-                var logs = cnn.Query<LogTable>(sqlQuery1, new { EmployeeNumber = log.EmployeeNumber });
-            }
-        }
-
-
-
-
-
+        /// <summary>
+        /// Determines the next Customer or Employee number via database and declares it by prefixLength
+        /// </summary>
+        /// <param name="tableName"> Customer or Employee </param>
+        /// <param name="columnName"> is the column where the last number is found </param>
+        /// <param name="idType"> gets the prefix for customer or employee number </param>
+        /// <returns> the final number as string </returns>
+        /// <exception cref="ArgumentException"></exception>
         public static string GetNextNumber(string tableName, string columnName, string idType)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -209,36 +220,12 @@ namespace ContactManager
             }
         }
 
-        public static bool DeleteAllNotes(int personId)
-        {
-            try
-            {
-                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-                {
-                    cnn.Open();
-
-                    string noteIds = (string)cnn.Query<string>("SELECT CommaSeparatedNoteIds FROM Person WHERE Id=@Id", new { Id = personId }).FirstOrDefault();
-
-                    if (noteIds != null)
-                    {
-                        foreach (string noteId in noteIds.Split(','))
-                        {
-                            cnn.Execute("DELETE FROM Notes WHERE Id=@Id", new { Id = noteId });
-                        }
-                    }
-
-                    cnn.Close();
-                }
-
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return false;
-            }
-        }
-
+        /// <summary>
+        /// Deletes the employee / trainee from database table Employee / Trainee
+        /// </summary>
+        /// <param name="employeeNumber"></param>
+        /// <param name="deleteAllNotes">only keeps the notes if set to false</param>
+        /// <returns> true if successful </returns>
         public static bool DeleteEmployee(string employeeNumber, bool deleteAllNotes = true)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -274,7 +261,12 @@ namespace ContactManager
             }
         }
 
-
+        /// <summary>
+        /// Deletes the customer from database table Customer
+        /// </summary>
+        /// <param name="customerNumber"></param>
+        /// <param name="deleteAllNotes">only keeps the notes if set to false</param>
+        /// <returns>true if successful</returns>
         public static bool DeleteCustomer(string customerNumber, bool deleteAllNotes = true)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -302,6 +294,7 @@ namespace ContactManager
         }
 
 
+        // the following methods are for searching in the database
 
         /// <summary>
         /// Search for contacts in db according to a list of the chosen types and a query string.
@@ -376,7 +369,49 @@ namespace ContactManager
             }
         }
 
-        public static bool UpdateContact(Person person)
+        // the following methods are for handling notes
+
+        /// <summary>
+        /// Deletes all notes of a person by person number
+        /// </summary>
+        /// <param name="personId"></param>
+        /// <returns> true if successful </returns>
+        private static bool DeleteAllNotes(int personId)
+        {
+            try
+            {
+                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    cnn.Open();
+
+                    string noteIds = (string)cnn.Query<string>("SELECT CommaSeparatedNoteIds FROM Person WHERE Id=@Id", new { Id = personId }).FirstOrDefault();
+
+                    if (noteIds != null)
+                    {
+                        foreach (string noteId in noteIds.Split(','))
+                        {
+                            cnn.Execute("DELETE FROM Notes WHERE Id=@Id", new { Id = noteId });
+                        }
+                    }
+
+                    cnn.Close();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Updates the contact without deleting the notes to update note ids
+        /// </summary>
+        /// <param name="person"> contact to update </param>
+        /// <returns> true if succesful </returns>
+        private static bool UpdateContact(Person person)
         {
             try
             {
@@ -442,7 +477,7 @@ namespace ContactManager
         }
 
         /// <summary>
-        /// Saves a Note object into database
+        /// Saves a Note object into database table Notes
         /// </summary>
         /// <param name="associatedContact">Person that the note is added to</param>
         /// <param name="note">Note object</param>
@@ -482,7 +517,8 @@ namespace ContactManager
         }
 
         /// <summary>
-        /// Delete a note from db according to its ID
+        /// Delete a note from database according to its ID
+        /// its not used 18.09.2023 upcoming Feature Request will use it eventually. We have no test enviroment
         /// </summary>
         /// <param name="associatedContact">Contact that the note is about</param>
         /// <param name="noteId">ID to identify the note</param>
@@ -528,10 +564,11 @@ namespace ContactManager
         /// <summary>
         /// Updates note informations (only Content may be updated, other informations 
         /// are readonly after creating the instance)
+        /// its not relevant 18.09.2023 upcoming Feature Request will use it eventually. We have no test enviroment
         /// </summary>
         /// <param name="note">Note object with new informations</param>
         /// <returns>True if successful, otherwise false</returns>
-        public static bool UpdateNote(Note note)
+        private static bool UpdateNote(Note note)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -554,6 +591,24 @@ namespace ContactManager
                 }
             }
         }
+
+        /// <summary>
+        /// its not used 18.09.2023 upcoming Feature Request will use it eventually. We have no test enviroment
+        /// </summary>
+        /// <param name="log"></param>
+        public static void SaveLog(LogTable log)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var sqlQuery = @"INSERT INTO LogTable 
+                (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, CommaSeparatedNoteIds, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
+                VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @CommaSeparatedNoteIds, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
+                cnn.Execute(sqlQuery, log);
+                string sqlQuery1 = "SELECT * FROM LogTable WHERE EmployeeNumber = @EmployeeNumber";
+                var logs = cnn.Query<LogTable>(sqlQuery1, new { EmployeeNumber = log.EmployeeNumber });
+            }
+        }
+
     }
 }
 

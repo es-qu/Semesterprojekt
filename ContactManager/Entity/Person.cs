@@ -1,11 +1,11 @@
-﻿using ContactManager.Entity;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ContactManager
+namespace ContactManager.Entity
 {
+    // this is the base class for other contact type classes Customer, Employee and Trainee
     public class Person
     {
+        // fields
         private int active = 1;
         private string title = string.Empty;
         private string gender = string.Empty;
@@ -24,10 +24,10 @@ namespace ContactManager
         private string businessAddress = string.Empty;
         private List<string> noteIds = new List<string>();
 
-
+        // constructor
         public Person() { }
 
-
+        // properties
         public int Active
         {
             get { return active; }

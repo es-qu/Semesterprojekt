@@ -1,9 +1,6 @@
-﻿namespace ContactManager
+﻿namespace ContactManager.Entity
 {
-    /// <summary>
-    /// This class is to store states of all inputs in search and advanced search
-    /// </summary>
-
+    // This class is to store states of all inputs in search and advanced search
     public class SearchFilters
     {
         // Fields

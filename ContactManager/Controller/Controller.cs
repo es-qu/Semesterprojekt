@@ -3,14 +3,29 @@ using ContactManager.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Security;
-using System.Security.Cryptography;
 using System.Windows.Forms;
 
 namespace ContactManager
 {
     internal class Controller
     {
+        
+        public static string GetNextNumber(string tableName, string columnName, string idType)
+        {
+            return SqliteDataAccess.GetNextNumber(tableName, columnName, idType);
+        }
+
+        public static bool DeleteEmployee(string employeeNumber, bool deleteAllNotes = true)
+        {
+            return SqliteDataAccess.DeleteEmployee(employeeNumber, deleteAllNotes);
+        }
+
+        public static bool DeleteCustomer(string customerNumber, bool deleteAllNotes = true)
+        {
+            return SqliteDataAccess.DeleteCustomer(customerNumber, deleteAllNotes);
+        }
+
+
         public Boolean CreateEmployee(Employee employee, Form form, bool isUpdate = false, bool showSuccessMessage = true)
         {
             Employee e = new Employee
@@ -27,7 +42,7 @@ namespace ContactManager
                 OasiNumber = employee.OasiNumber,
                 DateOfBirth = employee.DateOfBirth,
                 PrivatePhone = employee.PrivatePhone,
-               BusinessPhone = employee.BusinessPhone,
+                BusinessPhone = employee.BusinessPhone,
                 EmailAddress = employee.EmailAddress,
                 BusinessAddress = employee.BusinessAddress,
                 CommaSeparatedNoteIds = employee.CommaSeparatedNoteIds,
@@ -59,7 +74,7 @@ namespace ContactManager
         {
             Trainee t = new Trainee
             {
-               
+
                 FirstName = trainee.FirstName,
                 LastName = trainee.LastName,
                 Gender = trainee.Gender,
@@ -102,9 +117,6 @@ namespace ContactManager
             return true;
         }
 
-
-
-
         public Boolean CreateCustomer(Customer customer, Form form, bool isUpdate = false, bool showSuccessMessage = true)
         {
             Customer c = new Customer
@@ -145,18 +157,6 @@ namespace ContactManager
             }
             return true;
         }
-
-
-
-        public void Log(LogTable log)
-        {
-            log.OperationSuccessful = "";
-            log.DeletionSuccessful = "";
-
-            SqliteDataAccess.SaveLog(log);
-        }
-
-
 
 
         /// <summary>
@@ -378,7 +378,7 @@ namespace ContactManager
             {
                 foreach (string id in ids)
                 {
-                    if(id != "")
+                    if (id != "")
                     {
                         notes.Add(SqliteDataAccess.SearchNote(id));
                     }

@@ -1,5 +1,6 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
+using ContactManager.Entity;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -65,7 +66,7 @@ namespace ContactManager
         private void FormSearchAdvanced_FormClosing(object sender, FormClosingEventArgs e)
         {
             storeSearchAdvancedFilters();
-            parentFormMain.syncSearchGUI();
+            parentFormMain.SyncSearchGUI();
             parentFormMain.CmdSearchExec_Click(sender, e);
         }
 

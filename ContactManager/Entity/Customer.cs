@@ -1,16 +1,18 @@
-﻿namespace ContactManager
+﻿namespace ContactManager.Entity
 {
+    // this is a contact type class and inherits from class person
     public class Customer : Person
     {
+        // fields
         private string companyName = string.Empty;
         private string customerType = string.Empty;
         private string companyContact = string.Empty;
         private string customerNumber = string.Empty;
 
-
+        // constructor
         public Customer() : base() { }
 
-
+        // properties
         public string CompanyName
         {
             get { return companyName; }
