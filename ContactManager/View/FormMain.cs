@@ -27,6 +27,9 @@ namespace ContactManager
         List<object> importContent;
         public string selectedPerson;
 
+        // Public fields
+        public int checkState;
+
         /// <summary>
         /// Enum for all Tabs that are accessable from FormMain GUI
         /// </summary>
@@ -197,8 +200,126 @@ namespace ContactManager
             return ids;
         }
 
+
         /// <summary>
-        /// Read all filled in data from the Create tab and create a new Person (Customer, Employee, Trainee) with it
+        /// Saves the filled out Logtable from the Method LogForm into the Logtable and close the FormMain
+        /// </summary>
+        /// <param name="success"> Bool if the operation did succeed </param>
+        /// <param name="successEvent"> String that will be logged if it was successful </param>
+        /// <param name="failureEvent"> String that will be logged if it was not successful </param>
+        private void LogAndCloseIfSuccessful(bool success, string successEvent, string failureEvent)
+        {
+            string eventType = success ? successEvent : failureEvent;
+            LogTable logInfo = LogForm(eventType);
+
+            if (success)
+            {
+                this.Close();
+            }
+        }
+
+        /// <summary>
+        /// Read all filled out datafields from the Create tab and create a new logTable with it
+        /// </summary>
+        /// <returns> The created LogTable </returns>
+        private LogTable LogForm(string eventType)
+        {
+
+            string gender = RadCreateMale.Checked ? "Male" :
+                RadCreateFemale.Checked ? "Female" :
+                RadCreateOther.Checked ? "Other" : null;
+            LogTable logInfo = new LogTable
+            {
+                EventType = eventType,
+                Active = (int)SwtCreateActive.CheckState,
+                Gender = gender,
+                Salutation = CmbCreateSalutation.SelectedItem?.ToString(),
+                Title = TxtCreateTitle.Text,
+                FirstName = TxtCreateFirstName.Text,
+                LastName = TxtCreateLastName.Text,
+                Address = TxtCreateAddress.Text,
+                PostalCode = TxtCreatePlz.Text,
+                PlaceOfResidence = TxtCreatePlaceOfResidence.Text,
+                Nationality = CmbCreateNationality.SelectedItem?.ToString(),
+                OasiNumber = TxtCreateOasiNr.Text,
+                DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
+                PrivatePhone = TxtCreatePrivatePhone.Text,
+                BusinessAddress = TxtCreateBusinessAddress.Text,
+                BusinessPhone = TxtCreateBusinessPhone.Text,
+                EmailAddress = TxtCreateEmailAddress.Text,
+                //CommaSeparatedNoteIds = string.Join(',', GetIdsFromCurrentContactNotes()),
+                Role = TxtCreateRole.Text,
+                Department = TxtCreateDepartement.Text,
+                DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
+                DateOfLeaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
+                CadreLevel = NumCadreLevel.Value.ToString(),
+                DegreeOfEmployment = NumCreateDegreeOfEmployment.Value.ToString(),
+                CompanyName = TxtCreateCompanyName.Text,
+                CustomerType = CmbCreateCustomerType.Text,
+                CompanyContact = TxtCreateCompanyContact.Text,
+                CurrentApprenticeshipYear = NumCreateCurrentAppYear.Value.ToString("yyyy-MM-dd"),
+                YearsOfApprenticeship = NumCreateYearOfApp.Value.ToString("yyyy-MM-dd"),
+                CustomerNumber = TxtCreateCustomerNumber.Text,
+                EmployeeNumber = TxtCreateEmployeeNumber.Text
+            };
+
+            return logInfo;
+        }
+
+        /// <summary>
+        /// EditMode is off:
+        /// Create an object person with the Method CreatePersonFromForm. 
+        /// Then checks which type it is (Customer, Employee, Trainee) and send it further to the corresponding Create Method
+        /// EditMode is on:
+        /// Create an object person with the Method CreatePersonFromForm. 
+        /// Then checks which type it is (Customer, Employee, Trainee) and send it further to the corresponding DeleteAndRecreate Method
+        /// </summary>
+        /// <param name="logAction"> String for the log </param>
+        private void CreateAndSavePerson(Action<bool, string, string> logAction)
+        {
+            Controller controller = new Controller();
+            var person = CreatePersonFromForm();
+            currentContact = person;
+
+            if (isEditMode == false)
+            {
+                if (person is Trainee trainee)
+                {
+                    bool success = controller.CreateTrainee(trainee, this, false);
+                    logAction(success, "TraineCreationSuccess", "TraineCreationFailure");
+                }
+                else if (person is Employee employee)
+                {
+                    bool success = controller.CreateEmployee(employee, this, false);
+                    logAction(success, "EmployeeCreationSuccess", "EmployeeCreationFailure");
+                }
+                else if (person is Customer customer)
+                {
+                    bool success = controller.CreateCustomer(customer, this, false);
+                    logAction(success, "CustomerCreationSuccess", "CustomerCreationFailure");
+                }
+            }
+            else
+            {
+                Action<bool, string, string> deleteAndRecreateLogAction = isEditMode && checkState == 0 ? logAction : LogAndCloseIfSuccessful;
+
+                if (person is Trainee trainee)
+                {
+                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber), () => controller.CreateTrainee(trainee, this, true), deleteAndRecreateLogAction);
+                }
+                else if (person is Employee employee)
+                {
+                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber), () => controller.CreateEmployee(employee, this, true), deleteAndRecreateLogAction);
+                }
+                else if (person is Customer customer)
+                {
+                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => Controller.DeleteCustomer(custNumber), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Read all filled in datafields from the Create tab and create a new Person (Customer, Employee, Trainee) with it
         /// </summary>
         /// <returns> The created Person as Customer, Employee or Trainee </returns>
         public Person CreatePersonFromForm()
@@ -307,64 +428,6 @@ namespace ContactManager
             }
         }
 
-        private LogTable LogForm(string eventType)
-        {
-
-            string gender = RadCreateMale.Checked ? "Male" :
-                RadCreateFemale.Checked ? "Female" :
-                RadCreateOther.Checked ? "Other" : null;
-            LogTable logInfo = new LogTable
-            {
-                EventType = eventType,
-                Active = (int)SwtCreateActive.CheckState,
-                Gender = gender,
-                Salutation = CmbCreateSalutation.SelectedItem?.ToString(),
-                Title = TxtCreateTitle.Text,
-                FirstName = TxtCreateFirstName.Text,
-                LastName = TxtCreateLastName.Text,
-                Address = TxtCreateAddress.Text,
-                PostalCode = TxtCreatePlz.Text,
-                PlaceOfResidence = TxtCreatePlaceOfResidence.Text,
-                Nationality = CmbCreateNationality.SelectedItem?.ToString(),
-                OasiNumber = TxtCreateOasiNr.Text,
-                DateOfBirth = DatCreateBirthday.Value.ToString("yyyy-MM-dd"),
-                PrivatePhone = TxtCreatePrivatePhone.Text,
-                BusinessAddress = TxtCreateBusinessAddress.Text,
-                BusinessPhone = TxtCreateBusinessPhone.Text,
-                EmailAddress = TxtCreateEmailAddress.Text,
-                //CommaSeparatedNoteIds = string.Join(',', GetIdsFromCurrentContactNotes()),
-                Role = TxtCreateRole.Text,
-                Department = TxtCreateDepartement.Text,
-                DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
-                DateOfLeaving = DatCreateDateOfLeaving.Value.ToString("yyyy-MM-dd"),
-                CadreLevel = NumCadreLevel.Value.ToString(),
-                DegreeOfEmployment = NumCreateDegreeOfEmployment.Value.ToString(),
-                CompanyName = TxtCreateCompanyName.Text,
-                CustomerType = CmbCreateCustomerType.Text,
-                CompanyContact = TxtCreateCompanyContact.Text,
-                CurrentApprenticeshipYear = NumCreateCurrentAppYear.Value.ToString("yyyy-MM-dd"),
-                YearsOfApprenticeship = NumCreateYearOfApp.Value.ToString("yyyy-MM-dd"),
-                CustomerNumber = TxtCreateCustomerNumber.Text,
-                EmployeeNumber = TxtCreateEmployeeNumber.Text
-            };
-
-            return logInfo;
-        }
-
-
-        private void LogAndCloseIfSuccessful(bool success, string successEvent, string failureEvent)
-        {
-            string eventType = success ? successEvent : failureEvent;
-            LogTable logInfo = LogForm(eventType);
-            //Controller controller = new Controller();
-            //controller.Log(logInfo);
-
-            if (success)
-            {
-                this.Close();
-            }
-        }
-
         private void DeleteAndRecreate(string identifier, Func<string, bool> deleteFunc, Func<bool> createFunc, Action<bool, string, string> logAction)
         {
             bool deletionSuccessful = deleteFunc(identifier);
@@ -394,49 +457,6 @@ namespace ContactManager
             }
         }
 
-        public int checkState;
-        private void CreateAndSavePerson(Action<bool, string, string> logAction)
-        {
-            Controller controller = new Controller();
-            var person = CreatePersonFromForm();
-            currentContact = person;
-
-            if (isEditMode == false)
-            {
-                if (person is Trainee trainee)
-                {
-                    bool success = controller.CreateTrainee(trainee, this, false);
-                    logAction(success, "TraineCreationSuccess", "TraineCreationFailure");
-                }
-                else if (person is Employee employee)
-                {
-                    bool success = controller.CreateEmployee(employee, this, false);
-                    logAction(success, "EmployeeCreationSuccess", "EmployeeCreationFailure");
-                }
-                else if (person is Customer customer)
-                {
-                    bool success = controller.CreateCustomer(customer, this, false);
-                    logAction(success, "CustomerCreationSuccess", "CustomerCreationFailure");
-                }
-            }
-            else
-            {
-                Action<bool, string, string> deleteAndRecreateLogAction = isEditMode && checkState == 0 ? logAction : LogAndCloseIfSuccessful;
-
-                if (person is Trainee trainee)
-                {
-                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber), () => controller.CreateTrainee(trainee, this, true), deleteAndRecreateLogAction);
-                }
-                else if (person is Employee employee)
-                {
-                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber), () => controller.CreateEmployee(employee, this, true), deleteAndRecreateLogAction);
-                }
-                else if (person is Customer customer)
-                {
-                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => Controller.DeleteCustomer(custNumber), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
-                }
-            }
-        }
 
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
