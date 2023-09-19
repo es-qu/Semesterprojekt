@@ -20,11 +20,16 @@ namespace ContactManager
 
         public SearchFilters filters = new SearchFilters();
 
+        // Local fields only used in FormMain.cs
         List<object> searchResults;
         Person currentContact;
         List<Note> currentContactNotes;
         List<object> importContent;
+        public string selectedPerson;
 
+        /// <summary>
+        /// Enum for all Tabs that are accessable from FormMain GUI
+        /// </summary>
         public enum Tab
         {
             Create,
@@ -32,6 +37,9 @@ namespace ContactManager
             Import
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public FormMain()
         {
             InitializeComponent();
@@ -41,6 +49,8 @@ namespace ContactManager
 
             //Countries in ComboBox Nationality
             PopulateCountryComboBox();
+
+            //Adding the Numbers to the Textfeld if they are valid
             TxtCreateOasiNr.KeyPress += TxtCreateOasiNr_KeyPress;
 
             // Disable the employee && Customer number text box
@@ -50,8 +60,10 @@ namespace ContactManager
 
         }
 
-        public string selectedPerson;
-
+        /// <summary>
+        /// Overloading constructor with different Tabs 
+        /// </summary>
+        /// <param name="selectedTab"> Tab ID </param>
         public FormMain(int selectedTab) : this()
         {
             Tab tab = (Tab)selectedTab;
@@ -75,7 +87,9 @@ namespace ContactManager
             }
         }
 
-        //FormMain_Load
+        /// <summary>
+        /// Resets the FormMain state and clears inputs
+        /// </summary>
         private void ResetFormState()
         {
             //Don't show employee & trainee elements.
@@ -140,13 +154,17 @@ namespace ContactManager
 
         }
 
-
+        /// <summary>
+        /// Resets the Form if it's loaded again with the Method ResetFormState
+        /// </summary>
         private void FormMain_Load(object sender, EventArgs e)
         {
             ResetFormState();
         }
 
-
+        /// <summary>
+        /// Checks if input in textfeld OasiNr is valid, otherwise throw a tooltip
+        /// </summary>
         private void TxtCreateOasiNr_KeyPress(object sender, KeyPressEventArgs e)
         {
             // If the key pressed is not a digit and not a dot, consume the key event (do not input the key)
@@ -160,6 +178,10 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Create a new list and fills it with all note ids from the selected contact
+        /// </summary>
+        /// <returns> the created list </returns>
         public List<string> GetIdsFromCurrentContactNotes()
         {
             List<string> ids = new List<string>();
@@ -175,6 +197,10 @@ namespace ContactManager
             return ids;
         }
 
+        /// <summary>
+        /// Read all filled in data from the Create tab and create a new Person (Customer, Employee, Trainee) with it
+        /// </summary>
+        /// <returns> The created Person as Customer, Employee or Trainee </returns>
         public Person CreatePersonFromForm()
         {
             string gender = RadCreateMale.Checked ? "Male" :
@@ -280,6 +306,7 @@ namespace ContactManager
                 throw new Exception("Neither Customer nor Employee was selected");
             }
         }
+
         private LogTable LogForm(string eventType)
         {
 
