@@ -9,23 +9,44 @@ namespace ContactManager
 {
     internal class Controller
     {
-        
+        /// <summary>
+        /// Sending the parameters from FormMain.cs in View to the corresponding Method in SqliteDataAccess.cs in Model
+        /// </summary>
+        /// <returns> the final number as string </returns>
         public static string GetNextNumber(string tableName, string columnName, string idType)
         {
             return SqliteDataAccess.GetNextNumber(tableName, columnName, idType);
         }
 
+        /// <summary>
+        /// Sending the parameters from FormMain.cs in View to the corresponding Method in SqliteDataAccess.cs in Model
+        /// </summary>
+        /// <returns> true if successful </returns>
         public static bool DeleteEmployee(string employeeNumber, bool deleteAllNotes = true)
         {
             return SqliteDataAccess.DeleteEmployee(employeeNumber, deleteAllNotes);
         }
 
+        /// <summary>
+        /// Sending the parameters from FormMain.cs in View to the corresponding Method in SqliteDataAccess.cs in Model
+        /// </summary>
+        /// <returns> true if successful </returns>
         public static bool DeleteCustomer(string customerNumber, bool deleteAllNotes = true)
         {
             return SqliteDataAccess.DeleteCustomer(customerNumber, deleteAllNotes);
         }
 
+        /// <summary>
+        /// Sending the parameters from FormMain.cs in View to the corresponding Method in SqliteDataAccess.cs in Model
+        /// </summary>
+        public static bool SaveNote(Person associatedContact, Note note)
+        {
+            return SqliteDataAccess.SaveNote(associatedContact, note);
+        }
 
+
+
+        // ------------------- Needs to create a new Object Customer, Employee, Trainee? ---------------------------------------
         public Boolean CreateEmployee(Employee employee, Form form, bool isUpdate = false, bool showSuccessMessage = true)
         {
             Employee e = new Employee
@@ -157,6 +178,7 @@ namespace ContactManager
             }
             return true;
         }
+
 
 
         /// <summary>
@@ -370,6 +392,10 @@ namespace ContactManager
             return res;
         }
 
+        /// <summary>
+        /// Create a new list and fills it with all notes from the SqliteDataAccess.cs for the current contact
+        /// </summary>
+        /// <returns> the created list </returns>
         public static List<Note> GetNotes(List<string> ids)
         {
             List<Note> notes = new List<Note>();
@@ -386,11 +412,6 @@ namespace ContactManager
             }
 
             return notes;
-        }
-
-        public static bool SaveNote(Person associatedContact, Note note)
-        {
-            return SqliteDataAccess.SaveNote(associatedContact, note);
         }
     }
 }
