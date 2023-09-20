@@ -172,9 +172,153 @@ namespace ContactManager
             ResetFormState();
         }
 
+        /// <summary>
+        /// On closing of the form open the menu again
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Form menu = new FormMenu();
+            menu.Show();
+        }
+
+
+        private void TCtrlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (searchResults != null)
+            {
+
+                // Visability Delete Button
+                CmdCreateDeletePerson.Visible = true;
+
+                // Edit
+
+                DataGridViewRow currentRow = DataGridViewSearchResult.Rows[DataGridViewSearchResult.SelectedCells[0].RowIndex];
+
+                if (currentRow != null && currentRow.Index < searchResults.Count)
+                {
+                    Person contact = (Person)searchResults[currentRow.Index];
+
+                    // Fill out generic fields
+                    SwtCreateActive.Checked = (contact.Active == 0) ? false : true;
+
+                    switch (contact.Gender)
+                    {
+                        case "Female":
+                            RadCreateFemale.Checked = true;
+                            break;
+
+                        case "Male":
+                            RadCreateMale.Checked = true;
+                            break;
+
+                        case "Other":
+                            RadCreateOther.Checked = true;
+                            break;
+
+                        default:
+                            RadCreateFemale.Checked = true;
+                            RadCreateMale.Checked = false;
+                            RadCreateOther.Checked = false;
+                            break;
+                    }
+
+                    foreach (var item in CmbCreateSalutation.Items)
+                    {
+                        if (item.ToString() == contact.Salutation) CmbCreateSalutation.SelectedItem = item;
+                    }
+                    TxtCreateTitle.Text = contact.Title;
+                    TxtCreateFirstName.Text = contact.FirstName;
+                    TxtCreateLastName.Text = contact.LastName;
+                    TxtCreateAddress.Text = contact.Address;
+                    TxtCreatePlz.Text = contact.PostalCode;
+                    TxtCreatePlaceOfResidence.Text = contact.PlaceOfResidence;
+                    foreach (var item in CmbCreateNationality.Items)
+                    {
+                        if (item.ToString() == contact.Nationality) CmbCreateNationality.SelectedItem = item;
+                    }
+                    TxtCreateOasiNr.Text = contact.OasiNumber;
+                    DatCreateBirthday.Text = contact.DateOfBirth;
+                    TxtCreatePrivatePhone.Text = contact.PrivatePhone;
+                    TxtCreateEmailAddress.Text = contact.EmailAddress;
+                    TxtCreateBusinessPhone.Text = contact.BusinessPhone;
+                    TxtCreateBusinessAddress.Text = contact.BusinessAddress;
+                    TxtCreateBusinessPhone.Text = contact.BusinessPhone;
+
+                    // Fill out specific fields
+                    Type type = contact.GetType();
+
+                    if (type == typeof(Customer))
+                    {
+                        Customer customer = (Customer)contact;
+                        RadCreateCustomer.Checked = true;
+                        TxtCreateCustomerNumber.Text = customer.CustomerNumber;
+                        foreach (var item in CmbCreateCustomerType.Items)
+                        {
+                            if (item.ToString() == customer.CustomerType) CmbCreateCustomerType.SelectedItem = item;
+                        }
+                        TxtCreateCompanyName.Text = customer.CompanyName;
+                        TxtCreateCompanyContact.Text = customer.CompanyContact;
+                    }
+                    else if (type == typeof(Employee))
+                    {
+                        Employee employee = (Employee)contact;
+                        RadCreateEmployee.Checked = true;
+                        TxtCreateEmployeeNumber.Text = employee.EmployeeNumber;
+                        NumCreateDegreeOfEmployment.Value = Convert.ToInt32(employee.DegreeOfEmployment);
+                        TxtCreateDepartement.Text = employee.Department;
+                        TxtCreateRole.Text = employee.Role;
+                        NumCadreLevel.Value = Convert.ToInt32(employee.CadreLevel);
+                        DatCreateDateOfJoining.Text = employee.DateOfJoining;
+                        DatCreateDateOfLeaving.Text = employee.DateOfLeaving;
+                    }
+                    else if (type == typeof(Trainee))
+                    {
+                        Trainee trainee = (Trainee)contact;
+                        RadCreateEmployee.Checked = true;
+                        ChkCreateTrainee.Checked = true;
+                        NumCreateDegreeOfEmployment.Value = Convert.ToInt32(trainee.DegreeOfEmployment);
+                        TxtCreateDepartement.Text = trainee.Department;
+                        TxtCreateRole.Text = trainee.Role;
+                        NumCadreLevel.Value = Convert.ToInt32(trainee.CadreLevel);
+                        DatCreateDateOfJoining.Text = trainee.DateOfJoining;
+                        DatCreateDateOfLeaving.Text = trainee.DateOfLeaving;
+                        NumCreateCurrentAppYear.Value = Convert.ToInt32(trainee.CurrentApprenticeshipYear);
+                        NumCreateYearOfApp.Value = Convert.ToInt32(trainee.YearsOfApprenticeship);
+                    }
+
+                }
+                else
+                {
+                    // Create
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sync the search GUI with the input states in filters object
+        /// </summary>
+        public void SyncSearchGUI()
+        {
+            // Check boxes
+            ChkSearchInactive.Checked = filters.SearchInactive;
+
+            ChkSearchTypeCustomer.Checked = filters.TypeCustomer;
+            ChkSearchTypeEmployee.Checked = filters.TypeEmployee;
+            ChkSearchTypeTrainee.Checked = filters.TypeTrainee;
+
+            // Quick search
+            TxtSearchFirstName.Text = filters.FirstName;
+            TxtSearchLastName.Text = filters.LastName;
+            TxtSearchNumber.Text = filters.Number;
+            TxtSearchAddress.Text = filters.Address;
+            TxtSearchPlaceOfResidence.Text = filters.PlaceOfResidence;
+            TxtSearchDateOfBirth.Text = filters.DateOfBirth;
+        }
+
 
         // --------------------- Contact/Person methods ----------------------- //
-
 
 
         /// <summary>
@@ -361,72 +505,6 @@ namespace ContactManager
             }
         }
 
-
-        /// <summary>
-        /// Search on enter keydown event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Search_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                CmdSearchExec_Click(sender, e);
-            }
-        }
-
-        /// <summary>
-        /// Clear fulltext input when entering filter inputs
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SearchFilters_Enter(object sender, EventArgs e)
-        {
-            TxtSearch.Clear();
-        }
-
-        /// <summary>
-        /// Sync the search GUI with the input states in filters object
-        /// </summary>
-        public void SyncSearchGUI()
-        {
-            // Check boxes
-            ChkSearchInactive.Checked = filters.SearchInactive;
-
-            ChkSearchTypeCustomer.Checked = filters.TypeCustomer;
-            ChkSearchTypeEmployee.Checked = filters.TypeEmployee;
-            ChkSearchTypeTrainee.Checked = filters.TypeTrainee;
-
-            // Quick search
-            TxtSearchFirstName.Text = filters.FirstName;
-            TxtSearchLastName.Text = filters.LastName;
-            TxtSearchNumber.Text = filters.Number;
-            TxtSearchAddress.Text = filters.Address;
-            TxtSearchPlaceOfResidence.Text = filters.PlaceOfResidence;
-            TxtSearchDateOfBirth.Text = filters.DateOfBirth;
-        }
-
-        /// <summary>
-        /// Save the states of all inputs into filters object
-        /// </summary>
-        public void StoreSearchFilters()
-        {
-            // Check boxes
-            filters.SearchInactive = ChkSearchInactive.Checked;
-
-            filters.TypeCustomer = ChkSearchTypeCustomer.Checked;
-            filters.TypeEmployee = ChkSearchTypeEmployee.Checked;
-            filters.TypeTrainee = ChkSearchTypeTrainee.Checked;
-
-            // Quick search
-            filters.FirstName = TxtSearchFirstName.Text;
-            filters.LastName = TxtSearchLastName.Text;
-            filters.Number = TxtSearchNumber.Text;
-            filters.Address = TxtSearchAddress.Text;
-            filters.PlaceOfResidence = TxtSearchPlaceOfResidence.Text;
-            filters.DateOfBirth = TxtSearchDateOfBirth.Text;
-        }
-
         /// <summary>
         /// Insert customer or employeenumber into the corresponding textfield and deselect the not matching radiobutton
         /// </summary>
@@ -454,8 +532,8 @@ namespace ContactManager
         }
 
 
-
         // --------------------- Log and Notes methods ----------------------- //
+
 
         /// <summary>
         /// Create a new list and fills it with all note ids from the selected contact
@@ -561,129 +639,379 @@ namespace ContactManager
             return logInfo;
         }
 
-
-
-        // --------------------- Buttons and interactable GUI Elements ----------------------- //
-
-
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        /// <summary>
+        /// Enables the button to save notes if there is a string and a contact 
+        /// </summary>
+        private void TxtSearchNewNote_TextChanged(object sender, EventArgs e)
         {
-            Form menu = new FormMenu();
-            menu.Show();
+            CmdSearchSaveNewNote.Enabled = (TxtSearchNewNote.Text != string.Empty && currentContact != null);
         }
 
-        private void TCtrlMain_SelectedIndexChanged(object sender, EventArgs e)
+
+        // --------------------- Helper methods ----------------------- //
+
+
+        /// <summary>
+        /// Checks if all mandatoryfields are filled out and throw a messagebox if not
+        /// </summary>
+        /// <returns> True if everything is filled out correctly </returns>
+        private bool CheckMandatroyFields()
         {
-            if (searchResults != null)
+            // Variables for If-Statements
+            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
+            Regex regexEmailValidation = new Regex("^[^@\\s]+@[^@\\s]+\\.(\\w{1,2}\\D)$");
+            var dateMin = new DateTime(1900, 1, 1);
+            var dateMax = new DateTime(2100, 1, 1);
+
+
+            // Handle the case when no radio button is selected for person type
+            if (!RadCreateCustomer.Checked && !RadCreateEmployee.Checked)
             {
+                MessageBox.Show("Please select a type");
+                return false;
+            }
 
-                // Visability Delete Button
-                CmdCreateDeletePerson.Visible = true;
+            // Handle the case when no radio button is selected for gender
+            if (!RadCreateMale.Checked && !RadCreateFemale.Checked && !RadCreateOther.Checked)
+            {
+                MessageBox.Show("Please select a gender");
+                return false;
+            }
 
-                // Edit
+            // Check if the first name contains only letters and is not empty
+            if (TxtCreateFirstName.Text == "")
+            {
+                MessageBox.Show("The first name can not be empty");
+                return false;
+            }
+            else if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
+            {
+                MessageBox.Show("The first name can only contain letters");
+                return false;
+            }
 
-                DataGridViewRow currentRow = DataGridViewSearchResult.Rows[DataGridViewSearchResult.SelectedCells[0].RowIndex];
+            // Check if the last name contains only letters and is not empty
+            if (TxtCreateLastName.Text == "")
+            {
+                MessageBox.Show("The last name can not be empty");
+                return false;
+            }
+            else if (!regexLetters.IsMatch(TxtCreateLastName.Text))
+            {
+                MessageBox.Show("The last name can only contain letters");
+                return false;
+            }
 
-                if (currentRow != null && currentRow.Index < searchResults.Count)
+            // Check if the address is not empty
+            if (TxtCreateAddress.Text == "")
+            {
+                MessageBox.Show("The address can not be empty");
+                return false;
+            }
+
+            // Check if the postal code is not empty
+            if (TxtCreatePlz.Text == "")
+            {
+                MessageBox.Show("The postal code can not be empty");
+                return false;
+            }
+
+            // Check if the Place of residence is not empty
+            if (TxtCreatePlaceOfResidence.Text == "")
+            {
+                MessageBox.Show("The place of residence can not be empty");
+                return false;
+            }
+
+            // Check if the Birthday is changed
+            if (dateMax > DatCreateBirthday.Value && DatCreateBirthday.Value > dateMin && DatCreateBirthday.Value < DateTime.Today)
+            {
+                Debug.WriteLine("Date is correct");
+            }
+            else
+            {
+                MessageBox.Show("Please set the date of birth");
+                return false;
+            }
+
+            // Check if the Email is not empty
+            if (TxtCreateEmailAddress.Text == "")
+            {
+                MessageBox.Show("The email address can not be empty");
+                return false;
+            }
+            else if (!regexEmailValidation.IsMatch(TxtCreateEmailAddress.Text))
+            {
+                MessageBox.Show("The email address needs to be valid");
+                return false;
+            }
+
+
+            //--------------------------------------
+            //              Customer
+            //--------------------------------------
+            if (RadCreateCustomer.Checked)
+            {
+                // Check if the customer Type has changed
+                if (CmbCreateCustomerType.Text == "-" || CmbCreateCustomerType.Text == "")
                 {
-                    Person contact = (Person)searchResults[currentRow.Index];
+                    MessageBox.Show("Please select the customer type (A-E)");
+                    return false;
+                }
 
-                    // Fill out generic fields
-                    SwtCreateActive.Checked = (contact.Active == 0) ? false : true;
+                // Check if the Company Name is not empty
+                if (TxtCreateCompanyName.Text == "")
+                {
+                    MessageBox.Show("The company name can not be empty");
+                    return false;
+                }
 
-                    switch (contact.Gender)
-                    {
-                        case "Female":
-                            RadCreateFemale.Checked = true;
-                            break;
+                // Check if the Company contact is not empty
+                if (TxtCreateCompanyContact.Text == "")
+                {
+                    MessageBox.Show("The company contact can not be empty");
+                    return false;
+                }
+            }
+            //--------------------------------------
+            //              Employee
+            //--------------------------------------
+            if (RadCreateEmployee.Checked)
+            {
+                // Check if the degree of employment is not empty
+                if (NumCreateDegreeOfEmployment.Value < 1)
+                {
+                    MessageBox.Show("The degree of employment needs to be over zero");
+                    return false;
+                }
 
-                        case "Male":
-                            RadCreateMale.Checked = true;
-                            break;
-
-                        case "Other":
-                            RadCreateOther.Checked = true;
-                            break;
-
-                        default:
-                            RadCreateFemale.Checked = true;
-                            RadCreateMale.Checked = false;
-                            RadCreateOther.Checked = false;
-                            break;
-                    }
-
-                    foreach (var item in CmbCreateSalutation.Items)
-                    {
-                        if (item.ToString() == contact.Salutation) CmbCreateSalutation.SelectedItem = item;
-                    }
-                    TxtCreateTitle.Text = contact.Title;
-                    TxtCreateFirstName.Text = contact.FirstName;
-                    TxtCreateLastName.Text = contact.LastName;
-                    TxtCreateAddress.Text = contact.Address;
-                    TxtCreatePlz.Text = contact.PostalCode;
-                    TxtCreatePlaceOfResidence.Text = contact.PlaceOfResidence;
-                    foreach (var item in CmbCreateNationality.Items)
-                    {
-                        if (item.ToString() == contact.Nationality) CmbCreateNationality.SelectedItem = item;
-                    }
-                    TxtCreateOasiNr.Text = contact.OasiNumber;
-                    DatCreateBirthday.Text = contact.DateOfBirth;
-                    TxtCreatePrivatePhone.Text = contact.PrivatePhone;
-                    TxtCreateEmailAddress.Text = contact.EmailAddress;
-                    TxtCreateBusinessPhone.Text = contact.BusinessPhone;
-                    TxtCreateBusinessAddress.Text = contact.BusinessAddress;
-                    TxtCreateBusinessPhone.Text = contact.BusinessPhone;
-
-                    // Fill out specific fields
-                    Type type = contact.GetType();
-
-                    if (type == typeof(Customer))
-                    {
-                        Customer customer = (Customer)contact;
-                        RadCreateCustomer.Checked = true;
-                        TxtCreateCustomerNumber.Text = customer.CustomerNumber;
-                        foreach (var item in CmbCreateCustomerType.Items)
-                        {
-                            if (item.ToString() == customer.CustomerType) CmbCreateCustomerType.SelectedItem = item;
-                        }
-                        TxtCreateCompanyName.Text = customer.CompanyName;
-                        TxtCreateCompanyContact.Text = customer.CompanyContact;
-                    }
-                    else if (type == typeof(Employee))
-                    {
-                        Employee employee = (Employee)contact;
-                        RadCreateEmployee.Checked = true;
-                        TxtCreateEmployeeNumber.Text = employee.EmployeeNumber;
-                        NumCreateDegreeOfEmployment.Value = Convert.ToInt32(employee.DegreeOfEmployment);
-                        TxtCreateDepartement.Text = employee.Department;
-                        TxtCreateRole.Text = employee.Role;
-                        NumCadreLevel.Value = Convert.ToInt32(employee.CadreLevel);
-                        DatCreateDateOfJoining.Text = employee.DateOfJoining;
-                        DatCreateDateOfLeaving.Text = employee.DateOfLeaving;
-                    }
-                    else if (type == typeof(Trainee))
-                    {
-                        Trainee trainee = (Trainee)contact;
-                        RadCreateEmployee.Checked = true;
-                        ChkCreateTrainee.Checked = true;
-                        NumCreateDegreeOfEmployment.Value = Convert.ToInt32(trainee.DegreeOfEmployment);
-                        TxtCreateDepartement.Text = trainee.Department;
-                        TxtCreateRole.Text = trainee.Role;
-                        NumCadreLevel.Value = Convert.ToInt32(trainee.CadreLevel);
-                        DatCreateDateOfJoining.Text = trainee.DateOfJoining;
-                        DatCreateDateOfLeaving.Text = trainee.DateOfLeaving;
-                        NumCreateCurrentAppYear.Value = Convert.ToInt32(trainee.CurrentApprenticeshipYear);
-                        NumCreateYearOfApp.Value = Convert.ToInt32(trainee.YearsOfApprenticeship);
-                    }
-
+                // Check if the date of joining is changed
+                if (dateMax > DatCreateDateOfJoining.Value && DatCreateDateOfJoining.Value > dateMin)
+                {
+                    Debug.WriteLine("Date is correct");
                 }
                 else
                 {
-                    // Create
+                    MessageBox.Show("Please set the date of joining");
+                    return false;
                 }
+
+
+                // looks if Employee is a Trainee
+                if (ChkCreateTrainee.Checked)
+                {
+                    // Check if the years of apprenticeship is not empty
+                    if (NumCreateYearOfApp.Value < 1)
+                    {
+                        MessageBox.Show("The years of apprenticeship needs to be over zero");
+                        return false;
+                    }
+                }
+            }
+
+            //Everthing Mandatory is filled out
+            return true;
+        }
+
+        /// <summary>
+        /// Adding countries in dropdown field
+        /// </summary>
+        private void PopulateCountryComboBox()
+        {
+
+            // Get the list of all countries using CultureInfo
+            List<string> countriesList = new List<string>();
+            foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
+            {
+                RegionInfo region = new RegionInfo(ci.Name);
+                if (!countriesList.Contains(region.EnglishName))
+                {
+                    countriesList.Add(region.EnglishName);
+                }
+            }
+
+            // Sort the list of countries alphabetically
+            countriesList.Sort();
+
+            // Populate the ComboBox with the list of countries
+            CmbCreateNationality.DataSource = countriesList;
+
+
+        }
+
+        /// <summary>
+        /// Save the states of all inputs into filters object
+        /// </summary>
+        public void StoreSearchFilters()
+        {
+            // Check boxes
+            filters.SearchInactive = ChkSearchInactive.Checked;
+
+            filters.TypeCustomer = ChkSearchTypeCustomer.Checked;
+            filters.TypeEmployee = ChkSearchTypeEmployee.Checked;
+            filters.TypeTrainee = ChkSearchTypeTrainee.Checked;
+
+            // Quick search
+            filters.FirstName = TxtSearchFirstName.Text;
+            filters.LastName = TxtSearchLastName.Text;
+            filters.Number = TxtSearchNumber.Text;
+            filters.Address = TxtSearchAddress.Text;
+            filters.PlaceOfResidence = TxtSearchPlaceOfResidence.Text;
+            filters.DateOfBirth = TxtSearchDateOfBirth.Text;
+        }
+
+        public List<Person> ParseCsvWithReflection(string csvContent)
+        {
+            var lines = csvContent.Split('\n');
+            var people = new List<Person>();
+            var headers = lines[0].Split(',').Select(h => h.Trim()).ToArray();
+
+            for (int i = 1; i < lines.Length; i++) // Starting from 1 to skip the header
+            {
+                var line = lines[i].Trim();
+                if (!string.IsNullOrWhiteSpace(line))
+                {
+                    var columns = line.Split(',');
+
+                    // Determine the type based on specific fields in the CSV for each row
+                    // Customer specific
+                    int companyNameIndex = Array.IndexOf(headers, "CompanyName");
+                    int customerTypeIndex = Array.IndexOf(headers, "CustomerType");
+                    int companyContactIndex = Array.IndexOf(headers, "CompanyContact");
+                    int customerNumberIndex = Array.IndexOf(headers, "CustomerNumber");
+                    // Employee or Trainee
+                    int departmentIndex = Array.IndexOf(headers, "Department");
+                    int roleIndex = Array.IndexOf(headers, "Role");
+                    int cadreLevelIndex = Array.IndexOf(headers, "CadreLevel");
+                    int degreeOfEmploymentIndex = Array.IndexOf(headers, "DegreeOfEmployment");
+                    int dateOfJoiningIndex = Array.IndexOf(headers, "DateOfJoining");
+                    int dateOfLeavingIndex = Array.IndexOf(headers, "DateOfLeaving");
+                    int employeeNumberIndex = Array.IndexOf(headers, "EmployeeNumber");
+                    // Trainee
+                    int currentApprenticeshipYearIndex = Array.IndexOf(headers, "CurrentApprenticeshipYear");
+                    int yearsOfApprenticeshipIndex = Array.IndexOf(headers, "YearsOfApprenticeship");
+
+                    Person person;
+                    if ((companyNameIndex != -1 && !string.IsNullOrWhiteSpace(columns[companyNameIndex])) ||
+                    (customerTypeIndex != -1 && !string.IsNullOrWhiteSpace(columns[customerTypeIndex])) ||
+                    (companyContactIndex != -1 && !string.IsNullOrWhiteSpace(columns[companyContactIndex])) ||
+                    (customerNumberIndex != -1 && !string.IsNullOrWhiteSpace(columns[customerNumberIndex])))
+                    {
+                        person = new Customer();
+                    }
+                    else if ((departmentIndex != -1 && !string.IsNullOrWhiteSpace(columns[departmentIndex])) ||
+                    (roleIndex != -1 && !string.IsNullOrWhiteSpace(columns[roleIndex])) ||
+                    (cadreLevelIndex != -1 && !string.IsNullOrWhiteSpace(columns[cadreLevelIndex])) ||
+                    (degreeOfEmploymentIndex != -1 && !string.IsNullOrWhiteSpace(columns[degreeOfEmploymentIndex])) ||
+                    (dateOfJoiningIndex != -1 && !string.IsNullOrWhiteSpace(columns[dateOfJoiningIndex])) ||
+                    (dateOfLeavingIndex != -1 && !string.IsNullOrWhiteSpace(columns[dateOfLeavingIndex])) ||
+                    (employeeNumberIndex != -1 && !string.IsNullOrWhiteSpace(columns[employeeNumberIndex])))
+                    {
+                        if ((currentApprenticeshipYearIndex != -1 && !string.IsNullOrWhiteSpace(columns[currentApprenticeshipYearIndex])) ||
+                        (yearsOfApprenticeshipIndex != -1 && !string.IsNullOrWhiteSpace(columns[yearsOfApprenticeshipIndex])))
+                        {
+                            person = new Trainee();
+                        }
+                        else
+                        {
+                            person = new Employee();
+                        }
+                    }
+                    else
+                    {
+                        person = new Customer();  // Defaulting to Customer
+                    }
+
+
+                    // Reflect on the determined type
+                    var type = person.GetType();
+
+                    for (int j = 0; j < headers.Length; j++)
+                    {
+                        var prop = type.GetProperty(headers[j]);
+                        if (prop != null && j < columns.Length)
+                        {
+                            Type propType = prop.PropertyType;
+
+                            if (propType == typeof(Int32))
+                            {
+                                prop.SetValue(person, Convert.ToInt32(columns[j].Trim()));
+                            }
+                            else
+                            {
+                                prop.SetValue(person, columns[j].Trim());
+                            }
+                        }
+                    }
+
+                    people.Add(person);
+                }
+            }
+
+            return people;
+        }
+
+
+        // --------------------- Keyinput methods ----------------------- //
+
+
+        /// <summary>
+        /// Search on enter keydown event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Search_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CmdSearchExec_Click(sender, e);
             }
         }
 
+        /// <summary>
+        /// Checks if input in textfeld OasiNr is valid, otherwise throw a tooltip
+        /// </summary>
+        private void TxtCreateOasiNr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // If the key pressed is not a digit and not a dot, consume the key event (do not input the key)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+
+                // Show a tooltip to inform the user that only numbers and dots are allowed
+                System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+                toolTip.Show("Only numbers allowed", (Control)sender, 0, ((Control)sender).Height, 2000);
+            }
+        }
+
+
+        // ----------------- Buttons and interactable GUI Elements ------------------- //
+
+
+        /// <summary>
+        /// Clear filters when entering fulltext input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtSearch_Enter(object sender, EventArgs e)
+        {
+            TxtSearchFirstName.Clear();
+            TxtSearchLastName.Clear();
+            TxtSearchNumber.Clear();
+            TxtSearchAddress.Clear();
+            TxtSearchPlaceOfResidence.Clear();
+            TxtSearchDateOfBirth.Clear();
+        }
+
+        /// <summary>
+        /// Clear fulltext input when entering filter inputs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SearchFilters_Enter(object sender, EventArgs e)
+        {
+            TxtSearch.Clear();
+        }
 
 
         /// <summary>
@@ -1014,29 +1342,7 @@ namespace ContactManager
         }
 
 
-
-        /// <summary>
-        /// Clear filters when entering fulltext input
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TxtSearch_Enter(object sender, EventArgs e)
-        {
-            TxtSearchFirstName.Clear();
-            TxtSearchLastName.Clear();
-            TxtSearchNumber.Clear();
-            TxtSearchAddress.Clear();
-            TxtSearchPlaceOfResidence.Clear();
-            TxtSearchDateOfBirth.Clear();
-        }
-
-        private void TxtSearchNewNote_TextChanged(object sender, EventArgs e)
-        {
-            CmdSearchSaveNewNote.Enabled = (TxtSearchNewNote.Text != string.Empty && currentContact != null);
-        }
-
-
-        // Checks if Customer, Employee or Trainee will be created and update the Createform
+        // Checks if Customer, Employee or Trainee will be created and update the createform
         private void RadCreateCustomer_CheckedChanged(object sender, EventArgs e)
         {
             LblCreateTypeSelection.Visible = false;
@@ -1113,13 +1419,19 @@ namespace ContactManager
             }
         }
 
+
+        /// <summary>
+        /// Progressbar will be updated if degree of employment changes, GUI
+        /// </summary>
         private void NumCreateDegreeOfEmployment_ValueChanged(object sender, EventArgs e)
         {
             PrgDegreeOfEmployment.Value = Convert.ToInt16(NumCreateDegreeOfEmployment.Value);
         }
 
 
-
+        /// <summary>
+        /// Creates a person after checking mandatoryfields
+        /// </summary>
         private void CmdCreatePerson_Click(object sender, EventArgs e)
         {
             if (CheckMandatroyFields())
@@ -1128,6 +1440,9 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Creates a person after checking mandatoryfields, opens new create form
+        /// </summary>
         private void CmdCreatePersonSaveAndNew_Click(object sender, EventArgs e)
         {
             if (CheckMandatroyFields())
@@ -1311,6 +1626,9 @@ namespace ContactManager
 
         }
 
+        /// <summary>
+        /// Delete selected person after a warning messagebox
+        /// </summary>
         private void CmdSearchPersonDelete_Click(object sender, EventArgs e)
         {
             if (DataGridViewSearchResult.SelectedCells != null)
@@ -1371,11 +1689,17 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Close search form
+        /// </summary>
         private void CmdSearchCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// Checks if input is valid and then saves the new note
+        /// </summary>
         private void CmdSearchNoteSave_Click(object sender, EventArgs e)
         {
             DataGridViewSearchNotes.DataSource = null;
@@ -1411,6 +1735,9 @@ namespace ContactManager
             TxtSearchNewNote.Clear();
         }
 
+        /// <summary>
+        /// Throw a warning and if accepted deletes the person
+        /// </summary>
         private void CmdCreateDeletePerson_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show($"Are you sure you want to delete {TxtCreateFirstName.Text} {TxtCreateLastName.Text}?",
@@ -1478,6 +1805,9 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Open the explorer to select a file and shows it as a preview in the DataGrid
+        /// </summary>
         private void CmdImportOpenFile_Click(object sender, EventArgs e)
         {
             //Open dialog
@@ -1532,6 +1862,9 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Imports and adds all contacts from the selected file and showing a progressbar
+        /// </summary>
         private void CmdImportConfirm_Click(object sender, EventArgs e)
         {
             ProgrBarImport.Value = 0;
@@ -1584,309 +1917,14 @@ namespace ContactManager
             ProgrBarImport.Visible = false;
         }
 
+        /// <summary>
+        /// Close import form
+        /// </summary>
         private void CmdImportCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-
-        // --------------------- Helper methods ----------------------- //
-
-
-        /// <summary>
-        /// Checks if input in textfeld OasiNr is valid, otherwise throw a tooltip
-        /// </summary>
-        private void TxtCreateOasiNr_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            // If the key pressed is not a digit and not a dot, consume the key event (do not input the key)
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true;
-
-                // Show a tooltip to inform the user that only numbers and dots are allowed
-                System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
-                toolTip.Show("Only numbers allowed", (Control)sender, 0, ((Control)sender).Height, 2000);
-            }
-        }
-
-        /// <summary>
-        /// Checks if all mandatoryfields are filled out and throw a messagebox if not
-        /// </summary>
-        /// <returns> True if everything is filled out correctly </returns>
-        private bool CheckMandatroyFields()
-        {
-            // Variables for If-Statements
-            Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
-            Regex regexEmailValidation = new Regex("^[^@\\s]+@[^@\\s]+\\.(\\w{1,2}\\D)$");
-            var dateMin = new DateTime(1900, 1, 1);
-            var dateMax = new DateTime(2100, 1, 1);
-
-
-            // Handle the case when no radio button is selected for person type
-            if (!RadCreateCustomer.Checked && !RadCreateEmployee.Checked)
-            {
-                MessageBox.Show("Please select a type");
-                return false;
-            }
-
-            // Handle the case when no radio button is selected for gender
-            if (!RadCreateMale.Checked && !RadCreateFemale.Checked && !RadCreateOther.Checked)
-            {
-                MessageBox.Show("Please select a gender");
-                return false;
-            }
-
-            // Check if the first name contains only letters and is not empty
-            if (TxtCreateFirstName.Text == "")
-            {
-                MessageBox.Show("The first name can not be empty");
-                return false;
-            }
-            else if (!regexLetters.IsMatch(TxtCreateFirstName.Text))
-            {
-                MessageBox.Show("The first name can only contain letters");
-                return false;
-            }
-
-            // Check if the last name contains only letters and is not empty
-            if (TxtCreateLastName.Text == "")
-            {
-                MessageBox.Show("The last name can not be empty");
-                return false;
-            }
-            else if (!regexLetters.IsMatch(TxtCreateLastName.Text))
-            {
-                MessageBox.Show("The last name can only contain letters");
-                return false;
-            }
-
-            // Check if the address is not empty
-            if (TxtCreateAddress.Text == "")
-            {
-                MessageBox.Show("The address can not be empty");
-                return false;
-            }
-
-            // Check if the postal code is not empty
-            if (TxtCreatePlz.Text == "")
-            {
-                MessageBox.Show("The postal code can not be empty");
-                return false;
-            }
-
-            // Check if the Place of residence is not empty
-            if (TxtCreatePlaceOfResidence.Text == "")
-            {
-                MessageBox.Show("The place of residence can not be empty");
-                return false;
-            }
-
-            // Check if the Birthday is changed
-            if (dateMax > DatCreateBirthday.Value && DatCreateBirthday.Value > dateMin && DatCreateBirthday.Value < DateTime.Today)
-            {
-                Debug.WriteLine("Date is correct");
-            }
-            else
-            {
-                MessageBox.Show("Please set the date of birth");
-                return false;
-            }
-
-            // Check if the Email is not empty
-            if (TxtCreateEmailAddress.Text == "")
-            {
-                MessageBox.Show("The email address can not be empty");
-                return false;
-            }
-            else if (!regexEmailValidation.IsMatch(TxtCreateEmailAddress.Text))
-            {
-                MessageBox.Show("The email address needs to be valid");
-                return false;
-            }
-
-
-            //--------------------------------------
-            //              Customer
-            //--------------------------------------
-            if (RadCreateCustomer.Checked)
-            {
-                // Check if the customer Type has changed
-                if (CmbCreateCustomerType.Text == "-" || CmbCreateCustomerType.Text == "")
-                {
-                    MessageBox.Show("Please select the customer type (A-E)");
-                    return false;
-                }
-
-                // Check if the Company Name is not empty
-                if (TxtCreateCompanyName.Text == "")
-                {
-                    MessageBox.Show("The company name can not be empty");
-                    return false;
-                }
-
-                // Check if the Company contact is not empty
-                if (TxtCreateCompanyContact.Text == "")
-                {
-                    MessageBox.Show("The company contact can not be empty");
-                    return false;
-                }
-            }
-            //--------------------------------------
-            //              Employee
-            //--------------------------------------
-            if (RadCreateEmployee.Checked)
-            {
-                // Check if the degree of employment is not empty
-                if (NumCreateDegreeOfEmployment.Value < 1)
-                {
-                    MessageBox.Show("The degree of employment needs to be over zero");
-                    return false;
-                }
-
-                // Check if the date of joining is changed
-                if (dateMax > DatCreateDateOfJoining.Value && DatCreateDateOfJoining.Value > dateMin)
-                {
-                    Debug.WriteLine("Date is correct");
-                }
-                else
-                {
-                    MessageBox.Show("Please set the date of joining");
-                    return false;
-                }
-
-
-                // looks if Employee is a Trainee
-                if (ChkCreateTrainee.Checked)
-                {
-                    // Check if the years of apprenticeship is not empty
-                    if (NumCreateYearOfApp.Value < 1)
-                    {
-                        MessageBox.Show("The years of apprenticeship needs to be over zero");
-                        return false;
-                    }
-                }
-            }
-
-            //Everthing Mandatory is filled out
-            return true;
-        }
-
-        /// <summary>
-        /// Adding countries in dropdown field
-        /// </summary>
-        private void PopulateCountryComboBox()
-        {
-
-            // Get the list of all countries using CultureInfo
-            List<string> countriesList = new List<string>();
-            foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.SpecificCultures))
-            {
-                RegionInfo region = new RegionInfo(ci.Name);
-                if (!countriesList.Contains(region.EnglishName))
-                {
-                    countriesList.Add(region.EnglishName);
-                }
-            }
-
-            // Sort the list of countries alphabetically
-            countriesList.Sort();
-
-            // Populate the ComboBox with the list of countries
-            CmbCreateNationality.DataSource = countriesList;
-
-
-        }
-
-        public List<Person> ParseCsvWithReflection(string csvContent)
-        {
-            var lines = csvContent.Split('\n');
-            var people = new List<Person>();
-            var headers = lines[0].Split(',').Select(h => h.Trim()).ToArray();
-
-            for (int i = 1; i < lines.Length; i++) // Starting from 1 to skip the header
-            {
-                var line = lines[i].Trim();
-                if (!string.IsNullOrWhiteSpace(line))
-                {
-                    var columns = line.Split(',');
-
-                    // Determine the type based on specific fields in the CSV for each row
-                    // Customer specific
-                    int companyNameIndex = Array.IndexOf(headers, "CompanyName");
-                    int customerTypeIndex = Array.IndexOf(headers, "CustomerType");
-                    int companyContactIndex = Array.IndexOf(headers, "CompanyContact");
-                    int customerNumberIndex = Array.IndexOf(headers, "CustomerNumber");
-                    // Employee or Trainee
-                    int departmentIndex = Array.IndexOf(headers, "Department");
-                    int roleIndex = Array.IndexOf(headers, "Role");
-                    int cadreLevelIndex = Array.IndexOf(headers, "CadreLevel");
-                    int degreeOfEmploymentIndex = Array.IndexOf(headers, "DegreeOfEmployment");
-                    int dateOfJoiningIndex = Array.IndexOf(headers, "DateOfJoining");
-                    int dateOfLeavingIndex = Array.IndexOf(headers, "DateOfLeaving");
-                    int employeeNumberIndex = Array.IndexOf(headers, "EmployeeNumber");
-                    // Trainee
-                    int currentApprenticeshipYearIndex = Array.IndexOf(headers, "CurrentApprenticeshipYear");
-                    int yearsOfApprenticeshipIndex = Array.IndexOf(headers, "YearsOfApprenticeship");
-
-                    Person person;
-                    if ((companyNameIndex != -1 && !string.IsNullOrWhiteSpace(columns[companyNameIndex])) ||
-                    (customerTypeIndex != -1 && !string.IsNullOrWhiteSpace(columns[customerTypeIndex])) ||
-                    (companyContactIndex != -1 && !string.IsNullOrWhiteSpace(columns[companyContactIndex])) ||
-                    (customerNumberIndex != -1 && !string.IsNullOrWhiteSpace(columns[customerNumberIndex])))
-                    {
-                        person = new Customer();
-                    }
-                    else if ((departmentIndex != -1 && !string.IsNullOrWhiteSpace(columns[departmentIndex])) ||
-                    (roleIndex != -1 && !string.IsNullOrWhiteSpace(columns[roleIndex])) ||
-                    (cadreLevelIndex != -1 && !string.IsNullOrWhiteSpace(columns[cadreLevelIndex])) ||
-                    (degreeOfEmploymentIndex != -1 && !string.IsNullOrWhiteSpace(columns[degreeOfEmploymentIndex])) ||
-                    (dateOfJoiningIndex != -1 && !string.IsNullOrWhiteSpace(columns[dateOfJoiningIndex])) ||
-                    (dateOfLeavingIndex != -1 && !string.IsNullOrWhiteSpace(columns[dateOfLeavingIndex])) ||
-                    (employeeNumberIndex != -1 && !string.IsNullOrWhiteSpace(columns[employeeNumberIndex])))
-                    {
-                        if ((currentApprenticeshipYearIndex != -1 && !string.IsNullOrWhiteSpace(columns[currentApprenticeshipYearIndex])) ||
-                        (yearsOfApprenticeshipIndex != -1 && !string.IsNullOrWhiteSpace(columns[yearsOfApprenticeshipIndex])))
-                        {
-                            person = new Trainee();
-                        }
-                        else
-                        {
-                            person = new Employee();
-                        }
-                    }
-                    else
-                    {
-                        person = new Customer();  // Defaulting to Customer
-                    }
-
-
-                    // Reflect on the determined type
-                    var type = person.GetType();
-
-                    for (int j = 0; j < headers.Length; j++)
-                    {
-                        var prop = type.GetProperty(headers[j]);
-                        if (prop != null && j < columns.Length)
-                        {
-                            Type propType = prop.PropertyType;
-
-                            if (propType == typeof(Int32))
-                            {
-                                prop.SetValue(person, Convert.ToInt32(columns[j].Trim()));
-                            }
-                            else
-                            {
-                                prop.SetValue(person, columns[j].Trim());
-                            }
-                        }
-                    }
-
-                    people.Add(person);
-                }
-            }
-
-            return people;
-        }
 
     }
 }
