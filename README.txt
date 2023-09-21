@@ -20,19 +20,19 @@ The modern design of the Application will be achieved using the H.MaterialSkin N
 ##################################
 ########## INSTRUCTIONS ##########
 
-# LOGIN
-username: root
-password: Password123
-#######
-
-# SQLite
-Follow the following steps to ensure the program's reliability.
-Make sure you got the right "SQLLite.Interop.dll" file:
+# SQLite (mandatory)
+Follow the steps to ensure the program's SQLite components reliability.
   1.  Copy the folders "x86" and "x64" with the "SQLite.Interop.dll" within from the repository path:
         .\Semesterprojekt\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46
   2.  Paste the folders to the repository path:
         .\Semesterprojekt\ContactManager\bin\Debug
+  3.  Ready to run the program. If it's already running -> make sure to restart it.
 ######
+
+# LOGIN
+username: root
+password: Password123
+#######
 
 # New import feature
 If you want to try the new feature "IMPORT FROM FILE" try the import with some demo contacts:
