@@ -4,12 +4,14 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ContactManager
@@ -22,7 +24,8 @@ namespace ContactManager
         // Local fields only used in FormMain.cs
         List<object> searchResults;
         Person currentContact;
-        List<Note> currentContactNotes;
+        //rkh
+        BindingList<Note> currentContactNotes;
         List<object> importContent;
         public string selectedPerson;
         private bool isEditMode = false;
@@ -41,7 +44,11 @@ namespace ContactManager
 
 
         // --------------------- Constructors ----------------------- //
-
+        private void DataGridViewSearchNotes_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            // Enable the "Save New Note" button when a cell is entered
+            CmdSearchSaveNewNote.Enabled = true;
+        }
 
         /// <summary>
         /// Constructor
@@ -51,6 +58,9 @@ namespace ContactManager
             InitializeComponent();
 
             manager.AddFormToManage(this);
+            //rkh
+            currentContactNotes = new BindingList<Note>();
+            DataGridViewSearchNotes.CellEnter += DataGridViewSearchNotes_CellEnter;
 
 
             //Countries in ComboBox Nationality
@@ -101,7 +111,16 @@ namespace ContactManager
         /// Resets the FormMain state and clears inputs
         /// </summary>
         private void ResetFormState()
+
         {
+            //rkh
+            currentContactNotes = new BindingList<Note>();
+
+
+            //  Reset Button DELETE 
+            CmdCreateDeletePerson.Visible = false;
+
+
             //Don't show employee & trainee elements.
             PnlCreateInfoEmployee.Visible = false;
             PnlCreateInfoTrainee.Visible = false;
@@ -289,10 +308,6 @@ namespace ContactManager
                     }
 
                 }
-                else
-                {
-                    // Create
-                }
             }
         }
 
@@ -360,15 +375,15 @@ namespace ContactManager
 
                 if (person is Trainee trainee)
                 {
-                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber), () => controller.CreateTrainee(trainee, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber, false), () => controller.CreateTrainee(trainee, this, true), deleteAndRecreateLogAction);
                 }
                 else if (person is Employee employee)
                 {
-                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber), () => controller.CreateEmployee(employee, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateEmployeeNumber.Text, (empNumber) => Controller.DeleteEmployee(empNumber, false), () => controller.CreateEmployee(employee, this, true), deleteAndRecreateLogAction);
                 }
                 else if (person is Customer customer)
                 {
-                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => Controller.DeleteCustomer(custNumber), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => Controller.DeleteCustomer(custNumber,false), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
                 }
             }
         }
@@ -638,15 +653,6 @@ namespace ContactManager
 
             return logInfo;
         }
-
-        /// <summary>
-        /// Enables the button to save notes if there is a string and a contact 
-        /// </summary>
-        private void TxtSearchNewNote_TextChanged(object sender, EventArgs e)
-        {
-            CmdSearchSaveNewNote.Enabled = (TxtSearchNewNote.Text != string.Empty && currentContact != null);
-        }
-
 
         // --------------------- Helper methods ----------------------- //
 
@@ -1056,8 +1062,8 @@ namespace ContactManager
                         CmdSearchPersonDelete.Enabled = true;
                         CmdSearchSaveNewNote.Enabled = false;
 
-                        // Enable/diable Textfield
-                        TxtSearchNewNote.Enabled = true;
+                        //// Enable/diable Textfield
+                        //TxtSearchNewNote.Enabled = true;
 
                         var clickedPerson = (Person)searchResults[currentRow.Index];
                         currentContact = clickedPerson;
@@ -1078,10 +1084,10 @@ namespace ContactManager
                         LblSearchPreviewBusinessPhoneOutput.Text = clickedPerson.BusinessPhone;
                         LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.BusinessAddress;
                         DataGridViewSearchNotes.DataSource = null;
-                        currentContactNotes = Controller.GetNotes(currentContact.NoteIds);
+                        currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
                         DataGridViewSearchNotes.DataSource = currentContactNotes;
                         DataGridViewSearchNotes.ClearSelection();
-                        TxtSearchNewNote.Clear();
+                        //TxtSearchNewNote.Clear();
 
                         // Clear type specific informations
 
@@ -1569,14 +1575,15 @@ namespace ContactManager
                     int currentSelectedRow = DataGridViewSearchResult.CurrentCell.RowIndex;
 
                     currentContact = (Person)searchResults[currentSelectedRow];
-                    currentContactNotes = Controller.GetNotes(currentContact.NoteIds);
+                    currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
+                    DataGridViewSearchNotes.AutoGenerateColumns = false;
 
                     // Format notes
                     DataGridViewTextBoxColumn contentColumn = new DataGridViewTextBoxColumn
                     {
                         Name = "contentColumn",
                         HeaderText = "Content",
-                        DataPropertyName = "Content"
+                        DataPropertyName = "Content" 
                     };
                     DataGridViewSearchNotes.Columns.Add(contentColumn);
 
@@ -1584,11 +1591,11 @@ namespace ContactManager
                     {
                         Name = "createTimestampColumn",
                         HeaderText = "Created",
-                        DataPropertyName = "CreateTimestamp"
+                        DataPropertyName = "CreateTimestamp" 
                     };
                     DataGridViewSearchNotes.Columns.Add(createTimestampColumn);
 
-                    DataGridViewSearchNotes.DataSource = currentContactNotes;
+                    currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
                 }
                 else
                 {
@@ -1697,42 +1704,98 @@ namespace ContactManager
             Close();
         }
 
+        private void RemoveSelectedNote()
+        {
+            if (DataGridViewSearchNotes.SelectedCells.Count > 0)
+            {
+                // Get the index of the selected row
+                int selectedRowIndex = DataGridViewSearchNotes.SelectedCells[0].RowIndex;
+
+                // Get the selected note
+                Note selectedNote = currentContactNotes[selectedRowIndex];
+
+                // Add the note to deletedNotes
+                deletedNotes.Add(selectedNote);
+
+                // Remove the note from the currentContactNotes list
+                currentContactNotes.RemoveAt(selectedRowIndex);
+
+                // Update the data source for DataGridViewSearchNotes
+                DataGridViewSearchNotes.DataSource = null;
+                DataGridViewSearchNotes.DataSource = currentContactNotes;
+            }
+        }
+        private void CmdDeleteNote_Click(object sender, EventArgs e)
+        {
+            RemoveSelectedNote();
+            CmdSearchSaveNewNote.Enabled = true;
+        }
+
+        private void RefreshDataGridView()
+        {
+            // Clear the DataGridView
+            DataGridViewSearchNotes.Rows.Clear();
+            
+
+            // Create a new BindingSource and set the DataSource
+            BindingSource bindingSource = new BindingSource();
+            bindingSource.DataSource = currentContactNotes;
+            DataGridViewSearchNotes.DataSource = bindingSource;
+        }
+
         /// <summary>
         /// Checks if input is valid and then saves the new note
         /// </summary>
         private void CmdSearchNoteSave_Click(object sender, EventArgs e)
         {
-            DataGridViewSearchNotes.DataSource = null;
-
-            Note newNote = new Note(TxtSearchNewNote.Text);
-
-            if (currentContactNotes != null)
+            // Save each note
+            List<Note> successfullySavedNotes = new List<Note>();
+            foreach (Note note in currentContactNotes)
             {
-                //currentContactNotes.Add(newNote);
-                currentContactNotes.Insert(0, newNote);
+
+                // Save note and check if it was successful
+                bool isSaved = SqliteDataAccess.SaveNote(currentContact, note);
+                if (isSaved)
+                {
+                    successfullySavedNotes.Add(note);
+                }
+
+            }
+
+            // Delete each removed note
+            foreach (Note note in deletedNotes)
+            {
+                bool isDeleted = SqliteDataAccess.DeleteNote(currentContact, note.Id);
+                if (isDeleted)
+                {
+                    // Remove the noteId from currentContact's CommaSeparatedNoteIds
+                    var noteIds = currentContact.CommaSeparatedNoteIds.Split(',').ToList();
+                    noteIds.Remove(note.Id);
+                    currentContact.CommaSeparatedNoteIds = string.Join(",", noteIds);
+                }
+
+            }
+
+            // Clear the deletedNotes list
+            deletedNotes.Clear();
+
+            // Update currentContactNotes with only successfully saved notes
+            currentContactNotes = new BindingList<Note>(successfullySavedNotes);
+
+            // Update currentContact in the database
+            bool isUpdated = SqliteDataAccess.UpdateContact(currentContact);
+            if (!isUpdated)
+            {
+                // Handle the situation when contact cannot be updated, e.g. show an error message
+                MessageBox.Show("An error occurred while updating the contact.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                currentContactNotes = new List<Note>() { newNote };
+                MessageBox.Show("Notes have been updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            //currentContact.NoteIds.Add(newNote.Id);
-            currentContact.NoteIds.Insert(0, newNote.Id);
-
-            if (currentContactNotes != null)
-            {
-                foreach (Note item in currentContactNotes)
-                {
-                    Controller.SaveNote(currentContact, item);
-                }
-
-                CmdSearchSaveNewNote.Enabled = false;
-            }
-
-            DataGridViewSearchNotes.DataSource = currentContactNotes;
-
-            // Clear note textfield after note saved
-            TxtSearchNewNote.Clear();
+            // Refresh the DataGridView with updated notes
+            RefreshDataGridView();
         }
 
         /// <summary>
@@ -1925,6 +1988,61 @@ namespace ContactManager
             Close();
         }
 
+        // Declare BindingSource object at class level
+        // Declare BindingSource object at class level
+        private BindingSource bindingSource = new BindingSource();
+
+        private void CmdAddNewNote_Click(object sender, EventArgs e)
+        {
+            // Create a new Note object
+            Note newNote = new Note();
+
+            // Add the new note to the current contact notes
+            currentContactNotes.Add(newNote);
+            var sortedNotes = currentContactNotes.OrderByDescending(note => note.CreateTimestamp).ToList();
+            currentContactNotes = new BindingList<Note>(sortedNotes);
+
+            // Set the BindingSource DataSource
+            bindingSource.DataSource = currentContactNotes;
+
+            // Update the data source for DataGridViewSearchNotes
+            DataGridViewSearchNotes.DataSource = bindingSource;
+
+            // Select the last row (newly added note)
+            if (DataGridViewSearchNotes.RowCount > 0)
+                DataGridViewSearchNotes.CurrentCell = DataGridViewSearchNotes.Rows[0].Cells[0];
+
+            // Enable the "Save New Note" button
+            CmdSearchSaveNewNote.Enabled = true;
+        }
+
+        // New field to keep track of deleted notes
+        private List<Note> deletedNotes = new List<Note>();
+
+        private void CmdRemoveNote_Click(object sender, EventArgs e)
+        {
+            if (DataGridViewSearchNotes.SelectedCells.Count > 0)
+            {
+                // Get the index of the selected cell
+                int selectedRowIndex = DataGridViewSearchNotes.SelectedCells[0].RowIndex;
+
+                // Add the note to deletedNotes
+                deletedNotes.Add(currentContactNotes[selectedRowIndex]);
+
+                // Remove the corresponding note from the currentContactNotes list
+                currentContactNotes.RemoveAt(selectedRowIndex);
+
+                // Update the data source for DataGridViewSearchNotes
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = currentContactNotes;
+                DataGridViewSearchNotes.DataSource = bindingSource;
+
+                // Refresh DataGridViewSearchNotes
+                DataGridViewSearchNotes.Refresh();
+
+                CmdSearchSaveNewNote.Enabled = true;
+            }
+        }
 
     }
 }

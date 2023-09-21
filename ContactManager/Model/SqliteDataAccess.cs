@@ -226,7 +226,7 @@ namespace ContactManager.Model
         /// <param name="employeeNumber"></param>
         /// <param name="deleteAllNotes">only keeps the notes if set to false</param>
         /// <returns> true if successful </returns>
-        public static bool DeleteEmployee(string employeeNumber, bool deleteAllNotes = true)
+        public static bool DeleteEmployee(string employeeNumber, bool deleteAllNotes = false)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -411,7 +411,7 @@ namespace ContactManager.Model
         /// </summary>
         /// <param name="person"> contact to update </param>
         /// <returns> true if succesful </returns>
-        private static bool UpdateContact(Person person)
+        public static bool UpdateContact(Person person)
         {
             try
             {
@@ -455,11 +455,6 @@ namespace ContactManager.Model
             }
         }
 
-        /// <summary>
-        /// Get a note object
-        /// </summary>
-        /// <param name="id">ID of the note</param>
-        /// <returns>Note object</returns>
         public static Note SearchNote(string id)
         {
             Note note;
@@ -468,12 +463,34 @@ namespace ContactManager.Model
             {
                 conn.Open();
 
-                note = (Note)conn.Query<Note>($"SELECT * FROM Notes WHERE Id=@Id", new { Id = id }).FirstOrDefault();
+                note = conn.Query<Note>($"SELECT * FROM Notes WHERE Id=@Id", new { Id = id }).FirstOrDefault();
 
                 conn.Close();
             }
 
             return note;
+        }
+        /// <summary>
+        /// Get a note object
+        /// </summary>
+        /// <param name="id">ID of the note</param>
+        /// <returns>Note object</returns>
+        public static List<Note> GetNotes(List<string> ids)
+        {
+            List<Note> notes = new List<Note>();
+
+            if (ids != null)
+            {
+                foreach (string id in ids)
+                {
+                    if (!string.IsNullOrEmpty(id))
+                    {
+                        notes.Add(SqliteDataAccess.SearchNote(id));
+                    }
+                }
+            }
+
+            return notes;
         }
 
         /// <summary>
@@ -490,15 +507,24 @@ namespace ContactManager.Model
                 {
                     conn.Open();
 
-                    Note noteOnDb = conn.Query<Note>("SELECT * FROM Notes WHERE Id=@Id", new { Id=note.Id }).FirstOrDefault();
+                    Note noteOnDb = conn.Query<Note>("SELECT * FROM Notes WHERE Id=@Id", new { Id = note.Id }).FirstOrDefault();
 
-                    if(noteOnDb != null)
+                    if (noteOnDb != null)
                     {
                         UpdateNote(note);
                     }
                     else
                     {
                         conn.Execute("INSERT INTO Notes (Id, Content, CreateTimestamp, EditTimestamp) VALUES (@Id, @Content, @CreateTimestamp, @EditTimestamp)", note);
+
+                        if (string.IsNullOrWhiteSpace(associatedContact.CommaSeparatedNoteIds))
+                        {
+                            associatedContact.CommaSeparatedNoteIds = note.Id.ToString();
+                        }
+                        else
+                        {
+                            associatedContact.CommaSeparatedNoteIds += "," + note.Id;
+                        }
                     }
 
                     conn.Close();
@@ -511,9 +537,6 @@ namespace ContactManager.Model
                 MessageBox.Show(ex.Message);
                 return false;
             }
-            // Save note to db
-
-            // Write NoteId into the contact's NoteIds
         }
 
         /// <summary>
@@ -525,6 +548,13 @@ namespace ContactManager.Model
         /// <returns>True if the operation was successful, else false</returns>
         public static bool DeleteNote(Person associatedContact, string noteId)
         {
+            if (associatedContact == null || string.IsNullOrEmpty(noteId))
+            {
+                // Handle null values appropriately, either by returning false, 
+                // throwing an exception, or logging an error message.
+                return false;
+            }
+
             // Delete note from Notes table
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -536,25 +566,30 @@ namespace ContactManager.Model
                 }
                 catch
                 {
+                    // Log error, if necessary
                     return false;
                 }
             }
 
             // Delete note from contact's NoteIds
-            associatedContact.NoteIds.Remove(noteId);
-
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            if (associatedContact.NoteIds.Contains(noteId))
             {
-                try
+                associatedContact.NoteIds.Remove(noteId);
+
+                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    cnn.Open();
-                    // How can we find contact?
-                    cnn.Execute("UPDATE USERS SET CommaSeparatedNoteIds=@CommaSeparatedNoteIds WHERE Id=@Id", new { CommaSeparatedNoteIds = associatedContact.CommaSeparatedNoteIds });
-                    cnn.Close();
-                }
-                catch
-                {
-                    return false;
+                    try
+                    {
+                        cnn.Open();
+                        cnn.Execute("UPDATE USERS SET CommaSeparatedNoteIds=@CommaSeparatedNoteIds WHERE Id=@Id",
+                            new { CommaSeparatedNoteIds = string.Join(",", associatedContact.NoteIds), Id = associatedContact.NoteIds });
+                        cnn.Close();
+                    }
+                    catch
+                    {
+                        // Log error, if necessary
+                        return false;
+                    }
                 }
             }
 
