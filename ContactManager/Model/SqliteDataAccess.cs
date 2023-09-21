@@ -489,6 +489,7 @@ namespace ContactManager.Model
                     }
                 }
             }
+            notes = notes.OrderByDescending(note => note.CreateTimestamp).ToList();
 
             return notes;
         }

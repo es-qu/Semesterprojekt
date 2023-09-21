@@ -1087,9 +1087,11 @@ namespace ContactManager
                         LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.BusinessAddress;
                         DataGridViewSearchNotes.DataSource = null;
                         currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
+                        var sortedNotes = currentContactNotes.OrderByDescending(note => note.CreateTimestamp).ToList();
+                        currentContactNotes = new BindingList<Note>(sortedNotes);
                         DataGridViewSearchNotes.DataSource = currentContactNotes;
                         DataGridViewSearchNotes.ClearSelection();
-                        //TxtSearchNewNote.Clear();
+
 
                         // Clear type specific informations
 
@@ -1580,6 +1582,7 @@ namespace ContactManager
                     currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
                     DataGridViewSearchNotes.AutoGenerateColumns = false;
 
+
                     // Format notes
                     DataGridViewTextBoxColumn contentColumn = new DataGridViewTextBoxColumn
                     {
@@ -1593,11 +1596,13 @@ namespace ContactManager
                     {
                         Name = "createTimestampColumn",
                         HeaderText = "Created",
-                        DataPropertyName = "CreateTimestamp" 
+                        DataPropertyName = "CreateTimestamp"
                     };
                     DataGridViewSearchNotes.Columns.Add(createTimestampColumn);
+                    
 
-                    currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
+                    //currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
+                   
                 }
                 else
                 {
