@@ -599,6 +599,7 @@ namespace ContactManager
             if (success)
             {
                 this.Close();
+                SqliteDataAccess.SaveLog(logInfo);
             }
         }
 
@@ -619,6 +620,7 @@ namespace ContactManager
             {
                 TCtrlMain.SelectedTab = TabCreateEdit;
                 ResetFormState();
+                SqliteDataAccess.SaveLog(logInfo);
             }
         }
 
@@ -651,7 +653,7 @@ namespace ContactManager
                 BusinessAddress = TxtCreateBusinessAddress.Text,
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,
-                //CommaSeparatedNoteIds = string.Join(',', GetIdsFromCurrentContactNotes()),
+                CommaSeparatedNoteIds = " ",
                 Role = TxtCreateRole.Text,
                 Department = TxtCreateDepartement.Text,
                 DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),
@@ -1735,6 +1737,18 @@ namespace ContactManager
             Close();
         }
 
+        private void RefreshDataGridView()
+        {
+            // Clear the DataGridView
+            DataGridViewSearchNotes.Rows.Clear();
+            
+
+            // Create a new BindingSource and set the DataSource
+            BindingSource bindingSource = new BindingSource();
+            bindingSource.DataSource = currentContactNotes;
+            DataGridViewSearchNotes.DataSource = bindingSource;
+        }
+
         /// <summary>
         /// Checks if input is valid and then saves the new note
         /// </summary>
@@ -1744,6 +1758,12 @@ namespace ContactManager
             List<Note> successfullySavedNotes = new List<Note>();
             foreach (Note note in currentContactNotes)
             {
+                // Check if note content is empty
+                if (string.IsNullOrWhiteSpace(note.Content))
+                {
+                    MessageBox.Show("Note content cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;  
+                }
 
                 // Save note and check if it was successful
                 bool isSaved = SqliteDataAccess.SaveNote(currentContact, note);
@@ -1751,7 +1771,6 @@ namespace ContactManager
                 {
                     successfullySavedNotes.Add(note);
                 }
-
             }
 
             // Delete each removed note
