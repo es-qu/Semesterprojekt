@@ -23,7 +23,6 @@ namespace ContactManager
         // Local fields only used in FormMain.cs
         List<object> searchResults;
         Person currentContact;
-        // rkh
         BindingList<Note> currentContactNotes;
         List<object> importContent;
         public string selectedPerson;
@@ -57,7 +56,6 @@ namespace ContactManager
             InitializeComponent();
 
             manager.AddFormToManage(this);
-            //rkh
             currentContactNotes = new BindingList<Note>();
             DataGridViewSearchNotes.CellEnter += DataGridViewSearchNotes_CellEnter;
 
@@ -112,7 +110,7 @@ namespace ContactManager
         private void ResetFormState()
 
         {
-            //rkh
+            //  Notes list
             currentContactNotes = new BindingList<Note>();
 
 
@@ -120,19 +118,19 @@ namespace ContactManager
             CmdCreateDeletePerson.Visible = false;
 
 
-            //Don't show employee & trainee elements.
+            //  Don't show employee & trainee elements.
             PnlCreateInfoEmployee.Visible = false;
             PnlCreateInfoTrainee.Visible = false;
             ChkCreateTrainee.Visible = false;
 
-            //Don't show customer elements.
+            //  Don't show customer elements.
             PnlCreateInfoCustomer.Visible = false;
 
-            // Reset CheckState
+            //  Reset CheckState
             ChkCreateTrainee.Checked = false;
             isEditMode = false;
 
-            // Clear ComboBoxes
+            //  Clear ComboBoxes
             CmbCreateSalutation.SelectedIndex = 0;
             CmbCreateSalutation.Refresh();
 
@@ -1632,8 +1630,6 @@ namespace ContactManager
                     };
                     DataGridViewSearchNotes.Columns.Add(createTimestampColumn);
                     
-
-                    //currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
                    
                 }
                 else
