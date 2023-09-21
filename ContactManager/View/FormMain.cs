@@ -11,7 +11,6 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ContactManager
@@ -48,6 +47,7 @@ namespace ContactManager
 
 
         // --------------------- Constructors ----------------------- //
+
 
         /// <summary>
         /// Constructor
@@ -349,7 +349,6 @@ namespace ContactManager
         }
 
 
-
         // --------------------- Contact/Person methods ----------------------- //
 
 
@@ -400,7 +399,7 @@ namespace ContactManager
                 }
                 else if (person is Customer customer)
                 {
-                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => Controller.DeleteCustomer(custNumber,false), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => Controller.DeleteCustomer(custNumber, false), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
                 }
             }
         }
@@ -566,6 +565,7 @@ namespace ContactManager
 
         // --------------------- Log and Notes methods ----------------------- //
 
+
         /// <summary>
         /// Create a new list and fills it with all note ids from the selected contact
         /// </summary>
@@ -671,6 +671,7 @@ namespace ContactManager
 
             return logInfo;
         }
+
 
         // --------------------- Helper methods ----------------------- //
 
@@ -1046,7 +1047,7 @@ namespace ContactManager
         /// Enable the "Save New Note" button when a cell is entered 
         /// </summary>
         private void DataGridViewSearchNotes_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {            
+        {
             CmdSearchSaveNewNote.Enabled = true;
         }
 
@@ -1616,7 +1617,7 @@ namespace ContactManager
                     {
                         Name = "contentColumn",
                         HeaderText = "Content",
-                        DataPropertyName = "Content" 
+                        DataPropertyName = "Content"
                     };
                     DataGridViewSearchNotes.Columns.Add(contentColumn);
 
@@ -1624,7 +1625,7 @@ namespace ContactManager
                     {
                         Name = "createTimestampColumn",
                         HeaderText = "Created",
-                        DataPropertyName = "CreateTimestamp" 
+                        DataPropertyName = "CreateTimestamp"
                     };
                     DataGridViewSearchNotes.Columns.Add(createTimestampColumn);
 
@@ -1737,18 +1738,6 @@ namespace ContactManager
             Close();
         }
 
-        private void RefreshDataGridView()
-        {
-            // Clear the DataGridView
-            DataGridViewSearchNotes.Rows.Clear();
-            
-
-            // Create a new BindingSource and set the DataSource
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = currentContactNotes;
-            DataGridViewSearchNotes.DataSource = bindingSource;
-        }
-
         /// <summary>
         /// Checks if input is valid and then saves the new note
         /// </summary>
@@ -1762,7 +1751,7 @@ namespace ContactManager
                 if (string.IsNullOrWhiteSpace(note.Content))
                 {
                     MessageBox.Show("Note content cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;  
+                    return;
                 }
 
                 // Save note and check if it was successful
