@@ -19,19 +19,52 @@ The modern design of the Application will be achieved using the H.MaterialSkin N
 
 ##################################
 ########## INSTRUCTIONS ##########
+
+# LOGIN
+username: root
+password: Password123
+#######
+
+# SQLite
 Follow the following steps to ensure the program's reliability.
 Make sure you got the right "SQLLite.Interop.dll" file:
   1.  Copy the folders "x86" and "x64" with the "SQLite.Interop.dll" within from the repository path:
         .\Semesterprojekt\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.118.0\build\net46
   2.  Paste the folders to the repository path:
         .\Semesterprojekt\ContactManager\bin\Debug
+######
 
-Make sure you got some correct demo contacts via CSV import:
+# New import feature
+If you want to try the new feature "IMPORT FROM FILE" try the import with some demo contacts:
   1.  Run the program to open the menu
   2.  Click "IMPORT FROM FILE"
   3.  Click "OPEN FILE" to open the file explorer
   4.  Choose the following csv file from the repository:
         .\Semesterprojekt\contacts.csv
   5.  Click "CONFIRM"
+
 ##################################
+##################################
+
+# Other
+
+## Which features from the project guideline are functioning? 
+(project guidelines are in german)
+
+Funktionale Anforderungen:
+[x] Erfassung von Mitarbeitern und Kunden
+[x] Mutieren von Mitarbeitern und Kunden
+[x] Aktivieren und deaktivieren von Mitarbeitern und Kunden
+[x] Löschen von Mitarbeitern und Kunden
+[x] Automatische Vergabe von Mitarbeiternummern
+[x] Protokollieren von Notizen in Kundenkontakten inkl. Historie
+[x] Suchmöglichkeiten über alle gespeicherten Informationen
+[x] Automatisches Speichern des Datenstamms auf Festplatte
+
+Optionale funktionale Anforderungen:
+[x] Mutationshistorie von Kontaktdaten
+[x] Login
+[ ] Dashboard-View
+[x] Import von Kontakten im CSV-Format oder VCard-Format (look at instructions # New import feature)
+
 ##################################
