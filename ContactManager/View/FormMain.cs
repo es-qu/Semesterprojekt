@@ -583,6 +583,7 @@ namespace ContactManager
             if (success)
             {
                 this.Close();
+                SqliteDataAccess.SaveLog(logInfo);
             }
         }
 
@@ -603,6 +604,7 @@ namespace ContactManager
             {
                 TCtrlMain.SelectedTab = TabCreateEdit;
                 ResetFormState();
+                SqliteDataAccess.SaveLog(logInfo);
             }
         }
 
@@ -635,7 +637,7 @@ namespace ContactManager
                 BusinessAddress = TxtCreateBusinessAddress.Text,
                 BusinessPhone = TxtCreateBusinessPhone.Text,
                 EmailAddress = TxtCreateEmailAddress.Text,
-                //CommaSeparatedNoteIds = string.Join(',', GetIdsFromCurrentContactNotes()),
+                CommaSeparatedNoteIds = " ",
                 Role = TxtCreateRole.Text,
                 Department = TxtCreateDepartement.Text,
                 DateOfJoining = DatCreateDateOfJoining.Value.ToString("yyyy-MM-dd"),

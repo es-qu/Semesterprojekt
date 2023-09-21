@@ -539,9 +539,7 @@ namespace ContactManager.Model
             }
         }
 
-        /// <summary>
-        /// Delete a note from database according to its ID
-        /// its not used 18.09.2023 upcoming Feature Request will use it eventually. We have no test enviroment
+        
         /// </summary>
         /// <param name="associatedContact">Contact that the note is about</param>
         /// <param name="noteId">ID to identify the note</param>
@@ -596,10 +594,7 @@ namespace ContactManager.Model
             return true;
         }
 
-        /// <summary>
-        /// Updates note informations (only Content may be updated, other informations 
-        /// are readonly after creating the instance)
-        /// its not relevant 18.09.2023 upcoming Feature Request will use it eventually. We have no test enviroment
+
         /// </summary>
         /// <param name="note">Note object with new informations</param>
         /// <returns>True if successful, otherwise false</returns>
@@ -628,16 +623,16 @@ namespace ContactManager.Model
         }
 
         /// <summary>
-        /// its not used 18.09.2023 upcoming Feature Request will use it eventually. We have no test enviroment
+        /// Logs Person creation and updates in the Person Database using LogTable table.
         /// </summary>
-        /// <param name="log"></param>
+        /// <param name="log">Log Obiect with all infotmtions</param>
         public static void SaveLog(LogTable log)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var sqlQuery = @"INSERT INTO LogTable 
-                (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, CommaSeparatedNoteIds, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact,OperationSuccessful, DeletionSuccessful)
-                VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @CommaSeparatedNoteIds, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact, @OperationSuccessful, @DeletionSuccessful)";
+                (EventType, FirstName, LastName, DateOfBirth, EmployeeNumber, CustomerNumber, Active, Gender, Salutation, Title, Address, PostalCode, PlaceOfResidence, Nationality, OasiNumber, PrivatePhone, BusinessPhone, EmailAddress, BusinessAddress, CommaSeparatedNoteIds, Role, Department, DateOfJoining, DateOfLeaving, CadreLevel,DegreeOfEmployment,CurrentApprenticeshipYear, YearsOfApprenticeship,CompanyName,CustomerType,CompanyContact)
+                VALUES (@EventType, @FirstName, @LastName, @DateOfBirth, @EmployeeNumber, @CustomerNumber, @Active, @Gender, @Salutation, @Title, @Address, @PostalCode, @PlaceOfResidence, @Nationality, @OasiNumber, @PrivatePhone, @BusinessPhone, @EmailAddress, @BusinessAddress, @CommaSeparatedNoteIds, @Role, @Department, @DateOfJoining, @DateOfLeaving, @CadreLevel,@DegreeOfEmployment, @CurrentApprenticeshipYear , @YearsOfApprenticeship ,@CompanyName,@CustomerType,@CompanyContact)";
                 cnn.Execute(sqlQuery, log);
                 string sqlQuery1 = "SELECT * FROM LogTable WHERE EmployeeNumber = @EmployeeNumber";
                 var logs = cnn.Query<LogTable>(sqlQuery1, new { EmployeeNumber = log.EmployeeNumber });
