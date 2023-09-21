@@ -1706,33 +1706,6 @@ namespace ContactManager
             Close();
         }
 
-        private void RemoveSelectedNote()
-        {
-            if (DataGridViewSearchNotes.SelectedCells.Count > 0)
-            {
-                // Get the index of the selected row
-                int selectedRowIndex = DataGridViewSearchNotes.SelectedCells[0].RowIndex;
-
-                // Get the selected note
-                Note selectedNote = currentContactNotes[selectedRowIndex];
-
-                // Add the note to deletedNotes
-                deletedNotes.Add(selectedNote);
-
-                // Remove the note from the currentContactNotes list
-                currentContactNotes.RemoveAt(selectedRowIndex);
-
-                // Update the data source for DataGridViewSearchNotes
-                DataGridViewSearchNotes.DataSource = null;
-                DataGridViewSearchNotes.DataSource = currentContactNotes;
-            }
-        }
-        private void CmdDeleteNote_Click(object sender, EventArgs e)
-        {
-            RemoveSelectedNote();
-            CmdSearchSaveNewNote.Enabled = true;
-        }
-
         private void RefreshDataGridView()
         {
             // Clear the DataGridView
@@ -1754,6 +1727,12 @@ namespace ContactManager
             List<Note> successfullySavedNotes = new List<Note>();
             foreach (Note note in currentContactNotes)
             {
+                // Check if note content is empty
+                if (string.IsNullOrWhiteSpace(note.Content))
+                {
+                    MessageBox.Show("Note content cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;  
+                }
 
                 // Save note and check if it was successful
                 bool isSaved = SqliteDataAccess.SaveNote(currentContact, note);
@@ -1761,7 +1740,6 @@ namespace ContactManager
                 {
                     successfullySavedNotes.Add(note);
                 }
-
             }
 
             // Delete each removed note
