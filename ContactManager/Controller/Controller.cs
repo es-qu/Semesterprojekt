@@ -46,7 +46,9 @@ namespace ContactManager
 
 
 
-        // ------------------- Needs to create a new Object Customer, Employee, Trainee? ---------------------------------------
+        /// <summary>
+        /// Create a new employee, send it further to SqliteDataAccess.cs and shows a message if it worked
+        /// </summary>
         public Boolean CreateEmployee(Employee employee, Form form, bool isUpdate = false, bool showSuccessMessage = true)
         {
             Employee e = new Employee
@@ -91,6 +93,9 @@ namespace ContactManager
             return true;
         }
 
+        /// <summary>
+        /// Create a new trainee, send it further to SqliteDataAccess.cs and shows a message if it worked
+        /// </summary>
         public Boolean CreateTrainee(Trainee trainee, Form form, bool isUpdate = false, bool showSuccessMessage = true)
         {
             Trainee t = new Trainee
@@ -138,6 +143,9 @@ namespace ContactManager
             return true;
         }
 
+        /// <summary>
+        /// Create a new customer, send it further to SqliteDataAccess.cs and shows a message if it worked
+        /// </summary>
         public Boolean CreateCustomer(Customer customer, Form form, bool isUpdate = false, bool showSuccessMessage = true)
         {
             Customer c = new Customer

@@ -11,26 +11,29 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ContactManager
 {
     public partial class FormMain : MaterialForm
     {
-        // Assigns the MaterialSkinManager to this form
+        // -Assigns the MaterialSkinManager to this form
         MaterialSkinManager manager = Program.GetStandardManager();
 
         // Local fields only used in FormMain.cs
         List<object> searchResults;
         Person currentContact;
-        //rkh
+        // rkh
         BindingList<Note> currentContactNotes;
         List<object> importContent;
         public string selectedPerson;
         private bool isEditMode = false;
+        // New field to keep track of deleted notes
+        private List<Note> deletedNotes = new List<Note>();
+        // Declare BindingSource object at class level
+        private BindingSource bindingSource = new BindingSource();
 
-        // Public fields
+        // -Public fields
         public int checkState;
         public SearchFilters filters = new SearchFilters();
 
@@ -44,11 +47,7 @@ namespace ContactManager
 
 
         // --------------------- Constructors ----------------------- //
-        private void DataGridViewSearchNotes_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            // Enable the "Save New Note" button when a cell is entered
-            CmdSearchSaveNewNote.Enabled = true;
-        }
+
 
         /// <summary>
         /// Constructor
@@ -202,7 +201,9 @@ namespace ContactManager
             menu.Show();
         }
 
-
+        /// <summary>
+        /// Shows the inputs if the form change
+        /// </summary>
         private void TCtrlMain_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (searchResults != null)
@@ -332,6 +333,21 @@ namespace ContactManager
             TxtSearchDateOfBirth.Text = filters.DateOfBirth;
         }
 
+        /// <summary>
+        /// Refresh the datagridview
+        /// </summary>
+        private void RefreshDataGridView()
+        {
+            // Clear the DataGridView
+            DataGridViewSearchNotes.Rows.Clear();
+
+
+            // Create a new BindingSource and set the DataSource
+            BindingSource bindingSource = new BindingSource();
+            bindingSource.DataSource = currentContactNotes;
+            DataGridViewSearchNotes.DataSource = bindingSource;
+        }
+
 
         // --------------------- Contact/Person methods ----------------------- //
 
@@ -383,7 +399,7 @@ namespace ContactManager
                 }
                 else if (person is Customer customer)
                 {
-                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => Controller.DeleteCustomer(custNumber,false), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
+                    DeleteAndRecreate(TxtCreateCustomerNumber.Text, (custNumber) => Controller.DeleteCustomer(custNumber, false), () => controller.CreateCustomer(customer, this, true), deleteAndRecreateLogAction);
                 }
             }
         }
@@ -656,6 +672,7 @@ namespace ContactManager
             return logInfo;
         }
 
+
         // --------------------- Helper methods ----------------------- //
 
 
@@ -868,6 +885,11 @@ namespace ContactManager
             filters.DateOfBirth = TxtSearchDateOfBirth.Text;
         }
 
+        /// <summary>
+        /// Parse for the CSV-File import
+        /// </summary>
+        /// <param name="csvContent"></param>
+        /// <returns></returns>
         public List<Person> ParseCsvWithReflection(string csvContent)
         {
             var lines = csvContent.Split('\n');
@@ -1021,6 +1043,13 @@ namespace ContactManager
             TxtSearch.Clear();
         }
 
+        /// <summary>
+        /// Enable the "Save New Note" button when a cell is entered 
+        /// </summary>
+        private void DataGridViewSearchNotes_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            CmdSearchSaveNewNote.Enabled = true;
+        }
 
         /// <summary>
         /// Format the result in status column
@@ -1214,6 +1243,9 @@ namespace ContactManager
             }
         }
 
+        /// <summary>
+        /// Change the importview depending on what is selected
+        /// </summary>
         private void DataGridViewImportGeneric_SelectionChanged(object sender, EventArgs e)
         {
             if (DataGridViewImportGeneric.SelectedCells.Count > 0)
@@ -1588,7 +1620,7 @@ namespace ContactManager
                     {
                         Name = "contentColumn",
                         HeaderText = "Content",
-                        DataPropertyName = "Content" 
+                        DataPropertyName = "Content"
                     };
                     DataGridViewSearchNotes.Columns.Add(contentColumn);
 
@@ -1711,18 +1743,6 @@ namespace ContactManager
             Close();
         }
 
-        private void RefreshDataGridView()
-        {
-            // Clear the DataGridView
-            DataGridViewSearchNotes.Rows.Clear();
-            
-
-            // Create a new BindingSource and set the DataSource
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = currentContactNotes;
-            DataGridViewSearchNotes.DataSource = bindingSource;
-        }
-
         /// <summary>
         /// Checks if input is valid and then saves the new note
         /// </summary>
@@ -1736,7 +1756,7 @@ namespace ContactManager
                 if (string.IsNullOrWhiteSpace(note.Content))
                 {
                     MessageBox.Show("Note content cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;  
+                    return;
                 }
 
                 // Save note and check if it was successful
@@ -1854,7 +1874,7 @@ namespace ContactManager
         }
 
         /// <summary>
-        /// Open the explorer to select a file and shows it as a preview in the DataGrid
+        /// Open the explorer to select a CSV-File and shows it as a preview in the DataGrid
         /// </summary>
         private void CmdImportOpenFile_Click(object sender, EventArgs e)
         {
@@ -1973,10 +1993,9 @@ namespace ContactManager
             Close();
         }
 
-        // Declare BindingSource object at class level
-        // Declare BindingSource object at class level
-        private BindingSource bindingSource = new BindingSource();
-
+        /// <summary>
+        /// Create a new Note, update the datagridview, select the first row and enable the save button
+        /// </summary>
         private void CmdAddNewNote_Click(object sender, EventArgs e)
         {
             // Create a new Note object
@@ -1993,7 +2012,7 @@ namespace ContactManager
             // Update the data source for DataGridViewSearchNotes
             DataGridViewSearchNotes.DataSource = bindingSource;
 
-            // Select the last row (newly added note)
+            // Select the first row (newly added note)
             if (DataGridViewSearchNotes.RowCount > 0)
                 DataGridViewSearchNotes.CurrentCell = DataGridViewSearchNotes.Rows[0].Cells[0];
 
@@ -2001,9 +2020,9 @@ namespace ContactManager
             CmdSearchSaveNewNote.Enabled = true;
         }
 
-        // New field to keep track of deleted notes
-        private List<Note> deletedNotes = new List<Note>();
-
+        /// <summary>
+        /// Remove the selcted Note, update the datagridview and enable the save button
+        /// </summary>
         private void CmdRemoveNote_Click(object sender, EventArgs e)
         {
             if (DataGridViewSearchNotes.SelectedCells.Count > 0)
