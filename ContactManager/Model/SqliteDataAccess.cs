@@ -489,7 +489,7 @@ namespace ContactManager.Model
                     }
                 }
             }
-            notes = notes.OrderByDescending(note => note.CreateTimestamp).ToList();
+            notes = notes.OrderByDescending(note => note.EditTimestamp).ToList();
 
             return notes;
         }
@@ -549,8 +549,7 @@ namespace ContactManager.Model
         {
             if (associatedContact == null || string.IsNullOrEmpty(noteId))
             {
-                // Handle null values appropriately, either by returning false, 
-                // throwing an exception, or logging an error message.
+                // Handle null values appropriately by returning false, 
                 return false;
             }
 
@@ -560,7 +559,7 @@ namespace ContactManager.Model
                 try
                 {
                     cnn.Open();
-                    cnn.Execute("DELETE FROM NOTES WHERE Id=@Id", new { Id = noteId });
+                    cnn.Execute("DELETE FROM Notes WHERE Id=@Id", new { Id = noteId });
                     cnn.Close();
                 }
                 catch
@@ -580,7 +579,7 @@ namespace ContactManager.Model
                     try
                     {
                         cnn.Open();
-                        cnn.Execute("UPDATE USERS SET CommaSeparatedNoteIds=@CommaSeparatedNoteIds WHERE Id=@Id",
+                        cnn.Execute("UPDATE Users SET CommaSeparatedNoteIds=@CommaSeparatedNoteIds WHERE Id=@Id",
                             new { CommaSeparatedNoteIds = string.Join(",", associatedContact.NoteIds), Id = associatedContact.NoteIds });
                         cnn.Close();
                     }

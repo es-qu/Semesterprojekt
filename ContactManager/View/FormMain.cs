@@ -1046,7 +1046,7 @@ namespace ContactManager
         /// </summary>
         private void DataGridViewSearchNotes_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            CmdSearchSaveNewNote.Enabled = true;
+            CmdSearchSaveNotes.Enabled = true;
         }
 
         /// <summary>
@@ -1089,7 +1089,7 @@ namespace ContactManager
                         // Enable/disable buttons
                         CmdSearchPersonEdit.Enabled = true;
                         CmdSearchPersonDelete.Enabled = true;
-                        CmdSearchSaveNewNote.Enabled = false;
+                        CmdSearchSaveNotes.Enabled = false;
 
                         //// Enable/diable Textfield
                         //TxtSearchNewNote.Enabled = true;
@@ -1114,7 +1114,7 @@ namespace ContactManager
                         LblSearchPreviewBusinessAddressOutput.Text = clickedPerson.BusinessAddress;
                         DataGridViewSearchNotes.DataSource = null;
                         currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
-                        var sortedNotes = currentContactNotes.OrderByDescending(note => note.CreateTimestamp).ToList();
+                        var sortedNotes = currentContactNotes.OrderByDescending(note => note.EditTimestamp).ToList();
                         currentContactNotes = new BindingList<Note>(sortedNotes);
                         DataGridViewSearchNotes.DataSource = currentContactNotes;
                         DataGridViewSearchNotes.ClearSelection();
@@ -1236,7 +1236,7 @@ namespace ContactManager
                     // Disable buttons
                     CmdSearchPersonEdit.Enabled = false;
                     CmdSearchPersonDelete.Enabled = false;
-                    CmdSearchSaveNewNote.Enabled = false;
+                    CmdSearchSaveNotes.Enabled = false;
                 }
             }
         }
@@ -1609,7 +1609,9 @@ namespace ContactManager
                     int currentSelectedRow = DataGridViewSearchResult.CurrentCell.RowIndex;
 
                     currentContact = (Person)searchResults[currentSelectedRow];
-                    currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
+                    //currentContactNotes = new BindingList<Note>(Controller.GetNotes(currentContact.NoteIds));
+                    var sortedNotes = currentContactNotes.OrderByDescending(note => note.EditTimestamp).ToList();
+                    currentContactNotes = new BindingList<Note>(sortedNotes);
                     DataGridViewSearchNotes.AutoGenerateColumns = false;
 
 
@@ -1621,6 +1623,14 @@ namespace ContactManager
                         DataPropertyName = "Content"
                     };
                     DataGridViewSearchNotes.Columns.Add(contentColumn);
+
+                    DataGridViewTextBoxColumn editTimestampColumn = new DataGridViewTextBoxColumn
+                    {
+                        Name = "editTimestampColumn",
+                        HeaderText = "Last edit",
+                        DataPropertyName = "EditTimestamp"
+                    };
+                    DataGridViewSearchNotes.Columns.Add(editTimestampColumn);
 
                     DataGridViewTextBoxColumn createTimestampColumn = new DataGridViewTextBoxColumn
                     {
@@ -1665,7 +1675,6 @@ namespace ContactManager
             UpdateEmployeeNumber();
 
             TCtrlMain.SelectedTab = TabCreateEdit;
-
         }
 
         /// <summary>
@@ -1781,7 +1790,8 @@ namespace ContactManager
             deletedNotes.Clear();
 
             // Update currentContactNotes with only successfully saved notes
-            currentContactNotes = new BindingList<Note>(successfullySavedNotes);
+            var sortedNotes = successfullySavedNotes.OrderByDescending(note => note.EditTimestamp).ToList();
+            currentContactNotes = new BindingList<Note>(sortedNotes);
 
             // Update currentContact in the database
             bool isUpdated = SqliteDataAccess.UpdateContact(currentContact);
@@ -1999,7 +2009,7 @@ namespace ContactManager
 
             // Add the new note to the current contact notes
             currentContactNotes.Add(newNote);
-            var sortedNotes = currentContactNotes.OrderByDescending(note => note.CreateTimestamp).ToList();
+            var sortedNotes = currentContactNotes.OrderByDescending(note => note.EditTimestamp).ToList();
             currentContactNotes = new BindingList<Note>(sortedNotes);
 
             // Set the BindingSource DataSource
@@ -2013,7 +2023,7 @@ namespace ContactManager
                 DataGridViewSearchNotes.CurrentCell = DataGridViewSearchNotes.Rows[0].Cells[0];
 
             // Enable the "Save New Note" button
-            CmdSearchSaveNewNote.Enabled = true;
+            CmdSearchSaveNotes.Enabled = true;
         }
 
         /// <summary>
@@ -2040,7 +2050,7 @@ namespace ContactManager
                 // Refresh DataGridViewSearchNotes
                 DataGridViewSearchNotes.Refresh();
 
-                CmdSearchSaveNewNote.Enabled = true;
+                CmdSearchSaveNotes.Enabled = true;
             }
         }
 
