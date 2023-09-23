@@ -243,8 +243,13 @@ namespace ContactManager.Model
                     if (isTrainee)
                     {
                         // If the person is also a Trainee, just delete the Employee record
-                        return cnn.Execute("DELETE FROM Employee WHERE EmployeeNumber = @EmployeeNumber", new { EmployeeNumber = employeeNumber }) > 0;
+                        var employeeDeleted = cnn.Execute("DELETE FROM Employee WHERE EmployeeNumber = @EmployeeNumber", new { EmployeeNumber = employeeNumber });
 
+                        var personDeleted = cnn.Execute("DELETE FROM Person WHERE ID = @ID", new { ID = personId });
+
+                        var traineeDeleted = cnn.Execute("DELETE FROM Trainee WHERE ID = @ID", new { ID = personId });
+
+                        return employeeDeleted > 0 && personDeleted > 0;
                     }
                     else
                     {

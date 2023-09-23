@@ -682,7 +682,7 @@ namespace ContactManager
         {
             // Variables for If-Statements
             Regex regexLetters = new Regex("^[A-Za-zÄ-Üä-ü ]+$");
-            Regex regexEmailValidation = new Regex("^[^@\\s]+@[^@\\s]+\\.(\\w{1,2}\\D)$");
+            Regex regexEmailValidation = new Regex("^[^@\\s]+@[^@\\s]+\\.(\\w{1,10}\\D)$");
             var dateMin = new DateTime(1900, 1, 1);
             var dateMax = new DateTime(2100, 1, 1);
 
