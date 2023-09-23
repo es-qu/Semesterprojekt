@@ -9,8 +9,8 @@ namespace ContactManager.Entity
         // fields
         private string id;
         private string content;
-        string createTimestamp;
-        string editTimestamp;
+        private string createTimestamp;
+        private string editTimestamp;
 
         // constructors
         public Note()
