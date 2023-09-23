@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace ContactManager.Entity
 {
@@ -16,7 +17,7 @@ namespace ContactManager.Entity
         {
             this.id = Guid.NewGuid().ToString();
             this.content = "";
-            this.createTimestamp = DateTime.Now.ToString();
+            this.createTimestamp = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture);
             this.editTimestamp = this.createTimestamp;
         }
 
@@ -39,7 +40,7 @@ namespace ContactManager.Entity
         public string Content
         {
             get { return content; }
-            set { content = value; editTimestamp = DateTime.Now.ToString(); } // Update content edit timestamp
+            set { content = value; editTimestamp = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss", CultureInfo.InvariantCulture); } // Update content edit timestamp
         }
         public string CreateTimestamp { get { return createTimestamp; } }
         public string EditTimestamp { get { return editTimestamp; } }
