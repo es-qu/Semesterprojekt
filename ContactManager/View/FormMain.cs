@@ -65,6 +65,8 @@ namespace ContactManager
 
             //Adding the Numbers to the Textfeld if they are valid
             TxtCreateOasiNr.KeyPress += TxtCreateOasiNr_KeyPress;
+            TxtCreatePrivatePhone.KeyPress += TxtCreatePhoneNr_KeyPress;
+            TxtCreateBusinessPhone.KeyPress += TxtCreatePhoneNr_KeyPress;
 
             // Disable the employee && Customer number text box
             TxtCreateEmployeeNumber.Enabled = false;
@@ -1003,6 +1005,22 @@ namespace ContactManager
         {
             // If the key pressed is not a digit and not a dot, consume the key event (do not input the key)
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.')
+            {
+                e.Handled = true;
+
+                // Show a tooltip to inform the user that only numbers and dots are allowed
+                System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
+                toolTip.Show("Only numbers allowed", (Control)sender, 0, ((Control)sender).Height, 2000);
+            }
+        }
+
+        /// <summary>
+        /// Checks if input in textfeld phonenumber is valid, otherwise throw a tooltip
+        /// </summary>
+        private void TxtCreatePhoneNr_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // If the key pressed is not a digit and not a + or -, consume the key event (do not input the key)
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != '-')
             {
                 e.Handled = true;
 
