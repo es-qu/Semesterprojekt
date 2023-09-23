@@ -2006,6 +2006,8 @@ namespace ContactManager
                 CmdImportConfirm.Enabled = false;
                 DataGridViewImportGeneric.DataSource = null;
                 DataGridViewImportSpecific.DataSource = null;
+
+                Close();
             }
             else
             {
