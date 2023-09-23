@@ -389,13 +389,13 @@ namespace ContactManager
             List<object> res = new List<object>();
 
             string customerSqlCondition = $"{((genericQueryString.Length > 0) ? genericQueryString + " AND " : "")}{((customerQueryString.Length > 0) ? customerQueryString + " AND " : "")}{inactiveQueryString}";
-            if (types.Contains(typeof(Customer)) && employeeQueryString.Count() == 0 && traineeQueryString.Count() == 0) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Customer) }, customerSqlCondition));
+            if (types.Contains(typeof(Customer)) || (employeeQueryString.Count() == 0 && traineeQueryString.Count() == 0)) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Customer) }, customerSqlCondition));
 
             string employeeSqlCondition = $"{((genericQueryString.Length > 0) ? genericQueryString + " AND " : "")}{((employeeQueryString.Length > 0) ? employeeQueryString + " AND " : "")}{inactiveQueryString}";
-            if (types.Contains(typeof(Employee)) && customerQueryString.Count() == 0 && traineeQueryString.Count() == 0) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Employee) }, employeeSqlCondition));
+            if (types.Contains(typeof(Employee)) || (customerQueryString.Count() == 0 && traineeQueryString.Count() == 0)) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Employee) }, employeeSqlCondition));
 
             string traineeSqlCondition = $"{((genericQueryString.Length > 0) ? genericQueryString + " AND " : "")}{((employeeQueryString.Length > 0) ? employeeQueryString + " AND " : "")}{((traineeQueryString.Length > 0) ? traineeQueryString + " AND " : "")}{inactiveQueryString}";
-            if (types.Contains(typeof(Trainee)) && customerQueryString.Count() == 0) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Trainee) }, traineeSqlCondition));
+            if (types.Contains(typeof(Trainee)) || customerQueryString.Count() == 0) res.AddRange(SqliteDataAccess.SearchPersonsByQueryString(new List<Type>() { typeof(Trainee) }, traineeSqlCondition));
 
             return res;
         }
