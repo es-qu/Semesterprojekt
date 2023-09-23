@@ -36,10 +36,10 @@ password: Password123
 
 # New import feature
 If you want to try the new feature "IMPORT FROM FILE" try the import with some demo contacts:
-  1.  Run the program to open the menu
+  1.  Run the program and log in to open the menu
   2.  Click "IMPORT FROM FILE"
   3.  Click "OPEN FILE" to open the file explorer
-  4.  Choose the following csv file from the repository:
+  4.  Choose the following csv file with demo contacs from the repository:
         .\Semesterprojekt\contacts.csv
   5.  Click "CONFIRM"
 
@@ -59,10 +59,12 @@ Funktionale Anforderungen:
 [x] Automatische Vergabe von Mitarbeiternummern
 [x] Protokollieren von Notizen in Kundenkontakten inkl. Historie
 [x] Suchmöglichkeiten über alle gespeicherten Informationen
-[x] Automatisches Speichern des Datenstamms auf Festplatte
+[x] Automatisches Speichern des Datenstamms auf Festplatte 
+     - Changes are saved in: .\Semesterprojekt\ContactManager\bin\Debug\Model\Person.db
+     - Initial database in:  .\Semesterprojekt\ContactManager\Model\Person.db
 
 Optionale funktionale Anforderungen:
-[x] Mutationshistorie von Kontaktdaten
+[x] Mutationshistorie von Kontaktdaten (as 'LogTable' in Database Person.db --> view Database via https://sqlitebrowser.org/ for example)
 [x] Login
 [ ] Dashboard-View
 [x] Import von Kontakten im CSV-Format oder VCard-Format (look at instructions # New import feature)
