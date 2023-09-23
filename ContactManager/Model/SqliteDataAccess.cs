@@ -249,7 +249,7 @@ namespace ContactManager.Model
 
                         var traineeDeleted = cnn.Execute("DELETE FROM Trainee WHERE ID = @ID", new { ID = personId });
 
-                        return employeeDeleted > 0 && personDeleted > 0;
+                        return employeeDeleted > 0 && personDeleted > 0 && traineeDeleted > 0;
                     }
                     else
                     {

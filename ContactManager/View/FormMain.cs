@@ -1020,7 +1020,7 @@ namespace ContactManager
         private void TxtCreatePhoneNr_KeyPress(object sender, KeyPressEventArgs e)
         {
             // If the key pressed is not a digit and not a + or -, consume the key event (do not input the key)
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != '-')
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '+' && e.KeyChar != '-' && e.KeyChar != ' ')
             {
                 e.Handled = true;
 
