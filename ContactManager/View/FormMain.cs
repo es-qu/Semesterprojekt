@@ -1496,7 +1496,18 @@ namespace ContactManager
         /// </summary>
         private void CmdCreateCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (isEditMode)
+            {
+                // If in edit mode, navigate back to search tab
+                TCtrlMain.SelectedTab = TabSearch;
+                CmdCreateCancel.Text = "Cancel";
+                isEditMode = false;
+            }
+            else
+            {
+                // If not in edit mode, close form
+                this.Close();
+            }
         }
 
         /// <summary>
@@ -1639,8 +1650,8 @@ namespace ContactManager
                         DataPropertyName = "CreateTimestamp"
                     };
                     DataGridViewSearchNotes.Columns.Add(createTimestampColumn);
-                    
-                   
+
+
                 }
                 else
                 {
@@ -1673,6 +1684,7 @@ namespace ContactManager
         {
             isEditMode = true;
             UpdateEmployeeNumber();
+            CmdCreateCancel.Text = "BACK";
 
             TCtrlMain.SelectedTab = TabCreateEdit;
         }
@@ -1727,11 +1739,6 @@ namespace ContactManager
                                         MessageBoxButtons.OK,
                                         MessageBoxIcon.Error);
                     }
-                }
-                else
-                {
-                    // User clicked 'No', close the dialog popup
-                    this.Close();
                 }
             }
             else
